@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+         #
+#    By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/19 20:58:55 by mtrullar          #+#    #+#              #
-#    Updated: 2024/07/31 15:06:34 by mtrullar         ###   ########.fr        #
+#    Updated: 2024/08/30 18:13:47 by ebengtss         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,6 +87,7 @@ LIBFTSRC = 	ft_atoi.c	 			\
 			ft_lstiter.c 			\
 			ft_lstmap.c				\
 			ft_ultimate_len.c		\
+			ft_max.c				\
 
 PRINTFSRC = ft_print_pointer.c		\
 			ft_printf.c				\

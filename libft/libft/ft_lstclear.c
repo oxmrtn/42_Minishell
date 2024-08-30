@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 14:23:24 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/08/30 17:41:10 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/08/30 18:11:36 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_envclear(t_env **lst, void (*del)(void *))
 	while (*lst)
 	{
 		tempo = (*lst)->next;
-		ft_lstdelone(*(lst), del);
+		ft_envdelone(*(lst), del);
 		*lst = tempo;
 	}
 }

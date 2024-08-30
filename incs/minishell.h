@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/08/30 16:49:25 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/08/30 18:30:52 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,23 @@ typedef struct s_cmds
 	struct s_cmd	*prev;
 }					t_cmds;
 
-/* exec */
-int	exec(t_cmds *cmd);
-int	ft_echo(t_cmds *cmd);
-int	ft_cd(t_cmds *cmd);
-int	ft_pwd(t_cmds *cmd);
-int	ft_export(t_cmds *cmd);
-int	ft_unset(t_cmds *cmd);
-int	ft_env(t_cmds *cmd);
-int	ft_exit(t_cmds *cmd);
+typedef struct s_data
+{
+	t_cmds	*cmds;
+	t_env	*env;
+}			t_data;
+
+/* EXEC */
+int	exec(t_data *data, t_cmds *cmd);
+int	ft_echo(t_data *data, t_cmds *cmd);
+int	ft_cd(t_data *data, t_cmds *cmd);
+int	ft_pwd(t_data *data, t_cmds *cmd);
+int	ft_export(t_data *data, t_cmds *cmd);
+int	ft_unset(t_data *data, t_cmds *cmd);
+int	ft_env(t_data *data, t_cmds *cmd);
+int	ft_exit(t_data *data, t_cmds *cmd);
+
+/* UTILS */
+int make_env(t_data	*data, char **env);
 
 #endif

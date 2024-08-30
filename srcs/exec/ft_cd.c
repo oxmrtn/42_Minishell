@@ -6,14 +6,15 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:46:55 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/08/30 16:47:01 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/08/30 18:45:13 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "incs/minishell.h"
+#include "../../incs/minishell.h"
 
-int	ft_cd(t_cmds *cmd)
+int	ft_cd(t_data *data, t_cmds *cmd)
 {
+	(void)data;
 	(void)cmd;
 	return (0);
 }
