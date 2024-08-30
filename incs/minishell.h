@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/08/30 15:43:54 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/08/30 15:51:30 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef enum type_token
     ARGS,
     REDIR_IN,
     REDIR_IN_PATH
-}				t_type_token;
+}				t_type;
 
 typedef struct tokens
 {
