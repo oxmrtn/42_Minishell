@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/08/30 14:59:59 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/08/30 15:03:00 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct tokens
     enum type_token type;
     struct tokens *next;
     struct tokens *prev;
-};
+}				t_tokens;
 
 typedef struct cmd
 {
@@ -53,6 +53,6 @@ typedef struct cmd
     struct tokens tokens;
     struct cmd *next;
     struct cmd *prev;
-};
+}				t_cmd;
 
 #endif
