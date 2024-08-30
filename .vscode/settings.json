@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"minishell.h": "c",
-		"string.h": "c"
+		"string.h": "c",
+		"termios.h": "c"
 	}
 }
