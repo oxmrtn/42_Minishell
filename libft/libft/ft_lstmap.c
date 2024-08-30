@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 14:58:31 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/06/24 10:53:32 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/08/30 17:39:26 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/libft.h"
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+t_env	*ft_envmap(t_env *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*result;
-	t_list	*tempo;
+	t_env	*result;
+	t_env	*tempo;
 
 	result = NULL;
 	while (lst)

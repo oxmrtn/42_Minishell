@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 14:23:24 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/06/24 10:53:32 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/08/30 17:41:10 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+void	ft_envclear(t_env **lst, void (*del)(void *))
 {
-	t_list	*tempo;
+	t_env	*tempo;
 
 	while (*lst)
 	{

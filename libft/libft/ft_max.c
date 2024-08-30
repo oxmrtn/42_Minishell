@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ft_max.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/30 13:29:07 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/08/30 17:40:10 by ebengtss         ###   ########.fr       */
+/*   Created: 2024/08/30 16:38:11 by ebengtss          #+#    #+#             */
+/*   Updated: 2024/08/30 16:38:23 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/libft.h"
 
-void	ft_envadd_front(t_env **lst, t_env *new)
+int	ft_max(int a, int b)
 {
-	new->next = *lst;
-	*lst = new;
+	if (a > b)
+		return (a);
+	return (b);
 }

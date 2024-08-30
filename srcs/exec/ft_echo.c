@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/30 13:29:07 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/08/30 17:40:10 by ebengtss         ###   ########.fr       */
+/*   Created: 2024/08/30 16:45:11 by ebengtss          #+#    #+#             */
+/*   Updated: 2024/08/30 16:46:32 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/libft.h"
+#include "incs/minishell.h"
 
-void	ft_envadd_front(t_env **lst, t_env *new)
+int	ft_echo(t_cmds *cmd)
 {
-	new->next = *lst;
-	*lst = new;
+	(void)cmd;
+	return (0);
 }

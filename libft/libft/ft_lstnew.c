@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 17:04:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/06/24 10:53:32 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/08/30 17:39:48 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/libft.h"
 
-t_list	*ft_lstnew(void *content)
+t_env	*ft_envnew(void *content)
 {
-	t_list	*result;
+	t_env	*result;
 
-	result = malloc(sizeof(t_list));
+	result = malloc(sizeof(t_env));
 	if (!result)
 		return (NULL);
 	result->content = content;

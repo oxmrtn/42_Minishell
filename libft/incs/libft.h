@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:32:30 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/08/16 14:28:23 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/08/30 17:41:30 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,23 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef struct s_list
+/* ===== ENV LIST ===== */
+typedef struct l_env
 {
 	void			*content;
-	struct s_list	*next;
-}					t_list;
+	struct l_env	*next;
+}					t_env;
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
-t_list	*ft_lstnew(void *content);
-t_list	*ft_lstlast(t_list *lst);
+t_env	*ft_envmap(t_env *lst, void *(*f)(void *), void (*del)(void *));
+t_env	*ft_envnew(void *content);
+t_env	*ft_envlast(t_env *lst);
+void	ft_envadd_front(t_env **lst, t_env *new);
+void	ft_envadd_back(t_env **lst, t_env *new);
+void	ft_envdelone(t_env *lst, void (*del)(void *));
+void	ft_envclear(t_env **lst, void (*del)(void *));
+void	ft_enviter(t_env *lst, void (*f)(void *));
+int		ft_envsize(t_env *lst);
+/* ==================== */
 
 size_t	ft_strlen(const char *str);
 size_t	ft_strlcat(char *dest, char *src, size_t size);
@@ -33,6 +41,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 
 long	ft_atol(const char *nptr);
 
+int		ft_max(int a, int b);
 int		ft_atoi(const char *nptr);
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -44,7 +53,6 @@ int		ft_memcmp(const void *pointer1, const void *pointer2, size_t size);
 int		ft_strncmp(char *s1, char *s2, unsigned int n);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
-int		ft_lstsize(t_list *lst);
 
 char	*ft_itoa(int n);
 char	*ft_strchr(const char *s, int c);
@@ -69,11 +77,6 @@ void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int nbr, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_puterror(char *str);
-void	ft_lstadd_front(t_list **lst, t_list *new);
-void	ft_lstadd_back(t_list **lst, t_list *new);
-void	ft_lstdelone(t_list *lst, void (*del)(void *));
-void	ft_lstclear(t_list **lst, void (*del)(void *));
-void	ft_lstiter(t_list *lst, void (*f)(void *));
 
 void	*ft_memchr(const void *s, int c, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);

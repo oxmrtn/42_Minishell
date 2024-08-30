@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 13:38:58 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/27 01:35:14 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/08/30 17:41:27 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/libft.h"
 
-int	ft_lstsize(t_list *lst)
+int	ft_envsize(t_env *lst)
 {
 	int		i;
-	t_list	*current;
+	t_env	*current;
 
 	if (!lst)
 		return (0);
