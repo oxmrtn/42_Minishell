@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/08/30 15:47:52 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/08/30 15:50:02 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-<<<<<<< HEAD
 typedef enum type_token
 {
     NO_TYPE,
@@ -38,7 +37,7 @@ typedef enum type_token
     ARGS,
     REDIR_IN,
     REDIR_IN_PATH
-};
+}				t_type;
 
 typedef struct tokens
 {
@@ -55,31 +54,5 @@ typedef struct cmd
     struct cmd *next;
     struct cmd *prev;
 }				t_cmd;
-=======
-typedef enum s_type
-{
-	NO_TYPE,
-	CMD,
-	ARGS,
-	REDIR_IN,
-	REDIR_IN_PATH
-}	t_type;
-
-typedef struct s_tokens
-{
-	char			*str;
-	t_type			type;
-	struct s_tokens	*next;
-	struct s_tokens	*prev;
-}					t_tokens;
-
-typedef struct s_cmds
-{
-	char			*cmd;
-	t_tokens		tokens;
-	struct s_cmd	*next;
-	struct s_cmd	*prev;
-}					t_cmds;
->>>>>>> a7ba8724f65494a3982888559b172af9bef3897c
 
 #endif
