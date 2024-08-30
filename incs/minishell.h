@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/08/30 14:39:54 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/08/30 15:09:44 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,30 @@
 # include <sys/ioctl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+
+typedef enum type_token
+{
+    NO_TYPE,
+    CMD,
+    ARGS,
+    REDIR_IN,
+    REDIR_IN_PATH
+};
+
+typedef struct tokens
+{
+    char *str;
+    enum type_token type;
+    struct tokens *next;
+    struct tokens *prev;
+}				t_tokens;
+
+typedef struct cmd
+{
+    char *cmd;
+    struct tokens tokens;
+    struct cmd *next;
+    struct cmd *prev;
+}				t_cmd;
 
 #endif
