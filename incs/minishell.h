@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/08/30 14:33:50 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/08/30 15:40:32 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,30 @@
 # include <sys/ioctl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+
+typedef enum s_type
+{
+	NO_TYPE,
+	CMD,
+	ARGS,
+	REDIR_IN,
+	REDIR_IN_PATH
+}	t_type;
+
+typedef struct s_tokens
+{
+	char			*str;
+	t_type			type;
+	struct s_tokens	*next;
+	struct s_tokens	*prev;
+}					t_tokens;
+
+typedef struct s_cmds
+{
+	char			*cmd;
+	t_tokens		tokens;
+	struct s_cmd	*next;
+	struct s_cmd	*prev;
+}					t_cmds;
 
 #endif
