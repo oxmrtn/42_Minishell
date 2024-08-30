@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/08/30 14:54:18 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/08/30 15:41:01 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int	main()
 	char	*read;
 	
 	printf("Welcome to MINISHELL\n");
-	read = readline("->minishell : ");
+	read = readline("minishell → ");
 	while (read)
 	{
 		printf("%s\n", read);
 		free(read);
-		read = readline("->minishell : ");
+		read = readline("minishell → ");
 	}
 }
