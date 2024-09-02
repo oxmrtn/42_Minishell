@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/02 13:59:24 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/02 18:13:00 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,16 @@ typedef enum s_type
 	NO_TYPE,
 	CMD,
 	ARGS,
-	REDIR_IN,
-	REDIR_IN_PATH
+	INFILE,
+	LIMITER,
+	OUTFILE,
+	APPEND
 }	t_type;
 
 typedef struct s_tokens
 {
 	char			*str;
-	t_type			*type;
+	t_type			type;
 	struct s_tokens	*next;
 	struct s_tokens	*prev;
 }					t_tokens;
@@ -77,17 +79,27 @@ typedef struct s_data
 {
 	t_cmds	*cmds;
 	t_env	*env;
+	int		exit_status;
 }			t_data;
 
 /* EXEC */
-int	exec(t_data *data, t_cmds *cmd);
-int	ft_echo(t_data *data, t_cmds *cmd);
-int	ft_cd(t_data *data, t_cmds *cmd);
-int	ft_pwd(t_data *data, t_cmds *cmd);
-int	ft_export(t_data *data, t_cmds *cmd);
-int	ft_unset(t_data *data, t_cmds *cmd);
-int	ft_env(t_data *data, t_cmds *cmd);
-int	ft_exit(t_data *data, t_cmds *cmd);
+int		exec(t_data *data, t_cmds *cmd);
+int		is_inred(t_cmds *cmd, int *i, char ***cmdve);
+int		is_outred(t_cmds *cmd);
+int		is_builtin(char *cmd);
+int		exec_builtin(t_data *data, t_cmds *cmd, char *cmd_name);
+int		run_cmd(char **cmdve, t_data *data, t_cmds *cmd, int islast);
+int		run_heredoc(char *limiter);
+
+
+/* BUILTINS */
+int		ft_echo(t_data *data, t_cmds *cmd);
+int		ft_cd(t_data *data, t_cmds *cmd);
+int		ft_pwd(t_data *data, t_cmds *cmd);
+int		ft_export(t_data *data, t_cmds *cmd);
+int		ft_unset(t_data *data, t_cmds *cmd);
+int		ft_env(t_data *data, t_cmds *cmd);
+int		ft_exit(t_data *data, t_cmds *cmd);
 
 /* UTILS */
 

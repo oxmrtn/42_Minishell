@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:03:48 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/08/30 17:56:00 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/02 18:13:30 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_type	get_type(char *str, int i)
 	if (str[0] == '-')
 		return (ARGS);
 	else if (str[0] == '|' || str[0] == '<' || str[0] == '>')
-		return (REDIR_IN);
+		return (INFILE);
 	else if (i > 0)
 		return (ARGS);
 	else

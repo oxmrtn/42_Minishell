@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/02 13:53:42 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/02 18:11:55 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,12 @@ int	main(int argc, char **argv, char **env)
 {
 	char	*read;
 	t_cmds	*commands;
+	t_data	*data;
 
+	data = malloc(sizeof(t_data));
+	if (!data)
+		return (1);
+	data->exit_status = 0;
 	signal(SIGINT, &handle_signal);
 	(void)argc;
 	(void)argv;
@@ -61,6 +66,8 @@ int	main(int argc, char **argv, char **env)
 		if (!ft_strncmp(read, "exit", 4))
 			return (ft_free_commands(commands), 0);
 		ft_parser(read, &commands);
+		if (exec(data, commands))
+			return (1);
 		print_commands(commands);
 		add_history(read);
 		free(read);
