@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:57:50 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/08/30 18:29:20 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/02 13:50:17 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,23 +54,78 @@ static int	exec_builtin(t_data *data, t_cmds *cmd, char *cmd_name)
 	return (retval);
 }
 
-int	exec(t_data *data, t_cmds *cmd)
+static char	***ft_make_cmdve(t_cmds *cmd)
 {
+	char		***cmdve;
 	t_tokens	*tokens;
+	int			n_cmds;
 
 	tokens = cmd->tokens;
+	n_cmds = 0;
 	while (tokens)
 	{
-		if (*tokens->type == CMD)
-		{
-			if (is_builtin(tokens->str))
-			{
-				if (exec_builtin(data, cmd, tokens->str))
-					return (1);
-			}
-			break ;
-		}
+		if (tokens->type == CMD)
+			n_cmds++;
 		tokens = tokens->next;
 	}
+	if (n_cmds == 0)
+		return (NULL);
+	cmdve = malloc(sizeof(char *) * (n_cmds + 1));
+	if (!cmdve)
+		return (NULL);
+	return (cmdve);
+}
+
+static char	**ft_fill_cmdve2(t_tokens *tokens)
+{
+	char	**split;
+	char	*buff;
+
+	buff = ft_strdup(tokens->str);
+	if (!buff)
+		return (1);
+	tokens = tokens->next;
+	while (tokens->type == ARGS)
+	{
+		buff = ft_strjoin_s1c(buff, tokens->str, ' ');
+		if (!buff)
+			return (1);
+		tokens = tokens->next;
+	}
+	split = ft_split(buff, ' ');
+	free(buff);
+	return (split);
+}
+
+static int	ft_fill_cmdve(char ***cmdve, t_cmds *cmd)
+{
+	t_tokens	*tokens;
+	int			i;
+
+	i = 0;
+	while (tokens)
+	{
+		if (tokens->type == CMD)
+		{
+			cmdve[i] = ft_fill_cmdve2(tokens);
+			if (!cmdve[i])
+				return (1);
+			i++;
+		}
+		else
+			tokens = tokens->next;
+	}
+	return (0);
+}
+
+int	exec(t_data *data, t_cmds *cmd)
+{
+	char	***cmdve;
+
+	cmdve = ft_make_cmdve(cmd);
+	if (!cmdve)
+		return (1);
+	if (ft_fill_cmdve(cmdve, cmd))
+		return (1);
 	return (0);
 }
