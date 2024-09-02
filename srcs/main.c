@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/08/30 18:34:54 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/02 13:51:19 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,19 @@ int	print_commands(t_cmds *com)
 	return (0);
 }
 
+void	handle_signal(int sig)
+{
+	if (sig == SIGINT)
+		printf("minishell → ^C\nminishell → ");
+	return ;
+}
+
 int	main(int argc, char **argv, char **env)
 {
 	char	*read;
 	t_cmds	*commands;
-	
+
+	signal(SIGINT, &handle_signal);
 	(void)argc;
 	(void)argv;
 	if (!env[0])
@@ -50,9 +58,11 @@ int	main(int argc, char **argv, char **env)
 	read = readline("minishell → ");
 	while (read)
 	{
-		//printf("%s\n", read);
+		if (!ft_strncmp(read, "exit", 4))
+			return (ft_free_commands(commands), 0);
 		ft_parser(read, &commands);
 		print_commands(commands);
+		add_history(read);
 		free(read);
 		read = readline("minishell → ");
 	}
