@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/02 13:53:33 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/02 13:59:24 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include "../libft/incs/ft_printf.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
@@ -29,7 +30,6 @@
 # include <sys/ioctl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-# include "../libft/incs/ft_printf.h"
 
 typedef enum s_type
 {
@@ -43,7 +43,7 @@ typedef enum s_type
 typedef struct s_tokens
 {
 	char			*str;
-	t_type			type;
+	t_type			*type;
 	struct s_tokens	*next;
 	struct s_tokens	*prev;
 }					t_tokens;
@@ -72,4 +72,23 @@ int			ft_write_history(t_cmds *cmds);
 //	Free
 void		ft_free_tokens(t_tokens *tok);
 void		ft_free_commands(t_cmds *cmds);
+
+typedef struct s_data
+{
+	t_cmds	*cmds;
+	t_env	*env;
+}			t_data;
+
+/* EXEC */
+int	exec(t_data *data, t_cmds *cmd);
+int	ft_echo(t_data *data, t_cmds *cmd);
+int	ft_cd(t_data *data, t_cmds *cmd);
+int	ft_pwd(t_data *data, t_cmds *cmd);
+int	ft_export(t_data *data, t_cmds *cmd);
+int	ft_unset(t_data *data, t_cmds *cmd);
+int	ft_env(t_data *data, t_cmds *cmd);
+int	ft_exit(t_data *data, t_cmds *cmd);
+
+/* UTILS */
+
 #endif
