@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:06:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/08/30 18:28:49 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/02 14:31:54 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_get_history(t_cmds **cmds)
 		return (close(fd), 1);
 	while(line)
 	{
-		ft_parser(line, cmds);
+		add_history(line);
 		free(line);
 		line = get_next_line(fd);
 	}

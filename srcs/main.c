@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/02 14:10:19 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/02 14:55:13 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,15 @@ int	main(int argc, char **argv, char **env)
 	read = readline("minishell → ");
 	while (read)
 	{
+		add_history(read);
 		if (!ft_strncmp(read, "exit", 4))
-			return (ft_free_commands(commands), 0);
+			break;
 		ft_parser(read, &commands);
 		print_commands(commands);
-		add_history(read);
 		free(read);
 		read = readline("minishell → ");
 	}
 	ft_write_history(commands);
 	ft_free_commands(commands);
+	return (0);
 }
