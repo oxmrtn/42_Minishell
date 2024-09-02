@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/08/30 18:30:52 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/02 13:53:19 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,5 @@ int	ft_env(t_data *data, t_cmds *cmd);
 int	ft_exit(t_data *data, t_cmds *cmd);
 
 /* UTILS */
-int make_env(t_data	*data, char **env);
 
 #endif
