@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/02 13:59:24 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/02 14:08:53 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef enum s_type
 typedef struct s_tokens
 {
 	char			*str;
-	t_type			*type;
+	t_type			type;
 	struct s_tokens	*next;
 	struct s_tokens	*prev;
 }					t_tokens;

@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:03:48 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/08/30 17:56:00 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/02 14:13:26 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	add_commands(t_cmds *new, t_cmds **head)
 	return (0);
 }
 
-t_type	get_type(char *str, int i)
+t_type	get_type(char *str, int i, char **splitted)
 {
 	if (str[0] == '-')
 		return (ARGS);
@@ -65,7 +65,7 @@ t_tokens	*ft_get_last_token(t_tokens *head)
 	return (head);
 }
 
-int	add_new_token(char *str, t_tokens **head, int i)
+int	add_new_token(char *str, t_tokens **head, int i, char **splitted)
 {
 	t_tokens	*new_tokens;
 	t_tokens	*last;
@@ -76,7 +76,7 @@ int	add_new_token(char *str, t_tokens **head, int i)
 	new_tokens->str = ft_strdup(str);
 	if (!new_tokens->str)
 		return (1);
-	new_tokens->type = get_type(str, i);
+	new_tokens->type = get_type(str, i, splitted);
 	if (!*head)
 	{
 		*head = new_tokens;
@@ -106,7 +106,7 @@ t_tokens	*create_token_list(char *line)
 		return (NULL);
 	while (splitted[i])
 	{
-		if (add_new_token(splitted[i], &head_node, i) == 1)
+		if (add_new_token(splitted[i], &head_node, i, splitted) == 1)
 			return (NULL);
 		i++;
 	}
