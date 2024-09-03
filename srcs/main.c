@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/02 18:11:55 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/03 15:26:34 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ int	main(int argc, char **argv, char **env)
 	(void)argv;
 	if (!env[0])
 		return (0);
+	if (make_env(data, env))
+		return (1);
 	printf("Welcome to MINISHELL\n");
 	commands = NULL;
 	ft_get_history(&commands);

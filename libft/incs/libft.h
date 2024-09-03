@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:32:30 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/02 13:49:53 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/03 14:49:44 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ void	ft_enviter(t_env *lst, void (*f)(void *));
 int		ft_envsize(t_env *lst);
 /* ==================== */
 
-char	*ft_strjoin_s1c(char *s1, char *s2, char c);
+void	ft_free_split(char **strs);
+char	*ft_strjoin_c(char *s1, char *s2, char c, int sfree);
 int		cpt_words(char *str, char c);
 
 size_t	ft_strlen(const char *str);

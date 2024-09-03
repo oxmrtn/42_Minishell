@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:57:50 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/02 17:56:37 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/03 15:27:27 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static char	**ft_fill_cmdve2(t_tokens **tokens)
 	(*tokens) = (*tokens)->next;
 	while ((*tokens) && (*tokens)->type == ARGS)
 	{
-		buff = ft_strjoin_s1c(buff, (*tokens)->str, ' ');
+		buff = ft_strjoin_c(buff, (*tokens)->str, ' ', 1);
 		if (!buff)
 			return (NULL);
 		(*tokens) = (*tokens)->next;
@@ -98,8 +98,12 @@ int	exec(t_data *data, t_cmds *cmd)
 		return (1);
 	if (ft_fill_cmdve(cmdve, cmd))
 		return (1);
+	if (cmds_path(cmdve, data))
+		return (1);
+	printf("3\n");
 	if (is_inred(cmd, &i, cmdve))
 		return (1);
+	printf("4\n");
 	while (cmdve[i + 1])
 		if (run_cmd(cmdve[i], data, cmd, 0))
 			return (1);
