@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/03 15:38:18 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/03 16:47:11 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ int		exec_builtin(t_data *data, char **cmdve);
 int		run_cmd(char **cmdve, t_data *data, t_cmds *cmd, int islast);
 int		run_heredoc(char *limiter);
 int		cmds_path(char ***cmdve, t_data *data);
+int		reset_fds(void);
+void	cleanup_exec(char ***cmdve);
 
 
 /* BUILTINS */
