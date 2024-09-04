@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:15:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/02 13:49:31 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/03 14:39:10 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ char	*ft_strjoin_s2(char *s1, char *s2)
 	return (result);
 }
 
-char	*ft_strjoin_s1c(char *s1, char *s2, char c)
+char	*ft_strjoin_c(char *s1, char *s2, char c, int sfree)
 {
 	size_t	len1;
 	size_t	len2;
@@ -104,7 +104,10 @@ char	*ft_strjoin_s1c(char *s1, char *s2, char c)
 		return (NULL);
 	ft_strlcpy(dst, s1, len1);
 	dst[len1] = c;
-	ft_strlcpy(dst[len1 + 1], s2, len2);
-	free(s1);
+	ft_strlcpy(&dst[len1 + 1], s2, len2);
+	if (sfree == 1)
+		free(s1);
+	if (sfree == 2)
+		free(s2);
 	return (dst);
 }

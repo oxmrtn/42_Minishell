@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/04 12:09:16 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/04 12:37:55 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,19 @@ int	main(int argc, char **argv, char **env)
 {
 	char	*read;
 	t_cmds	*commands;
+	t_data	*data;
 
+	data = malloc(sizeof(t_data));
+	if (!data)
+		return (1);
+	data->exit_status = 0;
 	signal(SIGINT, &handle_signal);
 	(void)argc;
 	(void)argv;
 	if (!env[0])
 		return (0);
+	if (make_env(data, env))
+		return (1);
 	printf("Welcome to MINISHELL\n");
 	commands = NULL;
 	ft_get_history(&commands);
@@ -62,6 +69,8 @@ int	main(int argc, char **argv, char **env)
 		if (!ft_strncmp(read, "exit", 4))
 			break;
 		ft_parser(read, &commands);
+		if (exec(data, commands))
+			return (1);
 		print_commands(commands);
 		free(read);
 		read = readline("minishell → ");

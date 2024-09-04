@@ -1,2 +1,4 @@
-hello
-cat -e
+ls
+ls
+
+/bin/ls

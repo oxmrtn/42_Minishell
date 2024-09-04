@@ -6,53 +6,11 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:57:50 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/04 12:17:57 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/04 12:37:27 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
-
-int	is_builtin(char *cmd)
-{
-	int				max_len;
-	size_t			i;
-	const size_t	cmd_len = ft_strlen(cmd);
-	const char		*builtins[] = {
-		"echo", "cd", "pwd", "export", "unset", "env", "exit",
-	};
-
-	i = 0;
-	while (builtins[i])
-	{
-		max_len = ft_max(cmd_len, ft_strlen(builtins[i]));
-		if (ft_strncmp(cmd, (char *)builtins[i], max_len) == 0)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-static int	exec_builtin(t_data *data, t_cmds *cmd, char *cmd_name)
-{
-	int	retval;
-
-	retval = 0;
-	if (ft_strncmp(cmd_name, "echo", 4) == 0)
-		retval = ft_echo(data, cmd);
-	else if (ft_strncmp(cmd_name, "cd", 2) == 0)
-		retval = ft_cd(data, cmd);
-	else if (ft_strncmp(cmd_name, "pwd", 3) == 0)
-		retval = ft_pwd(data, cmd);
-	else if (ft_strncmp(cmd_name, "export", 6) == 0)
-		retval = ft_export(data, cmd);
-	else if (ft_strncmp(cmd_name, "unset", 5) == 0)
-		retval = ft_unset(data, cmd);
-	else if (ft_strncmp(cmd_name, "env", 3) == 0)
-		retval = ft_env(data, cmd);
-	else if (ft_strncmp(cmd_name, "exit", 4) == 0)
-		retval = ft_exit(data, cmd);
-	return (retval);
-}
 
 static char	***ft_make_cmdve(t_cmds *cmd)
 {
@@ -73,24 +31,25 @@ static char	***ft_make_cmdve(t_cmds *cmd)
 	cmdve = malloc(sizeof(char *) * (n_cmds + 1));
 	if (!cmdve)
 		return (NULL);
+	cmdve[n_cmds] = NULL;
 	return (cmdve);
 }
 
-static char	**ft_fill_cmdve2(t_tokens *tokens)
+static char	**ft_fill_cmdve2(t_tokens **tokens)
 {
 	char	**split;
 	char	*buff;
 
-	buff = ft_strdup(tokens->str);
+	buff = ft_strdup((*tokens)->str);
 	if (!buff)
-		return (1);
-	tokens = tokens->next;
-	while (tokens->type == ARGS)
+		return (NULL);
+	(*tokens) = (*tokens)->next;
+	while ((*tokens) && (*tokens)->type == ARGS)
 	{
-		buff = ft_strjoin_s1c(buff, tokens->str, ' ');
+		buff = ft_strjoin_c(buff, (*tokens)->str, ' ', 1);
 		if (!buff)
-			return (1);
-		tokens = tokens->next;
+			return (NULL);
+		(*tokens) = (*tokens)->next;
 	}
 	split = ft_split(buff, ' ');
 	free(buff);
@@ -103,11 +62,12 @@ static int	ft_fill_cmdve(char ***cmdve, t_cmds *cmd)
 	int			i;
 
 	i = 0;
+	tokens = cmd->tokens;
 	while (tokens)
 	{
 		if (tokens->type == CMD)
 		{
-			cmdve[i] = ft_fill_cmdve2(tokens);
+			cmdve[i] = ft_fill_cmdve2(&tokens);
 			if (!cmdve[i])
 				return (1);
 			i++;
@@ -121,11 +81,25 @@ static int	ft_fill_cmdve(char ***cmdve, t_cmds *cmd)
 int	exec(t_data *data, t_cmds *cmd)
 {
 	char	***cmdve;
+	int		i;
 
+	i = 0;
 	cmdve = ft_make_cmdve(cmd);
 	if (!cmdve)
 		return (1);
 	if (ft_fill_cmdve(cmdve, cmd))
-		return (1);
+		return (cleanup_exec(cmdve), 1);
+	if (cmds_path(cmdve, data))
+		return (cleanup_exec(cmdve), 1);
+	printf("3\n");
+	if (is_inred(cmd, &i, cmdve))
+		return (cleanup_exec(cmdve), 1);
+	printf("4\n");
+	while (cmdve[i + 1])
+		if (run_cmd(cmdve[i], data, cmd, 0))
+			return (cleanup_exec(cmdve), 1);
+	if (run_cmd(cmdve[i], data, cmd, 1))
+		return (cleanup_exec(cmdve), 1);
+	cleanup_exec(cmdve);
 	return (0);
 }

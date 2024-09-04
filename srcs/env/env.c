@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_max.c                                           :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/30 16:38:11 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/02 14:10:31 by mtrullar         ###   ########.fr       */
+/*   Created: 2024/08/30 17:56:04 by ebengtss          #+#    #+#             */
+/*   Updated: 2024/09/04 12:38:45 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/libft.h"
+#include "../../incs/minishell.h"
 
-int	ft_max(int a, int b)
+int	make_env(t_data	*data, char **env)
 {
-	if (a > b)
-		return (a);
-	return (b);
+	t_env	*env_entry;
+    size_t	i;
+
+    i = 0;
+    while (env[i])
+	{
+		env_entry = ft_envnew(env[i]);
+		if (!env_entry)
+			return (1);
+		ft_envadd_back(&data->env, env_entry);
+		i++;
+	}
+    return (0);
 }

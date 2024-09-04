@@ -6,11 +6,24 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:03:25 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/02 13:45:24 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/03 14:49:32 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/libft.h"
+
+void	ft_free_split(char **strs)
+{
+	size_t	i;
+
+	i = 0;
+	while (strs[i])
+	{
+		free(strs[i]);
+		i++;
+	}
+	free(strs);
+}
 
 int	cpt_words(char *str, char c)
 {

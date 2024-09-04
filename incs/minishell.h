@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/04 12:25:38 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/04 12:38:26 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@ typedef enum s_type
 	NO_TYPE,
 	CMD,
 	ARGS,
-	REDIR_IN,
-	REDIR_IN_PATH
+	INFILE,
+	LIMITER,
+	OUTFILE,
+	APPEND
 }	t_type;
 
 typedef struct s_tokens
@@ -77,19 +79,21 @@ typedef struct s_data
 {
 	t_cmds	*cmds;
 	t_env	*env;
+	int		exit_status;
 }			t_data;
 
-//	Exec
-int			exec(t_data *data, t_cmds *cmd);
-int			ft_echo(t_data *data, t_cmds *cmd);
-int			ft_cd(t_data *data, t_cmds *cmd);
-int			ft_pwd(t_data *data, t_cmds *cmd);
-int			ft_export(t_data *data, t_cmds *cmd);
-int			ft_unset(t_data *data, t_cmds *cmd);
-int			ft_env(t_data *data, t_cmds *cmd);
-int			ft_exit(t_data *data, t_cmds *cmd);
-int			is_builtin(char *cmd);
+/* EXEC */
+int	exec(t_data *data, t_cmds *cmd);
+int	ft_echo(t_data *data, t_cmds *cmd);
+int	ft_cd(t_data *data, t_cmds *cmd);
+int	ft_pwd(t_data *data, t_cmds *cmd);
+int	ft_export(t_data *data, t_cmds *cmd);
+int	ft_unset(t_data *data, t_cmds *cmd);
+int	ft_env(t_data *data, t_cmds *cmd);
+int	ft_exit(t_data *data, t_cmds *cmd);
 
-/* UTILS */
+/* ENV */
+int		make_env(t_data	*data, char **env);
+
 
 #endif
