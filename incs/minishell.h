@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/02 14:29:17 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/04 12:25:38 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,15 +79,16 @@ typedef struct s_data
 	t_env	*env;
 }			t_data;
 
-/* EXEC */
-int	exec(t_data *data, t_cmds *cmd);
-int	ft_echo(t_data *data, t_cmds *cmd);
-int	ft_cd(t_data *data, t_cmds *cmd);
-int	ft_pwd(t_data *data, t_cmds *cmd);
-int	ft_export(t_data *data, t_cmds *cmd);
-int	ft_unset(t_data *data, t_cmds *cmd);
-int	ft_env(t_data *data, t_cmds *cmd);
-int	ft_exit(t_data *data, t_cmds *cmd);
+//	Exec
+int			exec(t_data *data, t_cmds *cmd);
+int			ft_echo(t_data *data, t_cmds *cmd);
+int			ft_cd(t_data *data, t_cmds *cmd);
+int			ft_pwd(t_data *data, t_cmds *cmd);
+int			ft_export(t_data *data, t_cmds *cmd);
+int			ft_unset(t_data *data, t_cmds *cmd);
+int			ft_env(t_data *data, t_cmds *cmd);
+int			ft_exit(t_data *data, t_cmds *cmd);
+int			is_builtin(char *cmd);
 
 /* UTILS */
 

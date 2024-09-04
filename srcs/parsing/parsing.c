@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:03:48 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/02 14:29:53 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/04 12:28:31 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,21 @@ int	add_commands(t_cmds *new, t_cmds **head)
 	return (0);
 }
 
+int	ft_is_commands(char *str)
+{
+	if (is_builtin(str))
+		return (1);
+	else
+	{
+		// need PATH	
+	}
+}
+
 t_type	get_type(char *str, int i, char **splitted)
 {
-	if (str[0] == '-')
-		return (ARGS);
-	else if (str[0] == '|' || str[0] == '<' || str[0] == '>')
-		return (REDIR_IN);
-	else if (i > 0)
-		return (ARGS);
-	else
+	if (ft_is_commands(str))
 		return (CMD);
+	
 }
 
 t_tokens	*ft_get_last_token(t_tokens *head)

@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/02 14:55:13 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/04 12:09:16 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ int	print_commands(t_cmds *com)
 		return (printf("NO COMMANDS\n"), 1);
 	while (commands)
 	{
-		printf("Commands : %s \n", commands->cmd);
+		printf("Commands : |%s| \n", commands->cmd);
 		printf("Tokens associated with this cmds : \n");
 		tokens = commands->tokens;
 		while (tokens)
 		{
-			printf("Tokens name = %s \n", tokens->str);
+			printf("Tokens name = |%s| \n", tokens->str);
 			printf("Tokens type = %d \n", tokens->type);
 			tokens = tokens->next;
 		}
