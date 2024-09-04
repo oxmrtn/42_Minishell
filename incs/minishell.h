@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/04 16:50:32 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/04 17:05:56 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,14 +104,26 @@ void		ft_free_tokens(t_tokens *tok);
 void		ft_free_commands(t_cmds *cmds);
 
 /* EXEC */
-int	exec(t_data *data, t_cmds *cmd);
-int	ft_echo(t_data *data, t_cmds *cmd);
-int	ft_cd(t_data *data, t_cmds *cmd);
-int	ft_pwd(t_data *data, t_cmds *cmd);
-int	ft_export(t_data *data, t_cmds *cmd);
-int	ft_unset(t_data *data, t_cmds *cmd);
-int	ft_env(t_data *data, t_cmds *cmd);
-int	ft_exit(t_data *data, t_cmds *cmd);
+int		exec(t_data *data, t_cmds *cmd);
+int		is_inred(t_cmds *cmd, int *i, char ***cmdve);
+int		is_outred(t_cmds *cmd);
+int		is_builtin(char *cmd);
+int		exec_builtin(t_data *data, char **cmdve);
+int		run_cmd(char **cmdve, t_data *data, t_cmds *cmd, int islast);
+int		run_heredoc(char *limiter);
+int		reset_fds(void);
+void	cleanup_exec(char ***cmdve);
+
+
+/* BUILTINS */
+int		ft_echo(t_data *data, t_cmds *cmd);
+int		ft_cd(t_data *data, t_cmds *cmd);
+int		ft_pwd(t_data *data, t_cmds *cmd);
+int		ft_export(t_data *data, t_cmds *cmd);
+int		ft_unset(t_data *data, t_cmds *cmd);
+int		ft_env(t_data *data, t_cmds *cmd);
+int		ft_exit(t_data *data, t_cmds *cmd);
+
 
 /* ENV */
 int		make_env(t_data	*data, char **env);

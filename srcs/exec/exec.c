@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:57:50 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/04 12:37:27 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/04 17:03:36 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ static char	***ft_make_cmdve(t_cmds *cmd)
 	n_cmds = 0;
 	while (tokens)
 	{
-		if (tokens->type == CMD)
+		if (tokens->type == CMD && n_cmds == 0)
+			n_cmds++;
+		if (tokens->type == PIPE && n_cmds > 0)
 			n_cmds++;
 		tokens = tokens->next;
 	}
@@ -89,12 +91,8 @@ int	exec(t_data *data, t_cmds *cmd)
 		return (1);
 	if (ft_fill_cmdve(cmdve, cmd))
 		return (cleanup_exec(cmdve), 1);
-	if (cmds_path(cmdve, data))
-		return (cleanup_exec(cmdve), 1);
-	printf("3\n");
 	if (is_inred(cmd, &i, cmdve))
 		return (cleanup_exec(cmdve), 1);
-	printf("4\n");
 	while (cmdve[i + 1])
 		if (run_cmd(cmdve[i], data, cmd, 0))
 			return (cleanup_exec(cmdve), 1);
