@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_variable.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 16:20:25 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/04 16:54:21 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/04 18:25:18 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	ft_is_variable_declaration(char *str)
 	int	i;
 	int	equal_count;
 
+	printf("HERE OK \n");
 	equal_count = 0;
 	i = 0;
 	while (str[i])
@@ -29,6 +30,7 @@ int	ft_is_variable_declaration(char *str)
 	}
 	if (equal_count >= 1)
 		return (0);
+	printf("HERE OK TOO \n");
 	return (1);
 }
 

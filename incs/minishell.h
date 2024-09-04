@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/04 17:05:56 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/04 18:52:49 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 
 typedef enum s_type
 {
+	WAIT,
 	NO_TYPE,
 	CMD,
 	ARGS,
@@ -81,7 +82,7 @@ int			ft_parser(char *line, t_cmds **commands, t_data *data);
 t_tokens	*create_token_list(char *line, t_data *data);
 int			add_new_token(char *str, t_tokens **head);
 t_tokens	*ft_get_last_token(t_tokens *head);
-void		get_type(t_tokens *head_node, char **splitted, t_data *data);
+void		get_type(t_tokens *head_node, t_data *data);
 int			add_commands(t_cmds *new, t_cmds **head);
 t_cmds		*ft_get_last_commands(t_cmds *tmp);
 

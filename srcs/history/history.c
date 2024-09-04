@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   history.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:06:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/04 16:14:09 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/04 17:15:43 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static void	delete_end(char *str)
 
 	len = ft_strlen(str);
 	if (str[len - 1] == '\n')
-		str[len -1] == '\0';
+		str[len -1] = '\0';
 }
 
-int	ft_get_history(t_cmds **cmds)
+int	ft_get_history()
 {
 	int		fd;
 	char	*line;

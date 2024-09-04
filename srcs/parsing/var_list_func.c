@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   var_list_func.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 16:41:13 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/04 16:46:00 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/04 17:17:33 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../incs/minishell.h"
+#include "../../incs/minishell.h"
 
 t_var	*ft_last_var(t_var *head)
 {
