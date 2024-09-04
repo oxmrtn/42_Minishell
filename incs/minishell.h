@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/03 16:47:11 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/04 12:35:24 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_cmds
 //	Parsing
 int			ft_parser(char *line, t_cmds **commands);
 t_tokens	*create_token_list(char *line);
-int			add_new_token(char *str, t_tokens **head, int i);
+int			add_new_token(char *str, t_tokens **head, int i, char **splitted);
 t_tokens	*ft_get_last_token(t_tokens *head);
 t_type		get_type(char *str, int i);
 int			add_commands(t_cmds *new, t_cmds **head);
