@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/03 16:47:11 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/04 16:54:42 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ typedef enum s_type
 	INFILE,
 	LIMITER,
 	OUTFILE,
-	APPEND
+	APPEND,
+	PIPE
 }	t_type;
 
 typedef struct s_tokens
