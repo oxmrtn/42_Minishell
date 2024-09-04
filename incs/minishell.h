@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/04 16:54:42 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/04 17:02:17 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct s_cmds
 //	Parsing
 int			ft_parser(char *line, t_cmds **commands);
 t_tokens	*create_token_list(char *line);
-int			add_new_token(char *str, t_tokens **head, int i);
+int			add_new_token(char *str, t_tokens **head, int i, char **splitted);
 t_tokens	*ft_get_last_token(t_tokens *head);
 t_type		get_type(char *str, int i);
 int			add_commands(t_cmds *new, t_cmds **head);
@@ -91,7 +91,6 @@ int		is_builtin(char *cmd);
 int		exec_builtin(t_data *data, char **cmdve);
 int		run_cmd(char **cmdve, t_data *data, t_cmds *cmd, int islast);
 int		run_heredoc(char *limiter);
-int		cmds_path(char ***cmdve, t_data *data);
 int		reset_fds(void);
 void	cleanup_exec(char ***cmdve);
 
