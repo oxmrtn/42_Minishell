@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:32:30 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/03 14:49:44 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/04 16:37:40 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int		ft_toupper(int c);
 char	*ft_itoa(int n);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(char *src);
+char	*ft_strdup_till_i(char *src, int i);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strjoin_s1(char *s1, char *s2);
 char	*ft_strjoin_s2(char *s1, char *s2);

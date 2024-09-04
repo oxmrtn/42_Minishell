@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/04 12:37:55 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/04 16:55:23 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	main(int argc, char **argv, char **env)
 	if (!data)
 		return (1);
 	data->exit_status = 0;
+	data->var = NULL;
 	signal(SIGINT, &handle_signal);
 	(void)argc;
 	(void)argv;
@@ -68,7 +69,7 @@ int	main(int argc, char **argv, char **env)
 		add_history(read);
 		if (!ft_strncmp(read, "exit", 4))
 			break;
-		ft_parser(read, &commands);
+		ft_parser(read, &commands, data);
 		if (exec(data, commands))
 			return (1);
 		print_commands(commands);

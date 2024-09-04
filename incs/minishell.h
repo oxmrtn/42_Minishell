@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/04 12:38:26 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/04 16:50:32 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,12 @@ typedef enum s_type
 	NO_TYPE,
 	CMD,
 	ARGS,
+	PIPE,
 	INFILE,
 	LIMITER,
 	OUTFILE,
-	APPEND
+	APPEND,
+	ERROR
 }	t_type;
 
 typedef struct s_tokens
@@ -58,14 +60,40 @@ typedef struct s_cmds
 	struct s_cmds	*prev;
 }					t_cmds;
 
+typedef struct s_var
+{
+	char	*name;
+	char	*content;
+	struct s_var	*next;
+	struct s_var	*prev;
+}			t_var;
+
+typedef struct s_data
+{
+	t_cmds	*cmds;
+	t_env	*env;
+	t_var	*var;
+	int		exit_status;
+}			t_data;
+
 //	Parsing
-int			ft_parser(char *line, t_cmds **commands);
-t_tokens	*create_token_list(char *line);
-int			add_new_token(char *str, t_tokens **head, int i, char **splitted);
+int			ft_parser(char *line, t_cmds **commands, t_data *data);
+t_tokens	*create_token_list(char *line, t_data *data);
+int			add_new_token(char *str, t_tokens **head);
 t_tokens	*ft_get_last_token(t_tokens *head);
-t_type		get_type(char *str, int i, char **splitted);
+void		get_type(t_tokens *head_node, char **splitted, t_data *data);
 int			add_commands(t_cmds *new, t_cmds **head);
 t_cmds		*ft_get_last_commands(t_cmds *tmp);
+
+//	VAR FUNC
+
+int		ft_is_variable_declaration(char *str);
+int		ft_add_variable(char *str, t_data *data);
+//	VAR LIST UTILS
+
+t_var		*ft_last_var(t_var *head);
+void		ft_var_add_back(t_var *new_node, t_var *head);
+
 
 //	History
 int			ft_get_history(t_cmds **cmds);
@@ -74,13 +102,6 @@ int			ft_write_history(t_cmds *cmds);
 //	Free
 void		ft_free_tokens(t_tokens *tok);
 void		ft_free_commands(t_cmds *cmds);
-
-typedef struct s_data
-{
-	t_cmds	*cmds;
-	t_env	*env;
-	int		exit_status;
-}			t_data;
 
 /* EXEC */
 int	exec(t_data *data, t_cmds *cmd);
@@ -94,6 +115,5 @@ int	ft_exit(t_data *data, t_cmds *cmd);
 
 /* ENV */
 int		make_env(t_data	*data, char **env);
-
 
 #endif
