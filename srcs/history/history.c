@@ -6,11 +6,20 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:06:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/04 12:09:09 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/04 14:44:27 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
+
+static void	delete_end(char *str)
+{
+	int	len;
+
+	len = ft_strlen(str);
+	if (str[len - 1] == '\n')
+		str[len -1] == '\0';
+}
 
 int	ft_get_history(t_cmds **cmds)
 {
@@ -25,6 +34,7 @@ int	ft_get_history(t_cmds **cmds)
 		return (close(fd), 1);
 	while(line)
 	{
+		delete_end(line);
 		add_history(line);
 		free(line);
 		line = get_next_line(fd);
