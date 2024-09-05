@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:57:50 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/05 13:54:35 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/05 14:39:47 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,37 +78,27 @@ static int	ft_fill_cmdve(char ***cmdve, t_cmds *cmd)
 	return (0);
 }
 
-int	reset_fds(void)
-{
-	if (dup2(STDIN_FILENO, STDIN_FILENO) == -1)
-		return (perror(NULL), 1);
-	if (dup2(STDOUT_FILENO, STDOUT_FILENO) == -1)
-		return (perror(NULL), 1);
-	return (0);
-}
-
 int	exec(t_data *data, t_cmds *cmd)
 {
-	char	***cmdve;
 	int		i;
 
 	i = 0;
 	if (!cmd)
 		return (0);
-	cmdve = ft_make_cmdve(cmd);
-	if (!cmdve)
+	data->cmdve = ft_make_cmdve(cmd);
+	if (!data->cmdve)
 		return (1);
-	if (!cmdve[0])
+	if (!data->cmdve[0])
 		return (0);
-	if (ft_fill_cmdve(cmdve, cmd))
+	if (ft_fill_cmdve(data->cmdve, cmd))
 		return (1);
-	if (is_inred(cmd, &i, cmdve))
+	if (is_inred(cmd, &i, data->cmdve))
 		return (1);
-	while (cmdve[i + 1])
-		if (run_cmd(cmdve[i], data, cmd, 0))
+	while (data->cmdve[i + 1])
+		if (run_cmd(data, i, cmd, 0))
 			return (1);
-	if (run_cmd(cmdve[i], data, cmd, 1))
+	if (run_cmd(data, i, cmd, 1))
 		return (1);
-	reset_fds();
+	ft_free_cmdve(data->cmdve);
 	return (0);
 }

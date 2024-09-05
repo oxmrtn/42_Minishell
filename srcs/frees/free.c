@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:35:10 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/05 13:38:10 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/05 13:58:21 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	ft_free_cmdve(char ***cmdve)
 			}
 		}
 		free(cmdve);
+		cmdve = NULL;
 	}
 }
 
