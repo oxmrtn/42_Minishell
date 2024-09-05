@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/04 18:52:49 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/05 13:36:29 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_data
 	t_cmds	*cmds;
 	t_env	*env;
 	t_var	*var;
+	char	***cmdve;
 	int		exit_status;
 }			t_data;
 
