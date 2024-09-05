@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/05 14:31:03 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/05 15:22:34 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int		is_inred(t_cmds *cmd, int *i, char ***cmdve);
 int		is_outred(t_cmds *cmd);
 int		is_builtin(char *cmd);
 int		exec_builtin(t_data *data, char **cmdve);
-int		run_cmd(t_data *data, int i, t_cmds *cmd, int islast);
+int		run_pipe(t_data *data, int i, t_cmds *cmd, int islast);
 int		run_heredoc(char *limiter);
 
 

@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:57:50 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/05 14:39:47 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/05 15:28:02 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,61 @@ static int	ft_fill_cmdve(char ***cmdve, t_cmds *cmd)
 	return (0);
 }
 
+run_simple(t_data *data, t_cmds *cmd)
+{
+	pid_t	pid;
+
+	pid = fork();
+	if (pid == -1)
+		return (perror(NULL), 1);
+	if (pid == 0)
+	{
+		if (is_outred(cmd))
+			return (1);	
+	}
+	else
+	{
+		while (1)
+		{
+			endpid = waitpid(-1, &status, 0);
+			if (endpid == pid)
+				if (WIFEXITED(status))
+					data->exit_status = WEXITSTATUS(status);
+			if (endpid == -1)
+				break ;
+		}
+	}
+	return (0);
+}
+
+int	exec2(t_data *data, t_cmds *cmd, int i)
+{
+	pid_t	pid;
+
+	pid = fork();
+	if (pid == -1)
+		return (perror(NULL), 1);
+	if (pid == 0)
+	{
+		if (is_inred(cmd, &i, data->cmdve))
+			return (1);
+		if (data->cmdve[1])
+		{
+			while (data->cmdve[i + 1])
+				if (run_pipe(data, i, cmd, 0))
+					return (1);
+			if (run_pipe(data, i, cmd, 1))
+				return (1);
+		}
+		else
+			if (data, cmd)
+				return (1);
+	}
+	else
+		wait(NULL);
+	return (0);
+}
+
 int	exec(t_data *data, t_cmds *cmd)
 {
 	int		i;
@@ -92,12 +147,7 @@ int	exec(t_data *data, t_cmds *cmd)
 		return (0);
 	if (ft_fill_cmdve(data->cmdve, cmd))
 		return (1);
-	if (is_inred(cmd, &i, data->cmdve))
-		return (1);
-	while (data->cmdve[i + 1])
-		if (run_cmd(data, i, cmd, 0))
-			return (1);
-	if (run_cmd(data, i, cmd, 1))
+	if (exec2(data, cmd, i))
 		return (1);
 	ft_free_cmdve(data->cmdve);
 	return (0);

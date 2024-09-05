@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:49:23 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/05 14:40:17 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/05 15:22:34 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	run_parent(t_data *data, pid_t pid, int *fds, int islast)
 	return (0);
 }
 
-int	run_cmd(t_data *data, int i, t_cmds *cmd, int islast)
+int	run_pipe(t_data *data, int i, t_cmds *cmd, int islast)
 {
 	pid_t	pid;
 	int		fds[2];
