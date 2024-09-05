@@ -6,7 +6,7 @@
 #    By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/04 15:03:37 by ebengtss          #+#    #+#              #
-#    Updated: 2024/09/04 17:17:50 by ebengtss         ###   ########.fr        #
+#    Updated: 2024/09/05 13:40:20 by ebengtss         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,22 +25,22 @@ SRCS_DIR			=	srcs/
 BUILTINS_DIR		=	$(SRCS_DIR)builtins/
 ENV_DIR				=	$(SRCS_DIR)env/
 EXEC_DIR			=	$(SRCS_DIR)exec/
-FREE_FUNC_DIR		=	$(SRCS_DIR)free_func/
+FREE_FUNC_DIR		=	$(SRCS_DIR)frees/
 HISTORY_DIR			=	$(SRCS_DIR)history/
 PARSING_DIR			=	$(SRCS_DIR)parsing/
 OBJS_DIR			=	objs/
 INCS_DIR			=	incs
 
 SRCS_FILES			=	main.c				builtins.c			\
-						ft_cd.c				cleanup_exec.c		\
+						ft_cd.c				var_list_func.c		\
 						ft_echo.c			exec.c				\
 						ft_env.c			heredoc.c			\
 						ft_exit.c			parsing.c			\
 						ft_export.c			redirs.c			\
 						ft_pwd.c			run.c				\
-						ft_unset.c			free_func.c			\
+						ft_unset.c			free.c				\
 						env.c				history.c			\
-						handle_variable.c	var_list_func.c		\
+						handle_variable.c
 						
 
 OBJS				=	$(addprefix $(OBJS_DIR), $(SRCS_FILES:.c=.o))
