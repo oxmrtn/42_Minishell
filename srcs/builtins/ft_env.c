@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:48:29 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/04 12:25:47 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/05 16:14:47 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
 
-int	ft_env(t_data *data, t_cmds *cmd)
+int	ft_env(t_data *data, char **cmdve)
 {
 	(void)data;
-	(void)cmd;
+	printf("builtin: %s\n", cmdve[0]);
 	return (0);
 }

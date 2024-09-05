@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:37:08 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/05 14:49:06 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/05 15:39:47 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int	is_outred(t_cmds *cmd)
 	t_tokens	*tokens;
 	int			fd;
 
-	fd = 0;
 	tokens = cmd->tokens;
 	while (tokens)
 	{
@@ -79,13 +78,14 @@ int	is_outred(t_cmds *cmd)
 		if (tokens->type == OUTFILE)
 			fd = open(tokens->str, O_WRONLY | O_CREAT | O_TRUNC, 0666);
 		if (tokens->type == APPEND || tokens->type == OUTFILE)
+		{
+			if (fd == -1)
+				return (perror("outfile"), 1);
+			if (dup2(fd, STDOUT_FILENO) == -1)
+				return (perror(NULL), 1);
 			break ;
+		}
 		tokens = tokens->next;
 	}
-	if (fd == -1)
-		return (perror("outfile"), 1);
-	else if (fd != 0)
-		if (dup2(fd, STDOUT_FILENO) == -1)
-			return (perror(NULL), 1);
 	return (0);
 }

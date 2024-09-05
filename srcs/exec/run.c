@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:49:23 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/05 15:22:34 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/05 16:51:31 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ static int	run_parent(t_data *data, pid_t pid, int *fds, int islast)
 	int		status;
 
 	close(fds[1]);
-	if (dup2(fds[0], STDIN_FILENO) == -1)
-		return (close(fds[0]), perror(NULL), 1);
+	if (data->cmdve[1])
+		if (dup2(fds[0], STDIN_FILENO) == -1)
+			return (close(fds[0]), perror(NULL), 1);
 	close(fds[0]);
 	if (islast)
 	{
@@ -58,7 +59,7 @@ static int	run_parent(t_data *data, pid_t pid, int *fds, int islast)
 	return (0);
 }
 
-int	run_pipe(t_data *data, int i, t_cmds *cmd, int islast)
+int	run_cmd(t_data *data, int i, t_cmds *cmd, int islast)
 {
 	pid_t	pid;
 	int		fds[2];

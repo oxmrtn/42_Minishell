@@ -6,15 +6,15 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:46:55 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/02 14:01:24 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/05 16:14:29 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
 
-int	ft_cd(t_data *data, t_cmds *cmd)
+int	ft_cd(t_data *data, char **cmdve)
 {
 	(void)data;
-	(void)cmd;
+	printf("builtin: %s\n", cmdve[0]);
 	return (0);
 }

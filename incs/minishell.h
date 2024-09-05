@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/05 15:22:34 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/05 16:51:31 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,27 +107,31 @@ void		ft_free_cmdve(char ***cmdve);
 void		ft_free_tokens(t_tokens *tok);
 void		ft_free_commands(t_cmds *cmds);
 
+
 /* EXEC */
 int		exec(t_data *data, t_cmds *cmd);
 int		is_inred(t_cmds *cmd, int *i, char ***cmdve);
 int		is_outred(t_cmds *cmd);
 int		is_builtin(char *cmd);
 int		exec_builtin(t_data *data, char **cmdve);
-int		run_pipe(t_data *data, int i, t_cmds *cmd, int islast);
+int		run_cmd(t_data *data, int i, t_cmds *cmd, int islast);
 int		run_heredoc(char *limiter);
+char	***ft_make_cmdve(t_cmds *cmd);
+int		ft_fill_cmdve(char ***cmdve, t_cmds *cmd);
 
 
 /* BUILTINS */
-int		ft_echo(t_data *data, t_cmds *cmd);
-int		ft_cd(t_data *data, t_cmds *cmd);
-int		ft_pwd(t_data *data, t_cmds *cmd);
-int		ft_export(t_data *data, t_cmds *cmd);
-int		ft_unset(t_data *data, t_cmds *cmd);
-int		ft_env(t_data *data, t_cmds *cmd);
-int		ft_exit(t_data *data, t_cmds *cmd);
+int		ft_echo(t_data *data, char **cmdve);
+int		ft_cd(t_data *data, char **cmdve);
+int		ft_pwd(t_data *data, char **cmdve);
+int		ft_export(t_data *data, char **cmdve);
+int		ft_unset(t_data *data, char **cmdve);
+int		ft_env(t_data *data, char **cmdve);
+int		ft_exit(t_data *data, char **cmdve);
 
 
 /* ENV */
 int		make_env(t_data	*data, char **env);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:35:10 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/05 13:58:21 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/05 16:34:13 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,10 @@ void	free_main(t_data *data)
 {
 	if (data)
 	{
-		if (data->cmds)
-			ft_free_commands(data->cmds);
-		if (data->env)
-			ft_free_env(data->env);
+		// if (data->cmds)
+		// 	ft_free_commands(data->cmds);
+		// if (data->env)
+		// 	ft_free_env(data->env);
 		if (data->cmdve)
 			ft_free_cmdve(data->cmdve);
 		free(data);
