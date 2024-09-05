@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   free_func.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:35:10 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/05 13:38:10 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/08/30 18:45:00 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_free_tokens(t_tokens *tok)
 {
 	t_tokens	*tmp;
-
+	
 	while (tok)
 	{
 		tmp = tok;		
@@ -38,50 +38,3 @@ void	ft_free_commands(t_cmds *cmds)
 		free(tmp);
 	}
 }
-
-void	ft_free_env(t_env *env)
-{
-	t_env	*tmp;
-
-	while (env)
-	{
-		tmp = env->next;
-		free(env->content);
-		free(env);
-		env = tmp;
-	}
-}
-
-void	ft_free_cmdve(char ***cmdve)
-{
-	int i;
-
-	i = 0;
-	if (*cmdve)
-	{
-		if (**cmdve)
-		{
-			while (cmdve[i])
-			{
-				ft_free_split(cmdve[i]);
-				i++;
-			}
-		}
-		free(cmdve);
-	}
-}
-
-void	free_main(t_data *data)
-{
-	if (data)
-	{
-		if (data->cmds)
-			ft_free_commands(data->cmds);
-		if (data->env)
-			ft_free_env(data->env);
-		if (data->cmdve)
-			ft_free_cmdve(data->cmdve);
-		free(data);
-	}
-}
-

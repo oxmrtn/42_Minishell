@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:57:50 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/05 13:44:55 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/04 19:01:29 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static char	***ft_make_cmdve(t_cmds *cmd)
 			n_cmds++;
 		tokens = tokens->next;
 	}
+	if (n_cmds == 0)
+		return (NULL);
 	cmdve = malloc(sizeof(char *) * (n_cmds + 1));
 	if (!cmdve)
 		return (NULL);
@@ -78,38 +80,24 @@ static int	ft_fill_cmdve(char ***cmdve, t_cmds *cmd)
 	return (0);
 }
 
-int	reset_fds(void)
-{
-	if (dup2(STDIN_FILENO, STDIN_FILENO) == -1)
-		return (perror(NULL), 1);
-	if (dup2(STDOUT_FILENO, STDOUT_FILENO) == -1)
-		return (perror(NULL), 1);
-	return (0);
-}
-
 int	exec(t_data *data, t_cmds *cmd)
 {
 	char	***cmdve;
 	int		i;
 
 	i = 0;
-	if (!cmd)
-		return (0);
-	data->cmdve = ft_make_cmdve(cmd);
-	if (!data->cmdve)
+	cmdve = ft_make_cmdve(cmd);
+	if (!cmdve)
 		return (1);
-	if (!data->cmdve[0])
-		return (0);
 	if (ft_fill_cmdve(cmdve, cmd))
-		return (1);
+		return (cleanup_exec(cmdve), 1);
 	if (is_inred(cmd, &i, cmdve))
-		return (1);
+		return (cleanup_exec(cmdve), 1);
 	while (cmdve[i + 1])
 		if (run_cmd(cmdve[i], data, cmd, 0))
-			return (1);
+			return (cleanup_exec(cmdve), 1);
 	if (run_cmd(cmdve[i], data, cmd, 1))
-		return (1);
+		return (cleanup_exec(cmdve), 1);
 	cleanup_exec(cmdve);
-	reset_fds();
 	return (0);
 }

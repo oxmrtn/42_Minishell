@@ -1,6 +1,5 @@
 a.out
 .vscode
-minishell
-*.o
 *.a
-README.md
+*.o
+minishell

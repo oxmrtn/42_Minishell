@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:03:48 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/05 13:14:36 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/04 18:56:31 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int	ft_is_args(t_tokens *node)
 
 int	ft_is_redirect_sign(t_tokens *current)
 {
+	printf("current str = %s\n",current->str);
 	if (ft_strncmp(current->str, "|", 1) == 0)
 		current->type = PIPE;
 	else if (!ft_strncmp(current->str, ">", 1))
