@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:37:08 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/05 15:39:47 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/06 18:33:40 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,19 @@ static int	dup_inred(char *infile, int *i, char ***cmdve)
 	return (0);
 }
 
+static int	dup_heredoc(void)
+{
+	int	fd;
+
+	fd = open(".heredoc", O_CREAT, O_TRUNC, O_RDONLY);
+	if (fd == -1)
+		return (perror("heredoc"), 1);
+	if (dup2(fd, STDIN_FILENO) == -1)
+		return (close (fd), perror(NULL), 1);
+	close (fd);
+	return (0);
+}
+
 int	is_inred(t_cmds *cmd, int *i, char ***cmdve)
 {
 	t_tokens	*tokens;
@@ -58,7 +71,7 @@ int	is_inred(t_cmds *cmd, int *i, char ***cmdve)
 			if (dup_inred(tokens->str, i, cmdve))
 				return (1);
 		if (tokens->type == LIMITER)
-			if (run_heredoc(tokens->str))
+			if (dup_heredoc())
 				return (1);
 		tokens = tokens->next;
 	}

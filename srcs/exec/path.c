@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 14:29:15 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/04 13:43:05 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/06 18:28:20 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,10 @@ static int	cmds_path2(char ***cmdve, char **env_path)
 	i = 0;
 	while (cmdve[i])
 	{
-		printf("::%s\n", cmdve[i][0]);
-		if (is_builtin(cmdve[i][0]) == 0)
-		{
-			printf("f1\n");
+		if (!is_builtin(cmdve[i][0]))
 			if (access(cmdve[i][0], X_OK) != 0)
-			{
-				printf("f2\n");
 				if (cmds_path3(cmdve[i], env_path))
 					return (1);
-			}
-		}
 		i++;
 	}
 	return (0);
@@ -64,7 +57,7 @@ int	cmds_path(char ***cmdve, t_data *data)
 	char	**paths;
 	t_env	*env;
 
-	env = data->env;
+	env = data->envs->env;
 	while (env)
 	{
 		if (ft_strncmp("PATH=", env->content, 5) == 0)

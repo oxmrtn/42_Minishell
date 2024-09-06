@@ -6,17 +6,17 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 17:04:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/08/30 17:39:48 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/06 14:16:49 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/libft.h"
 
-t_env	*ft_envnew(void *content)
+t_list	*ft_lstnew(void *content)
 {
-	t_env	*result;
+	t_list	*result;
 
-	result = malloc(sizeof(t_env));
+	result = malloc(sizeof(t_list));
 	if (!result)
 		return (NULL);
 	result->content = content;

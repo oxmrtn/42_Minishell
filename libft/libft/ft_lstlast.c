@@ -6,15 +6,15 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 13:46:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/08/30 17:39:56 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/06 14:16:46 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/libft.h"
 
-t_env	*ft_envlast(t_env *lst)
+t_list	*ft_lstlast(t_list *lst)
 {
-	t_env	*current;
+	t_list	*current;
 
 	if (!lst)
 		return (NULL);

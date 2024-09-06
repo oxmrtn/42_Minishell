@@ -6,16 +6,16 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 13:38:58 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/08/30 17:41:27 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/06 14:16:51 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/libft.h"
 
-int	ft_envsize(t_env *lst)
+int	ft_lstsize(t_list *lst)
 {
 	int		i;
-	t_env	*current;
+	t_list	*current;
 
 	if (!lst)
 		return (0);

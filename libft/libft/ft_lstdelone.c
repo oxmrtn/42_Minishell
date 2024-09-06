@@ -6,13 +6,13 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 14:15:05 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/08/30 17:40:27 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/06 14:16:41 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/libft.h"
 
-void	ft_envdelone(t_env *lst, void (*del)(void *))
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
 	(del)(lst->content);
 	free(lst);

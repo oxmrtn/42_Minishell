@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:32:30 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/04 16:37:40 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/06 14:16:00 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,21 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-/* ===== ENV LIST ===== */
-typedef struct l_env
+typedef struct l_list
 {
 	void			*content;
-	struct l_env	*next;
-}					t_env;
+	struct l_list	*next;
+}					t_list;
 
-t_env	*ft_envmap(t_env *lst, void *(*f)(void *), void (*del)(void *));
-t_env	*ft_envnew(void *content);
-t_env	*ft_envlast(t_env *lst);
-void	ft_envadd_front(t_env **lst, t_env *new);
-void	ft_envadd_back(t_env **lst, t_env *new);
-void	ft_envdelone(t_env *lst, void (*del)(void *));
-void	ft_envclear(t_env **lst, void (*del)(void *));
-void	ft_enviter(t_env *lst, void (*f)(void *));
-int		ft_envsize(t_env *lst);
-/* ==================== */
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+t_list	*ft_lstnew(void *content);
+t_list	*ft_lstlast(t_list *lst);
+void	ft_lstadd_front(t_list **lst, t_list *new);
+void	ft_lstadd_back(t_list **lst, t_list *new);
+void	ft_lstdelone(t_list *lst, void (*del)(void *));
+void	ft_lstclear(t_list **lst, void (*del)(void *));
+void	ft_lstiter(t_list *lst, void (*f)(void *));
+int		ft_lstsize(t_list *lst);
 
 void	ft_free_split(char **strs);
 char	*ft_strjoin_c(char *s1, char *s2, char c, int sfree);

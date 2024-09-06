@@ -6,13 +6,13 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 13:29:07 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/08/30 17:40:10 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/06 14:16:37 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/libft.h"
 
-void	ft_envadd_front(t_env **lst, t_env *new)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
 	new->next = *lst;
 	*lst = new;

@@ -6,21 +6,21 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 13:51:54 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/08/30 18:11:10 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/06 14:16:34 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/libft.h"
 
-void	ft_envadd_back(t_env **lst, t_env *new)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_env	*last;
+	t_list	*last;
 
 	if (!(*lst))
-		ft_envadd_front(lst, new);
+		ft_lstadd_front(lst, new);
 	else
 	{
-		last = ft_envlast(*lst);
+		last = ft_lstlast(*lst);
 		last->next = new;
 	}
 }

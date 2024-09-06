@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/05 16:51:31 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/06 18:23:41 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,25 @@ typedef struct s_var
 	struct s_var	*prev;
 }			t_var;
 
+typedef struct s_env
+{
+	char			*content;
+	struct s_env	*prev;
+	struct s_env	*next;
+}					t_env;
+
+typedef struct s_envs
+{
+	t_env	*env;
+	t_env	*l_env;
+	t_env	*exp;
+	t_env	*l_exp;
+}			t_envs;
+
 typedef struct s_data
 {
 	t_cmds	*cmds;
-	t_env	*env;
+	t_envs	*envs;
 	t_var	*var;
 	char	***cmdve;
 	int		exit_status;
@@ -118,6 +133,7 @@ int		run_cmd(t_data *data, int i, t_cmds *cmd, int islast);
 int		run_heredoc(char *limiter);
 char	***ft_make_cmdve(t_cmds *cmd);
 int		ft_fill_cmdve(char ***cmdve, t_cmds *cmd);
+int		cmds_path(char ***cmdve, t_data *data);
 
 
 /* BUILTINS */
@@ -131,7 +147,12 @@ int		ft_exit(t_data *data, char **cmdve);
 
 
 /* ENV */
-int		make_env(t_data	*data, char **env);
+int		env_init(t_data	*data, char **env);
+t_env	*ft_envnew(char *str);
+void	ft_envadd_front(t_env **lst, t_env *new);
+void	ft_envadd_back(t_env **lst, t_env *new);
+t_env	*ft_envlast(t_env *lst);
+void	ft_envdelone(t_env *lst,t_env *todel);
 
 
 #endif
