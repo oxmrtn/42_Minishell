@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/06 18:41:47 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/06 18:45:32 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ void		ft_var_add_back(t_var *new_node, t_var *head);
 int			ft_get_history();
 int			ft_write_history(t_cmds *cmds);
 
+
 //	FREE
 //		conditionnal_free.c
 void		free_invalid_syntax(t_cmds *to_free);
@@ -126,6 +127,7 @@ void		ft_free_tokens(t_tokens *tok);
 void		ft_free_commands(t_cmds *cmds);
 void		ft_free_env(t_env *env);
 void		ft_free_cmdve(char ***cmdve);
+
 
 /* EXEC */
 int		exec(t_data *data, t_cmds *cmd);
@@ -138,7 +140,6 @@ int		run_heredoc(char *limiter);
 int		reset_fds(void);
 void	cleanup_exec(char ***cmdve);
 
-
 /* BUILTINS */
 int		ft_echo(t_data *data, t_cmds *cmd);
 int		ft_cd(t_data *data, t_cmds *cmd);
@@ -147,7 +148,6 @@ int		ft_export(t_data *data, t_cmds *cmd);
 int		ft_unset(t_data *data, t_cmds *cmd);
 int		ft_env(t_data *data, t_cmds *cmd);
 int		ft_exit(t_data *data, t_cmds *cmd);
-
 
 /* ENV */
 int		make_env(t_data	*data, char **env);
