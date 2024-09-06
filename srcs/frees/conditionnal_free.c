@@ -1,40 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   var_list_func.c                                    :+:      :+:    :+:   */
+/*   conditionnal_free.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/04 16:41:13 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/06 18:32:00 by mtrullar         ###   ########.fr       */
+/*   Created: 2024/09/06 18:38:10 by mtrullar          #+#    #+#             */
+/*   Updated: 2024/09/06 18:40:13 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
 
-t_var	*ft_last_var(t_var *head)
+void	free_invalid_syntax(t_cmds *to_free)
 {
-	while (head->next)
-	{
-		head = head->next;
-	}
-	return (head);
-}
-
-void	ft_var_add_back(t_var *new_node, t_var *head)
-{
-	t_var	*last;
-
-	if (!head)
-	{
-		head = new_node;
-		new_node->prev = NULL;
-		new_node->next = NULL;
-	}
-	else
-	{
-		last = ft_last_var(head);
-		last->next = new_node;
-		new_node->prev = last;
-	}
+	free(to_free->cmd);
+	ft_free_tokens(to_free->tokens);
+	free(to_free);			
 }

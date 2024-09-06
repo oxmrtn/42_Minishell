@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/05 13:53:27 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/06 18:41:47 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,18 @@
 
 typedef enum s_type
 {
-	WAIT,
-	NO_TYPE,
-	CMD,
-	ARGS,
-	PIPE,
-	INFILE,
-	LIMITER,
-	OUTFILE,
-	APPEND,
-	ERROR
+	WAIT,		//0
+	NO_TYPE,	//1
+	CMD,		//2
+	ARGS,		//3
+	PIPE,		//4
+	INFILE,		//5
+	LIMITER,	//6
+	OUTFILE,	//7
+	APPEND,		//8
+	REDIR,		//9
+	ERROR,		//10
+	ASK			//11
 }	t_type;
 
 typedef struct s_tokens
@@ -78,33 +80,52 @@ typedef struct s_data
 	int		exit_status;
 }			t_data;
 
-//	Parsing
+//	PARSING
+//		parsing.c
 int			ft_parser(char *line, t_cmds **commands, t_data *data);
-t_tokens	*create_token_list(char *line, t_data *data);
-int			add_new_token(char *str, t_tokens **head);
-t_tokens	*ft_get_last_token(t_tokens *head);
-void		get_type(t_tokens *head_node, t_data *data);
-int			add_commands(t_cmds *new, t_cmds **head);
+
+//		commands_struct.c
 t_cmds		*ft_get_last_commands(t_cmds *tmp);
+int			add_commands(t_cmds *new, t_cmds **head);
 
-//	VAR FUNC
-
-int		ft_is_variable_declaration(char *str);
+//		handle_variable.c
 int		ft_add_variable(char *str, t_data *data);
-//	VAR LIST UTILS
+int		ft_is_variable_declaration(char *str);
 
+//		here_docs.c
+void	ft_heredoc_handler(t_tokens *head);
+
+//		tokenization.c
+int		ft_is_pipe(t_tokens *current);
+int		ft_is_redirect_sign(t_tokens *current);
+int		ft_is_args(t_tokens *node);
+int		ft_is_commands(t_tokens *node);
+
+//		tokens_struct.c
+t_tokens	*ft_get_last_token(t_tokens *head);
+t_tokens	*create_token_list(char *line);
+int			add_new_token(char *str, t_tokens **head);
+void		get_type(t_tokens *head_node);
+
+//		var_list_func.c
 t_var		*ft_last_var(t_var *head);
 void		ft_var_add_back(t_var *new_node, t_var *head);
 
 
-//	History
-int			ft_get_history(t_cmds **cmds);
+//	HISTORY
+int			ft_get_history();
 int			ft_write_history(t_cmds *cmds);
 
-//	Free
+//	FREE
+//		conditionnal_free.c
+void		free_invalid_syntax(t_cmds *to_free);
+
+//		free.c
 void		free_main(t_data *data);
 void		ft_free_tokens(t_tokens *tok);
 void		ft_free_commands(t_cmds *cmds);
+void		ft_free_env(t_env *env);
+void		ft_free_cmdve(char ***cmdve);
 
 /* EXEC */
 int		exec(t_data *data, t_cmds *cmd);

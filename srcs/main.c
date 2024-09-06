@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/05 13:38:53 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/06 15:14:07 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ int	main(int argc, char **argv, char **env)
 			return (ft_free_commands(commands), 0);
 		ft_parser(read, &commands, data);
 		print_commands(commands);
-		if (exec(data, ft_get_last_commands(commands)))
-			return (free_main(data), 1);
+		// if (exec(data, ft_get_last_commands(commands)))
+		// 	return (free_main(data), 1);
 		free(read);
 		read = NULL;
 	}
