@@ -7,6 +7,7 @@
 		"stat.h": "c",
 		"dirent.h": "c",
 		"history.h": "c",
-		"fcntl.h": "c"
+		"fcntl.h": "c",
+		"cmath": "c"
 	}
 }

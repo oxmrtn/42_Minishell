@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 13:55:26 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/06 16:03:50 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/09 16:46:47 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ t_env	*ft_envnew(char *str)
 	newelem = malloc(sizeof(t_env));
 	if (!newelem)
 		return (NULL);
-	newelem->content = str;
+	newelem->content = ft_strdup(str);
+	if (!newelem->content)
+		return (free(newelem), NULL);
 	newelem->prev = NULL;
 	newelem->next = NULL;
 	return (newelem);
@@ -65,19 +67,30 @@ t_env	*ft_envlast(t_env *lst)
 	return (lst);
 }
 
-void	ft_envdelone(t_env *lst, t_env *todel)
+void	ft_envdelone(t_data *data, t_env *node, int which)
 {
-	if (!lst)
+	if (!node)
 		return ;
-	while (lst)
-	{
-		if (lst == todel)
-		{
-			lst->prev->next = lst->next;
-			lst->next->prev = lst->prev;
-			free(lst);
-			break ;
-		}
-		lst = lst->next;
-	}
+	if (node->prev)
+		node->prev->next = node->next;
+	else if (which)
+		data->envs->env = node->next;
+	else
+		data->envs->exp = node->next;
+	if (node->next)
+		node->next->prev = node->prev;
+	if (node == data->envs->l_env && node->prev)
+		data->envs->l_env = node->prev;
+	else if (node == data->envs->l_env && node->next)
+		data->envs->l_env = node->next;
+	else
+		data->envs->l_env = NULL;
+	if (node == data->envs->l_exp && node->prev)
+		data->envs->l_exp = node->prev;
+	else if (node == data->envs->l_exp && node->next)
+		data->envs->l_exp = node->next;
+	else
+		data->envs->l_exp = NULL;
+	free(node->content);
+	free(node);
 }

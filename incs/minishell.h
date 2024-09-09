@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/06 18:23:41 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/09 17:34:57 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ int		is_builtin(char *cmd);
 int		exec_builtin(t_data *data, char **cmdve);
 int		run_cmd(t_data *data, int i, t_cmds *cmd, int islast);
 int		run_heredoc(char *limiter);
+int		exec_exit(t_data *data, int status);
 char	***ft_make_cmdve(t_cmds *cmd);
 int		ft_fill_cmdve(char ***cmdve, t_cmds *cmd);
 int		cmds_path(char ***cmdve, t_data *data);
@@ -152,7 +153,8 @@ t_env	*ft_envnew(char *str);
 void	ft_envadd_front(t_env **lst, t_env *new);
 void	ft_envadd_back(t_env **lst, t_env *new);
 t_env	*ft_envlast(t_env *lst);
-void	ft_envdelone(t_env *lst,t_env *todel);
+void	ft_envdelone(t_data *data, t_env *node, int which);
+void	print_env(t_env *env);
 
 
 #endif

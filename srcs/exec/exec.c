@@ -6,13 +6,13 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:57:50 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/06 18:27:33 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/09 14:46:06 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
 
-static int	exec_exit(t_data *data, int status)
+int	exec_exit(t_data *data, int status)
 {
 	free_main(data);
 	exit(status);
