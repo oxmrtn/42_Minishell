@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/06 15:14:07 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/09 14:03:32 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	main(int argc, char **argv, char **env)
 	printf("Welcome to MINISHELL\n");
 	commands = NULL;
 	data->cmdve = NULL;
-	ft_get_history(&commands);
+	ft_get_history();
 	while (1)
 	{
 		read = readline("minishell → ");
@@ -72,6 +72,8 @@ int	main(int argc, char **argv, char **env)
 			return (ft_free_commands(commands), 0);
 		ft_parser(read, &commands, data);
 		print_commands(commands);
+		if (data->var)
+			printf("%s / %s \n", data->var->name, data->var->content);
 		// if (exec(data, ft_get_last_commands(commands)))
 		// 	return (free_main(data), 1);
 		free(read);

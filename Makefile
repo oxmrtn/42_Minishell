@@ -6,7 +6,7 @@
 #    By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/04 15:03:37 by ebengtss          #+#    #+#              #
-#    Updated: 2024/09/06 18:47:33 by mtrullar         ###   ########.fr        #
+#    Updated: 2024/09/09 14:27:41 by mtrullar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ SRCS_FILES			=	main.c				builtins.c			\
 						env.c				history.c			\
 						handle_variable.c	commands_struct.c	\
 						here_docs.c			tokenization.c		\
-						tokens_struct.c							\
+						tokens_struct.c		conditionnal_free.c	\
 						
 
 OBJS				=	$(addprefix $(OBJS_DIR), $(SRCS_FILES:.c=.o))

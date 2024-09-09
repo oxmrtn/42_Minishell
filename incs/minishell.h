@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/06 18:45:32 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/09 14:11:02 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,43 +83,44 @@ typedef struct s_data
 //	PARSING
 //		parsing.c
 int			ft_parser(char *line, t_cmds **commands, t_data *data);
+int			print_commands(t_cmds *com);
 
 //		commands_struct.c
 t_cmds		*ft_get_last_commands(t_cmds *tmp);
 int			add_commands(t_cmds *new, t_cmds **head);
 
 //		handle_variable.c
-int		ft_add_variable(char *str, t_data *data);
-int		ft_is_variable_declaration(char *str);
+int			ft_add_variable(char *str, t_data *data);
+int			ft_is_variable_declaration(char *str);
+char		*ft_get_variable_value(char *key, t_data *data);
 
 //		here_docs.c
-void	ft_heredoc_handler(t_tokens *head);
+void		ft_heredoc_handler(t_tokens *head);
 
 //		tokenization.c
-int		ft_is_pipe(t_tokens *current);
-int		ft_is_redirect_sign(t_tokens *current);
-int		ft_is_args(t_tokens *node);
-int		ft_is_commands(t_tokens *node);
+int			ft_is_pipe(t_tokens *current);
+int			ft_is_redirect_sign(t_tokens *current);
+int			ft_is_args(t_tokens *node);
+int			ft_is_commands(t_tokens *node);
 
 //		tokens_struct.c
 t_tokens	*ft_get_last_token(t_tokens *head);
-t_tokens	*create_token_list(char *line);
+t_tokens	*create_token_list(char *line, t_data *data);
 int			add_new_token(char *str, t_tokens **head);
 void		get_type(t_tokens *head_node);
 
 //		var_list_func.c
 t_var		*ft_last_var(t_var *head);
-void		ft_var_add_back(t_var *new_node, t_var *head);
+void		ft_var_add_back(t_var *new_node, t_var **head);
 
 
 //	HISTORY
 int			ft_get_history();
 int			ft_write_history(t_cmds *cmds);
 
-
 //	FREE
 //		conditionnal_free.c
-void		free_invalid_syntax(t_cmds *to_free);
+void		ft_free_invalid_syntax(t_cmds *to_free);
 
 //		free.c
 void		free_main(t_data *data);
