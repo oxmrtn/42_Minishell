@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:32:30 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/04 16:37:40 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/10 11:12:54 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int		ft_isprint(int c);
 int		ft_ultimate_len(char **str);
 int		ft_memcmp(const void *pointer1, const void *pointer2, size_t size);
 int		ft_strncmp(char *s1, char *s2, unsigned int n);
+int		ft_ultimate_compare(char *s1, char *s2);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
 

@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/09 14:03:32 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/10 11:29:25 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,19 @@ int	print_commands(t_cmds *com)
 			tokens = tokens->next;
 		}
 		commands = commands->next;
+	}
+	return (0);
+}
+
+int	print_variable(t_data *data)
+{
+	t_var	*head;
+
+	head = data->var;
+	while (head)
+	{
+		printf("Variable  = |$%s| || Content = |%s|\n", head->name, head->content);
+		head = head->next;
 	}
 	return (0);
 }
@@ -72,8 +85,8 @@ int	main(int argc, char **argv, char **env)
 			return (ft_free_commands(commands), 0);
 		ft_parser(read, &commands, data);
 		print_commands(commands);
-		if (data->var)
-			printf("%s / %s \n", data->var->name, data->var->content);
+		printf("\n");
+		print_variable(data);
 		// if (exec(data, ft_get_last_commands(commands)))
 		// 	return (free_main(data), 1);
 		free(read);
