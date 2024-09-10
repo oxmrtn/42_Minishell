@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:03:48 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/10 12:24:34 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/10 14:32:19 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,6 @@ int	ft_parser(char *line, t_cmds **commands, t_data *data)
 		new_node = malloc(sizeof(t_cmds));
 		if (!new_node)
 			return (1);
-		new_node->cmd = ft_strdup(line);
-		if (!new_node->cmd)
-			return (free(new_node), 1);
 		new_node->tokens = create_token_list(line, data);
 		if (!new_node->tokens)
 			return (1);
