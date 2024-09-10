@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:03:48 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/09 14:13:09 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/10 12:24:34 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int	ft_parser(char *line, t_cmds **commands, t_data *data)
 		new_node->tokens = create_token_list(line, data);
 		if (!new_node->tokens)
 			return (1);
-		print_commands(new_node);
 		ft_heredoc_handler(new_node->tokens);
+		ft_ask_handler(new_node->tokens, data);
 		if (ft_syntax_error(new_node->tokens))
 			return (ft_free_invalid_syntax(new_node), 1);
 		if (add_commands(new_node, commands) == 1)
