@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 17:56:04 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/09 17:35:59 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/10 15:32:41 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,23 @@ void	print_env(t_env *env)
 		printf("%s\n", env->content);
 		env = env->next;
 	}
+}
+
+static t_env	envnew_gtw(char *str)
+{
+	char	*key;
+	char	*val;
+	char	*c;
+	size_t	i;
+
+	c = ft_strchr(str, '=');
+	if (!c || !c[1])
+		return (NULL);
+	while (&str[i] != c)
+		i++;
+	key = ft_strdup_till_i(str, i);
+	val = ft_strdup(&c[1]);
+	return (ft_envnew(key, val));
 }
 
 static void	envswap(t_data *data, t_env *n1, t_env *n2)
@@ -52,7 +69,7 @@ static void	sort_exp(t_data *data)
 		sorted = 0;
 		while (exp && exp->next && exp->next)
 		{
-			if (strcmp(exp->content, exp->next->content) > 0)
+			if (strcmp(exp->key, exp->next->key) > 0)
 			{
 				envswap(data, exp, exp->next);
 				sorted = 1;
@@ -98,12 +115,11 @@ int	env_init(t_data	*data, char **env)
 	data->envs->env = NULL;
 	data->envs->l_env = NULL;
 	data->envs->exp = NULL;
-	data->envs->l_exp = NULL;
+	data->envs->tmpenv = NULL;
 	if (!env[0])
 		return (1);
 	if (make_envexp(data, env))
 		return (1);
 	sort_exp(data);
-	data->envs->l_exp = ft_envlast(data->envs->exp);
 	return (0);
 }

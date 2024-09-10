@@ -6,20 +6,46 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:47:35 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/09 17:35:04 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/10 14:13:22 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
+
+static void	exp_sortadd(t_data *data, t_env *exp, t_env *node)
+{
+	while (exp)
+	{
+		if (strcmp(exp->content, node->content) > 0)
+		{
+			if (exp == data->envs->exp)
+			{
+				ft_envadd_front(&data->envs->exp, node);
+				data->envs->exp = node;
+				return ;
+			}
+			if (exp->next)
+			{
+				node->next = exp->next;
+				node->next->prev = node;
+			}
+			else
+				node->next = NULL;
+			exp->next = node;
+			node->prev = exp;
+			return ;
+		}
+		exp = exp->next;
+	}
+	ft_envadd_back(&data->envs->exp, node);
+}
 
 static int	exp_add(t_data *data, char *cmdve, char *c)
 {
 	t_env	*node;
 	char	*buff;
 
-	if (!c)
-		buff = ft_strjoin(cmdve, "=''");
-	else if (!c[1])
+	if (c[1])
 		buff = ft_strjoin(cmdve, "''");
 	else
 		buff = ft_strdup(cmdve);
@@ -29,7 +55,7 @@ static int	exp_add(t_data *data, char *cmdve, char *c)
 	if (!node)
 		return (free(buff), 1);
 	free(buff);
-	ft_envadd_back(&data->envs->l_exp, node);
+	exp_sortadd(data, data->envs->exp, node);
 	return (0);
 }
 

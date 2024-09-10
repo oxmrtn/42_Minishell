@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/09 17:34:57 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/10 15:12:43 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ typedef struct s_var
 
 typedef struct s_env
 {
-	char			*content;
+	char			*key;
+	char			*val;
 	struct s_env	*prev;
 	struct s_env	*next;
 }					t_env;
@@ -81,7 +82,7 @@ typedef struct s_envs
 	t_env	*env;
 	t_env	*l_env;
 	t_env	*exp;
-	t_env	*l_exp;
+	char	**tmpenv;
 }			t_envs;
 
 typedef struct s_data
