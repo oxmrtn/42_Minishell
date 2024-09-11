@@ -6,7 +6,7 @@
 #    By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/19 20:58:55 by mtrullar          #+#    #+#              #
-#    Updated: 2024/09/09 14:27:45 by mtrullar         ###   ########.fr        #
+#    Updated: 2024/09/11 14:02:07 by mtrullar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,6 +70,7 @@ LIBFTSRC = 	ft_atoi.c	 			\
 			ft_strjoin.c 			\
 			ft_strtrim.c 			\
 			ft_split.c 				\
+			ft_split_quote.c		\
 			ft_itoa.c 				\
 			ft_strmapi.c 			\
 			ft_striteri.c 			\

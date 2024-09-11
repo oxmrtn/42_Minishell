@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:32:30 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/10 11:12:54 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/11 15:37:21 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ typedef struct l_env
 	void			*content;
 	struct l_env	*next;
 }					t_env;
+
+typedef struct s_nk
+{
+	int		i;
+	int		j;
+}			t_nk;
 
 t_env	*ft_envmap(t_env *lst, void *(*f)(void *), void (*del)(void *));
 t_env	*ft_envnew(void *content);
@@ -73,6 +79,7 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s, unsigned int i, size_t len);
 
 char	**ft_split(char *str, char c);
+char	**ft_split_quote(char const *s, char c);
 
 void	ft_print_tab(char **tab);
 void	ft_freetab(char **tab);

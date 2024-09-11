@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:21:38 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/10 12:15:40 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/11 15:13:18 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ t_tokens	*create_token_list(char *line, t_data *data)
 
 	head_node = NULL;
 	i = 0;
-	splitted = ft_split(line, ' ');
+	splitted = ft_split_quote(line, ' ');
 	if (!splitted)
 		return (NULL);
 	while (splitted[i])
