@@ -6,13 +6,13 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 13:55:26 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/10 15:14:51 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/11 15:38:50 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
 
-t_env	*ft_envnew(char *key, char *val)
+t_env	*ft_envnew(char *key, char *val, int is_exp_no_val)
 {
 	t_env	*newelem;
 
@@ -21,40 +21,23 @@ t_env	*ft_envnew(char *key, char *val)
 		return (NULL);
 	newelem->key = key;
 	newelem->val = val;
+	newelem->exp_noval = is_exp_no_val;
 	newelem->prev = NULL;
 	newelem->next = NULL;
 	return (newelem);
 }
 
-void	ft_envadd_front(t_env **lst, t_env *new)
+size_t	ft_envsize(t_env *lst)
 {
-	new->prev = NULL;
-	if (*lst)
-	{
-		if ((*lst)->prev)
-		{
-			(*lst)->prev->next = new;
-			new->prev = (*lst)->prev;
-		}
-		(*lst)->prev = new;
-		new->next = *lst;
-	}
-	*lst = new;
-}
+	size_t	i;
 
-void	ft_envadd_back(t_env **lst, t_env *new)
-{
-	t_env	*elem;
-
-	if (!(*lst))
-		ft_envadd_front(lst, new);
-	else
+	i = 0;
+	while (lst)
 	{
-		elem = ft_envlast(*lst);
-		elem->next = new;
-		new->prev = elem;
-		new->next = NULL;
+		i++;
+		lst = lst->next;
 	}
+	return (i);
 }
 
 t_env	*ft_envlast(t_env *lst)

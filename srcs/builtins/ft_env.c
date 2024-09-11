@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:48:29 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/09 17:00:54 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/11 16:48:01 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	tmp_env_add(t_data *data, char *cmdve)
 {
 	t_env	*node;
 
-	node = ft_envnew(cmdve);
+	node = envnew_gtw(cmdve, 0);
 	if (!node)
 		return (1);
 	ft_envadd_back(&data->envs->l_env, node);
@@ -32,28 +32,63 @@ static void	env_clean(t_data *data)
 		ft_envdelone(data, l_node->next, 1);
 }
 
+static void	print_env(t_env *env)
+{
+	while (env)
+	{
+		printf("%s=%s\n", env->key, env->val);
+		env = env->next;
+	}
+}
+
+char	**env_to_tab(t_data *data)
+{
+	size_t	i;
+	size_t	size;
+	t_env	*env;
+	char	**tmp_env;
+
+	i = 0;
+	env = data->envs->env;
+	size = ft_envsize(env);
+	tmp_env = malloc(sizeof(char *) * (size + 1));
+	if (!tmp_env)
+		return (NULL);
+	tmp_env[size] = NULL;
+	while (env)
+	{
+		tmp_env[i] = ft_strjoin_c(env->key, env->val, '=', 0);
+		if (!tmp_env[i])
+			return (NULL);
+		env = env->next;
+		i++;
+	}
+	return (tmp_env);
+}
+
 int	ft_env(t_data *data, char **cmdve)
 {
 	size_t	i;
 
-	if (!cmdve[1])
-		print_env(data->envs->env);
-	else
+	i = 1;
+	while (cmdve[i])
 	{
-		i = 1;
-		while (cmdve[i])
+		if (!strchr(cmdve[i], '='))
 		{
-			if (strchr(cmdve[i], '='))
-			{
-				if (tmp_env_add(data, cmdve[i]))
-					return (env_clean(data), 1);
-			}
-			else
-				//exec
-			i++;
+			data->envs->tmpenv = env_to_tab(data);
+			if (!data->envs->tmpenv)
+				return (1);
+			// exec
+			free(data->envs->tmpenv);
+			data->envs->tmpenv = NULL;
+			return (env_clean(data), 0);
 		}
-		print_env(data->envs->env);
-		env_clean(data);
+		else
+			if (tmp_env_add(data, cmdve[i]))
+				return (env_clean(data), 1);
+		i++;
 	}
+	print_env(data->envs->env);
+	env_clean(data);
 	return (0);
 }

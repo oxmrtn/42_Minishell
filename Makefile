@@ -6,7 +6,7 @@
 #    By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/04 15:03:37 by ebengtss          #+#    #+#              #
-#    Updated: 2024/09/09 17:24:50 by ebengtss         ###   ########.fr        #
+#    Updated: 2024/09/11 13:39:03 by ebengtss         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,14 +34,14 @@ INCS_DIR			=	incs
 SRCS_FILES			=	main.c				builtins.c			\
 						ft_cd.c				var_list_func.c		\
 						ft_echo.c			exec.c				\
-						ft_env.c								\
+						ft_env.c			path.c				\
 						ft_exit.c			parsing.c			\
 						ft_export.c			redirs.c			\
 						ft_pwd.c			run.c				\
 						ft_unset.c			free.c				\
-						env_init.c				history.c		\
+						env_init.c			history.c			\
 						handle_variable.c	cmdve.c				\
-						env_list.c			path.c
+						env_list.c			env_list2.c
 
 
 OBJS				=	$(addprefix $(OBJS_DIR), $(SRCS_FILES:.c=.o))

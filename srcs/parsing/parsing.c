@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:03:48 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/06 14:19:42 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/11 17:15:25 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ int	ft_test_path(t_tokens *node, t_data *data)
 	env = data->envs->env;
 	while (env)
 	{
-		if (ft_strncmp(env->content, "PATH=", 5) == 0)
+		if (ft_strncmp(env->key, "PATH", 4) == 0)
 		{
-			path = ft_split(&env->content[5], ':');
+			path = ft_split(env->val, ':');
 			if (!path)
 				return (0);
 			while (path[i])

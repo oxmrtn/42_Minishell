@@ -6,36 +6,28 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 17:56:04 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/10 15:32:41 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/11 17:20:04 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
 
-void	print_env(t_env *env)
-{
-	while (env)
-	{
-		printf("%s\n", env->content);
-		env = env->next;
-	}
-}
-
-static t_env	envnew_gtw(char *str)
+t_env	*envnew_gtw(char *str, int is_exp_no_val)
 {
 	char	*key;
 	char	*val;
 	char	*c;
 	size_t	i;
 
+	i = 0;
 	c = ft_strchr(str, '=');
-	if (!c || !c[1])
+	if (!c && !is_exp_no_val)
 		return (NULL);
-	while (&str[i] != c)
+	while (str[i] && &str[i] != c)
 		i++;
 	key = ft_strdup_till_i(str, i);
 	val = ft_strdup(&c[1]);
-	return (ft_envnew(key, val));
+	return (ft_envnew(key, val, is_exp_no_val));
 }
 
 static void	envswap(t_data *data, t_env *n1, t_env *n2)
@@ -89,14 +81,15 @@ static int	make_envexp(t_data *data, char **env)
 	i = 0;
     while (env[i])
 	{
-		env_entry = ft_envnew(env[i]);
-		exp_entry = ft_envnew(env[i]);
+		env_entry = envnew_gtw(env[i], 0);
+		exp_entry = envnew_gtw(env[i], 0);
 		if (!env_entry || !exp_entry)
 			return (1);
 		ft_envadd_back(&data->envs->env, env_entry);
 		if (!strncmp(env[i], "_=", 2))
 		{
-			free(exp_entry->content);
+			free(exp_entry->key);
+			free(exp_entry->val);
 			free(exp_entry);
 		}
 		else
@@ -116,6 +109,7 @@ int	env_init(t_data	*data, char **env)
 	data->envs->l_env = NULL;
 	data->envs->exp = NULL;
 	data->envs->tmpenv = NULL;
+	data->envs->tenv = NULL;
 	if (!env[0])
 		return (1);
 	if (make_envexp(data, env))

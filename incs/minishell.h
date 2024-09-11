@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/10 15:12:43 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/11 16:48:08 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct s_env
 {
 	char			*key;
 	char			*val;
+	int				exp_noval;
 	struct s_env	*prev;
 	struct s_env	*next;
 }					t_env;
@@ -80,9 +81,10 @@ typedef struct s_env
 typedef struct s_envs
 {
 	t_env	*env;
-	t_env	*l_env;
 	t_env	*exp;
+	t_env	*l_env;
 	char	**tmpenv;
+	char	**tenv;
 }			t_envs;
 
 typedef struct s_data
@@ -149,13 +151,15 @@ int		ft_exit(t_data *data, char **cmdve);
 
 
 /* ENV */
+t_env	*envnew_gtw(char *str, int is_exp_no_val);
+size_t	ft_envsize(t_env *lst);
 int		env_init(t_data	*data, char **env);
-t_env	*ft_envnew(char *str);
+t_env	*ft_envnew(char *key, char *val, int is_exp_no_val);
 void	ft_envadd_front(t_env **lst, t_env *new);
 void	ft_envadd_back(t_env **lst, t_env *new);
 t_env	*ft_envlast(t_env *lst);
+char	**env_to_tab(t_data *data);
 void	ft_envdelone(t_data *data, t_env *node, int which);
-void	print_env(t_env *env);
 
 
 #endif

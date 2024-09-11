@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:35:10 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/06 14:20:22 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/11 17:15:49 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ void	ft_free_env(t_env *env)
 	while (env)
 	{
 		tmp = env->next;
-		free(env->content);
+		free(env->key);
+		free(env->val);
 		free(env);
 		env = tmp;
 	}

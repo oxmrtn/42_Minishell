@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 14:29:15 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/06 18:28:20 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/11 17:14:14 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ int	cmds_path(char ***cmdve, t_data *data)
 	env = data->envs->env;
 	while (env)
 	{
-		if (ft_strncmp("PATH=", env->content, 5) == 0)
+		if (ft_strncmp("PATH", env->key, 4) == 0)
 		{
-			paths = ft_split(&env->content[5], ':');
+			paths = ft_split(env->val, ':');
 			if (!paths)
 				return (ft_puterror("error extracting paths\n"), 1);
 			if (cmds_path2(cmdve, paths))
