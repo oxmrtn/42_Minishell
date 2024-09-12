@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 17:56:04 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/11 17:20:04 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/12 15:05:24 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ t_env	*envnew_gtw(char *str, int is_exp_no_val)
 	while (str[i] && &str[i] != c)
 		i++;
 	key = ft_strdup_till_i(str, i);
-	val = ft_strdup(&c[1]);
+	if (c && c[1])
+		val = ft_strdup(&c[1]);
+	else
+		val = NULL;
 	return (ft_envnew(key, val, is_exp_no_val));
 }
 
@@ -46,7 +49,7 @@ static void	envswap(t_data *data, t_env *n1, t_env *n2)
 	n1->next = next;
 	n1->prev = n2;
 	n2->prev = prev;
-	n2->next = n1;	
+	n2->next = n1;
 }
 
 static void	sort_exp(t_data *data)
@@ -76,10 +79,10 @@ static int	make_envexp(t_data *data, char **env)
 {
 	t_env	*env_entry;
 	t_env	*exp_entry;
-    size_t	i;
+	size_t	i;
 
 	i = 0;
-    while (env[i])
+	while (env[i])
 	{
 		env_entry = envnew_gtw(env[i], 0);
 		exp_entry = envnew_gtw(env[i], 0);
@@ -97,7 +100,7 @@ static int	make_envexp(t_data *data, char **env)
 		i++;
 	}
 	data->envs->l_env = env_entry;
-    return (0);
+	return (0);
 }
 
 int	env_init(t_data	*data, char **env)
