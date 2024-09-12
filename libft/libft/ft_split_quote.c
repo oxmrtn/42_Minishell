@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 14:00:31 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/11 17:24:15 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/12 15:33:39 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,48 +78,41 @@ static int	ft_count_word(char const *str, char set)
 	return (counter);
 }
 
-static void	ft_split_init(int *i, int *j, int *k)
+static void	ft_split_init(t_nk *p)
 {
-	*i = 0;
-	*j = 0;
-	*k = 0;
+	p->check = 0;
+	p->i = 0;
+	p->j = 0;
+	p->k = 0;
 }
 
 static int	ft_run_split(char **splitted_str, char const *s, char c)
 {
-	int		i;
-	int		j;
-	int		k;
+	t_nk	p;
 
-	ft_split_init(&i, &j, &k);
-	while (s[i])
+	ft_split_init(&p);
+	while (s[p.i])
 	{
-		if (s[i] == 34)
+		if (s[p.i] == 39 && p.check == 0)
+			p.check = 1;
+		else if (s[p.i] == 39 && p.check == 1)
+			p.check = 0;
+		if (s[p.i] == 34 && p.check == 0)
+			p.check = 2;
+		else if (s[p.i] == 34 && p.check == 2)
+			p.check = 0;
+		if (s[p.i] != c && (s[p.i + 1] == '\0' || s[p.i + 1] == c) && p.check == 0)
 		{
-			j = i + 1;
-			while (s[j] && s[j] != 34)
-			{
-				j++;
-			}
-			splitted_str[k] = malloc(sizeof(char) * (j - i + 2));
-			if (!splitted_str[k])
-				return (ft_free_all(splitted_str, k), 1);
-			ft_strlcpy(splitted_str[k], &s[i], (j - i + 2));
-			k++;
-			i = j;
+			splitted_str[p.k] = malloc(sizeof(char) * (p.i - p.j + 2));
+			if (!splitted_str[p.k])
+				return (ft_free_all(splitted_str, p.k), 1);
+			ft_strlcpy(splitted_str[p.k], &s[p.j], (p.i - p.j + 2));
+			p.k++;
 		}
-		else if (s[i] != c && (s[i + 1] == '\0' || s[i + 1] == c))
-		{
-			splitted_str[k] = malloc(sizeof(char) * (i - j + 2));
-			if (!splitted_str[k])
-				return (ft_free_all(splitted_str, k), 1);
-			ft_strlcpy(splitted_str[k], &s[j], (i - j + 2));
-			k++;
-		}
-		if (s[i++] == c && s[i] != c)
-			j = i;
+		if (s[p.i++] == c && s[p.i] != c && p.check == 0)
+			p.j = p.i;
 	}
-	return (splitted_str[k] = NULL, 0);
+	return (splitted_str[p.k] = NULL, 0);
 }
 
 char	**ft_split_quote(char const *s, char c)

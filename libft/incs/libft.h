@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:32:30 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/11 15:37:21 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/12 15:27:16 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef struct s_nk
 {
 	int		i;
 	int		j;
+	int		k;
+	int		check;
 }			t_nk;
 
 t_env	*ft_envmap(t_env *lst, void *(*f)(void *), void (*del)(void *));
