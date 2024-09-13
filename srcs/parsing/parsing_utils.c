@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:45:56 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/13 15:18:22 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/13 16:09:06 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,11 @@ static int	ft_check_quote_syntax(char *str)
 			dq++;
 		i++;
 	}
-	return (((sq % 2 == 0) && (dq % 2 == 0)));
+	if (sq % 2 != 0)
+		return (1);
+	if (dq % 2 != 0)
+		return (1);
+	return (0);
 }
 
 static void	flat_bis(char *str, int i, int *check)
@@ -102,7 +106,8 @@ char	*ft_flat_string(char *str, t_data *data)
 	char	*buf;
 	int		check;
 
-	ft_check_quote_syntax(str);
+	if (ft_check_quote_syntax(str))
+		return (NULL);
 	i = 0;
 	check = 0;
 	buf = NULL;

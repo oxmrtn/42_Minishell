@@ -3,14 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:03:48 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/13 15:06:56 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/13 16:13:26 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
+
+static void	ft_print_error()
+{
+	ft_puterror("minishell error: syntax error\n");
+}
 
 static int	ft_syntax_error(t_tokens *head)
 {
@@ -42,7 +47,7 @@ int	ft_parser(char *line, t_cmds **commands, t_data *data)
 			return (1);
 		new_node->tokens = create_token_list(line, data);
 		if (!new_node->tokens)
-			return (1);
+			return (ft_print_error(), free(new_node), 1);
 		ft_heredoc_handler(new_node->tokens);
 		ft_ask_handler(new_node->tokens, data);
 		if (ft_syntax_error(new_node->tokens))

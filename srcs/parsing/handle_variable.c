@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 16:20:25 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/13 14:18:55 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/13 16:19:24 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,9 @@ int	ft_add_variable(char *str, t_data *data)
 char	*ft_get_variable_value(char *key, t_data *data)
 {
 	t_var	*current;
+	t_env	*env;
 
+	env = data->envs->env;
 	current = data->var;
 	if (!key || !current)
 		return (NULL);
@@ -74,5 +76,14 @@ char	*ft_get_variable_value(char *key, t_data *data)
 	if (current)
 		return (ft_strdup(current->content));
 	else
-		return (ft_strdup(""));
+	{
+		while (env && ft_ultimate_compare(key, current->name))
+		{
+			env = env->next;
+		}
+		if (env)
+			return (ft_strdup(current->content));
+		else
+			return (fr_strdup(""));
+	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens_struct.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:21:38 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/13 15:28:22 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/13 16:15:32 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,11 @@ t_tokens	*create_token_list(char *line, t_data *data)
 		return (NULL);
 	while (splitted[i])
 	{
+		if (ft_ultimate_len(splitted) == 1)
+			return (ft_check_variable(splitted[0], data), ft_freetab(splitted), NULL);
 		temp = ft_flat_string(splitted[i], data);
+		if (!temp)
+			return (ft_freetab(splitted),  NULL);
 		if (add_new_token(temp, &head_node, WAIT) == 1)
 			return (NULL);
 		free(temp);
