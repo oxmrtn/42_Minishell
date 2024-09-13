@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   history.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:06:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/04 17:15:43 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/06 18:32:46 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_get_history()
 	int		fd;
 	char	*line;
 
-	fd = open(".history.txt", O_RDONLY | O_CREAT);
+	fd = open(".history", O_RDONLY | O_CREAT);
 	if (fd <= 0)
 		return (1);
 	line = get_next_line(fd);

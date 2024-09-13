@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/13 14:43:50 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/13 15:07:09 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,19 @@ int	print_commands(t_cmds *com)
 			tokens = tokens->next;
 		}
 		commands = commands->next;
+	}
+	return (0);
+}
+
+int	print_variable(t_data *data)
+{
+	t_var	*head;
+
+	head = data->var;
+	while (head)
+	{
+		printf("Variable  = |$%s| || Content = |%s|\n", head->name, head->content);
+		head = head->next;
 	}
 	return (0);
 }
@@ -67,10 +80,11 @@ int	main(int argc, char **argv, char **env)
 	printf("Welcome to MINISHELL\n");
 	commands = NULL;
 	data->cmdve = NULL;
-	ft_get_history(&commands);
+	ft_get_history();
 	while (1)
 	{
 		read = readline("minishell → ");
+		printf("|%s|\n\n", read);
 		add_history(read);
 		if (!ft_strncmp(read, "exit", 4))
 			return (ft_free_commands(commands), 0);

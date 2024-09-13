@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ultimate_len.c                                  :+:      :+:    :+:   */
+/*   conditionnal_free.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/22 16:53:31 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/10 11:24:15 by mtrullar         ###   ########.fr       */
+/*   Created: 2024/09/06 18:38:10 by mtrullar          #+#    #+#             */
+/*   Updated: 2024/09/09 10:54:28 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_ultimate_len(char **str)
-{
-	int	i;
+#include "../../incs/minishell.h"
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+void	ft_free_invalid_syntax(t_cmds *to_free)
+{
+	free(to_free->cmd);
+	ft_free_tokens(to_free->tokens);
+	free(to_free);			
 }

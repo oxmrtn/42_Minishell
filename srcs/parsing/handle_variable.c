@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_variable.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 16:20:25 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/05 13:14:24 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/13 14:18:55 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,41 @@ int	ft_add_variable(char *str, t_data *data)
 	int		i;
 
 	i = 0;
+	while (str[i] != '=')
+		i++;
+	new_node = ft_is_var_exist(str, data->var, i);
+	if (new_node)
+	{
+		free(new_node->content);
+		new_node->content = ft_strdup(str + i + 1);
+		return (0);
+	}
 	new_node = malloc(sizeof(t_var));
 	if (!new_node)
 		return (1);
-	while (str[i] != '=')
-		i++;
-	new_node->name = ft_strdup_till_i(str, i - 1);
+	new_node->name = ft_strdup_till_i(str, i);
 	if (!new_node->name)
 		return (free(new_node), 1);
-	new_node->content = ft_strdup(str + i);
+	new_node->content = ft_strdup(str + i + 1);
 	if (!new_node->content)
-	{
-		free(new_node->name);
-		return (free(new_node), 1);
-	}
-	ft_var_add_back(new_node, data->var);
+		return (free(new_node->name), free(new_node), 1);
+	ft_var_add_back(new_node, &data->var);
 	return (0);
+}
+
+char	*ft_get_variable_value(char *key, t_data *data)
+{
+	t_var	*current;
+
+	current = data->var;
+	if (!key || !current)
+		return (NULL);
+	while (current && ft_ultimate_compare(key, current->name))
+	{
+		current = current->next;
+	}
+	if (current)
+		return (ft_strdup(current->content));
+	else
+		return (ft_strdup(""));
 }
