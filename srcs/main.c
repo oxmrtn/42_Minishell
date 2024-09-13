@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/13 15:07:09 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/13 15:27:18 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,11 @@ int	main(int argc, char **argv, char **env)
 	while (1)
 	{
 		read = readline("minishell → ");
-		printf("|%s|\n\n", read);
 		add_history(read);
 		if (!ft_strncmp(read, "exit", 4))
 			return (ft_free_commands(commands), 0);
 		ft_parser(read, &commands, data);
+		// print_commands(commands);
 		// printf("%d\n", ft_get_last_commands(commands)->tokens->type);
 		if (exec(data, ft_get_last_commands(commands)))
 			return (free_main(data), 1);

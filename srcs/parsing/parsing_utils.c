@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:45:56 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/13 14:54:37 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/13 15:18:22 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,7 @@ char	*ft_flat_string(char *str, t_data *data)
 	char	*buf;
 	int		check;
 
-	if (ft_check_quote_syntax(str))
-		return (NULL);
+	ft_check_quote_syntax(str);
 	i = 0;
 	check = 0;
 	buf = NULL;

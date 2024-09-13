@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:57:50 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/13 14:17:46 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/13 15:40:14 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,10 @@ int	exec(t_data *data, t_cmds *cmd)
 		return (1);
 	if (cmds_path(data->cmdve, data))
 		return (1);
+	for (size_t i = 0; data->cmdve[i]; i++)
+	{
+		printf("%s\n", data->cmdve[0][i]);
+	}
 	if (exec2(data, cmd))
 		return (1);
 	ft_free_cmdve(data->cmdve);
