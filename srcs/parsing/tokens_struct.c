@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:21:38 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/11 15:13:18 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/13 13:54:11 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,7 @@ t_tokens	*create_token_list(char *line, t_data *data)
 		return (NULL);
 	while (splitted[i])
 	{
-		if (splitted[i][0] == '$')
-			temp = ft_get_variable_value(splitted[i], data);
-		else
-			temp = ft_strdup(splitted[i]);
+		temp = ft_flat_string(splitted[i], data);
 		if (add_new_token(temp, &head_node, WAIT) == 1)
 			return (NULL);
 		free(temp);

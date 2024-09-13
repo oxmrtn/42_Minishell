@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 16:41:13 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/10 11:46:59 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/13 14:54:53 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_var_add_back(t_var *new_node, t_var **head)
 t_var	*ft_is_var_exist(char *str, t_var *head, int i)
 {
 	char	*temp;
-	
+
 	if (!str || !head)
 		return (NULL);
 	temp = ft_strdup_till_i(str, i);

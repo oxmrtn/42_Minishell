@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 16:20:25 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/10 11:41:12 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/13 14:18:55 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ char	*ft_get_variable_value(char *key, t_data *data)
 	current = data->var;
 	if (!key || !current)
 		return (NULL);
-	while (current && ft_ultimate_compare(key + 1, current->name))
+	while (current && ft_ultimate_compare(key, current->name))
 	{
 		current = current->next;
 	}
 	if (current)
 		return (ft_strdup(current->content));
 	else
-		return (ft_strdup("\n"));
+		return (ft_strdup(""));
 }

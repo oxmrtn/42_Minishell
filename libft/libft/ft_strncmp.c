@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 21:30:30 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/10 11:23:18 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/13 11:42:34 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_ultimate_compare(char *s1, char *s2)
 	int					diff;
 	const size_t		len_s1 = ft_strlen(s1);
 	const size_t		len_s2 = ft_strlen(s2);
-	unsigned int 		n;
+	unsigned int		n;
 
 	n = ft_max((int)len_s1, (int)len_s2);
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/10 12:24:56 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/13 13:53:50 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,9 @@ void		get_type(t_tokens *head_node);
 t_var		*ft_last_var(t_var *head);
 t_var		*ft_is_var_exist(char *str, t_var *head, int i);
 void		ft_var_add_back(t_var *new_node, t_var **head);
+
+//		parsing_utils.c
+char		*ft_flat_string(char *str, t_data *data);
 
 //	HISTORY
 int			ft_get_history();
