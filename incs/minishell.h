@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/13 15:05:50 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/13 15:13:29 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ void		free_main(t_data *data);
 void		ft_free_cmdve(char ***cmdve);
 void		ft_free_tokens(t_tokens *tok);
 void		ft_free_commands(t_cmds *cmds);
-void		ft_free_env(t_env *env);
+void		ft_free_env(t_env **lst);
 void		ft_free_cmdve(char ***cmdve);
 
 

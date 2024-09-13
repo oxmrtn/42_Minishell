@@ -6,11 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:32:30 by mtrullar          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/09/09 17:31:48 by ebengtss         ###   ########.fr       */
-=======
-/*   Updated: 2024/09/12 15:27:16 by mtrullar         ###   ########.fr       */
->>>>>>> 615198016d8d6d42474346aee3c0e37c72a412f4
+/*   Updated: 2024/09/13 15:10:11 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +23,14 @@ typedef struct l_list
 	struct l_list	*next;
 }					t_list;
 
-<<<<<<< HEAD
+typedef struct s_nk
+{
+	int		i;
+	int		j;
+	int		k;
+	int		check;
+}			t_nk;
+
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 t_list	*ft_lstnew(void *content);
 t_list	*ft_lstlast(t_list *lst);
@@ -37,26 +40,6 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 int		ft_lstsize(t_list *lst);
-=======
-typedef struct s_nk
-{
-	int		i;
-	int		j;
-	int		k;
-	int		check;
-}			t_nk;
-
-t_env	*ft_envmap(t_env *lst, void *(*f)(void *), void (*del)(void *));
-t_env	*ft_envnew(void *content);
-t_env	*ft_envlast(t_env *lst);
-void	ft_envadd_front(t_env **lst, t_env *new);
-void	ft_envadd_back(t_env **lst, t_env *new);
-void	ft_envdelone(t_env *lst, void (*del)(void *));
-void	ft_envclear(t_env **lst, void (*del)(void *));
-void	ft_enviter(t_env *lst, void (*f)(void *));
-int		ft_envsize(t_env *lst);
-/* ==================== */
->>>>>>> 615198016d8d6d42474346aee3c0e37c72a412f4
 
 void	ft_free_split(char **strs);
 char	*ft_strjoin_c(char *s1, char *s2, char c, int sfree);

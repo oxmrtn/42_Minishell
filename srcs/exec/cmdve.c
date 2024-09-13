@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 16:48:53 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/05 17:07:29 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/13 16:06:38 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,31 @@ char	***ft_make_cmdve(t_cmds *cmd)
 
 static char	**ft_fill_cmdve2(t_tokens **tokens)
 {
-	char	**split;
-	char	*buff;
+	char		**cmdve;
+	t_tokens	*tokencpy;
+	size_t		i;
 
-	buff = ft_strdup((*tokens)->str);
-	if (!buff)
-		return (NULL);
-	(*tokens) = (*tokens)->next;
-	while ((*tokens) && (*tokens)->type == ARGS)
+	tokencpy = *tokens;
+	i = 0;
+	while (tokencpy && (tokencpy->type == CMD || tokencpy->type == ARGS))
 	{
-		buff = ft_strjoin_c(buff, (*tokens)->str, ' ', 1);
-		if (!buff)
-			return (NULL);
-		(*tokens) = (*tokens)->next;
+		tokencpy = tokencpy->next;
+		i++;
 	}
-	split = ft_split(buff, ' ');
-	free(buff);
-	return (split);
+	cmdve = malloc(sizeof(char *) * (i + 1));
+	if (!cmdve)
+		return (NULL);
+	cmdve[i] = NULL;
+	i = 0;
+	while ((*tokens) && ((*tokens)->type == CMD || (*tokens)->type == ARGS))
+	{
+		cmdve[i] = ft_strdup((*tokens)->str);
+		if (!cmdve[i])
+			return (ft_free_split(cmdve), NULL);
+		(*tokens) = (*tokens)->next;
+		i++;
+	}
+	return (cmdve);
 }
 
 int	ft_fill_cmdve(char ***cmdve, t_cmds *cmd)
