@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 16:20:25 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/13 16:19:24 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/13 16:25:37 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,6 @@ char	*ft_get_variable_value(char *key, t_data *data)
 		if (env)
 			return (ft_strdup(current->content));
 		else
-			return (fr_strdup(""));
+			return (ft_strdup(""));
 	}
 }
