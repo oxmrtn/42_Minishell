@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:35:10 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/11 17:15:49 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/13 14:40:26 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,17 +59,17 @@ void	ft_free_cmdve(char ***cmdve)
 	}
 }
 
-void	ft_free_env(t_env *env)
+void	ft_free_env(t_env **lst)
 {
 	t_env	*tmp;
 
-	while (env)
+	while (*lst)
 	{
-		tmp = env->next;
-		free(env->key);
-		free(env->val);
-		free(env);
-		env = tmp;
+		tmp = (*lst);
+		(*lst) = (*lst)->next;
+		free(tmp->key);
+		free(tmp->val);
+		free(tmp);
 	}
 }
 
@@ -77,16 +77,20 @@ void	free_main(t_data *data)
 {
 	if (data)
 	{
-		// if (data->cmds)
-		// 	ft_free_commands(data->cmds);
-		// if (data->envs)
-		// {
-		// 	if (data->envs->env)
-		// 		ft_free_env(data->envs->env);
-		// 	if (data->envs->exp)
-		// 		ft_free_env(data->envs->exp);
-		// 	free(data->envs);
-		// }
+		if (data->cmds)
+			ft_free_commands(data->cmds);
+		if (data->envs)
+		{
+			if (data->envs->env)
+				ft_free_env(&data->envs->env);
+			if (data->envs->exp)
+				ft_free_env(&data->envs->exp);
+			if (data->envs->tmpenv)
+				ft_free_split(data->envs->tmpenv);
+			if (data->envs->envve)
+				ft_free_split(data->envs->envve);
+			free(data->envs);
+		}
 		if (data->cmdve)
 			ft_free_cmdve(data->cmdve);
 		free(data);

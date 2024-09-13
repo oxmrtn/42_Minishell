@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 17:56:04 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/12 15:05:24 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/13 14:36:55 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ int	env_init(t_data	*data, char **env)
 	data->envs->l_env = NULL;
 	data->envs->exp = NULL;
 	data->envs->tmpenv = NULL;
-	data->envs->tenv = NULL;
+	data->envs->envve = NULL;
 	if (!env[0])
 		return (1);
 	if (make_envexp(data, env))

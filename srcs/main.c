@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/09 16:52:02 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/13 14:43:50 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,10 @@ int	main(int argc, char **argv, char **env)
 		return (1);
 	data->exit_status = 0;
 	data->var = NULL;
+	data->stdincpy = dup(STDIN_FILENO);
+	data->stdoutcpy = dup(STDOUT_FILENO);
+	if (data->stdincpy == -1 || data->stdoutcpy == -1)
+		return (1);
 	signal(SIGINT, &handle_signal);
 	(void)argc;
 	(void)argv;
@@ -71,7 +75,7 @@ int	main(int argc, char **argv, char **env)
 		if (!ft_strncmp(read, "exit", 4))
 			return (ft_free_commands(commands), 0);
 		ft_parser(read, &commands, data);
-		// print_commands(commands);
+		// printf("%d\n", ft_get_last_commands(commands)->tokens->type);
 		if (exec(data, ft_get_last_commands(commands)))
 			return (free_main(data), 1);
 		printf("status: %d\n", data->exit_status);

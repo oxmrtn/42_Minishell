@@ -6,60 +6,43 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:57:50 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/09 14:46:06 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/13 14:17:46 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
 
-int	exec_exit(t_data *data, int status)
+static int	reset_fds(t_data *data)
 {
-	free_main(data);
-	exit(status);
-}
-
-static void	exec3(t_data *data, t_cmds *cmd)
-{
-	int	i;
-
-	i = 0;
-	if (is_inred(cmd, &i, data->cmdve))
-		exec_exit(data, 1);
-	while (data->cmdve[i] && data->cmdve[i + 1])
-		if (run_cmd(data, i++, cmd, 0))
-			exec_exit(data, 1);
-	if (data->cmdve[i])
-		if (run_cmd(data, i, cmd, 1))
-			exec_exit(data, 1);
-	exec_exit(data, 0);
+	if (dup2(data->stdincpy, STDIN_FILENO) == -1)
+		return (perror(NULL), 1);
+	if (dup2(data->stdoutcpy, STDOUT_FILENO) == -1)
+		return (perror(NULL), 1);
+	data->stdincpy = dup(STDIN_FILENO);
+	data->stdoutcpy = dup(STDOUT_FILENO);
+	if (data->stdincpy == -1 || data->stdoutcpy == -1)
+		return (1);
+	return (0);
 }
 
 static int	exec2(t_data *data, t_cmds *cmd)
 {
-	pid_t	pid;
-	pid_t	tmp_pid;
-	int		child_status;
-	int		retval;
+	int	i;
 
-	retval = 0;
-	pid = fork();
-	if (pid == -1)
-		return (perror(NULL), 1);
-	if (pid == 0)
-		exec3(data, cmd);
-	else
-	{
-		while (1)
-		{
-			tmp_pid = waitpid(-1, &child_status, 0);
-			if (tmp_pid == pid)
-				if (WIFEXITED(child_status))
-					retval = WEXITSTATUS(child_status);
-			if (tmp_pid == -1)
-				break ;
-		}
-	}
-	return (retval);
+	i = 0;
+	if (is_inred(cmd, &i))
+		return (1);
+	while (data->cmdve[i] && data->cmdve[i + 1])
+		if (run_cmd(data, i++, 0))
+			return (1);
+	if (is_outred(cmd))
+		return (1);
+	if (data->cmdve[i])
+		if (run_cmd(data, i, 1))
+			return (1);
+	if (reset_fds(data))
+		return (1);
+	return (0);
 }
 
 int	exec(t_data *data, t_cmds *cmd)

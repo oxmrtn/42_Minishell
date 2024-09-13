@@ -6,26 +6,13 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:37:08 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/06 18:33:40 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/13 12:21:10 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
 
-static int	dup_pipe_no_inred(void)
-{
-	int	fds[2];
-
-	if (pipe(fds) == -1)
-		return (perror(NULL), 1);
-	close(fds[1]);
-	if (dup2(fds[0], STDIN_FILENO) == -1)
-		return (close(fds[0]), perror(NULL), 1);
-	close(fds[0]);
-	return (0);
-}
-
-static int	dup_inred(char *infile, int *i, char ***cmdve)
+static int	dup_inred(char *infile, int *i)
 {
 	int	fd;
 
@@ -34,9 +21,6 @@ static int	dup_inred(char *infile, int *i, char ***cmdve)
 	{
 		perror("infile");
 		*i += 1;
-		if (cmdve[1])
-			if (dup_pipe_no_inred())
-				return (1);
 	}
 	else
 	{
@@ -60,7 +44,7 @@ static int	dup_heredoc(void)
 	return (0);
 }
 
-int	is_inred(t_cmds *cmd, int *i, char ***cmdve)
+int	is_inred(t_cmds *cmd, int *i)
 {
 	t_tokens	*tokens;
 
@@ -68,11 +52,13 @@ int	is_inred(t_cmds *cmd, int *i, char ***cmdve)
 	while (tokens)
 	{
 		if (tokens->type == INFILE)
-			if (dup_inred(tokens->str, i, cmdve))
+			if (dup_inred(tokens->str, i))
 				return (1);
 		if (tokens->type == LIMITER)
 			if (dup_heredoc())
 				return (1);
+		if (tokens->type == INFILE || tokens->type == LIMITER)
+			break ;
 		tokens = tokens->next;
 	}
 	return (0);

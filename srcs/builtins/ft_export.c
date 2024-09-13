@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:47:35 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/12 15:04:44 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/13 14:56:44 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ static int	env_update(t_env *lst, char *str)
 	{
 		if (!strncmp(lst->key, str, i))
 		{
-			if (!c && lst->exp_noval)
-				return (1);
-			if (lst->val)
+			if (lst->val && c && c[1])
+			{
 				free(lst->val);
-			if (c[1])
+				lst->exp_noval = 0;
 				lst->val = ft_strdup(&c[1]);
-			else
+			}
+			else if (!lst->exp_noval)
 				lst->val = NULL;
 			return (1);
 		}
@@ -101,10 +101,10 @@ static int	expenv_add(t_data *data, char *cmdve)
 			return (1);
 		if (expenv_add2(data, cmdve, 0))
 			return (1);
-		if (data->envs->tenv)
-			free(data->envs->tenv);
-		data->envs->tenv = env_to_tab(data);
-		if (!data->envs->tenv)
+		if (data->envs->envve)
+			free(data->envs->envve);
+		data->envs->envve = env_to_tab(data);
+		if (!data->envs->envve)
 			return (1);
 	}
 	else
@@ -129,6 +129,5 @@ int	ft_export(t_data *data, char **cmdve)
 			i++;
 		}
 	}
-	print_env(data->envs->exp, 1);
 	return (0);
 }

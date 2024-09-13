@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/12 15:01:37 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/13 14:55:16 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ typedef struct s_cmds
 
 typedef struct s_var
 {
-	char	*name;
-	char	*content;
+	char			*name;
+	char			*content;
 	struct s_var	*next;
 	struct s_var	*prev;
 }			t_var;
@@ -84,7 +84,7 @@ typedef struct s_envs
 	t_env	*exp;
 	t_env	*l_env;
 	char	**tmpenv;
-	char	**tenv;
+	char	**envve;
 }			t_envs;
 
 typedef struct s_data
@@ -94,6 +94,8 @@ typedef struct s_data
 	t_var	*var;
 	char	***cmdve;
 	int		exit_status;
+	int		stdincpy;
+	int		stdoutcpy;
 }			t_data;
 
 //	Parsing
@@ -128,13 +130,11 @@ void		ft_free_commands(t_cmds *cmds);
 
 /* EXEC */
 int		exec(t_data *data, t_cmds *cmd);
-int		is_inred(t_cmds *cmd, int *i, char ***cmdve);
+int		is_inred(t_cmds *cmd, int *i);
 int		is_outred(t_cmds *cmd);
 int		is_builtin(char *cmd);
 int		exec_builtin(t_data *data, char **cmdve);
-int		run_cmd(t_data *data, int i, t_cmds *cmd, int islast);
-int		run_heredoc(char *limiter);
-int		exec_exit(t_data *data, int status);
+int		run_cmd(t_data *data, int i, int islast);
 char	***ft_make_cmdve(t_cmds *cmd);
 int		ft_fill_cmdve(char ***cmdve, t_cmds *cmd);
 int		cmds_path(char ***cmdve, t_data *data);
