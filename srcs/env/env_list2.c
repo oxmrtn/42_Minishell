@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 13:38:01 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/11 13:38:22 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/16 15:06:14 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	ft_envadd_front(t_env **lst, t_env *new)
 		(*lst)->prev = new;
 		new->next = *lst;
 	}
-	*lst = new;
+	else
+		*lst = new;
 }
 
 void	ft_envadd_back(t_env **lst, t_env *new)

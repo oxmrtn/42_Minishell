@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:48:29 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/12 15:03:26 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/16 15:03:25 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,20 @@ void	print_env(t_env *env, int env_or_exp)
 	while (env)
 	{
 		if (!env_or_exp)
-			printf("%s=%s\n", env->key, env->val);
+		{
+			if (env->val)
+				printf("%s=%s\n", env->key, env->val);
+			else
+				printf("%s=\n", env->key);
+		}
 		else
 		{
 			if (env->exp_noval == 1)
 				printf("%s\n", env->key);
-			else
+			else if (env->val)
 				printf("%s=\"%s\"\n", env->key, env->val);
+			else
+				printf("%s=\"\"\n", env->key);
 		}
 		env = env->next;
 	}
@@ -65,7 +72,10 @@ char	**env_to_tab(t_data *data)
 	tmp_env[size] = NULL;
 	while (env)
 	{
-		tmp_env[i] = ft_strjoin_c(env->key, env->val, '=', 0);
+		if (env->val)
+			tmp_env[i] = ft_strjoin_c(env->key, env->val, '=', 0);
+		else
+			tmp_env[i] = ft_strjoin(env->key, "=");
 		if (!tmp_env[i])
 			return (NULL);
 		env = env->next;

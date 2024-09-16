@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:47:35 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/13 14:56:44 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/16 15:08:56 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,14 @@ static int	env_update(t_env *lst, char *str)
 	{
 		if (!strncmp(lst->key, str, i))
 		{
-			if (lst->val && c && c[1])
-			{
+			if (!c)
+				return (1);
+			if (lst->val)
 				free(lst->val);
-				lst->exp_noval = 0;
+			lst->exp_noval = 0;
+			if (c[1])
 				lst->val = ft_strdup(&c[1]);
-			}
-			else if (!lst->exp_noval)
+			else
 				lst->val = NULL;
 			return (1);
 		}
