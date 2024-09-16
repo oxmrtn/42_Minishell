@@ -6,22 +6,30 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:57:50 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/13 16:09:09 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/16 16:58:43 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
 
-static int	reset_fds(t_data *data)
+int	reset_fds(t_data *data, int std)
 {
-	if (dup2(data->stdincpy, STDIN_FILENO) == -1)
-		return (perror(NULL), 1);
-	if (dup2(data->stdoutcpy, STDOUT_FILENO) == -1)
-		return (perror(NULL), 1);
-	data->stdincpy = dup(STDIN_FILENO);
-	data->stdoutcpy = dup(STDOUT_FILENO);
-	if (data->stdincpy == -1 || data->stdoutcpy == -1)
-		return (1);
+	if (std == 0 || std == 2)
+	{
+		if (dup2(data->stdincpy, STDIN_FILENO) == -1)
+			return (perror(NULL), 1);
+		data->stdincpy = dup(STDIN_FILENO);
+		if (data->stdincpy == -1)
+			return (1);
+	}
+	if (std == 1 || std == 2)
+	{
+		if (dup2(data->stdoutcpy, STDOUT_FILENO) == -1)
+			return (perror(NULL), 1);
+		data->stdoutcpy = dup(STDOUT_FILENO);
+		if (data->stdoutcpy == -1)
+			return (1);
+	}
 	return (0);
 }
 
@@ -40,7 +48,7 @@ static int	exec2(t_data *data, t_cmds *cmd)
 	if (data->cmdve[i])
 		if (run_cmd(data, i, 1))
 			return (1);
-	if (reset_fds(data))
+	if (reset_fds(data, 2))
 		return (1);
 	return (0);
 }
