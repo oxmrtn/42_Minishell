@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 17:56:04 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/16 15:14:37 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/17 17:04:14 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ t_env	*envnew_gtw(char *str, int is_exp_no_val)
 		return (NULL);
 	while (str[i] && &str[i] != c)
 		i++;
-	key = ft_strdup_till_i(str, i);
+	if (str[0] == '=' && i == 1)
+		key = ft_strdup("=");
+	else
+		key = ft_strdup_till_i(str, i);
 	if (c && c[1])
 		val = ft_strdup(&c[1]);
 	else

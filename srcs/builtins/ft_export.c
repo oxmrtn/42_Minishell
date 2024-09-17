@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:47:35 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/16 15:08:56 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/17 17:18:30 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,18 @@ static void	exp_sortadd(t_data *data, t_env *exp, t_env *node)
 	ft_envadd_back(&data->envs->exp, node);
 }
 
-static int	env_update(t_env *lst, char *str)
+int	env_update(t_env *lst, char *str)
 {
 	char	*c;
 	size_t	i;
 
 	i = 0;
-	c = strchr(str, '=');
+	c = ft_strchr(str, '=');
 	while (str[i] && &str[i] != c)
 		i++;
 	while (lst)
 	{
-		if (!strncmp(lst->key, str, i))
+		if (!strcmp(lst->key, str)) //replace strcmp for max len cmp
 		{
 			if (!c)
 				return (1);
@@ -93,7 +93,7 @@ static int	expenv_add(t_data *data, char *cmdve)
 {
 	char	*c;
 
-	c = strchr(cmdve, '=');
+	c = ft_strchr(cmdve, '=');
 	if (c == &cmdve[0] || ft_strisal(cmdve))
 		return (ft_puterror("export: bad assignement\n"), 0);
 	if (c)

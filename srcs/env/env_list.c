@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 13:55:26 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/11 15:38:50 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/17 16:17:45 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,25 +49,34 @@ t_env	*ft_envlast(t_env *lst)
 	return (lst);
 }
 
-void	ft_envdelone(t_data *data, t_env *node, int which)
+void	ft_envadd_front(t_env **lst, t_env *new)
 {
-	if (!node)
-		return ;
-	if (node->prev)
-		node->prev->next = node->next;
-	else if (which)
-		data->envs->env = node->next;
+	new->prev = NULL;
+	if (*lst)
+	{
+		if ((*lst)->prev)
+		{
+			(*lst)->prev->next = new;
+			new->prev = (*lst)->prev;
+		}
+		(*lst)->prev = new;
+		new->next = *lst;
+	}
 	else
-		data->envs->exp = node->next;
-	if (node->next)
-		node->next->prev = node->prev;
-	if (node == data->envs->l_env && node->prev)
-		data->envs->l_env = node->prev;
-	else if (node == data->envs->l_env && node->next)
-		data->envs->l_env = node->next;
+		*lst = new;
+}
+
+void	ft_envadd_back(t_env **lst, t_env *new)
+{
+	t_env	*elem;
+
+	if (!(*lst))
+		ft_envadd_front(lst, new);
 	else
-		data->envs->l_env = NULL;
-	free(node->key);
-	free(node->val);
-	free(node);
+	{
+		elem = ft_envlast(*lst);
+		elem->next = new;
+		new->prev = elem;
+		new->next = NULL;
+	}
 }

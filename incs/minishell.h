@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/16 16:57:05 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/17 17:15:03 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,7 +187,7 @@ void	ft_envadd_back(t_env **lst, t_env *new);
 t_env	*ft_envlast(t_env *lst);
 char	**env_to_tab(t_data *data);
 void	print_env(t_env *env, int env_or_exp);
-void	ft_envdelone(t_data *data, t_env *node, int which);
+int	env_update(t_env *lst, char *str);
 
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:48:29 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/16 15:03:25 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/17 17:18:28 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static int	tmp_env_add(t_data *data, char *cmdve)
 {
 	t_env	*node;
 
+	if (env_update(data->envs->env, cmdve))
+		return (0);
 	node = envnew_gtw(cmdve, 0);
 	if (!node)
 		return (1);
@@ -28,8 +30,8 @@ static void	env_clean(t_data *data)
 	t_env	*l_node;
 
 	l_node = data->envs->l_env;
-	while (l_node->next)
-		ft_envdelone(data, l_node->next, 1);
+	ft_free_env(&l_node->next);
+	data->envs->l_env->next = NULL;
 }
 
 void	print_env(t_env *env, int env_or_exp)
@@ -40,8 +42,10 @@ void	print_env(t_env *env, int env_or_exp)
 		{
 			if (env->val)
 				printf("%s=%s\n", env->key, env->val);
-			else
+			else if (strcmp(env->key, "=") != 0) //replace strcmp for max len cmp
 				printf("%s=\n", env->key);
+			else
+				printf("%s\n", env->key);
 		}
 		else
 		{
@@ -74,12 +78,13 @@ char	**env_to_tab(t_data *data)
 	{
 		if (env->val)
 			tmp_env[i] = ft_strjoin_c(env->key, env->val, '=', 0);
-		else
+		else if (strcmp(env->key, "=") != 0) //replace strcmp for max len cmp
 			tmp_env[i] = ft_strjoin(env->key, "=");
-		if (!tmp_env[i])
+		else
+			tmp_env[i] = ft_strdup("=");
+		if (!tmp_env[i++])
 			return (NULL);
 		env = env->next;
-		i++;
 	}
 	return (tmp_env);
 }
