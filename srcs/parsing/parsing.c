@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:03:48 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/13 16:13:26 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/17 10:53:00 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,25 +35,17 @@ int	ft_parser(char *line, t_cmds **commands, t_data *data)
 {
 	t_cmds	*new_node;
 
-	if (ft_is_variable_declaration(line) == 0)
-	{
-		if (!ft_add_variable(line, data))
-			return (1);
-	}
-	else
-	{
-		new_node = malloc(sizeof(t_cmds));
-		if (!new_node)
-			return (1);
-		new_node->tokens = create_token_list(line, data);
-		if (!new_node->tokens)
-			return (ft_print_error(), free(new_node), 1);
-		ft_heredoc_handler(new_node->tokens);
-		ft_ask_handler(new_node->tokens, data);
-		if (ft_syntax_error(new_node->tokens))
-			return (ft_free_invalid_syntax(new_node), 1);
-		if (add_commands(new_node, commands) == 1)
-			return (1);
-	}
+	new_node = malloc(sizeof(t_cmds));
+	if (!new_node)
+		return (1);
+	new_node->tokens = create_token_list(line, data);
+	if (!new_node->tokens)
+		return (ft_print_error(), free(new_node), 1);
+	ft_heredoc_handler(new_node->tokens);
+	ft_ask_handler(new_node->tokens, data);
+	if (ft_syntax_error(new_node->tokens))
+		return (ft_free_invalid_syntax(new_node), 1);
+	if (add_commands(new_node, commands) == 1)
+		return (1);
 	return (0);
 }

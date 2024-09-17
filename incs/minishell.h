@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/13 15:13:29 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/17 11:17:43 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,6 +172,7 @@ int		ft_echo(t_data *data, char **cmdve);
 int		ft_cd(t_data *data, char **cmdve);
 int		ft_pwd(t_data *data, char **cmdve);
 int		ft_export(t_data *data, char **cmdve);
+int		env_update(t_env *lst, char *str);
 int		ft_unset(t_data *data, char **cmdve);
 int		ft_env(t_data *data, char **cmdve);
 int		ft_exit(t_data *data, char **cmdve);

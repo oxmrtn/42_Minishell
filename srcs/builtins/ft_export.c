@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:47:35 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/13 14:56:44 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/17 11:17:24 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ static void	exp_sortadd(t_data *data, t_env *exp, t_env *node)
 	ft_envadd_back(&data->envs->exp, node);
 }
 
-static int	env_update(t_env *lst, char *str)
+int	env_update(t_env *lst, char *str)
 {
 	char	*c;
 	size_t	i;
 
 	i = 0;
-	c = strchr(str, '=');
+	c = ft_strchr(str, '=');
 	while (str[i] && &str[i] != c)
 		i++;
 	while (lst)

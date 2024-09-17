@@ -6,28 +6,26 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 16:20:25 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/17 10:47:36 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/17 11:22:12 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
 
-int	ft_is_variable_declaration(char *str)
+int	ft_check_variable(char *str, t_data *data)
 {
-	int	i;
-	int	equal_count;
+	int		i;
+	char	*tmp;
 
-	equal_count = 0;
 	i = 0;
-	while (str[i])
-	{
-		if (str[i] == ' ')
-			return (1);
-		else if (str[i] == '=')
-			equal_count++;
-		i++;
-	}
-	if (equal_count >= 1)
+	if (str[0] == 34 || str[0] == 39)
+		return (1);
+	tmp = ft_strchr(str, '=');
+	if (!tmp)
+		return (1);
+	if (env_update(data->envs->env, str))
+		return (0);
+	if (ft_add_variable(str, data))
 		return (0);
 	return (1);
 }
@@ -36,15 +34,15 @@ int	ft_add_variable(char *str, t_data *data)
 {
 	t_var	*new_node;
 	int		i;
+	char	*temp;
 
+	temp = ft_strchr(str, '=');
 	i = 0;
-	while (str[i] != '=')
-		i++;
 	new_node = ft_is_var_exist(str, data->var, i);
 	if (new_node)
 	{
 		free(new_node->content);
-		new_node->content = ft_strdup(str + i + 1);
+		new_node->content = ft_strdup(temp + 1);
 		return (0);
 	}
 	new_node = malloc(sizeof(t_var));
@@ -53,7 +51,7 @@ int	ft_add_variable(char *str, t_data *data)
 	new_node->name = ft_strdup_till_i(str, i);
 	if (!new_node->name)
 		return (free(new_node), 1);
-	new_node->content = ft_strdup(str + i + 1);
+	new_node->content = ft_strdup(temp + 1);
 	if (!new_node->content)
 		return (free(new_node->name), free(new_node), 1);
 	ft_var_add_back(new_node, &data->var);
