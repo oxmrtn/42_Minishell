@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:35:10 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/13 15:05:59 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/17 17:18:04 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_free_tokens(t_tokens *tok)
 
 	while (tok)
 	{
-		tmp = tok;		
+		tmp = tok;
 		tok = tok->next;
 		free(tmp->str);
 		free(tmp);
@@ -41,7 +41,7 @@ void	ft_free_commands(t_cmds *cmds)
 
 void	ft_free_cmdve(char ***cmdve)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (*cmdve)
@@ -96,4 +96,3 @@ void	free_main(t_data *data)
 		free(data);
 	}
 }
-

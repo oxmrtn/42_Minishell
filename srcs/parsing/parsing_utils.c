@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:45:56 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/13 16:09:06 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/17 17:16:40 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,10 @@ static int	ft_append_var(char **s1, char *s2, t_data *data)
 	i = 0;
 	while (s2[i] && s2[i] != ' ' && s2[i] != '\n' && s2[i] != 39 && s2[i] != 34)
 		i++;
-	key = malloc(sizeof(char) * i);
+	key = malloc(sizeof(char) * (i + 1));
 	if (!key)
 		return (0);
-	i = 0;
-	while (s2[i] && s2[i] != ' ' && s2[i] != '\n' && s2[i] != 39 && s2[i] != 34)
-	{
-		key[i] = s2[i];
-		i++;
-	}
+	ft_strlcpy(key, s2, i + 1);
 	temp = ft_get_variable_value(key, data);
 	buff = ft_strjoin_s1(*s1, temp);
 	free(temp);
@@ -62,30 +57,6 @@ static char	*ft_append(char *s1, char c)
 	buffer[len + 1] = '\0';
 	free(s1);
 	return (buffer);
-}
-
-static int	ft_check_quote_syntax(char *str)
-{
-	int	i;
-	int	dq;
-	int	sq;
-
-	i = 0;
-	dq = 0;
-	sq = 0;
-	while (str[i])
-	{
-		if (str[i] == 39)
-			sq++;
-		else if (str[i] == 34)
-			dq++;
-		i++;
-	}
-	if (sq % 2 != 0)
-		return (1);
-	if (dq % 2 != 0)
-		return (1);
-	return (0);
 }
 
 static void	flat_bis(char *str, int i, int *check)

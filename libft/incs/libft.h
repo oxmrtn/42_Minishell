@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:32:30 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/13 15:10:11 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/17 16:44:42 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ char	*ft_strjoin_c(char *s1, char *s2, char c, int sfree);
 int		cpt_words(char *str, char c);
 
 size_t	ft_strlen(const char *str);
+size_t	ft_custom_len(char *src);
 size_t	ft_strlcat(char *dest, char *src, size_t size);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 
@@ -70,6 +71,7 @@ char	*ft_itoa(int n);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(char *src);
 char	*ft_strdup_till_i(char *src, int i);
+char	*ft_strdup_custom(char *src);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strjoin_s1(char *s1, char *s2);
 char	*ft_strjoin_s2(char *s1, char *s2);

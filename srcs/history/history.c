@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:06:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/06 18:32:46 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/17 17:13:34 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	delete_end(char *str)
 		str[len -1] = '\0';
 }
 
-int	ft_get_history()
+int	ft_get_history(void)
 {
 	int		fd;
 	char	*line;
@@ -32,7 +32,7 @@ int	ft_get_history()
 	line = get_next_line(fd);
 	if (!line)
 		return (close(fd), 1);
-	while(line)
+	while (line)
 	{
 		delete_end(line);
 		add_history(line);

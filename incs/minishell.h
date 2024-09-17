@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/17 11:17:43 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/17 14:32:18 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,17 +105,20 @@ typedef struct s_data
 int			ft_parser(char *line, t_cmds **commands, t_data *data);
 int			print_commands(t_cmds *com);
 
+//		check_error.c
+int			ft_check_quote_syntax(char *str);
+
 //		commands_struct.c
 t_cmds		*ft_get_last_commands(t_cmds *tmp);
 int			add_commands(t_cmds *new, t_cmds **head);
 
 //		handle_variable.c
 int			ft_add_variable(char *str, t_data *data);
-int			ft_is_variable_declaration(char *str);
+int			ft_check_variable(char *str, t_data *data);
 char		*ft_get_variable_value(char *key, t_data *data);
 
 //		here_docs.c
-void		ft_heredoc_handler(t_tokens *head);
+void		ft_heredoc_handler(t_tokens *head, t_data *data);
 void		ft_ask_handler(t_tokens *head, t_data *data);
 
 //		tokenization.c
