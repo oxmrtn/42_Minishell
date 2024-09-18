@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 16:48:53 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/18 15:16:59 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/18 16:51:56 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,9 @@ static int	ft_env_setup(t_data *data, t_tokens **tokens)
 				return (tmp_env_clean(data), 1);
 		(*tokens) = (*tokens)->next;
 	}
-	if (data->envs->tmpenv)
-		free(data->envs->tmpenv);
-	data->envs->tmpenv = env_to_tab(data);
-	tmp_env_clean(data);
-	if (!data->envs->tmpenv)
+	data->envs->tmpenv = data->envs->envve;
+	data->envs->envve = env_to_tab(data);
+	if (!data->envs->envve)
 		return (1);
 	return (0);
 }

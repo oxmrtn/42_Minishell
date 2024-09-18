@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/18 15:19:22 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/18 16:49:57 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ void		ft_var_add_back(t_var *new_node, t_var **head);
 char		*ft_flat_string(char *str, t_data *data);
 
 //	HISTORY
-int			ft_get_history();
+int			ft_get_history(void);
 int			ft_write_history(t_cmds *cmds);
 
 //	FREE

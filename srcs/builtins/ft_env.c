@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:48:29 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/18 15:31:01 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/18 16:53:38 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,11 @@ void	tmp_env_clean(t_data *data)
 	t_env	*l_node;
 
 	l_node = data->envs->l_env;
-	ft_free_env(&l_node->next);
-	data->envs->l_env->next = NULL;
+	if (l_node->next)
+	{
+		ft_free_env(&l_node->next);
+		data->envs->l_env->next = NULL;
+	}
 }
 
 void	print_env(t_env *env, int env_or_exp)
