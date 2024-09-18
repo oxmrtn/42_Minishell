@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 16:20:25 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/17 17:16:21 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/18 09:40:01 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 int	ft_check_variable(char *str, t_data *data)
 {
-	int		i;
 	char	*tmp;
 	char	*t1;
 	char	*t2;
 
-	i = 0;
 	tmp = ft_strchr(str, '=');
 	if (!tmp)
 		return (0);

@@ -6,7 +6,7 @@
 #    By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/04 15:03:37 by ebengtss          #+#    #+#              #
-#    Updated: 2024/09/17 13:19:24 by mtrullar         ###   ########.fr        #
+#    Updated: 2024/09/18 11:03:21 by mtrullar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME				=	minishell
 LIBFT				=	libft
 LIBFT_A				=	libcustomft.a
 
-CC					=	cc
+CC					=	clang
 CFLAGS				=	-Wall -Wextra -Werror -g -I
 
 LIBFT_DIR			=	libft

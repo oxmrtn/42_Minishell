@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:20:36 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/09 11:11:04 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/18 10:45:14 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	ft_is_commands(t_tokens *node)
 	else if (!ft_strncmp(node->prev->str, "|", 1))
 		return (1);
 	else if (node->prev->type == INFILE)
+		return (1);
+	else if (node->prev->type == LIMITER)
 		return (1);
 	else
 		return (0);
@@ -53,10 +55,10 @@ static void	ft_set_redirect(t_tokens *current, t_type to_set )
 
 int	ft_is_redirect_sign(t_tokens *current)
 {
-	if (!ft_strncmp(current->str, ">", 1))
-		return (ft_set_redirect(current, OUTFILE), 1);
-	else if (!ft_strncmp(current->str, ">>", 2))
+	if (!ft_strncmp(current->str, ">>", 2))
 		return (ft_set_redirect(current, APPEND), 1);
+	else if (!ft_strncmp(current->str, ">", 1))
+		return (ft_set_redirect(current, OUTFILE), 1);
 	else if (!ft_strncmp(current->str, "<<", 2))
 		return (ft_set_redirect(current, LIMITER), 1);
 	else if (!ft_strncmp(current->str, "<", 1))
