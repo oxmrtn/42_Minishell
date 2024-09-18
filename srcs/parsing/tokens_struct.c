@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:21:38 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/17 17:16:55 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/18 14:20:30 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ void	get_type(t_tokens *head)
 	while (current)
 	{
 		if (ft_is_commands(current))
-			current->type = CMD;
+		{
+			if (current->type != ENV)
+				current->type = CMD;
+		}
 		else if (ft_is_redirect_sign(current))
 		{
 			if (current->type != ERROR)

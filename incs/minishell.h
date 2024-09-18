@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/18 10:59:18 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/18 14:13:37 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ typedef enum s_type
 	APPEND,		//8
 	REDIR,		//9
 	ERROR,		//10
-	ASK			//11
+	ASK,		//11
+	ENV
 }	t_type;
 
 typedef struct s_tokens
