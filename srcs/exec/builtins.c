@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:35:12 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/18 12:40:26 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/18 16:43:26 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	exec_builtin(t_data *data, char **cmdve)
 	else if (!ft_ultimate_compare(cmdve[0], "cd"))
 		retval = ft_cd(data, cmdve);
 	else if (!ft_ultimate_compare(cmdve[0], "pwd"))
-		retval = ft_pwd(data, cmdve);
+		retval = ft_pwd();
 	else if (!ft_ultimate_compare(cmdve[0], "export"))
 		retval = ft_export(data, cmdve);
 	else if (!ft_ultimate_compare(cmdve[0], "unset"))
