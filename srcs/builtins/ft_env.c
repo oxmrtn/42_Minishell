@@ -6,13 +6,13 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:48:29 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/18 12:37:22 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/18 14:20:31 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
 
-static int	tmp_env_add(t_data *data, char *cmdve)
+int	tmp_env_add(t_data *data, char *cmdve)
 {
 	t_env	*node;
 
@@ -25,7 +25,7 @@ static int	tmp_env_add(t_data *data, char *cmdve)
 	return (0);
 }
 
-static void	env_clean(t_data *data)
+void	tmp_env_clean(t_data *data)
 {
 	t_env	*l_node;
 
@@ -96,23 +96,11 @@ int	ft_env(t_data *data, char **cmdve)
 	i = 1;
 	while (cmdve[i])
 	{
-		if (!strchr(cmdve[i], '='))
-		{
-			(void)cmdve[i];
-			// data->envs->tmpenv = env_to_tab(data);
-			// if (!data->envs->tmpenv)
-			// 	return (1);
-			// exec
-			// free(data->envs->tmpenv);
-			// data->envs->tmpenv = NULL;
-			// return (env_clean(data), 0);
-		}
-		else
-			if (tmp_env_add(data, cmdve[i]))
-				return (env_clean(data), -100);
+		if (tmp_env_add(data, cmdve[i]))
+			return (tmp_env_clean(data), -100);
 		i++;
 	}
 	print_env(data->envs->env, 0);
-	env_clean(data);
+	tmp_env_clean(data);
 	return (0);
 }
