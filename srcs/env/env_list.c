@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 13:55:26 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/17 16:17:45 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/18 12:09:07 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,34 +49,19 @@ t_env	*ft_envlast(t_env *lst)
 	return (lst);
 }
 
-void	ft_envadd_front(t_env **lst, t_env *new)
+void	ft_envdelone(t_data *data, t_env *node)
 {
-	new->prev = NULL;
-	if (*lst)
-	{
-		if ((*lst)->prev)
-		{
-			(*lst)->prev->next = new;
-			new->prev = (*lst)->prev;
-		}
-		(*lst)->prev = new;
-		new->next = *lst;
-	}
-	else
-		*lst = new;
-}
-
-void	ft_envadd_back(t_env **lst, t_env *new)
-{
-	t_env	*elem;
-
-	if (!(*lst))
-		ft_envadd_front(lst, new);
-	else
-	{
-		elem = ft_envlast(*lst);
-		elem->next = new;
-		new->prev = elem;
-		new->next = NULL;
-	}
+	if (node == data->envs->env)
+		data->envs->env = node->next;
+	if (node == data->envs->exp)
+		data->envs->exp = node->next;
+	if (node->prev)
+		node->prev->next = node->next;
+	if (node->next)
+		node->next->prev = node->prev;
+	if (node->key)
+		free(node->key);
+	if (node->val)
+		free(node->val);
+	free(node);
 }

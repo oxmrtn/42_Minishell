@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:49:23 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/18 11:26:24 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/18 12:30:16 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static int	run_parent(t_data *data, int i, int *fds, int islast)
 			return (close(fds[1]), perror(NULL), 1);
 	close(fds[1]);
 	if (builtin_check)
-		if (exec_builtin(data, data->cmdve[i]))
+		if (exec_builtin(data, data->cmdve[i]) == -100)
 			return (1);
 	return (0);
 }

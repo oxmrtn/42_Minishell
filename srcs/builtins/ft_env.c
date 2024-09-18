@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:48:29 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/18 11:16:46 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/18 12:37:22 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,17 +98,18 @@ int	ft_env(t_data *data, char **cmdve)
 	{
 		if (!strchr(cmdve[i], '='))
 		{
-			data->envs->tmpenv = env_to_tab(data);
-			if (!data->envs->tmpenv)
-				return (1);
+			(void)cmdve[i];
+			// data->envs->tmpenv = env_to_tab(data);
+			// if (!data->envs->tmpenv)
+			// 	return (1);
 			// exec
-			free(data->envs->tmpenv);
-			data->envs->tmpenv = NULL;
-			return (env_clean(data), 0);
+			// free(data->envs->tmpenv);
+			// data->envs->tmpenv = NULL;
+			// return (env_clean(data), 0);
 		}
 		else
 			if (tmp_env_add(data, cmdve[i]))
-				return (env_clean(data), 1);
+				return (env_clean(data), -100);
 		i++;
 	}
 	print_env(data->envs->env, 0);

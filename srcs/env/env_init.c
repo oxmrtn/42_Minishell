@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 17:56:04 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/18 11:21:01 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/18 12:12:15 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,5 +121,8 @@ int	env_init(t_data	*data, char **env)
 	if (make_envexp(data, env))
 		return (1);
 	sort_exp(data);
+	data->envs->envve = env_to_tab(data);
+	if (!data->envs->envve)
+		return (1);
 	return (0);
 }

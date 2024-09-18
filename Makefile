@@ -6,7 +6,7 @@
 #    By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/04 15:03:37 by ebengtss          #+#    #+#              #
-#    Updated: 2024/09/17 16:17:13 by ebengtss         ###   ########.fr        #
+#    Updated: 2024/09/18 12:09:41 by ebengtss         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,8 +43,8 @@ SRCS_FILES			=	main.c				builtins.c			\
 						handle_variable.c	commands_struct.c	\
 						here_docs.c			tokenization.c		\
 						tokens_struct.c		conditionnal_free.c	\
-						env_init.c			env_list.c			\
-						cmdve.c
+						env_init.c			cmdve.c				\
+						env_list.c			env_list2.c
 
 OBJS				=	$(addprefix $(OBJS_DIR), $(SRCS_FILES:.c=.o))
 
