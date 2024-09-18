@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenization.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:20:36 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/18 14:21:40 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/18 15:09:15 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,27 @@
 static int handle_env(t_tokens *node)
 {
 	t_tokens	*tmp;
-	int			i;
 
-	i = 0;
 	tmp = node->next;
+	node->type = CMD;
 	if (!tmp)
 		return (1);
-	while (tmp && ft_strchr(tmp->str, '='))
+	while (tmp && (!(tmp->str[0] == '|' || tmp->str[0] == '>' || tmp->str[0] == '<')))
 	{
-		tmp->type = ENV;
+		if (!ft_strchr(tmp->str, '='))
+		{
+			tmp = tmp->prev;
+			while (tmp != node)
+			{
+				tmp->type = ENV;
+				tmp = tmp->prev;	
+			}
+			node->type = ENV;
+			break;
+		}
+		tmp->type = ARGS;
 		tmp = tmp->next;
-		i++;
 	}
-	if (i > 0)
-		node->type = ENV;
 	return (1);
 }
 
