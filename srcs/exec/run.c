@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:49:23 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/16 17:08:49 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/18 11:26:24 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 
 static int	run_child(t_data *data, int i, int *fds, int islast)
 {
+	char	**env;
+
+	if (data->envs->tmpenv)
+		env = data->envs->tmpenv;
+	else
+		env = data->envs->envve;
 	close(fds[0]);
 	if (!islast)
 		if (dup2(fds[1], STDOUT_FILENO) == -1)
@@ -24,7 +30,7 @@ static int	run_child(t_data *data, int i, int *fds, int islast)
 		free_main(data);
 		exit(0);
 	}
-	if (execve(data->cmdve[i][0], data->cmdve[i], data->envs->envve) == -1)
+	if (execve(data->cmdve[i][0], data->cmdve[i], env) == -1)
 	{
 		free_main(data);
 		perror("exec: command not found");

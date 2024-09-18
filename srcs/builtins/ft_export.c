@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:47:35 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/17 17:18:30 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/18 11:18:25 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	env_update(t_env *lst, char *str)
 		i++;
 	while (lst)
 	{
-		if (!strcmp(lst->key, str)) //replace strcmp for max len cmp
+		if (!ft_strncmp(lst->key, str, i))
 		{
 			if (!c)
 				return (1);

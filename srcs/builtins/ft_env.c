@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:48:29 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/17 17:18:28 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/18 11:16:46 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	print_env(t_env *env, int env_or_exp)
 		{
 			if (env->val)
 				printf("%s=%s\n", env->key, env->val);
-			else if (strcmp(env->key, "=") != 0) //replace strcmp for max len cmp
+			else if (ft_ultimate_compare(env->key, "=") != 0)
 				printf("%s=\n", env->key);
 			else
 				printf("%s\n", env->key);
@@ -78,7 +78,7 @@ char	**env_to_tab(t_data *data)
 	{
 		if (env->val)
 			tmp_env[i] = ft_strjoin_c(env->key, env->val, '=', 0);
-		else if (strcmp(env->key, "=") != 0) //replace strcmp for max len cmp
+		else if (ft_ultimate_compare(env->key, "=") != 0)
 			tmp_env[i] = ft_strjoin(env->key, "=");
 		else
 			tmp_env[i] = ft_strdup("=");
