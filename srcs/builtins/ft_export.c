@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:47:35 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/17 11:17:24 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/18 14:31:08 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,16 @@ int	env_update(t_env *lst, char *str)
 		i++;
 	while (lst)
 	{
-		if (!strncmp(lst->key, str, i))
+		if (!ft_strncmp(lst->key, str, i))
 		{
-			if (lst->val && c && c[1])
-			{
+			if (!c)
+				return (1);
+			if (lst->val)
 				free(lst->val);
-				lst->exp_noval = 0;
+			lst->exp_noval = 0;
+			if (c[1])
 				lst->val = ft_strdup(&c[1]);
-			}
-			else if (!lst->exp_noval)
+			else
 				lst->val = NULL;
 			return (1);
 		}
@@ -92,42 +93,45 @@ static int	expenv_add(t_data *data, char *cmdve)
 {
 	char	*c;
 
-	c = strchr(cmdve, '=');
+	c = ft_strchr(cmdve, '=');
 	if (c == &cmdve[0] || ft_strisal(cmdve))
-		return (ft_puterror("export: bad assignement\n"), 0);
+		return (ft_puterror("bash: export: not a valid identifier\n"), 1);
 	if (c)
 	{
 		if (expenv_add2(data, cmdve, 2))
-			return (1);
+			return (2);
 		if (expenv_add2(data, cmdve, 0))
-			return (1);
+			return (2);
 		if (data->envs->envve)
 			free(data->envs->envve);
 		data->envs->envve = env_to_tab(data);
 		if (!data->envs->envve)
-			return (1);
+			return (2);
 	}
 	else
 		if (expenv_add2(data, cmdve, 1))
-			return (1);
+			return (2);
 	return (0);
 }
 
 int	ft_export(t_data *data, char **cmdve)
 {
 	size_t	i;
+	int		retval;
 
 	i = 1;
+	retval = 0;
 	if (!cmdve[1])
 		print_env(data->envs->exp, 1);
 	else
 	{
 		while (cmdve[i])
 		{
-			if (expenv_add(data, cmdve[i]))
-				return (1);
+			retval = expenv_add(data, cmdve[i]);
+			if (retval == 2)
+				return (-100);
 			i++;
 		}
 	}
-	return (0);
+	return (retval);
 }

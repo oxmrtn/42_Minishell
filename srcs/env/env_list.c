@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 13:55:26 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/11 15:38:50 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/18 12:09:07 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,25 +49,19 @@ t_env	*ft_envlast(t_env *lst)
 	return (lst);
 }
 
-void	ft_envdelone(t_data *data, t_env *node, int which)
+void	ft_envdelone(t_data *data, t_env *node)
 {
-	if (!node)
-		return ;
+	if (node == data->envs->env)
+		data->envs->env = node->next;
+	if (node == data->envs->exp)
+		data->envs->exp = node->next;
 	if (node->prev)
 		node->prev->next = node->next;
-	else if (which)
-		data->envs->env = node->next;
-	else
-		data->envs->exp = node->next;
 	if (node->next)
 		node->next->prev = node->prev;
-	if (node == data->envs->l_env && node->prev)
-		data->envs->l_env = node->prev;
-	else if (node == data->envs->l_env && node->next)
-		data->envs->l_env = node->next;
-	else
-		data->envs->l_env = NULL;
-	free(node->key);
-	free(node->val);
+	if (node->key)
+		free(node->key);
+	if (node->val)
+		free(node->val);
 	free(node);
 }

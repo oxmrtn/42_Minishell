@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:35:10 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/17 17:18:04 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/18 14:31:22 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,10 @@ void	ft_free_env(t_env **lst)
 	{
 		tmp = (*lst);
 		(*lst) = (*lst)->next;
-		free(tmp->key);
-		free(tmp->val);
+		if (tmp->key)
+			free(tmp->key);
+		if (tmp->val)
+			free(tmp->val);
 		free(tmp);
 	}
 }

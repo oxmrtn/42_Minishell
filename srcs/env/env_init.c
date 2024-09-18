@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 17:56:04 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/13 14:36:55 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/18 12:12:15 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ t_env	*envnew_gtw(char *str, int is_exp_no_val)
 		return (NULL);
 	while (str[i] && &str[i] != c)
 		i++;
-	key = ft_strdup_till_i(str, i);
+	if (str[0] == '=' && i == 1)
+		key = ft_strdup("=");
+	else
+		key = ft_strdup_till_i(str, i);
 	if (c && c[1])
 		val = ft_strdup(&c[1]);
 	else
@@ -64,7 +67,7 @@ static void	sort_exp(t_data *data)
 		sorted = 0;
 		while (exp && exp->next && exp->next)
 		{
-			if (strcmp(exp->key, exp->next->key) > 0)
+			if (ft_ultimate_compare(exp->key, exp->next->key) > 0)
 			{
 				envswap(data, exp, exp->next);
 				sorted = 1;
@@ -89,7 +92,7 @@ static int	make_envexp(t_data *data, char **env)
 		if (!env_entry || !exp_entry)
 			return (1);
 		ft_envadd_back(&data->envs->env, env_entry);
-		if (!strncmp(env[i], "_=", 2))
+		if (!ft_strncmp(env[i], "_=", 2))
 		{
 			free(exp_entry->key);
 			free(exp_entry->val);
@@ -118,5 +121,8 @@ int	env_init(t_data	*data, char **env)
 	if (make_envexp(data, env))
 		return (1);
 	sort_exp(data);
+	data->envs->envve = env_to_tab(data);
+	if (!data->envs->envve)
+		return (1);
 	return (0);
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/11 13:38:01 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/11 13:38:22 by ebengtss         ###   ########.fr       */
+/*   Created: 2024/09/18 12:08:59 by ebengtss          #+#    #+#             */
+/*   Updated: 2024/09/18 14:27:12 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	ft_envadd_front(t_env **lst, t_env *new)
 		(*lst)->prev = new;
 		new->next = *lst;
 	}
-	*lst = new;
+	else
+		*lst = new;
 }
 
 void	ft_envadd_back(t_env **lst, t_env *new)

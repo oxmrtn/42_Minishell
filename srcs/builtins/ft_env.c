@@ -6,16 +6,18 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:48:29 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/12 15:03:26 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/18 14:20:31 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
 
-static int	tmp_env_add(t_data *data, char *cmdve)
+int	tmp_env_add(t_data *data, char *cmdve)
 {
 	t_env	*node;
 
+	if (env_update(data->envs->env, cmdve))
+		return (0);
 	node = envnew_gtw(cmdve, 0);
 	if (!node)
 		return (1);
@@ -23,13 +25,13 @@ static int	tmp_env_add(t_data *data, char *cmdve)
 	return (0);
 }
 
-static void	env_clean(t_data *data)
+void	tmp_env_clean(t_data *data)
 {
 	t_env	*l_node;
 
 	l_node = data->envs->l_env;
-	while (l_node->next)
-		ft_envdelone(data, l_node->next, 1);
+	ft_free_env(&l_node->next);
+	data->envs->l_env->next = NULL;
 }
 
 void	print_env(t_env *env, int env_or_exp)
@@ -37,13 +39,22 @@ void	print_env(t_env *env, int env_or_exp)
 	while (env)
 	{
 		if (!env_or_exp)
-			printf("%s=%s\n", env->key, env->val);
+		{
+			if (env->val)
+				printf("%s=%s\n", env->key, env->val);
+			else if (ft_ultimate_compare(env->key, "=") != 0)
+				printf("%s=\n", env->key);
+			else
+				printf("%s\n", env->key);
+		}
 		else
 		{
 			if (env->exp_noval == 1)
 				printf("%s\n", env->key);
-			else
+			else if (env->val)
 				printf("%s=\"%s\"\n", env->key, env->val);
+			else
+				printf("%s=\"\"\n", env->key);
 		}
 		env = env->next;
 	}
@@ -65,11 +76,15 @@ char	**env_to_tab(t_data *data)
 	tmp_env[size] = NULL;
 	while (env)
 	{
-		tmp_env[i] = ft_strjoin_c(env->key, env->val, '=', 0);
-		if (!tmp_env[i])
+		if (env->val)
+			tmp_env[i] = ft_strjoin_c(env->key, env->val, '=', 0);
+		else if (ft_ultimate_compare(env->key, "=") != 0)
+			tmp_env[i] = ft_strjoin(env->key, "=");
+		else
+			tmp_env[i] = ft_strdup("=");
+		if (!tmp_env[i++])
 			return (NULL);
 		env = env->next;
-		i++;
 	}
 	return (tmp_env);
 }
@@ -81,22 +96,11 @@ int	ft_env(t_data *data, char **cmdve)
 	i = 1;
 	while (cmdve[i])
 	{
-		if (!strchr(cmdve[i], '='))
-		{
-			data->envs->tmpenv = env_to_tab(data);
-			if (!data->envs->tmpenv)
-				return (1);
-			// exec
-			free(data->envs->tmpenv);
-			data->envs->tmpenv = NULL;
-			return (env_clean(data), 0);
-		}
-		else
-			if (tmp_env_add(data, cmdve[i]))
-				return (env_clean(data), 1);
+		if (tmp_env_add(data, cmdve[i]))
+			return (tmp_env_clean(data), -100);
 		i++;
 	}
 	print_env(data->envs->env, 0);
-	env_clean(data);
+	tmp_env_clean(data);
 	return (0);
 }
