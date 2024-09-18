@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:47:18 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/18 16:43:29 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/18 16:55:58 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_pwd(void)
 {
-	char *test;
+	char	*test;
 
 	test = getcwd(0, 0);
 	if (test)
