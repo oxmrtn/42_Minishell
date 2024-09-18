@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 16:20:25 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/18 09:40:01 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/18 15:46:12 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,20 @@ int	ft_add_variable(char *str, t_data *data)
 	if (!new_node->content)
 		return (free(new_node->name), free(new_node), 1);
 	return (ft_var_add_back(new_node, &data->var), 0);
+}
+
+void	ft_update_variable(char *key, char *val, t_data *data)
+{
+	t_var	*node;
+
+	node = data->var;
+	while (node && ft_ultimate_compare(key, node->name))
+		node = node->next;
+	if (!node)
+		return ;
+	free(node->content);
+	node->content = ft_strdup(val);
+	return ;
 }
 
 char	*ft_get_variable_value(char *key, t_data *data)

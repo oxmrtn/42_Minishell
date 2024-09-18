@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/18 15:19:22 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/18 15:45:41 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ int			add_commands(t_cmds *new, t_cmds **head);
 int			ft_add_variable(char *str, t_data *data);
 int			ft_check_variable(char *str, t_data *data);
 char		*ft_get_variable_value(char *key, t_data *data);
+void		ft_update_variable(char *key, char *val, t_data *data);
 
 //		here_docs.c
 void		ft_heredoc_handler(t_tokens *head, t_data *data);

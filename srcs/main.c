@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/18 14:49:39 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/18 15:50:59 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int	main(int argc, char **argv, char **env)
 	commands = NULL;
 	data->cmdve = NULL;
 	ft_get_history();
+	ft_add_variable("?=0", data);
 	while (1)
 	{
 		read = readline("minishell → ");
@@ -88,12 +89,15 @@ int	main(int argc, char **argv, char **env)
 		if (!ft_strncmp(read, "exit", 4))
 			return (ft_free_commands(commands), 0);
 		ft_parser(read, &commands, data);
-		print_variable(data);
-		print_commands(commands);
-		printf("%d\n", ft_get_last_commands(commands)->tokens->type);
+		// print_commands(commands);
+		// printf("%d\n", ft_get_last_commands(commands)->tokens->type);
 		if (exec(data, ft_get_last_commands(commands)))
 			return (free_main(data), 1);
-		printf("status: %d\n", data->exit_status);
+		printf("exit status= %d\n", data->exit_status);
+		char	*temp = ft_itoa(data->exit_status);
+		ft_update_variable("?", temp, data);
+		print_variable(data);
+		free(temp);
 		free(read);
 		read = NULL;
 	}
