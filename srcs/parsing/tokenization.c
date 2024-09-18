@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   tokenization.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:20:36 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/18 15:09:15 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/18 16:18:20 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
 
-static int handle_env(t_tokens *node)
+static int	handle_env(t_tokens *node)
 {
 	t_tokens	*tmp;
 
@@ -20,7 +20,8 @@ static int handle_env(t_tokens *node)
 	node->type = CMD;
 	if (!tmp)
 		return (1);
-	while (tmp && (!(tmp->str[0] == '|' || tmp->str[0] == '>' || tmp->str[0] == '<')))
+	while (tmp && (!(tmp->str[0] == '|'
+				|| tmp->str[0] == '>' || tmp->str[0] == '<')))
 	{
 		if (!ft_strchr(tmp->str, '='))
 		{
@@ -28,10 +29,10 @@ static int handle_env(t_tokens *node)
 			while (tmp != node)
 			{
 				tmp->type = ENV;
-				tmp = tmp->prev;	
+				tmp = tmp->prev;
 			}
 			node->type = ENV;
-			break;
+			break ;
 		}
 		tmp->type = ARGS;
 		tmp = tmp->next;
@@ -95,25 +96,4 @@ int	ft_is_redirect_sign(t_tokens *current)
 	else if (!ft_strncmp(current->str, "<", 1))
 		return (ft_set_redirect(current, INFILE), 1);
 	return (0);
-}
-
-int	ft_is_pipe(t_tokens *current)
-{
-	if (ft_strncmp(current->str, "|", 1) == 0)
-	{
-		if (!current->next)
-		{
-			current->type = ASK;
-			return (2);
-		}
-		else if (current->prev && current->prev->type == REDIR)
-		{
-			current->type = ERROR;
-			return (0);
-		}
-		else
-			return (1);
-	}
-	else
-		return (0);
 }

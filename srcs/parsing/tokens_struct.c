@@ -6,11 +6,32 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:21:38 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/18 14:20:30 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/18 16:17:12 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
+
+int	ft_is_pipe(t_tokens *current)
+{
+	if (ft_strncmp(current->str, "|", 1) == 0)
+	{
+		if (!current->next)
+		{
+			current->type = ASK;
+			return (2);
+		}
+		else if (current->prev && current->prev->type == REDIR)
+		{
+			current->type = ERROR;
+			return (0);
+		}
+		else
+			return (1);
+	}
+	else
+		return (0);
+}
 
 void	get_type(t_tokens *head)
 {
