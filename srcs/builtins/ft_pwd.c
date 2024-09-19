@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:47:18 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/18 16:55:58 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/19 14:58:17 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_pwd(void)
 	test = getcwd(0, 0);
 	if (test)
 	{
-		if (printf("%s\n", test) < 0)
+		if (write(STDOUT_FILENO, test, ft_strlen(test)) < 0)
 		{
 			ft_puterror("minishell error : cannot write in outfile\n");
 			return (free(test), 1);
