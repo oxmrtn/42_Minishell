@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:49:23 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/18 16:19:29 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/19 15:14:26 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static int	run_parent(t_data *data, int i, int *fds, int islast)
 	return (0);
 }
 
-int	run_cmd(t_data *data, int i, int islast)
+static int	run_cmd(t_data *data, int i, int islast)
 {
 	pid_t	pid;
 	int		fds[2];
@@ -89,5 +89,17 @@ int	run_cmd(t_data *data, int i, int islast)
 		if (reset_fds(data, 1))
 			return (1);
 	}
+	return (0);
+}
+
+int	run_gtw(t_data *data, t_cmds *cmd, int *i, int islast)
+{
+	int	isred;
+
+	isred = is_inred(cmd, i);
+	if (isred == -1)
+		return (1);
+	if (run_cmd(data, *i, islast))
+		return (1);
 	return (0);
 }

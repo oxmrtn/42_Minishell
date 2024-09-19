@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:37:08 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/13 12:21:10 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/19 14:46:59 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,24 +44,48 @@ static int	dup_heredoc(void)
 	return (0);
 }
 
+static t_tokens	*is_inred2(t_cmds *cmd, int i)
+{
+	t_tokens	*tokens;
+	int			j;
+
+	tokens = cmd->tokens;
+	j = 0;
+	while (tokens && j < i)
+	{
+		if ((tokens->type == INFILE || tokens->type == LIMITER)
+			&& tokens->next && tokens->next->type == CMD)
+			j++;
+		tokens = tokens->next;
+	}
+	return (tokens);
+}
+
 int	is_inred(t_cmds *cmd, int *i)
 {
 	t_tokens	*tokens;
+	int			retval;
 
-	tokens = cmd->tokens;
+	retval = 3;
+	tokens = is_inred2(cmd, *i);
 	while (tokens)
 	{
-		if (tokens->type == INFILE)
+		if (tokens->type == INFILE && tokens->next && tokens->next->type == CMD)
 			if (dup_inred(tokens->str, i))
-				return (1);
-		if (tokens->type == LIMITER)
+				return (-1);
+		if (tokens->type == LIMITER && tokens->next
+			&& tokens->next->type == CMD)
 			if (dup_heredoc())
-				return (1);
-		if (tokens->type == INFILE || tokens->type == LIMITER)
+				return (-1);
+		if ((tokens->type == INFILE || tokens->type == LIMITER)
+			&& tokens->next && tokens->next->type == CMD)
+		{
+			retval = 0;
 			break ;
+		}
 		tokens = tokens->next;
 	}
-	return (0);
+	return (retval);
 }
 
 int	is_outred(t_cmds *cmd)

@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/18 16:49:57 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/19 14:36:02 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ int		is_inred(t_cmds *cmd, int *i);
 int		is_outred(t_cmds *cmd);
 int		is_builtin(char *cmd);
 int		exec_builtin(t_data *data, char **cmdve);
-int		run_cmd(t_data *data, int i, int islast);
+int		run_gtw(t_data *data, t_cmds *cmd, int *i, int islast);
 char	***ft_make_cmdve(t_cmds *cmd);
 int		ft_fill_cmdve(t_data *data, char ***cmdve, t_cmds *cmd);
 int		cmds_path(char ***cmdve, t_data *data);
