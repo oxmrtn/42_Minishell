@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 14:29:15 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/11 17:14:14 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/20 17:41:15 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,24 @@ static int	cmds_path3(char **cmdve, char **env_path)
 	return (0);
 }
 
-static int	cmds_path2(char ***cmdve, char **env_path)
+static int	cmds_path2(char ***cmdve, char **env_path, int j)
 {
 	int		i;
 
 	i = 0;
-	while (cmdve[i])
+	while (i < j)
 	{
-		if (!is_builtin(cmdve[i][0]))
-			if (access(cmdve[i][0], X_OK) != 0)
-				if (cmds_path3(cmdve[i], env_path))
-					return (1);
+		if (cmdve[i])
+			if (!is_builtin(cmdve[i][0]))
+				if (access(cmdve[i][0], X_OK) != 0)
+					if (cmds_path3(cmdve[i], env_path))
+						return (1);
 		i++;
 	}
 	return (0);
 }
 
-int	cmds_path(char ***cmdve, t_data *data)
+int	cmds_path(char ***cmdve, t_data *data, int j)
 {
 	char	**paths;
 	t_env	*env;
@@ -65,7 +66,7 @@ int	cmds_path(char ***cmdve, t_data *data)
 			paths = ft_split(env->val, ':');
 			if (!paths)
 				return (ft_puterror("error extracting paths\n"), 1);
-			if (cmds_path2(cmdve, paths))
+			if (cmds_path2(cmdve, paths, j))
 				return (ft_free_split(paths), 1);
 			ft_free_split(paths);
 		}

@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:37:08 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/19 14:46:59 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/20 18:20:11 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,70 +44,24 @@ static int	dup_heredoc(void)
 	return (0);
 }
 
-static t_tokens	*is_inred2(t_cmds *cmd, int i)
-{
-	t_tokens	*tokens;
-	int			j;
-
-	tokens = cmd->tokens;
-	j = 0;
-	while (tokens && j < i)
-	{
-		if ((tokens->type == INFILE || tokens->type == LIMITER)
-			&& tokens->next && tokens->next->type == CMD)
-			j++;
-		tokens = tokens->next;
-	}
-	return (tokens);
-}
-
 int	is_inred(t_cmds *cmd, int *i)
 {
 	t_tokens	*tokens;
-	int			retval;
 
-	retval = 3;
-	tokens = is_inred2(cmd, *i);
+	tokens = skip_dupeds(cmd, *i, 1);
 	while (tokens)
 	{
-		if (tokens->type == INFILE && tokens->next && tokens->next->type == CMD)
+		if (tokens->type == INFILE && tokens->next 
+			&& tokens->next->type != REDIR)
 			if (dup_inred(tokens->str, i))
-				return (-1);
+				return (1);
 		if (tokens->type == LIMITER && tokens->next
-			&& tokens->next->type == CMD)
+			&& tokens->next->type != REDIR)
 			if (dup_heredoc())
-				return (-1);
+				return (1);
 		if ((tokens->type == INFILE || tokens->type == LIMITER)
-			&& tokens->next && tokens->next->type == CMD)
-		{
-			retval = 0;
+			&& (!tokens->next || (tokens->next && tokens->next->type != REDIR)))
 			break ;
-		}
-		tokens = tokens->next;
-	}
-	return (retval);
-}
-
-int	is_outred(t_cmds *cmd)
-{
-	t_tokens	*tokens;
-	int			fd;
-
-	tokens = cmd->tokens;
-	while (tokens)
-	{
-		if (tokens->type == APPEND)
-			fd = open(tokens->str, O_WRONLY | O_CREAT | O_APPEND, 0666);
-		if (tokens->type == OUTFILE)
-			fd = open(tokens->str, O_WRONLY | O_CREAT | O_TRUNC, 0666);
-		if (tokens->type == APPEND || tokens->type == OUTFILE)
-		{
-			if (fd == -1)
-				return (perror("outfile"), 1);
-			if (dup2(fd, STDOUT_FILENO) == -1)
-				return (perror(NULL), 1);
-			break ;
-		}
 		tokens = tokens->next;
 	}
 	return (0);

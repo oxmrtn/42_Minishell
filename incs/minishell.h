@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/19 14:36:02 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/20 17:38:50 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,40 +161,44 @@ void		ft_free_cmdve(char ***cmdve);
 
 
 /* EXEC */
-int		exec(t_data *data, t_cmds *cmd);
-int		is_inred(t_cmds *cmd, int *i);
-int		is_outred(t_cmds *cmd);
-int		is_builtin(char *cmd);
-int		exec_builtin(t_data *data, char **cmdve);
-int		run_gtw(t_data *data, t_cmds *cmd, int *i, int islast);
-char	***ft_make_cmdve(t_cmds *cmd);
-int		ft_fill_cmdve(t_data *data, char ***cmdve, t_cmds *cmd);
-int		cmds_path(char ***cmdve, t_data *data);
-int		reset_fds(t_data *data, int std);
+int			exec(t_data *data, t_cmds *cmd);
+int			is_inred(t_cmds *cmd, int *i);
+int			is_outred(t_cmds *cmd, int i);
+t_tokens	*skip_dupeds(t_cmds *cmd, int i, int in_or_out);
+int			is_builtin(char *cmd);
+int			exec_builtin(t_data *data, char **cmdve);
+int			run_gtw(t_data *data, t_cmds *cmd, int *i, int islast);
+char		***ft_make_cmdve(t_cmds *cmd, int *j);
+int			ft_fill_cmdve(t_data *data, char ***cmdve, t_cmds *cmd);
+int			cmds_path(char ***cmdve, t_data *data, int j);
+int			reset_fds(t_data *data, int std);
+
 
 /* BUILTINS */
-int		ft_echo(t_data *data, char **cmdve);
-int		ft_cd(t_data *data, char **cmdve);
-int		ft_pwd(t_data *data, char **cmdve);
-int		ft_export(t_data *data, char **cmdve);
-int		env_update(t_env *lst, char *str);
-int		ft_unset(t_data *data, char **cmdve);
-int		ft_env(t_data *data, char **cmdve);
-int		ft_exit(t_data *data, char **cmdve);
+int			ft_echo(t_data *data, char **cmdve);
+int			ft_cd(t_data *data, char **cmdve);
+int			ft_pwd(t_data *data, char **cmdve);
+int			ft_export(t_data *data, char **cmdve);
+int			env_update(t_env *lst, char *str);
+int			ft_unset(t_data *data, char **cmdve);
+int			ft_env(t_data *data, char **cmdve);
+int			ft_exit(t_data *data, char **cmdve);
+
 
 /* ENV */
-t_env	*envnew_gtw(char *str, int is_exp_no_val);
-size_t	ft_envsize(t_env *lst);
-int		env_init(t_data	*data, char **env);
-t_env	*ft_envnew(char *key, char *val, int is_exp_no_val);
-void	ft_envadd_front(t_env **lst, t_env *new);
-void	ft_envadd_back(t_env **lst, t_env *new);
-t_env	*ft_envlast(t_env *lst);
-void	ft_envdelone(t_data *data, t_env *node);
-char	**env_to_tab(t_data *data);
-void	print_env(t_env *env, int env_or_exp);
-int		env_update(t_env *lst, char *str);
-int		tmp_env_add(t_data *data, char *cmdve);
-void	tmp_env_clean(t_data *data);
+t_env		*envnew_gtw(char *str, int is_exp_no_val);
+size_t		ft_envsize(t_env *lst);
+int			env_init(t_data	*data, char **env);
+t_env		*ft_envnew(char *key, char *val, int is_exp_no_val);
+void		ft_envadd_front(t_env **lst, t_env *new);
+void		ft_envadd_back(t_env **lst, t_env *new);
+t_env		*ft_envlast(t_env *lst);
+void		ft_envdelone(t_data *data, t_env *node);
+char		**env_to_tab(t_data *data);
+void		print_env(t_env *env, int env_or_exp);
+int			env_update(t_env *lst, char *str);
+int			tmp_env_add(t_data *data, char *cmdve);
+void		tmp_env_clean(t_data *data);
+
 
 #endif
