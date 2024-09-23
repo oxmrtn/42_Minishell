@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:45:56 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/17 17:16:40 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/23 11:17:12 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,18 @@ char	*ft_flat_string(char *str, t_data *data)
 		i++;
 	}
 	return (buf);
+}
+
+int	count_cmd(t_tokens *actu)
+{
+	int	result;
+
+	result = 0;
+	while (actu && ft_ultimate_compare(actu->str, "|"))
+	{
+		if (actu->type == CMD)
+			result++;
+		actu = actu->prev;
+	}
+	return (result);
 }

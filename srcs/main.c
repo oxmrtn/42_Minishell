@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/23 13:56:55 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/23 16:12:38 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	handle_signal(int sig)
 int	main(int argc, char **argv, char **env)
 {
 	char	*read;
-	t_cmds	*commands;
 	t_data	*data;
 
 	data = malloc(sizeof(t_data));
@@ -78,27 +77,22 @@ int	main(int argc, char **argv, char **env)
 	if (env_init(data, env))
 		return (1);
 	printf("Welcome to MINISHELL\n");
-	commands = NULL;
+	data->cmds = NULL;
 	data->cmdve = NULL;
 	ft_get_history();
+	ft_add_variable("?=0", data);
 	while (1)
 	{
 		read = readline("minishell → ");
 		add_history(read);
-		if (!ft_strncmp(read, "exit", 4))
-			return (ft_free_commands(commands), 0);
-		ft_parser(read, &commands, data);
-		data->cmds = commands;
-		// print_variable(data);
-		// print_commands(commands);
-		// printf("%d\n", ft_get_last_commands(commands)->tokens->type);
-		if (exec(data, ft_get_last_commands(commands)))
+		ft_parser(read, &data->cmds, data);
+		if (exec(data, ft_get_last_commands(data->cmds)))
 			return (free_main(data), 1);
-		printf("status: %d\n", data->exit_status);
+		char	*temp = ft_itoa(data->exit_status);
+		ft_update_variable("?", temp, data);
+		free(temp);
 		free(read);
 		read = NULL;
 	}
-	ft_write_history(commands);
-	ft_free_commands(commands);
 	return (0);
 }

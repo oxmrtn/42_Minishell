@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/23 15:01:54 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/23 16:12:24 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ int			add_commands(t_cmds *new, t_cmds **head);
 int			ft_add_variable(char *str, t_data *data);
 int			ft_check_variable(char *str, t_data *data);
 char		*ft_get_variable_value(char *key, t_data *data);
+void		ft_update_variable(char *key, char *val, t_data *data);
 
 //		here_docs.c
 void		ft_heredoc_handler(t_tokens *head, t_data *data);
@@ -141,6 +142,7 @@ void		ft_var_add_back(t_var *new_node, t_var **head);
 
 //		parsing_utils.c
 char		*ft_flat_string(char *str, t_data *data);
+int			count_cmd(t_tokens *actu);
 
 //	HISTORY
 int			ft_get_history(void);
@@ -172,13 +174,14 @@ int			cmds_path(char ***cmdve, t_data *data, int j);
 int			reset_fds(t_data *data, int std);
 
 /* BUILTINS */
-int			ft_echo(t_data *data, char **cmdve);
-int			ft_cd(t_data *data, char **cmdve);
-int			ft_pwd(t_data *data, char **cmdve);
-int			ft_export(t_data *data, char **cmdve);
-int			ft_unset(t_data *data, char **cmdve);
-int			ft_env(t_data *data, char **cmdve);
-int			ft_exit(t_data *data, char **cmdve);
+int		ft_echo(char **cmdve);
+int		ft_cd(t_data *data, char **cmdve);
+int		ft_pwd(t_data *data);
+int		ft_export(t_data *data, char **cmdve);
+int		env_update(t_env *lst, char *str);
+int		ft_unset(t_data *data, char **cmdve);
+int		ft_env(t_data *data, char **cmdve);
+int		ft_exit(t_data *data, char **cmdve);
 
 /* ENV */
 t_env		*envnew_gtw(char *str, int is_exp_no_val);
