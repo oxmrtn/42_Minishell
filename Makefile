@@ -6,7 +6,7 @@
 #    By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/04 15:03:37 by ebengtss          #+#    #+#              #
-#    Updated: 2024/09/20 14:29:28 by ebengtss         ###   ########.fr        #
+#    Updated: 2024/09/23 14:27:42 by ebengtss         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ SRCS_FILES			=	main.c				builtins.c			\
 						env_init.c			env_list.c			\
 						env_list2.c			cmdve.c				\
 						check_error.c		redirs2.c			\
+						ft_env2.c
 
 OBJS				=	$(addprefix $(OBJS_DIR), $(SRCS_FILES:.c=.o))
 

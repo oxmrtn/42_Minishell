@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/20 17:38:50 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/23 14:47:00 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,12 +164,12 @@ void		ft_free_cmdve(char ***cmdve);
 int			exec(t_data *data, t_cmds *cmd);
 int			is_inred(t_cmds *cmd, int *i);
 int			is_outred(t_cmds *cmd, int i);
-t_tokens	*skip_dupeds(t_cmds *cmd, int i, int in_or_out);
+t_tokens	*skip_tokens(t_cmds *cmd, int i, int in_or_out);
 int			is_builtin(char *cmd);
 int			exec_builtin(t_data *data, char **cmdve);
 int			run_gtw(t_data *data, t_cmds *cmd, int *i, int islast);
 char		***ft_make_cmdve(t_cmds *cmd, int *j);
-int			ft_fill_cmdve(t_data *data, char ***cmdve, t_cmds *cmd);
+int			ft_fill_cmdve(char ***cmdve, t_cmds *cmd);
 int			cmds_path(char ***cmdve, t_data *data, int j);
 int			reset_fds(t_data *data, int std);
 
@@ -199,6 +199,7 @@ void		print_env(t_env *env, int env_or_exp);
 int			env_update(t_env *lst, char *str);
 int			tmp_env_add(t_data *data, char *cmdve);
 void		tmp_env_clean(t_data *data);
+int			tmp_env_setup(t_data *data, t_cmds *cmd, int i);
 
 
 #endif

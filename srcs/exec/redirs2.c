@@ -6,13 +6,13 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:37:08 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/20 15:45:53 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/23 14:36:08 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
 
-t_tokens	*skip_dupeds(t_cmds *cmd, int i, int in_or_out)
+t_tokens	*skip_tokens(t_cmds *cmd, int i, int toskip)
 {
 	t_tokens	*tokens;
 	int			j;
@@ -21,11 +21,14 @@ t_tokens	*skip_dupeds(t_cmds *cmd, int i, int in_or_out)
 	j = 0;
 	while (tokens && j < i)
 	{
-		if ((tokens->type == INFILE || tokens->type == LIMITER)
-			&& tokens->next && tokens->next->type != REDIR && in_or_out)
-			j++;
 		if ((tokens->type == OUTFILE || tokens->type == APPEND)
-			&& tokens->next && tokens->next->type != REDIR && !in_or_out)
+			&& tokens->next && tokens->next->type != REDIR && toskip == 0)
+			j++;
+		if ((tokens->type == INFILE || tokens->type == LIMITER)
+			&& tokens->next && tokens->next->type != REDIR && toskip == 1)
+			j++;
+		if ((tokens->type == ENV)
+			&& tokens->next && tokens->next->type != ENV && toskip == 2)
 			j++;
 		tokens = tokens->next;
 	}
@@ -52,7 +55,7 @@ int	is_outred(t_cmds *cmd, int i)
 {
 	t_tokens	*tokens;
 
-	tokens = skip_dupeds(cmd, i, 0);
+	tokens = skip_tokens(cmd, i, 0);
 	while (tokens)
 	{
 		if (tokens->type == OUTFILE)

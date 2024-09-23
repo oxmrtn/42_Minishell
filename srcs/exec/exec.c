@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:57:50 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/23 14:17:49 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/23 14:47:04 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,19 +60,12 @@ int	exec(t_data *data, t_cmds *cmd)
 		return (ft_free_cmdve(data->cmdve), 0);
 	if (!data->cmdve)
 		return (1);
-	if (ft_fill_cmdve(data, data->cmdve, cmd))
+	if (ft_fill_cmdve(data->cmdve, cmd))
 		return (1);
 	if (cmds_path(data->cmdve, data, j))
 		return (1);
 	if (exec2(data, cmd, j))
 		return (1);
-	if (data->envs->tmpenv)
-	{
-		tmp_env_clean(data);
-		free(data->envs->envve);
-		data->envs->envve = data->envs->tmpenv;
-		data->envs->tmpenv = NULL;
-	}
 	if (reset_fds(data, 0))
 		return (1);
 	return (ft_free_cmdve(data->cmdve), 0);
