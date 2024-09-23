@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 16:48:53 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/23 17:42:56 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/23 17:54:49 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,5 +116,7 @@ int	ft_fill_cmdve(char ***cmdve, t_cmds *cmd)
 			tokens = tokens->next;
 		check = 0;
 	}
+	if (!i)
+		cmdve[i] = NULL;
 	return (0);
 }
