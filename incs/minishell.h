@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/23 11:03:43 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/23 12:55:09 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,7 @@ int		reset_fds(t_data *data, int std);
 /* BUILTINS */
 int		ft_echo(char **cmdve);
 int		ft_cd(t_data *data, char **cmdve);
-int		ft_pwd(void);
+int		ft_pwd(t_data *data);
 int		ft_export(t_data *data, char **cmdve);
 int		env_update(t_env *lst, char *str);
 int		ft_unset(t_data *data, char **cmdve);

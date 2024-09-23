@@ -6,7 +6,7 @@
 #    By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/19 20:58:55 by mtrullar          #+#    #+#              #
-#    Updated: 2024/09/23 10:43:03 by mtrullar         ###   ########.fr        #
+#    Updated: 2024/09/23 16:10:09 by mtrullar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ MAKEFLAGS += --no-print-directory
 
 NAME		=	libcustomft.a
 CC			=	clang
-CFLAGS		=	-Wall -Wextra -Werror -g3 -arch arm64
+CFLAGS		=	-Wall -Wextra -Werror -g3
 
 #Folders
 INCLUDE		=	incs/

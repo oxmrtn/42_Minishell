@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:35:12 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/18 16:54:44 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/23 12:55:12 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	exec_builtin(t_data *data, char **cmdve)
 	else if (!ft_ultimate_compare(cmdve[0], "cd"))
 		retval = ft_cd(data, cmdve);
 	else if (!ft_ultimate_compare(cmdve[0], "pwd"))
-		retval = ft_pwd();
+		retval = ft_pwd(data);
 	else if (!ft_ultimate_compare(cmdve[0], "export"))
 		retval = ft_export(data, cmdve);
 	else if (!ft_ultimate_compare(cmdve[0], "unset"))
