@@ -1,1 +1,16 @@
-5
+total 332
+-rwxr-xr-x 1 ebengtss 2024_paris  16048 Sep 17 14:48 a.out
+drwxr-xr-x 2 ebengtss 2024_paris     25 Sep 23 16:15 incs
+-rw-r--r-- 1 ebengtss 2024_paris 179196 Sep 23 17:41 libcustomft.a
+drwxr-xr-x 7 ebengtss 2024_paris     86 Sep 23 17:41 libft
+-rw-r--r-- 1 ebengtss 2024_paris   3507 Sep 23 16:15 Makefile
+-rwxr-xr-x 1 ebengtss 2024_paris 120920 Sep 23 17:41 minishell
+drwxr-xr-x 2 ebengtss 2024_paris   4096 Sep 23 17:41 objs
+-rw-r--r-- 1 ebengtss 2024_paris      0 Sep 23 17:44 out1
+-rw-r--r-- 1 ebengtss 2024_paris      0 Sep 23 17:44 out2
+-rw-r--r-- 1 ebengtss 2024_paris      0 Sep 23 16:49 out3
+-rw-r--r-- 1 ebengtss 2024_paris   3496 Sep 23 16:15 outfil
+-rw-r--r-- 1 ebengtss 2024_paris      0 Sep 23 16:15 outfile
+-rw-r--r-- 1 ebengtss 2024_paris     61 Sep 13 15:08 README.md
+drwxr-xr-x 8 ebengtss 2024_paris    102 Sep 23 16:15 srcs
+-rw-r--r-- 1 ebengtss 2024_paris    206 Sep 18 15:34 TODO.txt
