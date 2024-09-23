@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:21:38 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/18 16:17:12 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/23 10:32:22 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,6 @@ int	ft_is_pipe(t_tokens *current)
 		{
 			current->type = ASK;
 			return (2);
-		}
-		else if (current->prev && current->prev->type == REDIR)
-		{
-			current->type = ERROR;
-			return (0);
 		}
 		else
 			return (1);

@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:20:36 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/18 16:18:20 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/23 11:13:58 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,11 @@ int	ft_is_commands(t_tokens *node)
 		return (1);
 	else if (!ft_strncmp(node->prev->str, "|", 1))
 		return (1);
-	else if (node->prev->type == INFILE)
+	else if (node->prev->type == INFILE && count_cmd(node) == 0)
 		return (1);
-	else if (node->prev->type == LIMITER)
+	else if (node->prev->type == LIMITER && count_cmd(node) == 0)
+		return (1);
+	else if (node->prev->type == OUTFILE && count_cmd(node) == 0)
 		return (1);
 	else if (node->prev->type == ENV)
 		return (1);
@@ -64,16 +66,16 @@ int	ft_is_args(t_tokens *node)
 {
 	if (node->prev == NULL)
 		return (0);
+	if (count_cmd(node) > 0 && (node->prev->type == OUTFILE || node->prev->type == INFILE))
+		return (1);
 	return (node->prev->type == ARGS || node->prev->type == CMD);
 }
 
 static void	ft_set_redirect(t_tokens *current, t_type to_set )
 {
 	if ((current->prev && current->next)
-		&& ((current->prev->type == REDIR || current->next->type == REDIR)
-			|| (current->prev->type == PIPE || current->next->type == PIPE)))
+		&& ((current->prev->type == REDIR || current->next->type == REDIR)))
 		current->type = ERROR;
-	else
 	{
 		if (current->next)
 		{

@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    outfile                                            :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/04 15:03:37 by ebengtss          #+#    #+#              #
-#    Updated: 2024/09/23 11:21:37 by mtrullar         ###   ########.fr        #
+#    Updated: 2024/09/23 10:42:50 by mtrullar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ LIBFT				=	libft
 LIBFT_A				=	libcustomft.a
 
 CC					=	clang
-CFLAGS				=	-Wall -Wextra -Werror -g -I
+CFLAGS				=	-Wall -Wextra -Werror -g -arch arm64 -I
 
 LIBFT_DIR			=	libft
 SRCS_DIR			=	srcs/

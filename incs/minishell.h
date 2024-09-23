@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/18 16:54:37 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/23 11:03:43 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ void		ft_var_add_back(t_var *new_node, t_var **head);
 
 //		parsing_utils.c
 char		*ft_flat_string(char *str, t_data *data);
+int			count_cmd(t_tokens *actu);
 
 //	HISTORY
 int			ft_get_history();
