@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:37:08 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/23 14:34:05 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/23 15:02:52 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	is_inred(t_cmds *cmd, int *i)
 	tokens = skip_tokens(cmd, *i, 1);
 	while (tokens)
 	{
-		if (tokens->type == INFILE && tokens->next 
+		if (tokens->type == INFILE && tokens->next
 			&& tokens->next->type != REDIR)
 			if (dup_inred(tokens->str, i))
 				return (1);
