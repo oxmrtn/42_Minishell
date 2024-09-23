@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:37:08 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/23 14:36:08 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/23 19:05:11 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ t_tokens	*skip_tokens(t_cmds *cmd, int i, int toskip)
 	while (tokens && j < i)
 	{
 		if ((tokens->type == OUTFILE || tokens->type == APPEND)
-			&& tokens->next && tokens->next->type != REDIR && toskip == 0)
+			&& tokens->next && tokens->next->type == PIPE && toskip == 0)
 			j++;
 		if ((tokens->type == INFILE || tokens->type == LIMITER)
-			&& tokens->next && tokens->next->type != REDIR && toskip == 1)
+			&& tokens->next && tokens->next->type == PIPE && toskip == 1)
 			j++;
 		if ((tokens->type == ENV)
 			&& tokens->next && tokens->next->type != ENV && toskip == 2)
@@ -65,7 +65,7 @@ int	is_outred(t_cmds *cmd, int i)
 			if (dup_outred(tokens->str, 1))
 				return (1);
 		if ((tokens->type == OUTFILE || tokens->type == APPEND)
-			&& (!tokens->next || (tokens->next && tokens->next->type != REDIR)))
+			&& (!tokens->next || (tokens->next && tokens->next->type == PIPE)))
 			break ;
 		tokens = tokens->next;
 	}

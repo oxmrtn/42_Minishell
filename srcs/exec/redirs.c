@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:37:08 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/23 16:15:51 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/23 19:14:57 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,23 +44,44 @@ static int	dup_heredoc(void)
 	return (0);
 }
 
+static size_t	is_inred2(t_tokens *tokens)
+{
+	size_t	i;
+
+	i = 0;
+	while (tokens)
+	{
+		if (tokens->type == INFILE || tokens->type == LIMITER)
+			i++;
+		if ((tokens->type == INFILE || tokens->type == LIMITER)
+			&& (!tokens->next || (tokens->next && tokens->next->type == PIPE)))
+			break ;
+		tokens = tokens->next;
+	}
+	return (i);
+}
+
 int	is_inred(t_cmds *cmd, int *i)
 {
 	t_tokens	*tokens;
+	size_t		j;
+	size_t		k;
 
 	tokens = skip_tokens(cmd, *i, 1);
+	j = is_inred2(tokens);
+	k = 0;
 	while (tokens)
 	{
-		if (tokens->type == INFILE && tokens->next
-			&& tokens->next->type != REDIR)
+		if ((tokens->type == INFILE || tokens->type == LIMITER) && j != k)
+			k++;
+		if (tokens->type == INFILE && j == k)
 			if (dup_inred(tokens->str, i))
 				return (1);
-		if (tokens->type == LIMITER && tokens->next
-			&& tokens->next->type != REDIR)
+		if (tokens->type == LIMITER && j == k)
 			if (dup_heredoc())
 				return (1);
 		if ((tokens->type == INFILE || tokens->type == LIMITER)
-			&& (!tokens->next || (tokens->next && tokens->next->type != REDIR)))
+			&& (!tokens->next || (tokens->next && tokens->next->type == PIPE)))
 			break ;
 		tokens = tokens->next;
 	}
