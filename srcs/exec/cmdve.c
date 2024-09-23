@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 16:48:53 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/20 18:40:43 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/23 14:17:26 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,15 @@ static int	ft_env_setup(t_data *data, t_tokens **tokens)
 	return (0);
 }
 
-static void	ft_fill_cmdve3(char ***cmdve, t_tokens **tokens, int *i)
+static void	ft_fill_cmdve3(char ***cmdve, t_tokens **tokens, int *i, int *check)
 {
+	if (!(*check))
+	{
+		cmdve[*i] = NULL;
+		*i += 1;
+	}
 	*tokens = (*tokens)->next;
-	cmdve[*i] = NULL;
-	*i += 1;
+	*check = 0;
 }
 
 static char	**ft_fill_cmdve2(t_tokens **tokens)
@@ -90,13 +94,13 @@ int	ft_fill_cmdve(t_data *data, char ***cmdve, t_cmds *cmd)
 {
 	t_tokens	*tokens;
 	int			i;
-	int			j;
+	int			check;
 
 	i = 0;
+	check = 0;
 	tokens = cmd->tokens;
 	while (tokens)
 	{
-		j = i;
 		if (tokens->type == ENV)
 			if (ft_env_setup(data, &tokens))
 				return (1);
@@ -105,10 +109,11 @@ int	ft_fill_cmdve(t_data *data, char ***cmdve, t_cmds *cmd)
 			cmdve[i] = ft_fill_cmdve2(&tokens);
 			if (!cmdve[i++])
 				return (1);
+			check = 1;
 		}
-		if (tokens && tokens->type == PIPE && i == j)
-			ft_fill_cmdve3(cmdve, &tokens, &i);
-		if (tokens && i == j)
+		if (tokens && tokens->type == PIPE)
+			ft_fill_cmdve3(cmdve, &tokens, &i, &check);
+		else if (tokens)
 			tokens = tokens->next;
 	}
 	return (0);

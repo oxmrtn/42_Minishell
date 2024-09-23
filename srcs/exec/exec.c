@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:57:50 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/20 18:44:43 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/23 14:17:49 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ int	exec(t_data *data, t_cmds *cmd)
 		return (1);
 	if (exec2(data, cmd, j))
 		return (1);
-	printf("qq\n");
 	if (data->envs->tmpenv)
 	{
 		tmp_env_clean(data);
