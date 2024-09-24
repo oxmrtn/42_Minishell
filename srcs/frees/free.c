@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:35:10 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/24 13:51:59 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/24 16:26:53 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,6 @@ void	free_main(t_data *data)
 		if (data->cmdve)
 			ft_free_cmdve(data->cmdve);
 		free(data);
+		rl_clear_history();
 	}
 }

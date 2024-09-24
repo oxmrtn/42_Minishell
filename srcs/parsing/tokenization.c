@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:20:36 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/23 11:13:58 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/24 16:05:40 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ int	ft_is_commands(t_tokens *node)
 {
 	if (!ft_ultimate_compare(node->str, "env"))
 		return (handle_env(node));
-	else if (!ft_isalnum(node->str[0]))
-		return (0);
 	else if (!node->prev)
 		return (1);
 	else if (!ft_strncmp(node->prev->str, "|", 1))
