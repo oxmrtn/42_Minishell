@@ -419,3 +419,17 @@ echo /home/mtrullar/Documents/Cursus/tempo/minishell_t
 echo /home/mtrullar/Documents/Cursus/tempo/minishell_t 
 ls 
 cd srcs 
+ls 
+clear 
+ls 
+clclc 
+ls 
+clear 
+ls 
+clclc 
+exit 
+ls 
+clear 
+ls 
+clclc 
+exit 

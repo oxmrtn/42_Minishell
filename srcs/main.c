@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/24 17:12:26 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/24 18:40:37 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,49 +60,62 @@ void	handle_signal(int sig)
 	return ;
 }
 
-int	main(int argc, char **argv, char **env)
+static int init_data(t_data *data, char **env)
 {
-	char	*read;
-	t_data	*data;
-
-	data = malloc(sizeof(t_data));
-	if (!data)
-		return (1);
 	data->exit_status = 0;
 	data->var = NULL;
 	data->stdincpy = dup(STDIN_FILENO);
 	data->stdoutcpy = dup(STDOUT_FILENO);
 	if (data->stdincpy == -1 || data->stdoutcpy == -1)
 		return (1);
-	signal(SIGINT, &handle_signal);
-	signal(SIGQUIT, &handle_signal);
-	(void)argc;
-	(void)argv;
-	if (!env[0])
-		return (0);
-	if (env_init(data, env))
-		return (1);
-	printf("Welcome to MINISHELL\n");
 	data->cmds = NULL;
 	data->cmdve = NULL;
 	ft_get_history();
 	ft_add_variable("?=0", data);
+	if (!env[0])
+		return (1);
+	if (env_init(data, env))
+		return (1);
+	return (1);
+}
+
+static void	the_loop(t_data *data)
+{
+	char	*read;
+	char	*temp;
+	
+	read = readline("minishell → ");
+	if (read == NULL)
+		read = ft_strdup("exit 130");
+	if (read[0])
+	{
+		add_history(read);
+		ft_parser(read, &data->cmds, data);
+		if (exec(data, ft_get_last_commands(data->cmds)))
+			return (free_main(data));
+		temp = ft_itoa(data->exit_status);
+		ft_update_variable("?", temp, data);
+		free(temp);
+	}
+	free(read);
+}
+
+int	main(int argc, char **argv, char **env)
+{
+	t_data	*data;
+
+	(void)argc;
+	(void)argv;
+	data = malloc(sizeof(t_data));
+	if (!data)
+		return (1);
+	init_data(data, env);
+	signal(SIGINT, &handle_signal);
+	signal(SIGQUIT, &handle_signal);
+	printf("Welcome to MINISHELL\n");
 	while (1)
 	{
-		read = readline("minishell → ");
-		if (read == NULL)
-			read = ft_strdup("exit 130");
-		if (read[0])
-		{
-			add_history(read);
-			ft_parser(read, &data->cmds, data);
-			if (exec(data, ft_get_last_commands(data->cmds)))
-				return (free_main(data), 1);
-			char	*temp = ft_itoa(data->exit_status);
-			ft_update_variable("?", temp, data);
-			free(temp);
-		}
-		free(read);
+		the_loop(data);
 	}
 	return (0);
 }
