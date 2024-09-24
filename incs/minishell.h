@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/24 14:47:05 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/24 17:46:24 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,14 +175,14 @@ int			cmds_path(char ***cmdve, t_data *data, int j);
 int			reset_fds(t_data *data, int std);
 
 /* BUILTINS */
-int		ft_echo(char **cmdve);
-int		ft_cd(t_data *data, char **cmdve);
-int		ft_pwd(t_data *data);
-int		ft_export(t_data *data, char **cmdve);
-int		env_update(t_env *lst, char *str);
-int		ft_unset(t_data *data, char **cmdve);
-int		ft_env(t_data *data, char **cmdve);
-int		ft_exit(t_data *data, char **cmdve);
+int			ft_echo(char **cmdve);
+int			ft_cd(t_data *data, char **cmdve);
+int			ft_pwd(t_data *data);
+int			ft_export(t_data *data, char **cmdve);
+int			env_update(t_env *lst, char *str);
+int			ft_unset(t_data *data, char **cmdve);
+int			ft_env(t_data *data, char **cmdve);
+int			ft_exit(t_data *data, char **cmdve);
 
 /* ENV */
 t_env		*envnew_gtw(char *str, int is_exp_no_val);
@@ -200,5 +200,6 @@ int			tmp_env_add(t_data *data, char *cmdve);
 void		tmp_env_clean(t_data *data);
 int			tmp_env_setup(t_data *data, t_cmds *cmd, int i);
 int			env_update(t_env *lst, char *str);
+int			check_env(t_data *data);
 
 #endif

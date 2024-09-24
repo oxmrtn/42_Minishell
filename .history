@@ -1,0 +1,74 @@
+export blblbl=p 
+export blblbl=p 
+export 
+export blblbl=p 
+export 
+unset blblbl 
+export blblbl=p 
+export 
+unset blblbl 
+export 
+< Makefile | < .gitignore < Makefile | < .gitignore 
+
+< Makefile | < .gitignore 
+ls | < .gitignore 
+< Makefile | < .gitignore 
+ls | < .gitignore 
+env 
+< Makefile | < .gitignore 
+ls | < .gitignore 
+env 
+unset _ 
+< Makefile | < .gitignore 
+ls | < .gitignore 
+env 
+unset _ 
+env 
+/bin/ls 
+/bin/ls 
+env 
+/bin/ls 
+env 
+clear 
+/bin/ls 
+/bin/ls 
+env 
+clear 
+/bin/ls 
+/usr/bin/ls 
+/bin/ls 
+env 
+clear 
+/bin/ls 
+/usr/bin/ls 
+/usr/bin/ls 
+unset PWD 
+unset PWD 
+pwd 
+env 
+env 
+env 
+env 
+env 
+env 
+env 
+env 
+env 
+export 
+env 
+env 
+env 
+env 
+export 
+env 
+export 
+unset SHLVL 
+env 
+export 
+unset SHLVL 
+export 
+env 
+export 
+unset SHLVL 
+export 
+env 
