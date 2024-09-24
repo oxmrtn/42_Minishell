@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/24 14:47:05 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/24 17:48:20 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,18 @@
 
 typedef enum s_type
 {
-	WAIT,		//0
-	NO_TYPE,	//1
-	CMD,		//2
-	ARGS,		//3
-	PIPE,		//4
-	INFILE,		//5
-	LIMITER,	//6
-	OUTFILE,	//7
-	APPEND,		//8
-	REDIR,		//9
-	ERROR,		//10
-	ASK,		//11
+	WAIT,
+	NO_TYPE,
+	CMD,
+	ARGS,
+	PIPE,
+	INFILE,
+	LIMITER,
+	OUTFILE,
+	APPEND,
+	REDIR,
+	ERROR,
+	ASK,
 	ENV
 }	t_type;
 
@@ -175,14 +175,14 @@ int			cmds_path(char ***cmdve, t_data *data, int j);
 int			reset_fds(t_data *data, int std);
 
 /* BUILTINS */
-int		ft_echo(char **cmdve);
-int		ft_cd(t_data *data, char **cmdve);
-int		ft_pwd(t_data *data);
-int		ft_export(t_data *data, char **cmdve);
-int		env_update(t_env *lst, char *str);
-int		ft_unset(t_data *data, char **cmdve);
-int		ft_env(t_data *data, char **cmdve);
-int		ft_exit(t_data *data, char **cmdve);
+int			ft_echo(char **cmdve);
+int			ft_cd(t_data *data, char **cmdve);
+int			ft_pwd(t_data *data);
+int			ft_export(t_data *data, char **cmdve);
+int			env_update(t_env *lst, char *str);
+int			ft_unset(t_data *data, char **cmdve);
+int			ft_env(t_data *data, char **cmdve);
+int			ft_exit(t_data *data, char **cmdve);
 
 /* ENV */
 t_env		*envnew_gtw(char *str, int is_exp_no_val);

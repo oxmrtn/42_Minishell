@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:57:50 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/24 14:11:44 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/24 17:47:16 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	exec2(t_data *data, t_cmds *cmd, int j)
 	while (i < (j - 1))
 	{
 		if (run_gtw(data, cmd, &i, 0))
-			return (1);	
+			return (1);
 		i++;
 	}
 	if (run_gtw(data, cmd, &i, 1))

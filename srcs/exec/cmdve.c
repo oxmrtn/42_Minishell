@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmdve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 16:48:53 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/24 14:33:33 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/24 17:47:33 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	ft_is_cmdve(t_tokens *tokens)
 	return (0);
 }
 
-static char**	ft_fill_cmdve3(t_tokens *tokens)
+static char	**ft_fill_cmdve3(t_tokens *tokens)
 {
 	char	**cmdve;
 	size_t	i;

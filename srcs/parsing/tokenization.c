@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:20:36 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/24 16:05:40 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/24 17:46:41 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ int	ft_is_args(t_tokens *node)
 {
 	if (node->prev == NULL)
 		return (0);
-	if (count_cmd(node) > 0 && (node->prev->type == OUTFILE || node->prev->type == INFILE))
+	if (count_cmd(node) > 0 && (node->prev->type == OUTFILE
+			|| node->prev->type == INFILE))
 		return (1);
 	return (node->prev->type == ARGS || node->prev->type == CMD);
 }

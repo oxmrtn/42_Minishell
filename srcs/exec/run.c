@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:49:23 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/24 14:12:56 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/24 17:47:01 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static void	wait_exec(t_data *data, int i, pid_t pid)
 		endpid = waitpid(-1, &status, 0);
 		if (endpid == pid)
 			if (WIFEXITED(status) && data->cmdve[i]
-			&& !is_builtin(data->cmdve[i][0]))
+				&& !is_builtin(data->cmdve[i][0]))
 				data->exit_status = WEXITSTATUS(status);
 		if (endpid == -1)
 			break ;

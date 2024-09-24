@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:46:55 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/24 14:44:26 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/24 17:46:25 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char	*get_root(t_data *data)
 		if (!ft_ultimate_compare("HOME", node->key)
 			|| !ft_ultimate_compare("ZDOTDIR", node->key))
 		{
-			return(ft_strdup(node->val));
+			return (ft_strdup(node->val));
 		}
 		node = node->next;
 	}
@@ -51,7 +51,7 @@ int	ft_cd(t_data *data, char **cmdve)
 {
 	char	*actual_path;
 	char	*temp;
-	
+
 	if (cmdve[1] && cmdve[2])
 		return (ft_puterror("minishell error: cd too many arguments\n"), 1);
 	if (!cmdve[1])
@@ -60,15 +60,15 @@ int	ft_cd(t_data *data, char **cmdve)
 		if (!temp)
 			return (ft_puterror("minishell error: cd error\n"), -100);
 		if (chdir(temp) != 0)
-			return(perror("cd"), free(temp), 1);
+			return (perror("cd"), free(temp), 1);
 		free(temp);
 	}
 	else
 		if (chdir(cmdve[1]) != 0)
-			return(perror("cd"), 1);
+			return (perror("cd"), 1);
 	actual_path = getcwd(0, 0);
 	if (!actual_path)
 		return (0);
 	ft_env_update(data, actual_path);
-	return (0);	
+	return (0);
 }
