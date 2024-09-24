@@ -6,12 +6,24 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:46:55 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/24 17:46:25 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/24 18:30:28 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
 
+static void	update_old_pwd(t_data *data)
+{
+	char	*temp;
+
+	temp = getcwd(0, 0);
+	temp = ft_strjoin_s2("OLDPWD=", temp);
+	if (!temp)
+		return ;
+	env_update(data->envs->env, temp);
+	free(temp);
+	return ;
+}
 static char	*get_root(t_data *data)
 {
 	t_env	*node;
@@ -52,6 +64,7 @@ int	ft_cd(t_data *data, char **cmdve)
 	char	*actual_path;
 	char	*temp;
 
+	update_old_pwd(data);
 	if (cmdve[1] && cmdve[2])
 		return (ft_puterror("minishell error: cd too many arguments\n"), 1);
 	if (!cmdve[1])

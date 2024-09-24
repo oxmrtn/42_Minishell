@@ -393,3 +393,29 @@ ls
 exit 130 
 exit 130 
 exit 130 
+ls 
+clear 
+ls 
+cd srcs/ 
+ls 
+clear 
+ls 
+cd srcs/ 
+ls 
+clear 
+cd .. 
+ls 
+exit 
+ls 
+clear 
+ls 
+cd srcs/ 
+ls 
+clear 
+cd .. 
+ls 
+exit 
+echo /home/mtrullar/Documents/Cursus/tempo/minishell_t 
+echo /home/mtrullar/Documents/Cursus/tempo/minishell_t 
+ls 
+cd srcs 
