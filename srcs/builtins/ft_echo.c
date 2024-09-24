@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:45:11 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/19 15:06:28 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/24 14:44:53 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	ft_echo(char **cmdve)
 		buffer = ft_strjoin_c(buffer, cmdve[i++], ' ', 1);
 	if (!flag)
 		buffer = ft_strjoin_s1(buffer, "\n");
+	if (!buffer)
+		return (-100);
 	if (write(STDOUT_FILENO, buffer, ft_strlen(buffer)) < 0)
 	{
 		ft_puterror("minishell error : cannot write in outfile\n");

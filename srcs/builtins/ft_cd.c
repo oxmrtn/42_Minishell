@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:46:55 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/23 16:07:17 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/24 14:44:26 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	ft_cd(t_data *data, char **cmdve)
 	{
 		temp = get_root(data);
 		if (!temp)
-			return (ft_puterror("minishell error: cd error\n"), 1);
+			return (ft_puterror("minishell error: cd error\n"), -100);
 		if (chdir(temp) != 0)
 			return(perror("cd"), free(temp), 1);
 		free(temp);

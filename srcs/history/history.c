@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:06:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/17 17:13:34 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/24 14:45:51 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ft_write_history(t_cmds *cmds)
 {
 	int	fd;
 
-	fd = open(".history.txt", O_WRONLY | O_CREAT | O_APPEND);
+	fd = open(".history", O_WRONLY | O_CREAT | O_APPEND);
 	if (fd <= 0)
 		return (1);
 	while (cmds)

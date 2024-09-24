@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/23 16:12:24 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/24 13:52:13 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ int			ft_write_history(t_cmds *cmds);
 //	FREE
 //		conditionnal_free.c
 void		ft_free_invalid_syntax(t_cmds *to_free);
+void		ft_free_var(t_var *node);
 
 //		free.c
 void		free_main(t_data *data);
