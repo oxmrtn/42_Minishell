@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/24 13:52:13 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/24 14:47:05 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,7 @@ void		ft_free_cmdve(char ***cmdve);
 int			exec(t_data *data, t_cmds *cmd);
 int			is_inred(t_cmds *cmd, int *i);
 int			is_outred(t_cmds *cmd, int i);
-t_tokens	*skip_tokens(t_cmds *cmd, int i, int in_or_out);
+t_tokens	*skip_tokens(t_cmds *cmd, int i);
 int			is_builtin(char *cmd);
 int			exec_builtin(t_data *data, char **cmdve);
 int			run_gtw(t_data *data, t_cmds *cmd, int *i, int islast);

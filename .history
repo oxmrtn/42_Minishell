@@ -1,0 +1,395 @@
+echo Bonjour 
+l 
+l 
+ls 
+cd 
+l 
+ls 
+cd 
+pwd 
+ls 
+cd Documents/Cursus/ 
+ls 
+cd tempo/ 
+ls 
+cd minishell_t/ 
+ls 
+pwd 
+l 
+ls 
+cd 
+pwd 
+ls 
+cd Documents/Cursus/ 
+ls 
+cd tempo/ 
+ls 
+cd minishell_t/ 
+ls 
+pwd 
+env 
+l 
+ls 
+cd 
+pwd 
+ls 
+cd Documents/Cursus/ 
+ls 
+cd tempo/ 
+ls 
+cd minishell_t/ 
+ls 
+pwd 
+env 
+clea 
+l 
+ls 
+cd 
+pwd 
+ls 
+cd Documents/Cursus/ 
+ls 
+cd tempo/ 
+ls 
+cd minishell_t/ 
+ls 
+pwd 
+env 
+clea 
+clear 
+exit 
+l 
+ls 
+cd 
+pwd 
+ls 
+cd Documents/Cursus/ 
+ls 
+cd tempo/ 
+ls 
+cd minishell_t/ 
+ls 
+pwd 
+env 
+clea 
+clear 
+exit 
+exit 52221 
+exit 52221 
+exit 52221 
+exit 52221 
+ls 
+clear 
+cat 
+ls 
+clear 
+cat 
+ls 
+clear 
+ls 
+cd .. 
+clear 
+ls 
+cd .. 
+ls 
+cd .. 
+exit 
+exit 
+exit 130 
+exit 130 
+ls 
+cd .. 
+../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+ds 
+../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+ds 
+../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+ds 
+../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+ds 
+../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+ds 
+../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+ds 
+../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+exit 130 
+../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+ds 
+../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+exit 130 
+;s 
+;s 
+../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+exit 130 
+;s 
+../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+exit 130 
+../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+cat -e 
+l 
+../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+cat -e 
+l 
+ls 
+exit 130 
+../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+cat -e 
+l 
+ls 
+exit 130 
+../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+ls 
+clear 
+exit 130 
+../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+ls 
+clear 
+exit 130 
+../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+ls 
+clear 
+../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+ls 
+clear 
+exit 130 
+../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+ls 
+clear 
+../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+ls 
+clear 
+exit 130 
+../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+ls 
+clear 
+exit 
+../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+ls 
+clear 
+exit 
+ls 
+clear 
+ls 
+clear 
+echo Bonjour 
+ls 
+clear 
+ls 
+clear 
+echo Bonjour 
+ls 
+clear 
+ls 
+clear 
+echo Bonjour 
+ls 
+clear 
+ls 
+clear 
+echo Bonjour 
+ls 
+clear 
+ls 
+clear 
+echo Bonjour 
+ls 
+clear 
+ls 
+clear 
+echo Bonjour 
+ls 
+clear 
+ls 
+clear 
+echo Bonjour 
+ls 
+clear 
+ls 
+clear 
+echo Bonjour 
+ls 
+clear 
+ls 
+clear 
+echo Bonjour 
+ls 
+clear 
+ls 
+clear 
+echo Bonjour 
+ls 
+clear 
+ls 
+clear 
+echo Bonjour 
+ls 
+clear 
+ls 
+clear 
+echo Bonjour 
+ls 
+clear 
+ls 
+clear 
+echo Bonjour 
+ls 
+clear 
+ls 
+clear 
+echo Bonjour 
+ls 
+clear 
+ls 
+clear 
+echo Bonjour 
+clear 
+exit 130 
+ls 
+clear 
+ls 
+clear 
+echo Bonjour 
+clear 
+exit 130 
+exit 130 
+exit 130 
+clear 
+exit 130 
+clear 
+exit 130 
+clear 
+clear 
+exit 130 
+clear 
+clear 
+exit 130 
+exit 130 exit 130 
+
+exit 130 
+exit 130 
+cccccccccc 
+cccccccccc 
+clear 
+clear 
+ls 
+clear 
+make 
+exit 130 
+cccccccccc 
+clear 
+clear 
+ls 
+clear 
+make 
+exit 130 
+s 
+s 
+\ 
+s 
+\ 
+\ \ \ \ \ \ \ \ \ \ \ \ \ \\ \ \\ \ \ \ \\\\\\\\\\\\\\\\\\\\\\ 
+s 
+\ 
+\ \ \ \ \ \ \ \ \ \ \ \ \ \\ \ \\ \ \ \ \\\\\\\\\\\\\\\\\\\\\\ 
+clear 
+exit 130 
+s 
+\ 
+\ \ \ \ \ \ \ \ \ \ \ \ \ \\ \ \\ \ \ \ \\\\\\\\\\\\\\\\\\\\\\ 
+clear 
+exit 130 
+\\\dasd\a\d\sadasdssdasdasdsdsds 
+\\\dasd\a\d\sadasdssdasdasdsdsds 
+clear 
+exit 130 
+\\\dasd\a\d\sadasdssdasdasdsdsds 
+clear 
+exit 130 
+clear 
+dsds 
+clear 
+dsds 
+s 
+clear 
+dsds 
+s 
+s 
+clear 
+dsds 
+s 
+s 
+s 
+clear 
+dsds 
+s 
+s 
+s 
+s 
+clear 
+dsds 
+s 
+s 
+s 
+s 
+clear 
+./../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+ls 
+clear 
+exit 130 
+clear 
+dsds 
+s 
+s 
+s 
+s 
+clear 
+./../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+ls 
+clear 
+exit 130 
+clear 
+ds\\\\ 
+clear 
+ds\\\\ 
+dsds 
+clear 
+ds\\\\ 
+dsds 
+exit 130 
+clear 
+ds\\\\ 
+dsds 
+exit 130 
+clear 
+exit 130 
+clear 
+exit 130 
+clear 
+ls 
+clear 
+clear 
+ls 
+./../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+./../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+./../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+clear 
+ls 
+exit 130 
+clear 
+ls 
+clear 
+clear 
+ls 
+./../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+./../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+./../../42_CURSUS/CERCLE_3/Philosophers/philo/philo 4 800 100 100 
+clear 
+ls 
+exit 130 
+exit 130 
+exit 130 
