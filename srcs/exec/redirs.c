@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:37:08 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/23 19:14:57 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/24 14:06:05 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,7 @@ static size_t	is_inred2(t_tokens *tokens)
 	{
 		if (tokens->type == INFILE || tokens->type == LIMITER)
 			i++;
-		if ((tokens->type == INFILE || tokens->type == LIMITER)
-			&& (!tokens->next || (tokens->next && tokens->next->type == PIPE)))
+		if (tokens->type == PIPE)
 			break ;
 		tokens = tokens->next;
 	}
@@ -67,7 +66,7 @@ int	is_inred(t_cmds *cmd, int *i)
 	size_t		j;
 	size_t		k;
 
-	tokens = skip_tokens(cmd, *i, 1);
+	tokens = skip_tokens(cmd, *i);
 	j = is_inred2(tokens);
 	k = 0;
 	while (tokens)
@@ -80,8 +79,7 @@ int	is_inred(t_cmds *cmd, int *i)
 		if (tokens->type == LIMITER && j == k)
 			if (dup_heredoc())
 				return (1);
-		if ((tokens->type == INFILE || tokens->type == LIMITER)
-			&& (!tokens->next || (tokens->next && tokens->next->type == PIPE)))
+		if (tokens->type == PIPE)
 			break ;
 		tokens = tokens->next;
 	}
