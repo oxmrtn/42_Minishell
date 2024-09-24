@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/24 18:40:37 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/24 18:42:17 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 int	print_commands(t_cmds *com)
 {
-	t_cmds *commands = com;
-	t_tokens *tokens;
+	t_cmds		*commands;
+	t_tokens	*tokens;
 
+	commands = com;
 	if (!commands)
 		return (printf("NO COMMANDS\n"), 1);
 	while (commands)
@@ -42,7 +43,8 @@ int	print_variable(t_data *data)
 	head = data->var;
 	while (head)
 	{
-		printf("Variable  = |$%s| || Content = |%s|\n", head->name, head->content);
+		printf("Variable  = |$%s| || Content = |%s|\n",
+			head->name, head->content);
 		head = head->next;
 	}
 	return (0);
@@ -60,7 +62,7 @@ void	handle_signal(int sig)
 	return ;
 }
 
-static int init_data(t_data *data, char **env)
+static int	init_data(t_data *data, char **env)
 {
 	data->exit_status = 0;
 	data->var = NULL;
@@ -83,7 +85,7 @@ static void	the_loop(t_data *data)
 {
 	char	*read;
 	char	*temp;
-	
+
 	read = readline("minishell → ");
 	if (read == NULL)
 		read = ft_strdup("exit 130");

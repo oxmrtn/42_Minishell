@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:46:55 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/24 18:30:28 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/24 18:42:33 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void	update_old_pwd(t_data *data)
 	free(temp);
 	return ;
 }
+
 static char	*get_root(t_data *data)
 {
 	t_env	*node;
