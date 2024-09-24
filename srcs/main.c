@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/23 16:12:38 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/24 17:33:41 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,12 @@ int	print_variable(t_data *data)
 void	handle_signal(int sig)
 {
 	if (sig == SIGINT)
-		printf("minishell → ^C\nminishell → ");
+	{
+		printf("^C\n");
+	}
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
 	return ;
 }
 
@@ -70,6 +75,7 @@ int	main(int argc, char **argv, char **env)
 	if (data->stdincpy == -1 || data->stdoutcpy == -1)
 		return (1);
 	signal(SIGINT, &handle_signal);
+	signal(SIGQUIT, &handle_signal);
 	(void)argc;
 	(void)argv;
 	if (!env[0])
@@ -84,15 +90,19 @@ int	main(int argc, char **argv, char **env)
 	while (1)
 	{
 		read = readline("minishell → ");
-		add_history(read);
-		ft_parser(read, &data->cmds, data);
-		if (exec(data, ft_get_last_commands(data->cmds)))
-			return (free_main(data), 1);
-		char	*temp = ft_itoa(data->exit_status);
-		ft_update_variable("?", temp, data);
-		free(temp);
+		if (read == NULL)
+			read = ft_strdup("exit 130");
+		if (read[0])
+		{
+			add_history(read);
+			ft_parser(read, &data->cmds, data);
+			if (exec(data, ft_get_last_commands(data->cmds)))
+				return (free_main(data), 1);
+			char	*temp = ft_itoa(data->exit_status);
+			ft_update_variable("?", temp, data);
+			free(temp);
+		}
 		free(read);
-		read = NULL;
 	}
 	return (0);
 }
