@@ -6,13 +6,13 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:37:08 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/23 14:36:08 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/24 14:06:02 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
 
-t_tokens	*skip_tokens(t_cmds *cmd, int i, int toskip)
+t_tokens	*skip_tokens(t_cmds *cmd, int i)
 {
 	t_tokens	*tokens;
 	int			j;
@@ -21,14 +21,7 @@ t_tokens	*skip_tokens(t_cmds *cmd, int i, int toskip)
 	j = 0;
 	while (tokens && j < i)
 	{
-		if ((tokens->type == OUTFILE || tokens->type == APPEND)
-			&& tokens->next && tokens->next->type != REDIR && toskip == 0)
-			j++;
-		if ((tokens->type == INFILE || tokens->type == LIMITER)
-			&& tokens->next && tokens->next->type != REDIR && toskip == 1)
-			j++;
-		if ((tokens->type == ENV)
-			&& tokens->next && tokens->next->type != ENV && toskip == 2)
+		if (tokens->type == PIPE)
 			j++;
 		tokens = tokens->next;
 	}
@@ -55,7 +48,7 @@ int	is_outred(t_cmds *cmd, int i)
 {
 	t_tokens	*tokens;
 
-	tokens = skip_tokens(cmd, i, 0);
+	tokens = skip_tokens(cmd, i);
 	while (tokens)
 	{
 		if (tokens->type == OUTFILE)
@@ -64,8 +57,7 @@ int	is_outred(t_cmds *cmd, int i)
 		if (tokens->type == APPEND)
 			if (dup_outred(tokens->str, 1))
 				return (1);
-		if ((tokens->type == OUTFILE || tokens->type == APPEND)
-			&& (!tokens->next || (tokens->next && tokens->next->type != REDIR)))
+		if (tokens->type == PIPE)
 			break ;
 		tokens = tokens->next;
 	}

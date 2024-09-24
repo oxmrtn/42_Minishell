@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:27:05 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/23 15:02:15 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/24 14:37:38 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,25 @@ void	tmp_env_clean(t_data *data)
 int	tmp_env_setup(t_data *data, t_cmds *cmd, int i)
 {
 	t_tokens	*tokens;
+	int			check;
 
-	tokens = skip_tokens(cmd, i, 2);
+	tokens = skip_tokens(cmd, i);
+	check = 0;
 	while (tokens)
 	{
 		if (tokens->type == ENV
 			&& ft_ultimate_compare(tokens->str, "env") != 0)
+		{
 			if (tmp_env_add(data, tokens->str))
 				return (1);
-		if (tokens->type == ENV
-			&& (!tokens->next || (tokens->next && tokens->next->type != ENV)))
+			check = 1;
+		}
+		if (tokens->type == PIPE)
 			break ;
 		tokens = tokens->next;
 	}
+	if (!check)
+		return (0);
 	data->envs->tmpenv = data->envs->envve;
 	data->envs->envve = env_to_tab(data);
 	if (!data->envs->envve)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/23 16:12:38 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/23 16:54:29 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,10 @@ int	main(int argc, char **argv, char **env)
 	{
 		read = readline("minishell → ");
 		add_history(read);
+		if (!ft_strncmp(read, "exit", 4))
+			return (0);
 		ft_parser(read, &data->cmds, data);
+		// print_commands(data->cmds);
 		if (exec(data, ft_get_last_commands(data->cmds)))
 			return (free_main(data), 1);
 		char	*temp = ft_itoa(data->exit_status);
