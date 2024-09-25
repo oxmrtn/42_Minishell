@@ -6,35 +6,11 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 17:56:04 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/18 12:12:15 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/24 18:11:08 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
-
-t_env	*envnew_gtw(char *str, int is_exp_no_val)
-{
-	char	*key;
-	char	*val;
-	char	*c;
-	size_t	i;
-
-	i = 0;
-	c = ft_strchr(str, '=');
-	if (!c && !is_exp_no_val)
-		return (NULL);
-	while (str[i] && &str[i] != c)
-		i++;
-	if (str[0] == '=' && i == 1)
-		key = ft_strdup("=");
-	else
-		key = ft_strdup_till_i(str, i);
-	if (c && c[1])
-		val = ft_strdup(&c[1]);
-	else
-		val = NULL;
-	return (ft_envnew(key, val, is_exp_no_val));
-}
 
 static void	envswap(t_data *data, t_env *n1, t_env *n2)
 {
@@ -78,31 +54,40 @@ static void	sort_exp(t_data *data)
 	}
 }
 
-static int	make_envexp(t_data *data, char **env)
+static int	make_envexp2(t_data *data, char *entry)
 {
 	t_env	*env_entry;
 	t_env	*exp_entry;
+
+	env_entry = envnew_gtw(entry, 0);
+	exp_entry = envnew_gtw(entry, 0);
+	if (!env_entry || !exp_entry)
+		return (1);
+	ft_envadd_back(&data->envs->env, env_entry);
+	ft_envadd_back(&data->envs->exp, exp_entry);
+	return (0);
+}
+
+static int	make_envexp(t_data *data, char **env)
+{
+	t_env	*tmp_entry;
 	size_t	i;
 
-	i = 0;
-	while (env[i])
+	i = -1;
+	tmp_entry = NULL;
+	while (env[++i])
 	{
-		env_entry = envnew_gtw(env[i], 0);
-		exp_entry = envnew_gtw(env[i], 0);
-		if (!env_entry || !exp_entry)
-			return (1);
-		ft_envadd_back(&data->envs->env, env_entry);
 		if (!ft_strncmp(env[i], "_=", 2))
-		{
-			free(exp_entry->key);
-			free(exp_entry->val);
-			free(exp_entry);
-		}
+			tmp_entry = envnew_gtw(env[i], 0);
 		else
-			ft_envadd_back(&data->envs->exp, exp_entry);
-		i++;
+			if (make_envexp2(data, env[i]))
+				return (1);
 	}
-	data->envs->l_env = env_entry;
+	if (tmp_entry)
+	{
+		ft_envadd_back(&data->envs->env, tmp_entry);
+		data->envs->l_env = tmp_entry;
+	}
 	return (0);
 }
 
@@ -116,9 +101,10 @@ int	env_init(t_data	*data, char **env)
 	data->envs->exp = NULL;
 	data->envs->tmpenv = NULL;
 	data->envs->envve = NULL;
-	if (!env[0])
-		return (1);
-	if (make_envexp(data, env))
+	if (env[0])
+		if (make_envexp(data, env))
+			return (1);
+	if (check_env(data))
 		return (1);
 	sort_exp(data);
 	data->envs->envve = env_to_tab(data);
