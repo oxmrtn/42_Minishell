@@ -553,3 +553,11 @@ export
 export 
 export 
 exit 
+echo 
+echo 
+echo q 
+echo q 
+echo q 
+exit 
+echo q 
+exit 
