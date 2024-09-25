@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/25 14:14:16 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/25 21:21:20 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	handle_signal(int sig)
 		printf("^C\n");
 	}
 	rl_on_new_line();
-	rl_replace_line("", 0);
+	//rl_replace_line("", 0);
 	rl_redisplay();
 	return ;
 }
@@ -81,7 +81,7 @@ static int	init_data(t_data *data, char **env)
 	return (1);
 }
 
-static void	the_loop(t_data *data)
+static int	the_loop(t_data *data)
 {
 	char	*read;
 	char	*temp;
@@ -92,14 +92,17 @@ static void	the_loop(t_data *data)
 	if (read[0])
 	{
 		add_history(read);
-		ft_parser(read, &data->cmds, data);
-		if (exec(data, ft_get_last_commands(data->cmds)))
-			return (free_main(data));
+		if (ft_parser(read, &data->cmds, data) == 0)
+		{
+			if (exec(data, ft_get_last_commands(data->cmds)))
+				return (free_main(data), 1);
+		}
 		temp = ft_itoa(data->exit_status);
 		ft_update_variable("?", temp, data);
 		free(temp);
 	}
 	free(read);
+	return (0);
 }
 
 int	main(int argc, char **argv, char **env)
@@ -117,7 +120,8 @@ int	main(int argc, char **argv, char **env)
 	printf("Welcome to MINISHELL\n");
 	while (1)
 	{
-		the_loop(data);
+		if (the_loop(data))
+			return (1);
 	}
 	return (0);
 }

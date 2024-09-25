@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:45:56 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/24 17:46:48 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/25 20:34:23 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static int	ft_append_var(char **s1, char *s2, t_data *data)
 	char	*temp;
 
 	i = 0;
-	while (s2[i] && s2[i] != ' ' && s2[i] != '\n' && s2[i] != 39 && s2[i] != 34)
+	while (s2[i] && s2[i] != ' ' && s2[i] != '\n' && s2[i] != 39 && s2[i] != 34
+			&& s2[i] != '$')
 		i++;
 	key = malloc(sizeof(char) * (i + 1));
 	if (!key)
@@ -79,10 +80,10 @@ char	*ft_flat_string(char *str, t_data *data)
 
 	if (ft_check_quote_syntax(str))
 		return (NULL);
-	i = 0;
+	i = -1;
 	check = 0;
 	buf = NULL;
-	while (str[i])
+	while (str[++i])
 	{
 		flat_bis(str, i, &check);
 		if (str[i] == '$' && check != 2)
@@ -94,7 +95,6 @@ char	*ft_flat_string(char *str, t_data *data)
 			else if (str[i] != 34 && str[i] != 39)
 				buf = ft_append(buf, str[i]);
 		}
-		i++;
 	}
 	return (buf);
 }

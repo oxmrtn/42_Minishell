@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:21:38 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/24 14:42:36 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/25 20:36:57 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_is_pipe(t_tokens *current)
 {
-	if (ft_strncmp(current->str, "|", 1) == 0)
+	if (!ft_ultimate_compare(current->str, "|"))
 	{
 		if (!current->next)
 		{
@@ -28,6 +28,54 @@ int	ft_is_pipe(t_tokens *current)
 		return (0);
 }
 
+static void	add_tokens_between(char *str, t_tokens *current, t_type type)
+{
+	t_tokens	*new;
+	t_tokens	*temp;
+
+	new = malloc(sizeof(t_tokens));
+	if (!new)
+		return ;
+	new->type = type;
+	new->str = ft_strdup(str);
+	temp = current->next;
+	if (temp)
+	{
+		temp->prev = new;
+	}
+	current->next = new;
+	new->next = temp;
+	new->prev = current;
+}
+
+static void	commands_shit(t_tokens **node)
+{
+	t_tokens	*current;
+	char		**splitted;
+	int			i;
+
+	current = *node;
+	splitted = ft_split(current->str, ' ');
+	if (ft_ultimate_len(splitted) == 1)
+	{
+		if (current->type != ENV)
+			current->type = CMD;		
+		return (ft_free_split(splitted));
+	}
+	i = 1;
+	free(current->str);
+	current->str = ft_strdup(splitted[0]);
+	current->type = CMD;
+	while (splitted[i])
+	{
+		add_tokens_between(splitted[i], current, ARGS);
+		i++;
+		current = current->next;
+	}
+	*node = current;
+	ft_free_split(splitted);
+}
+
 void	get_type(t_tokens *head)
 {
 	t_tokens	*current;
@@ -37,8 +85,7 @@ void	get_type(t_tokens *head)
 	{
 		if (ft_is_commands(current))
 		{
-			if (current->type != ENV)
-				current->type = CMD;
+			commands_shit(&current);
 		}
 		else if (ft_is_redirect_sign(current))
 		{
@@ -97,8 +144,8 @@ t_tokens	*create_token_list(char *line, t_data *data)
 {
 	t_tokens	*head_node;
 	char		**splitted;
-	char		*temp;
 	int			i;
+	char		*temp;
 
 	head_node = NULL;
 	i = 0;
@@ -113,9 +160,8 @@ t_tokens	*create_token_list(char *line, t_data *data)
 		temp = ft_flat_string(splitted[i], data);
 		if (!temp)
 			return (ft_freetab(splitted), NULL);
-		if (add_new_token(temp, &head_node, WAIT) == 1)
-			return (NULL);
-		free(temp);
+		if (add_new_token(temp, &head_node, WAIT))
+			return (ft_freetab(splitted), NULL);
 		i++;
 	}
 	get_type(head_node);
