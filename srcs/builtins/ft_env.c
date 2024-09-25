@@ -6,11 +6,35 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:48:29 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/23 14:27:17 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/25 14:23:54 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
+
+t_env	*envnew_gtw(char *str, int is_exp_no_val)
+{
+	char	*key;
+	char	*val;
+	char	*c;
+	size_t	i;
+
+	i = 0;
+	c = ft_strchr(str, '=');
+	if (!c && !is_exp_no_val)
+		return (NULL);
+	while (str[i] && &str[i] != c)
+		i++;
+	if (str[0] == '=' && i == 1)
+		key = ft_strdup("=");
+	else
+		key = ft_strdup_till_i(str, i);
+	if (c && c[1])
+		val = ft_strdup(&c[1]);
+	else
+		val = NULL;
+	return (ft_envnew(key, val, is_exp_no_val));
+}
 
 void	print_env(t_env *env, int env_or_exp)
 {

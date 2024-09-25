@@ -6,35 +6,11 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:45:52 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/25 14:08:57 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/25 14:23:44 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
-
-t_env	*envnew_gtw(char *str, int is_exp_no_val)
-{
-	char	*key;
-	char	*val;
-	char	*c;
-	size_t	i;
-
-	i = 0;
-	c = ft_strchr(str, '=');
-	if (!c && !is_exp_no_val)
-		return (NULL);
-	while (str[i] && &str[i] != c)
-		i++;
-	if (str[0] == '=' && i == 1)
-		key = ft_strdup("=");
-	else
-		key = ft_strdup_till_i(str, i);
-	if (c && c[1])
-		val = ft_strdup(&c[1]);
-	else
-		val = NULL;
-	return (ft_envnew(key, val, is_exp_no_val));
-}
 
 static int	add_min_env2(t_data *data, char *defkey, char *defval, int is_exp)
 {
@@ -110,6 +86,7 @@ static int	incr_shlvl(t_data *data)
 	exp = data->envs->exp;
 	env_update(env, newval);
 	env_update(exp, newval);
+	free(newval);
 	return (0);
 }
 
@@ -123,6 +100,7 @@ int	check_env(t_data *data)
 	if (is_in_env(data, "PWD"))
 		if (add_min_env(data, "PWD", pwd, 1))
 			return (1);
+	free(pwd);
 	if (is_in_env(data, "SHLVL"))
 	{
 		if (add_min_env(data, "SHLVL", "1", 1))
