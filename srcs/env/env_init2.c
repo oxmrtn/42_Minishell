@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:45:52 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/24 18:30:13 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/25 14:08:57 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	add_min_env2(t_data *data, char *defkey, char *defval, int is_exp)
 	if (!entry)
 		return (1);
 	if (data->envs->l_env && !is_exp)
-		ft_envadd_front(env, entry);
+		ft_envadd_front(&data->envs->l_env, entry);
 	else if ((!data->envs->l_env && !is_exp) || is_exp)
 		ft_envadd_back(env, entry);
 	return (0);
@@ -99,7 +99,7 @@ static int	incr_shlvl(t_data *data)
 	{
 		if (!ft_ultimate_compare(env->key, "SHLVL"))
 		{
-			incrval = ft_atoi(env->key) + 1;
+			incrval = ft_itoa(ft_atoi(env->val) + 1);
 			newval = ft_strjoin_c(env->key, incrval, '=', 2);
 			if (!newval)
 				return (1);
@@ -110,6 +110,7 @@ static int	incr_shlvl(t_data *data)
 	exp = data->envs->exp;
 	env_update(env, newval);
 	env_update(exp, newval);
+	return (0);
 }
 
 int	check_env(t_data *data)
@@ -127,6 +128,9 @@ int	check_env(t_data *data)
 		if (add_min_env(data, "SHLVL", "1", 1))
 			return (1);
 	}
+	else
+		if (incr_shlvl(data))
+			return (1);
 	if (is_in_env(data, "_"))
 		if (add_min_env(data, "_", "/usr/bin/env", 0))
 			return (1);
