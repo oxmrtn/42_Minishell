@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:45:11 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/26 16:38:29 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/26 19:09:57 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,5 @@ int	ft_echo(char **cmdve)
 		ft_puterror("minishell error : cannot write in outfile\n");
 		return (free(buffer), 1);
 	}
-	fflush(stdout);
 	return (free(buffer), 0);
 }

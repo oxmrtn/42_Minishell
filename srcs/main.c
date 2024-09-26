@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/25 21:21:20 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/26 19:26:37 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ static int	the_loop(t_data *data)
 		add_history(read);
 		if (ft_parser(read, &data->cmds, data) == 0)
 		{
+			print_commands(ft_get_last_commands(data->cmds));
 			if (exec(data, ft_get_last_commands(data->cmds)))
 				return (free_main(data), 1);
 		}

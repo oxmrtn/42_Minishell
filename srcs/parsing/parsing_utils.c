@@ -6,35 +6,11 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:45:56 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/25 20:34:23 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/26 20:53:46 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
-
-static int	ft_append_var(char **s1, char *s2, t_data *data)
-{
-	int		i;
-	char	*key;
-	char	*buff;
-	char	*temp;
-
-	i = 0;
-	while (s2[i] && s2[i] != ' ' && s2[i] != '\n' && s2[i] != 39 && s2[i] != 34
-			&& s2[i] != '$')
-		i++;
-	key = malloc(sizeof(char) * (i + 1));
-	if (!key)
-		return (0);
-	ft_strlcpy(key, s2, i + 1);
-	temp = ft_get_variable_value(key, data);
-	buff = ft_strjoin_s1(*s1, temp);
-	free(temp);
-	i = (int)ft_strlen(key);
-	free(key);
-	*s1 = buff;
-	return (i);
-}
 
 static char	*ft_append(char *s1, char c)
 {
@@ -58,6 +34,43 @@ static char	*ft_append(char *s1, char c)
 	buffer[len + 1] = '\0';
 	free(s1);
 	return (buffer);
+}
+
+static int	ft_append_var(char **s1, char *s2, t_data *data)
+{
+	int		i;
+	char	*key;
+	char	*temp;
+
+	temp = NULL;
+	key = NULL;
+	i = 0;
+	while (s2[i] && s2[i] != ' ' && s2[i] != '\n' && s2[i] != 39 && s2[i] != 34
+			&& s2[i] != '$' && s2[i] != ':')
+		i++;
+	if (i == 0)
+	{
+		temp = ft_strdup("?");
+		if (!temp)
+			return (0);
+	}
+	else
+	{
+		key = malloc(sizeof(char) * (i + 1));
+		if (!key)
+			return (0);
+		ft_strlcpy(key, s2, i + 1);
+		temp = ft_get_variable_value(key, data);
+	}
+	*s1 = ft_strjoin_s1(*s1, temp);
+	if (key)
+	{
+		i = (int)ft_strlen(key);
+		free(key);
+	}
+	else
+		i = 1;
+	return (free(temp), i);
 }
 
 static void	flat_bis(char *str, int i, int *check)

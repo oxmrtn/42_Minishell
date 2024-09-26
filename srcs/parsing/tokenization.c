@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:20:36 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/24 17:46:41 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/26 20:24:00 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,11 @@ int	ft_is_commands(t_tokens *node)
 {
 	if (!ft_ultimate_compare(node->str, "env"))
 		return (handle_env(node));
-	else if (!node->prev)
+	if (node->str)
+		if (!ft_strncmp(node->str, "|" , 1) || !ft_strncmp(node->str, ">" , 1)
+			|| !ft_strncmp(node->str, "<" , 1))
+			return (0);
+	if (!node->prev)
 		return (1);
 	else if (!ft_strncmp(node->prev->str, "|", 1))
 		return (1);
@@ -56,15 +60,17 @@ int	ft_is_commands(t_tokens *node)
 		return (1);
 	else if (node->prev->type == ENV)
 		return (1);
-	else
-		return (0);
+	return (0);
 }
 
 int	ft_is_args(t_tokens *node)
 {
-	if (node->prev == NULL)
+	if (ft_strchr(node->str, '&') || ft_strchr(node->str, ';')
+		|| ft_strchr(node->str, '(') || ft_strchr(node->str, ')'))
+		node->type = ERROR;
+	else if (node->prev == NULL)
 		return (0);
-	if (count_cmd(node) > 0 && (node->prev->type == OUTFILE
+	else if (count_cmd(node) > 0 && (node->prev->type == OUTFILE
 			|| node->prev->type == INFILE))
 		return (1);
 	return (node->prev->type == ARGS || node->prev->type == CMD);
@@ -79,7 +85,16 @@ static void	ft_set_redirect(t_tokens *current, t_type to_set )
 		if (current->next)
 		{
 			current->type = REDIR;
+			if (!ft_strncmp(current->next->str, "|" , 1)
+				|| !ft_strncmp(current->next->str, "<" , 1)
+				|| !ft_strncmp(current->next->str, ">" , 1))
 			current->next->type = to_set;
+			else
+			{
+				current->type = ERROR;
+				current->next->type = ERROR;
+			}
+
 		}
 		else
 			current->type = ERROR;
