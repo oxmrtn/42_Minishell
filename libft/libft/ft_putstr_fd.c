@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 16:37:48 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/08/12 15:05:36 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/26 14:21:30 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,13 @@ void	ft_putstr_fd(char *s, int fd)
 void	ft_puterror(char *str)
 {
 	ft_putstr_fd(str, 2);
+}
+
+void	ft_desc_error(char *cmd, char *wrong)
+{
+	ft_putstr_fd("bash: ", 2);
+	ft_putstr_fd(cmd, 2);
+	ft_putstr_fd(": '", 2);
+	ft_putstr_fd(wrong, 2);
+	ft_putstr_fd("': ", 2);
 }

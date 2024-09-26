@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:35:12 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/23 12:55:12 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/26 14:57:43 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,49 @@ int	is_builtin(char *cmd)
 	return (0);
 }
 
+static int	echo_option_check(char *option)
+{
+	size_t	i;
+
+	i = 1;
+	while (option[i])
+	{
+		if (option[i] != 'n')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+static int	builtin_option_check(char **cmdve)
+{
+	int	is_echo;
+
+	is_echo = 1;
+	if (cmdve[1])
+	{
+		is_echo = ft_ultimate_compare(cmdve[0], "echo");
+		if (cmdve[1][0] == '-' && (is_echo != 0
+			|| (!is_echo && cmdve[1][1] && echo_option_check(cmdve[1]))))
+		{
+			ft_desc_error(cmdve[0], cmdve[1]);
+			ft_puterror("invalid option\n");
+			return (1);
+		}
+	}
+	return (0);
+}
+
 int	exec_builtin(t_data *data, char **cmdve)
 {
 	int	retval;
 
 	retval = 0;
+	if (builtin_option_check(cmdve))
+	{
+		data->exit_status = 1;
+		return (1);
+	}
 	if (!ft_ultimate_compare(cmdve[0], "echo"))
 		retval = ft_echo(cmdve);
 	else if (!ft_ultimate_compare(cmdve[0], "cd"))
