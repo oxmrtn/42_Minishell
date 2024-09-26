@@ -6,11 +6,55 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:27:05 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/24 14:37:38 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/26 18:36:39 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
+
+static int	env_update2(t_env *lst, char *c)
+{
+	lst->exp_noval = 0;
+	if (c[1] && c[-1] && c[-1] == '+')
+		lst->val = ft_strjoin_s1(lst->val, &c[1]);
+	else
+	{
+		if (lst->val)
+			free(lst->val);
+		if (c[1])
+			lst->val = ft_strdup(&c[1]);
+		else
+			lst->val = NULL;
+	}
+	if (c[1] && !lst->val)
+		return (1);
+	return (0);
+}
+
+int	env_update(t_env *lst, char *str)
+{
+	char	*c;
+	size_t	i;
+
+	i = 0;
+	c = ft_strchr(str, '=');
+	while (str[i] && str[i] != '+' && &str[i] != c)
+		i++;
+	if (!i)
+		i = 1;
+	while (lst)
+	{
+		if (!ft_strncmp(lst->key, str, i))
+		{
+			if (c)
+				if (env_update2(lst, c))
+					return (2);
+			return (1);
+		}
+		lst = lst->next;
+	}
+	return (0);
+}
 
 int	tmp_env_add(t_data *data, char *cmdve)
 {

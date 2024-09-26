@@ -16629,3 +16629,702 @@ exit
 echo -p 
 >>>>>>> ebengtss/exec
 exit 
+echo /home/ebengtss/ebengtss-work/pers-gits/mrtn_minishell/home/ebengtss 
+echo /home/ebengtss/ebengtss-work/pers-gits/mrtn_minishell/home/ebengtss 
+echo  
+echo /home/ebengtss/ebengtss-work/pers-gits/mrtn_minishell/home/ebengtss 
+echo  
+env 
+echo /home/ebengtss/ebengtss-work/pers-gits/mrtn_minishell/home/ebengtss 
+echo  
+env 
+echo less-R 
+echo /home/ebengtss/ebengtss-work/pers-gits/mrtn_minishell/home/ebengtss 
+echo  
+env 
+echo less-R 
+clear 
+<< 
+echo /home/ebengtss/ebengtss-work/pers-gits/mrtn_minishell/home/ebengtss 
+echo  
+env 
+echo less-R 
+clear 
+<< 
+< 
+echo /home/ebengtss/ebengtss-work/pers-gits/mrtn_minishell/home/ebengtss 
+echo  
+env 
+echo less-R 
+clear 
+<< 
+< 
+>> 
+echo /home/ebengtss/ebengtss-work/pers-gits/mrtn_minishell/home/ebengtss 
+echo  
+env 
+echo less-R 
+clear 
+<< 
+< 
+>> 
+|| 
+echo /home/ebengtss/ebengtss-work/pers-gits/mrtn_minishell/home/ebengtss 
+echo  
+env 
+echo less-R 
+clear 
+<< 
+< 
+>> 
+|| 
+cat || ls 
+export TESTT=l 
+export TEST=-l 
+export TEST=-l 
+env 
+export TEST=-l 
+env 
+ls -l 
+clear 
+exit 
+export TEST=-l 
+env 
+ls -l 
+clear 
+exit 
+echo     test   p 
+echo     test   p 
+export BLBL=ca 
+echo     test   p 
+export BLBL=ca 
+cat .gitignore 
+exit 
+echo     test   p 
+export BLBL=ca 
+cat .gitignore 
+exit 
+clear 
+export BB+B=p 
+clear 
+export BB+B=p 
+export BBB+=p 
+clear 
+export BB+B=p 
+export BBB+=p 
+env 
+clear 
+export BB+B=p 
+export BBB+=p 
+env 
+clear 
+exit 
+clear 
+export BB+B=p 
+export BBB+=p 
+env 
+clear 
+exit 
+echo 0 
+echo 0 
+export blblbl=test 
+echo 0 
+export blblbl=test 
+echo 0 
+echo 0 
+export blblbl=test 
+echo 0 
+export ++++ blblbl=ttt 
+echo 0 
+export blblbl=test 
+echo 0 
+export ++++ blblbl=ttt 
+echo 1 
+echo 0 
+export blblbl=test 
+echo 0 
+export ++++ blblbl=ttt 
+echo 1 
+env 
+echo 0 
+export blblbl=test 
+echo 0 
+export ++++ blblbl=ttt 
+echo 1 
+env 
+exit 
+echo 0 
+export blblbl=test 
+echo 0 
+export ++++ blblbl=ttt 
+echo 1 
+env 
+exit 
+export blblbl=ttt 
+export blblbl=ttt 
+echo 0 
+export blblbl=ttt 
+echo 0 
+export +++ _=eeeee blblbl=yy 
+export blblbl=ttt 
+echo 0 
+export +++ _=eeeee blblbl=yy 
+echo 1 
+export blblbl=ttt 
+echo 0 
+export +++ _=eeeee blblbl=yy 
+echo 1 
+env 
+export blblbl=ttt 
+echo 0 
+export +++ _=eeeee blblbl=yy 
+echo 1 
+env 
+exit 
+export blblbl=ttt 
+echo 0 
+export +++ _=eeeee blblbl=yy 
+echo 1 
+env 
+exit 
+export _=ppppp 
+export _=ppppp 
+env 
+export _=ppppp 
+env 
+exit 
+export _=ppppp 
+env 
+exit 
+echo -np 
+echo -np 
+echo -nn 
+echo -np 
+echo -nn 
+exit 
+echo -np 
+echo -nn 
+exit 
+echo -nnn ppp 
+echo -nnn ppp 
+echo -nnnp mm 
+echo -nnn ppp 
+echo -nnnp mm 
+exit 
+echo -nnn ppp 
+echo -nnnp mm 
+exit 
+echo -nnnnn blblb 
+echo -nnnnn blblb 
+echo -nnnnnp blblb 
+echo -nnnnn blblb 
+echo -nnnnnp blblb 
+exit 
+echo -nnnnn blblb 
+echo -nnnnnp blblb 
+exit 
+echo -nnnn blblbl 
+echo -nnnn blblbl 
+echo -nnnnp blblbl 
+echo -nnnn blblbl 
+echo -nnnnp blblbl 
+echo - blblbl 
+echo -nnnn blblbl 
+echo -nnnnp blblbl 
+echo - blblbl 
+echo -n blblbl 
+echo -nnnn blblbl 
+echo -nnnnp blblbl 
+echo - blblbl 
+echo -n blblbl 
+echo -n 
+echo -nnnn blblbl 
+echo -nnnnp blblbl 
+echo - blblbl 
+echo -n blblbl 
+echo -n 
+echo -n 
+echo -n echo -n 
+exit 
+
+exit 
+cd - 
+cd - 
+exit 
+cd - 
+exit 
+export BLBL+=test 
+export BLBL+=test 
+export 
+export BLBL+=test 
+export 
+env 
+export BLBL+=test 
+export 
+env 
+export ==a 
+export BLBL+=test 
+export 
+env 
+export ==a 
+env ==a env 
+export BLBL+=test 
+export 
+env 
+export ==a 
+env ==a env 
+clear 
+env []]=e env 
+export BLBL+=test 
+export 
+env 
+export ==a 
+env ==a env 
+clear 
+env []]=e env 
+env ===a env 
+export BLBL+=test 
+export 
+env 
+export ==a 
+env ==a env 
+clear 
+env []]=e env 
+env ===a env 
+clear 
+env ===a env 
+export BLBL+=test 
+export 
+env 
+export ==a 
+env ==a env 
+clear 
+env []]=e env 
+env ===a env 
+clear 
+env ===a env 
+env 
+export BLBL+=test 
+export 
+env 
+export ==a 
+env ==a env 
+clear 
+env []]=e env 
+env ===a env 
+clear 
+env ===a env 
+env 
+clear 
+env 
+export BLBL+=test 
+export 
+env 
+export ==a 
+env ==a env 
+clear 
+env []]=e env 
+env ===a env 
+clear 
+env ===a env 
+env 
+clear 
+env 
+exit 
+export BLBL+=test 
+export 
+env 
+export ==a 
+env ==a env 
+clear 
+env []]=e env 
+env ===a env 
+clear 
+env ===a env 
+env 
+clear 
+env 
+exit 
+env 
+env 
+env ===p env 
+env 
+env ===p env 
+export MEOW+=blbl 
+env 
+env ===p env 
+export MEOW+=blbl 
+env 
+env 
+env ===p env 
+export MEOW+=blbl 
+env 
+export MEOW+=eeeee 
+env 
+env ===p env 
+export MEOW+=blbl 
+env 
+export MEOW+=eeeee 
+env 
+env 
+env ===p env 
+export MEOW+=blbl 
+env 
+export MEOW+=eeeee 
+env 
+exit 
+env 
+env ===p env 
+export MEOW+=blbl 
+env 
+export MEOW+=eeeee 
+env 
+exit 
+export ===wer 
+export ===wer 
+env ===werr 
+export ===wer 
+env ===werr 
+clear 
+env ===pe 
+export ===wer 
+env ===werr 
+clear 
+env ===pe 
+clear 
+env []*^=we 
+export ===wer 
+env ===werr 
+clear 
+env ===pe 
+clear 
+env []*^=we 
+env []*^=we bash 
+clear 
+env 
+export ===wer 
+env ===werr 
+clear 
+env ===pe 
+clear 
+env []*^=we 
+env []*^=we bash 
+clear 
+env 
+env SHLVL+=1 
+env 
+env 
+echo 2112 
+env 
+echo 2112 
+exit 
+env 
+echo 2112 
+exit 
+export ===wer 
+env ===werr 
+clear 
+env ===pe 
+clear 
+env []*^=we 
+env []*^=we bash 
+clear 
+env 
+env SHLVL+=1 
+env SHLVL+=1 bash 
+clear 
+env SHLVL+=1 ./minishell 
+exit 
+export ===wer 
+env ===werr 
+clear 
+env ===pe 
+clear 
+env []*^=we 
+env []*^=we bash 
+clear 
+env 
+env SHLVL+=1 
+env SHLVL+=1 bash 
+clear 
+env SHLVL+=1 ./minishell 
+exit 
+env ===p 
+env ===p 
+env 
+env ===p 
+env 
+env = 
+env ===p 
+env 
+env = 
+exit 
+env ===p 
+env 
+env = 
+exit 
+env 
+env 
+env = 
+env 
+env = 
+exit 
+env 
+env = 
+exit 
+env 
+env 
+env 
+env 
+env 
+env blblb= env 
+env 
+env 
+env blblb= env 
+env 
+env 
+env 
+env blblb= env 
+env 
+env = 
+env 
+env 
+env 
+env 
+env 
+exit 
+env 
+env 
+exit 
+env 
+env 
+env blblb= env 
+env 
+env = 
+env = ./minishell 
+env 
+env 
+env 
+env blblb= env 
+env 
+env = 
+env = ./minishell 
+env 
+env ====o 
+env 
+env 
+env blblb= env 
+env 
+env = 
+env = ./minishell 
+env 
+env ====o 
+env 
+env 
+env 
+env blblb= env 
+env 
+env = 
+env = ./minishell 
+env 
+env ====o 
+env 
+env ==== =0 
+env 
+env 
+env blblb= env 
+env 
+env = 
+env = ./minishell 
+env 
+env ====o 
+env 
+env ==== =0 
+env a 
+env 
+env 
+env blblb= env 
+env 
+env = 
+env = ./minishell 
+env 
+env ====o 
+env 
+env ==== =0 
+env a 
+exit 
+env 
+env 
+env blblb= env 
+env 
+env = 
+env = ./minishell 
+env 
+env ====o 
+env 
+env ==== =0 
+env a 
+exit 
+env = 
+env = 
+exit 
+env = 
+exit 
+env = 
+env = 
+env === 
+env = 
+env === 
+env === =p 
+env = 
+env === 
+env === =p 
+exit 
+env = 
+env === 
+env === =p 
+exit 
+env = 
+env = 
+env = == 
+env = 
+env = == 
+exit 
+env = 
+env = == 
+exit 
+env = 
+env = 
+env = =pp 
+env = 
+env = =pp 
+exit 
+env = 
+env = =pp 
+exit 
+env = 
+env = 
+env = =pp 
+env = 
+env = =pp 
+exit 
+env = 
+env = =pp 
+exit 
+env = 
+env = 
+env = == 
+env = 
+env = == 
+env = == =ppp 
+env = 
+env = == 
+env = == =ppp 
+env 
+env = 
+env = == 
+env = == =ppp 
+env 
+env = 
+env = 
+env = == 
+env = == =ppp 
+env 
+env = 
+env = == 
+env = 
+env = == 
+env = == =ppp 
+env 
+env = 
+env = == 
+env = == =poop 
+env = 
+env = == 
+env = == =ppp 
+env 
+env = 
+env = == 
+env = == =poop 
+exit 
+env = 
+env = == 
+env = == =ppp 
+env 
+env = 
+env = == 
+env = == =poop 
+exit 
+env = 
+env = 
+env == 
+env = 
+env == 
+exit 
+env = 
+env == 
+exit 
+env = == 
+env = == 
+exit 
+env = == 
+exit 
+env = 
+env = 
+env = == 
+env = 
+env = == 
+env = == =pp 
+env = 
+env = == 
+env = == =pp 
+env = == q==p 
+env = 
+env = == 
+env = == =pp 
+env = == q==p 
+env = ==p q==p 
+env = 
+env = == 
+env = == =pp 
+env = == q==p 
+env = ==p q==p 
+clear 
+env = 
+env = 
+env = == 
+env = == =pp 
+env = == q==p 
+env = ==p q==p 
+clear 
+env = 
+env = =lll 
+env = 
+env = == 
+env = == =pp 
+env = == q==p 
+env = ==p q==p 
+clear 
+env = 
+env = =lll 
+env = =lll =+=ee 
+env = 
+env = == 
+env = == =pp 
+env = == q==p 
+env = ==p q==p 
+clear 
+env = 
+env = =lll 
+env = =lll =+=ee 
+exit 
+env = 
+env = == 
+env = == =pp 
+env = == q==p 
+env = ==p q==p 
+clear 
+env = 
+env = =lll 
+env = =lll =+=ee 
+exit 

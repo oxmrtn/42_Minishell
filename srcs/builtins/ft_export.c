@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:47:35 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/26 14:19:48 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/26 17:07:03 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,35 +38,6 @@ static void	exp_sortadd(t_data *data, t_env *exp, t_env *node)
 		exp = exp->next;
 	}
 	ft_envadd_back(&data->envs->exp, node);
-}
-
-int	env_update(t_env *lst, char *str)
-{
-	char	*c;
-	size_t	i;
-
-	i = 0;
-	c = ft_strchr(str, '=');
-	while (str[i] && &str[i] != c)
-		i++;
-	while (lst)
-	{
-		if (!ft_strncmp(lst->key, str, i))
-		{
-			if (!c)
-				return (1);
-			if (lst->val)
-				free(lst->val);
-			lst->exp_noval = 0;
-			if (c[1])
-				lst->val = ft_strdup(&c[1]);
-			else
-				lst->val = NULL;
-			return (1);
-		}
-		lst = lst->next;
-	}
-	return (0);
 }
 
 static int	expenv_add2(t_data *data, char *cmdve, int env_or_exp)
@@ -125,16 +96,20 @@ int	ft_export(t_data *data, char **cmdve)
 	i = 1;
 	retval = 0;
 	if (!cmdve[1])
-		print_env(data->envs->exp, 1);
-	else
+		return (print_env(data->envs->exp, 1), retval);
+	while (cmdve[i])
 	{
-		while (cmdve[i])
+		if (ft_strncmp(cmdve[i], "_=", 2) != 0
+			|| ft_strncmp(cmdve[i], "_+=", 3) != 0)
 		{
-			retval = expenv_add(data, cmdve[i]);
+			if (retval != 1)
+				retval = expenv_add(data, cmdve[i]);
+			else
+				expenv_add(data, cmdve[i]);
 			if (retval == 2)
 				return (-100);
-			i++;
 		}
+		i++;
 	}
 	return (retval);
 }

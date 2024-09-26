@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 17:56:04 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/24 18:11:08 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/26 17:51:00 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,15 +73,19 @@ static int	make_envexp(t_data *data, char **env)
 	t_env	*tmp_entry;
 	size_t	i;
 
-	i = -1;
+	i = 0;
 	tmp_entry = NULL;
-	while (env[++i])
+	while (env[i])
 	{
-		if (!ft_strncmp(env[i], "_=", 2))
-			tmp_entry = envnew_gtw(env[i], 0);
-		else
-			if (make_envexp2(data, env[i]))
-				return (1);
+		if (env[i][0] != '=')
+		{
+			if (!ft_strncmp(env[i], "_=", 2))
+				tmp_entry = envnew_gtw(env[i], 0);
+			else
+				if (make_envexp2(data, env[i]))
+					return (1);
+		}
+		i++;
 	}
 	if (tmp_entry)
 	{

@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:35:12 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/26 14:57:43 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/26 16:30:31 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,6 @@ int	is_builtin(char *cmd)
 	while (i < 7)
 	{
 		if (!ft_ultimate_compare(cmd, (char *)builtins[i]))
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-static int	echo_option_check(char *option)
-{
-	size_t	i;
-
-	i = 1;
-	while (option[i])
-	{
-		if (option[i] != 'n')
 			return (1);
 		i++;
 	}
