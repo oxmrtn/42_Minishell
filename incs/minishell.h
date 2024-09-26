@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/25 14:13:07 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/26 14:02:01 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,5 +201,6 @@ void		tmp_env_clean(t_data *data);
 int			tmp_env_setup(t_data *data, t_cmds *cmd, int i);
 int			env_update(t_env *lst, char *str);
 int			check_env(t_data *data);
+int			isvalid_env(char *str, int only_key);
 
 #endif

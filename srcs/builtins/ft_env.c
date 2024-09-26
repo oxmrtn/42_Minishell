@@ -6,11 +6,32 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:48:29 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/25 14:23:54 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/26 14:47:53 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
+
+int	isvalid_env(char *str, int only_key)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '=' && only_key)
+			return (1);
+		if (!i && (ft_isdigit(str[i]) || str[i] == '='))
+			return (1);
+		if (!only_key && (str[i] == '='
+				|| (str[i] == '+' && str[i + 1] == '=')))
+			break ;
+		if (!ft_isalnum(str[i]) && str[i] != '_')
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 t_env	*envnew_gtw(char *str, int is_exp_no_val)
 {

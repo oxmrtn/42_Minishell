@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:48:13 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/18 12:02:37 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/26 14:20:15 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ int	ft_unset(t_data *data, char **cmdve)
 	check = 0;
 	while (cmdve[i])
 	{
+		if (isvalid_env(cmdve[i], 0))
+		{
+			ft_desc_error("unset", cmdve[i]);
+			return (ft_puterror("not a valid identifier\n"), 1);
+		}
 		check += env_del(data, data->envs->env, cmdve[i]);
 		env_del(data, data->envs->exp, cmdve[i]);
 		i++;
