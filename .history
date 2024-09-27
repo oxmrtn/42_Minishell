@@ -17477,3 +17477,554 @@ ls
 echo 0 
 clear 
 exit 
+./ 
+./ 
+./ ls 
+./ 
+./ ls 
+./ | ls 
+./ 
+./ ls 
+./ | ls 
+clear 
+exit 
+./ 
+./ ls 
+./ | ls 
+clear 
+exit 
+export SHLVL=200 
+export SHLVL=2134 
+exit 
+exit 
+export SHLVL=2134 
+./minishell 
+exit 
+export SHLVL=2134 
+./minishell 
+exit 
+export SHLVL=200 
+./minishell 
+exit 
+export SHLVL=200 
+./minishell 
+exit 
+env 
+env 
+env 
+export SHLVL=-100 
+env 
+export SHLVL=-100 
+env 
+env 
+env 
+exit 
+env 
+exit 
+env 
+export SHLVL=-100 
+env 
+clear 
+./minishell 
+exit 
+env 
+export SHLVL=-100 
+env 
+clear 
+./minishell 
+exit 
+env 
+clear 
+./minishell 
+exit 
+env 
+clear 
+./minishell 
+exit 
+exit 
+exit 
+env 
+env 
+ls 
+clear 
+env 
+env 
+env 
+exit 
+env 
+exit 
+env 
+ls 
+clear 
+env 
+clear 
+./minishell 
+exit 
+env 
+ls 
+clear 
+env 
+clear 
+./minishell 
+exit 
+env 
+env 
+env 
+exit 
+env 
+exit 
+env 
+clear 
+./minishell 
+exit 
+env 
+clear 
+./minishell 
+exit 
+export SHLVL=-200 
+exit 
+exit 
+export SHLVL=-200 
+./minishell 
+exit 
+export SHLVL=-200 
+./minishell 
+exit 
+export SHLVL=-200 
+exit 
+exit 
+export SHLVL=-200 
+./minishell 
+exit 
+export SHLVL=-200 
+./minishell 
+exit 
+export SHLVL=-200 
+env 
+env 
+exit 
+env 
+exit 
+export SHLVL=-200 
+./minishell 
+exit 
+export SHLVL=-200 
+./minishell 
+exit 
+clear 
+env 
+clear 
+env 
+env 
+clear 
+env 
+clear 
+env 
+env 
+clear 
+env 
+env 
+env 
+clear 
+env 
+env 
+env 
+exit 
+clear 
+env 
+env 
+env 
+exit 
+clear 
+env 
+env 
+./minishell 
+env 
+clear 
+env 
+env 
+./minishell 
+env 
+env 
+env 
+env 
+exit 
+env 
+exit 
+clear 
+env 
+env 
+./minishell 
+env 
+env 
+clear 
+./minishell 
+exit 
+clear 
+env 
+env 
+./minishell 
+env 
+env 
+clear 
+./minishell 
+exit 
+export SHLVL=2000 
+export SHLVL=2000 
+env 
+env 
+env 
+clear 
+export SHLVL=ooipio 
+env 
+clear 
+export SHLVL=ooipio 
+env 
+env 
+env 
+export SHLVL=-10 
+env 
+env 
+exit 
+env 
+exit 
+env 
+export SHLVL=-10 
+clear 
+./minishell 
+exit 
+env 
+export SHLVL=-10 
+clear 
+./minishell 
+exit 
+env 
+clear 
+export SHLVL=ooipio 
+env 
+./minishell 
+exit 
+env 
+clear 
+export SHLVL=ooipio 
+env 
+./minishell 
+exit 
+export SHLVL=2000 
+env 
+./minishell 
+exit 
+export SHLVL=2000 
+env 
+./minishell 
+exit 
+exit 
+exit 
+./minishell 
+env 
+./minishell 
+env 
+export SHLVL=-200 
+./minishell 
+env 
+export SHLVL=-200 
+clear 
+env 
+exit 
+exit 
+./minishell 
+env 
+export SHLVL=-200 
+clear 
+env 
+clear 
+./minishell 
+exit 
+./minishell 
+env 
+export SHLVL=-200 
+clear 
+env 
+clear 
+./minishell 
+exit 
+env 
+env 
+exit 
+env 
+exit 
+env 
+env 
+env 
+env 
+env env 
+
+exit exit 
+
+env 
+env 
+clear 
+./minishell 
+exit 
+env 
+env 
+clear 
+./minishell 
+exit 
+env 
+env 
+env 
+env 
+env 
+env 
+env 
+env 
+env 
+env 
+env 
+env 
+env 
+env 
+env SHLVL=10 
+env 
+env 
+env 
+env 
+env SHLVL=10 
+env SHLVL=10 SHLVL=0 
+env 
+env 
+env 
+env 
+env SHLVL=10 
+env SHLVL=10 SHLVL=0 
+env 
+env 
+env 
+env 
+env 
+env SHLVL=10 
+env SHLVL=10 SHLVL=0 
+env 
+env SHLVL=10 env SHLVL=0 
+env 
+env 
+env 
+env 
+env SHLVL=10 
+env SHLVL=10 SHLVL=0 
+env 
+env SHLVL=10 env SHLVL=0 
+exit 
+env 
+env 
+env 
+env 
+env SHLVL=10 
+env SHLVL=10 SHLVL=0 
+env 
+env SHLVL=10 env SHLVL=0 
+exit 
+env 
+env 
+export 
+env 
+export 
+env 
+env 
+export 
+env 
+export SHLVL=-100 
+env 
+export 
+env 
+export SHLVL=-100 
+env 
+env 
+export 
+env 
+export SHLVL=-100 
+env 
+export 
+env 
+export 
+env 
+export SHLVL=-100 
+env 
+export 
+clear 
+bash 
+exit 
+env 
+export 
+env 
+export SHLVL=-100 
+env 
+export 
+clear 
+bash 
+exit 
+env 
+env 
+env 
+env 
+env 
+export 
+env 
+env 
+export 
+export SHLVL=100 
+env 
+env 
+export 
+export SHLVL=100 
+env 
+env 
+env 
+export 
+export SHLVL=100 
+env 
+export 
+env 
+env 
+export 
+export SHLVL=100 
+env 
+export 
+export SHLVL=1000 
+env 
+env 
+exit 
+env 
+exit 
+env 
+env 
+export 
+export SHLVL=100 
+env 
+export 
+export SHLVL=1000 
+clear 
+./minishell 
+exit 
+env 
+env 
+export 
+export SHLVL=100 
+env 
+export 
+export SHLVL=1000 
+clear 
+./minishell 
+exit 
+export SHLVL=1000 
+export SHLVL=1000 
+env 
+export SHLVL=1000 
+env 
+export 
+export SHLVL=1000 
+env 
+export 
+clea 
+exit 
+exit 
+export SHLVL=1000 
+env 
+export 
+clea 
+clear 
+./minishell 
+exit 
+export SHLVL=1000 
+env 
+export 
+clea 
+clear 
+./minishell 
+exit 
+./ 
+./ 
+opieriopt 
+./ 
+opieriopt 
+echo -mp 
+./ 
+opieriopt 
+echo -mp 
+export SHLVL=1000 
+wefwefwef 
+wefwefwef 
+exit 
+wefwefwef 
+exit 
+./ 
+opieriopt 
+echo -mp 
+export SHLVL=1000 
+clear 
+./minishell 
+exit 
+./ 
+opieriopt 
+echo -mp 
+export SHLVL=1000 
+clear 
+./minishell 
+exit 
+ls 
+clear 
+env 
+ls 
+clear 
+env 
+exit 
+ls 
+clear 
+env 
+exit 
+env 
+env 
+env test 
+env test=p 
+env 
+env test 
+env test=p 
+exit 
+env 
+env test 
+env test=p 
+exit 
+env 
+env 
+clear 
+env bbb= 
+env 
+clear 
+env bbb= 
+exit 
+env 
+clear 
+env bbb= 
+exit 
+env bbbb=e 
+env bbbb=e 
+env test 
+env test=ee 
+env bbbb=e 
+env test 
+env test=ee 
+clear 
+env test=ee 
+env bbbb=e 
+env test 
+env test=ee 
+clear 
+env test=ee 
+exit 
+env bbbb=e 
+env test 
+env test=ee 
+clear 
+env test=ee 
+exit 

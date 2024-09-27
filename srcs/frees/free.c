@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:35:10 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/25 18:23:41 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/27 19:16:06 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,21 @@ void	ft_free_env(t_env **lst)
 	}
 }
 
+void	ft_free_envs(t_data *data)
+{
+	if (data->envs->env)
+		ft_free_env(&data->envs->env);
+	if (data->envs->exp)
+		ft_free_env(&data->envs->exp);
+	if (data->envs->tmpenv)
+		ft_free_env(&data->envs->tmpenv);
+	if (data->envs->tmpenvve)
+		ft_free_split(data->envs->tmpenvve);
+	if (data->envs->envve)
+		ft_free_split(data->envs->envve);
+	free(data->envs);
+}
+
 void	free_main(t_data *data)
 {
 	if (data)
@@ -85,17 +100,7 @@ void	free_main(t_data *data)
 			ft_free_commands(data->cmds);
 		}
 		if (data->envs)
-		{
-			if (data->envs->env)
-				ft_free_env(&data->envs->env);
-			if (data->envs->exp)
-				ft_free_env(&data->envs->exp);
-			if (data->envs->tmpenv)
-				ft_free_split(data->envs->tmpenv);
-			if (data->envs->envve)
-				ft_free_split(data->envs->envve);
-			free(data->envs);
-		}
+			ft_free_envs(data);
 		ft_free_var(data->var);
 		if (data->cmdve)
 			ft_free_cmdve(data->cmdve);

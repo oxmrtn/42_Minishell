@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 17:56:04 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/26 17:51:00 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/27 18:55:41 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,11 @@ static int	make_envexp2(t_data *data, char *entry)
 	t_env	*exp_entry;
 
 	env_entry = envnew_gtw(entry, 0);
-	exp_entry = envnew_gtw(entry, 0);
-	if (!env_entry || !exp_entry)
+	if (!env_entry)
 		return (1);
+	exp_entry = envnew_gtw(entry, 0);
+	if (!exp_entry)
+		return (free(env_entry), 1);
 	ft_envadd_back(&data->envs->env, env_entry);
 	ft_envadd_back(&data->envs->exp, exp_entry);
 	return (0);
@@ -101,10 +103,11 @@ int	env_init(t_data	*data, char **env)
 	if (!data->envs)
 		return (1);
 	data->envs->env = NULL;
-	data->envs->l_env = NULL;
 	data->envs->exp = NULL;
 	data->envs->tmpenv = NULL;
+	data->envs->l_env = NULL;
 	data->envs->envve = NULL;
+	data->envs->tmpenvve = NULL;
 	if (env[0])
 		if (make_envexp(data, env))
 			return (1);

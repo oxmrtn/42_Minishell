@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/27 14:12:00 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/27 19:02:18 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,9 @@ typedef struct s_envs
 {
 	t_env	*env;
 	t_env	*exp;
+	t_env	*tmpenv;
 	t_env	*l_env;
-	char	**tmpenv;
+	char	**tmpenvve;
 	char	**envve;
 }			t_envs;
 
@@ -193,11 +194,14 @@ t_env		*ft_envnew(char *key, char *val, int is_exp_no_val);
 void		ft_envadd_front(t_env **lst, t_env *new);
 void		ft_envadd_back(t_env **lst, t_env *new);
 t_env		*ft_envlast(t_env *lst);
+int			ft_envdup(t_data *data);
+int			incr_shlvl(t_data *data);
+int			envtab_update(t_data *data);
+int			is_in_env(t_env *env, char *keycheck);
 void		ft_envdelone(t_data *data, t_env *node);
 char		**env_to_tab(t_data *data);
 void		print_env(t_env *env, int env_or_exp);
 int			tmp_env_add(t_data *data, char *cmdve);
-void		tmp_env_clean(t_data *data);
 int			tmp_env_setup(t_data *data, t_cmds *cmd, int i);
 int			env_update(t_env *lst, char *str);
 int			check_env(t_data *data);

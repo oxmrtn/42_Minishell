@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:47:35 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/27 14:23:49 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/27 17:55:37 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,31 @@ static void	exp_sortadd(t_data *data, t_env *exp, t_env *node)
 	ft_envadd_back(&data->envs->exp, node);
 }
 
+int	envtab_update(t_data *data)
+{
+	if (data->envs->envve)
+		free(data->envs->envve);
+	data->envs->envve = env_to_tab(data);
+	if (!data->envs->envve)
+		return (1);
+	return (0);
+}
+
 static int	expenv_add2(t_data *data, char *cmdve, int env_or_exp)
 {
 	t_env	*node;
+	t_env	*env;
 
 	if (env_or_exp)
-		if (env_update(data->envs->exp, cmdve))
-			return (0);
-	if (!env_or_exp)
-		if (env_update(data->envs->env, cmdve))
-			return (0);
+		env = data->envs->exp;
+	else
+		env = data->envs->env;
+	if (is_in_env(env, cmdve))
+	{
+		if (env_update(env, cmdve))
+			return (1);
+		return (0);
+	}
 	node = envnew_gtw(cmdve, env_or_exp);
 	if (!node)
 		return (1);
@@ -76,10 +91,7 @@ static int	expenv_add(t_data *data, char *cmdve)
 			return (2);
 		if (expenv_add2(data, cmdve, 0))
 			return (2);
-		if (data->envs->envve)
-			free(data->envs->envve);
-		data->envs->envve = env_to_tab(data);
-		if (!data->envs->envve)
+		if (envtab_update(data))
 			return (2);
 	}
 	else
