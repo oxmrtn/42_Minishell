@@ -17328,3 +17328,152 @@ env =
 env = =lll 
 env = =lll =+=ee 
 exit 
+../ 
+../ 
+echo 127 
+../ 
+echo 127 
+exit 
+../ 
+echo 127 
+exit 
+../ 
+../ 
+exit 
+../ 
+exit 
+../\ 
+../\ 
+../ 
+../\ 
+../ 
+exit 
+../\ 
+../ 
+exit 
+weriweir 
+weriweir 
+export + 
+weriweir 
+export + 
+export -p 
+weriweir 
+export + 
+export -p 
+echo -mp 
+weriweir 
+export + 
+export -p 
+echo -mp 
+../ 
+weriweir 
+export + 
+export -p 
+echo -mp 
+../ 
+clear 
+pika 
+weriweir 
+export + 
+export -p 
+echo -mp 
+../ 
+clear 
+pika 
+exit 
+weriweir 
+export + 
+export -p 
+echo -mp 
+../ 
+clear 
+pika 
+exit 
+eeee 
+eeee 
+echo 1 
+eeee 
+echo 1 
+exit 
+eeee 
+echo 1 
+exit 
+echo 0 
+echo 0 
+ewroiwoepr 
+echo 0 
+ewroiwoepr 
+../ 
+echo 0 
+ewroiwoepr 
+../ 
+exit 
+echo 0 
+ewroiwoepr 
+../ 
+exit 
+werjhwer 
+werjhwer 
+iwertiuert 
+werjhwer 
+iwertiuert 
+../ 
+werjhwer 
+iwertiuert 
+../ 
+./ 
+werjhwer 
+iwertiuert 
+../ 
+./ 
+clear 
+echo 0 
+werjhwer 
+iwertiuert 
+../ 
+./ 
+clear 
+echo 0 
+./ 
+werjhwer 
+iwertiuert 
+../ 
+./ 
+clear 
+echo 0 
+./ 
+echo 126 
+werjhwer 
+iwertiuert 
+../ 
+./ 
+clear 
+echo 0 
+./ 
+echo 126 
+ls 
+echo 0 
+werjhwer 
+iwertiuert 
+../ 
+./ 
+clear 
+echo 0 
+./ 
+echo 126 
+ls 
+echo 0 
+clear 
+exit 
+werjhwer 
+iwertiuert 
+../ 
+./ 
+clear 
+echo 0 
+./ 
+echo 126 
+ls 
+echo 0 
+clear 
+exit 

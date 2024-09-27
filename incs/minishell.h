@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/26 16:29:35 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/27 14:12:00 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,7 @@ void		ft_free_cmdve(char ***cmdve);
 
 /* EXEC */
 int			exec(t_data *data, t_cmds *cmd);
+int			run_cmd(t_data *data, int i, int islast);
 int			is_inred(t_cmds *cmd, int *i);
 int			is_outred(t_cmds *cmd, int i);
 t_tokens	*skip_tokens(t_cmds *cmd, int i);
