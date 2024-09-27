@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:20:36 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/26 20:24:00 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/27 00:44:53 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ static void	ft_set_redirect(t_tokens *current, t_type to_set )
 				current->type = ERROR;
 				current->next->type = ERROR;
 			}
-
 		}
 		else
 			current->type = ERROR;
