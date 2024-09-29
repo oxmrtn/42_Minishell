@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:21:38 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/26 20:28:30 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/29 14:28:48 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,8 @@ t_tokens	*create_token_list(char *line, t_data *data)
 		if (!temp)
 			return (ft_freetab(splitted), NULL);
 		if (add_new_token(temp, &head_node, WAIT))
-			return (ft_freetab(splitted), NULL);
+			return (ft_freetab(splitted), free(temp), NULL);
+		free(temp);
 		i++;
 	}
 	get_type(head_node);
