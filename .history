@@ -20498,3 +20498,34 @@ export
 export 
 clear 
 exit 
+echo hola 
+echo hola 
+exit 
+echo hola 
+exit 
+echo hola 
+echo hola 
+exit 
+echo hola 
+exit 
+echo hola 
+echo hola 
+exit 
+echo hola 
+exit 
+echo eee 
+echo eee 
+git restore srcs/frees/free2.c 
+git diff srcs/frees/free2.c 
+clear 
+exit 
+echo eee 
+git restore srcs/frees/free2.c 
+git diff srcs/frees/free2.c 
+clear 
+exit 
+echo ee 
+echo ee 
+exit 
+echo ee 
+exit 

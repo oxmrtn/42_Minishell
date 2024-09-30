@@ -6,7 +6,7 @@
 #    By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/04 15:03:37 by ebengtss          #+#    #+#              #
-#    Updated: 2024/09/30 14:26:33 by ebengtss         ###   ########.fr        #
+#    Updated: 2024/09/30 15:24:45 by ebengtss         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ SRCS_FILES			=	main.c				builtins.c			\
 						parsing_utils.c		history.c			\
 						handle_variable.c	commands_struct.c	\
 						here_docs.c			tokenization.c		\
-						tokens_struct.c		conditionnal_free.c	\
+						tokens_struct.c		free2.c	\
 						env_init.c			env_list.c			\
 						env_list2.c			cmdve.c				\
 						check_error.c		redirs2.c			\
