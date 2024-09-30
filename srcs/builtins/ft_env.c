@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:48:29 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/27 19:25:13 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/30 14:19:13 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,15 +85,14 @@ void	print_env(t_env *env, int env_or_exp)
 	}
 }
 
-char	**env_to_tab(t_data *data)
+char	**env_to_tab(t_env *env)
 {
-	size_t			i;
-	const size_t	size = ft_envsize(data->envs->env);
-	t_env			*env;
-	char			**tmp_env;
+	size_t	i;
+	size_t	size;
+	char	**tmp_env;
 
 	i = 0;
-	env = data->envs->env;
+	size = ft_envsize(env);
 	tmp_env = malloc(sizeof(char *) * (size + 1));
 	if (!tmp_env)
 		return (NULL);
@@ -122,7 +121,7 @@ int	ft_env(t_data *data, char **cmdve)
 	while (cmdve[i])
 	{
 		if (ft_strncmp(cmdve[i], "_=", 2) != 0
-			|| ft_strncmp(cmdve[i], "_+=", 3) != 0)
+			&& ft_strncmp(cmdve[i], "_+=", 3) != 0)
 			if (tmp_env_add(data, cmdve[i]))
 				return (-100);
 		i++;

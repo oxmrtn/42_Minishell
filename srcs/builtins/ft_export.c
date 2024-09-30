@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:47:35 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/27 17:55:37 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/30 14:21:34 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	envtab_update(t_data *data)
 {
 	if (data->envs->envve)
 		free(data->envs->envve);
-	data->envs->envve = env_to_tab(data);
+	data->envs->envve = env_to_tab(data->envs->env);
 	if (!data->envs->envve)
 		return (1);
 	return (0);
@@ -59,7 +59,7 @@ static int	expenv_add2(t_data *data, char *cmdve, int env_or_exp)
 		env = data->envs->exp;
 	else
 		env = data->envs->env;
-	if (is_in_env(env, cmdve))
+	if (is_inenv_str(env, cmdve))
 	{
 		if (env_update(env, cmdve))
 			return (1);
@@ -112,7 +112,7 @@ int	ft_export(t_data *data, char **cmdve)
 	while (cmdve[i])
 	{
 		if (ft_strncmp(cmdve[i], "_=", 2) != 0
-			|| ft_strncmp(cmdve[i], "_+=", 3) != 0)
+			&& ft_strncmp(cmdve[i], "_+=", 3) != 0)
 		{
 			if (retval != 1)
 				retval = expenv_add(data, cmdve[i]);

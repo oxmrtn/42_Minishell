@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:27:05 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/27 19:27:25 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/30 14:16:11 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	tmp_env_add(t_data *data, char *cmdve)
 	if (!data->envs->tmpenv)
 		if (ft_envdup(data))
 			return (1);
-	if (is_in_env(data->envs->tmpenv, cmdve))
+	if (is_inenv_str(data->envs->tmpenv, cmdve))
 	{
 		if (env_update(data->envs->tmpenv, cmdve))
 			return (1);
@@ -72,7 +72,6 @@ int	tmp_env_add(t_data *data, char *cmdve)
 	if (!node)
 		return (1);
 	ft_envadd_back(&data->envs->tmpenv, node);
-	printf("\n\n:::%s\n\n", ft_envlast(data->envs->tmpenv)->key);
 	return (0);
 }
 
@@ -99,7 +98,7 @@ int	tmp_env_setup(t_data *data, t_cmds *cmd, int i)
 	if (!check)
 		return (0);
 	data->envs->tmpenvve = data->envs->envve;
-	data->envs->envve = env_to_tab(data);
+	data->envs->envve = env_to_tab(data->envs->tmpenv);
 	if (!data->envs->envve)
 		return (1);
 	return (0);

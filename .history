@@ -18028,3 +18028,1063 @@ env test=ee
 clear 
 env test=ee 
 exit 
+clear 
+env bbb= 
+clear 
+env bbb= 
+exit 
+clear 
+env bbb= 
+exit 
+clear 
+env 
+clear 
+env 
+clear 
+env blblb=ppp 
+clear 
+env 
+clear 
+env blblb=ppp 
+exit 
+clear 
+env 
+clear 
+env blblb=ppp 
+exit 
+clear 
+env 
+clear 
+env 
+clear 
+env bbbb=ee 
+clear 
+env 
+clear 
+env bbbb=ee 
+exit 
+clear 
+env 
+clear 
+env bbbb=ee 
+exit 
+clear 
+env 
+clear 
+env 
+clear 
+env ppppppp=eeee 
+clear 
+env 
+clear 
+env ppppppp=eeee 
+exit 
+clear 
+env 
+clear 
+env ppppppp=eeee 
+exit 
+clear 
+env bbbbb=weweww 
+clear 
+env bbbbb=weweww 
+exit 
+clear 
+env bbbbb=weweww 
+exit 
+clear 
+env 
+clear 
+env 
+clear 
+env bbbbbb=weewwe 
+clear 
+env 
+clear 
+env bbbbbb=weewwe 
+clear 
+exit 
+clear 
+env 
+clear 
+env bbbbbb=weewwe 
+clear 
+exit 
+clear 
+env bbb=ee 
+clear 
+env bbb=ee 
+env 
+clear 
+env bbb=ee 
+env 
+clear 
+env SHLVL=1000 
+clear 
+env bbb=ee 
+env 
+clear 
+env SHLVL=1000 
+exit 
+clear 
+env bbb=ee 
+env 
+clear 
+env SHLVL=1000 
+exit 
+clear 
+env 
+clear 
+env 
+env 
+clear 
+env 
+env 
+env ppppp=eew 
+clear 
+env 
+env 
+env ppppp=eew 
+clear 
+env SHLVL=1000 
+clear 
+env 
+env 
+env ppppp=eew 
+clear 
+env SHLVL=1000 
+clear 
+ls 
+env 
+clear 
+env 
+env 
+env ppppp=eew 
+clear 
+env SHLVL=1000 
+clear 
+ls 
+env 
+export SHLVL=1000 
+clear 
+env 
+env 
+env ppppp=eew 
+clear 
+env SHLVL=1000 
+clear 
+ls 
+env 
+export SHLVL=1000 
+env 
+clear 
+env 
+env 
+env ppppp=eew 
+clear 
+env SHLVL=1000 
+clear 
+ls 
+env 
+export SHLVL=1000 
+env 
+exit 
+clear 
+env 
+env 
+env ppppp=eew 
+clear 
+env SHLVL=1000 
+clear 
+ls 
+env 
+export SHLVL=1000 
+env 
+exit 
+clear 
+export SHLVL=10000 
+clear 
+export SHLVL=10000 
+env 
+clear 
+env 
+clear 
+env 
+exit 
+clear 
+env 
+exit 
+clear 
+export SHLVL=10000 
+env 
+./minishell 
+exit 
+clear 
+export SHLVL=10000 
+env 
+./minishell 
+exit 
+clear 
+env 
+clear 
+env 
+export 
+clear 
+env 
+export 
+export pppp 
+clear 
+env 
+export 
+export pppp 
+clear 
+env 
+clear 
+env 
+export 
+export pppp 
+clear 
+env 
+export 
+clear 
+env 
+export 
+export pppp 
+clear 
+env 
+export 
+export pppp=qq 
+clear 
+env 
+export 
+export pppp 
+clear 
+env 
+export 
+export pppp=qq 
+export 
+clear 
+env 
+export 
+export pppp 
+clear 
+env 
+export 
+export pppp=qq 
+export 
+env 
+clear 
+env 
+export 
+export pppp 
+clear 
+env 
+export 
+export pppp=qq 
+export 
+env 
+env pppp=e 
+clear 
+env 
+export 
+export pppp 
+clear 
+env 
+export 
+export pppp=qq 
+export 
+env 
+env pppp=e 
+env 
+clear 
+env 
+export 
+export pppp 
+clear 
+env 
+export 
+export pppp=qq 
+export 
+env 
+env pppp=e 
+env 
+export _=pppp 
+clear 
+env 
+export 
+export pppp 
+clear 
+env 
+export 
+export pppp=qq 
+export 
+env 
+env pppp=e 
+env 
+export _=pppp 
+env 
+clear 
+env 
+export 
+export pppp 
+clear 
+env 
+export 
+export pppp=qq 
+export 
+env 
+env pppp=e 
+env 
+export _=pppp 
+env 
+export 
+clear 
+env 
+export 
+export pppp 
+clear 
+env 
+export 
+export pppp=qq 
+export 
+env 
+env pppp=e 
+env 
+export _=pppp 
+env 
+export 
+clear 
+export 
+clear 
+env 
+export 
+export pppp 
+clear 
+env 
+export 
+export pppp=qq 
+export 
+env 
+env pppp=e 
+env 
+export _=pppp 
+env 
+export 
+clear 
+export 
+clear 
+export _=pppppp 
+clear 
+env 
+export 
+export pppp 
+clear 
+env 
+export 
+export pppp=qq 
+export 
+env 
+env pppp=e 
+env 
+export _=pppp 
+env 
+export 
+clear 
+export 
+clear 
+export _=pppppp 
+env 
+clear 
+env 
+export 
+export pppp 
+clear 
+env 
+export 
+export pppp=qq 
+export 
+env 
+env pppp=e 
+env 
+export _=pppp 
+env 
+export 
+clear 
+export 
+clear 
+export _=pppppp 
+env 
+export 
+clear 
+env 
+export 
+export pppp 
+clear 
+env 
+export 
+export pppp=qq 
+export 
+env 
+env pppp=e 
+env 
+export _=pppp 
+env 
+export 
+clear 
+export 
+clear 
+export _=pppppp 
+env 
+export 
+unset pppp 
+clear 
+env 
+export 
+export pppp 
+clear 
+env 
+export 
+export pppp=qq 
+export 
+env 
+env pppp=e 
+env 
+export _=pppp 
+env 
+export 
+clear 
+export 
+clear 
+export _=pppppp 
+env 
+export 
+unset pppp 
+env 
+clear 
+env 
+export 
+export pppp 
+clear 
+env 
+export 
+export pppp=qq 
+export 
+env 
+env pppp=e 
+env 
+export _=pppp 
+env 
+export 
+clear 
+export 
+clear 
+export _=pppppp 
+env 
+export 
+unset pppp 
+env 
+export 
+clear 
+env 
+export 
+export pppp 
+clear 
+env 
+export 
+export pppp=qq 
+export 
+env 
+env pppp=e 
+env 
+export _=pppp 
+env 
+export 
+clear 
+export 
+clear 
+export _=pppppp 
+env 
+export 
+unset pppp 
+env 
+export 
+exiut 
+clear 
+env 
+export 
+export pppp 
+clear 
+env 
+export 
+export pppp=qq 
+export 
+env 
+env pppp=e 
+env 
+export _=pppp 
+env 
+export 
+clear 
+export 
+clear 
+export _=pppppp 
+env 
+export 
+unset pppp 
+env 
+export 
+exiut 
+exit 
+clear 
+env 
+export 
+export pppp 
+clear 
+env 
+export 
+export pppp=qq 
+export 
+env 
+env pppp=e 
+env 
+export _=pppp 
+env 
+export 
+clear 
+export 
+clear 
+export _=pppppp 
+env 
+export 
+unset pppp 
+env 
+export 
+exiut 
+exit 
+export _=eeeee 
+export _=eeeee 
+export 
+export _=eeeee 
+export 
+env 
+export _=eeeee 
+export 
+env 
+clear 
+env 
+export _=eeeee 
+export 
+env 
+clear 
+env 
+unset _ 
+export _=eeeee 
+export 
+env 
+clear 
+env 
+unset _ 
+env 
+export _=eeeee 
+export 
+env 
+clear 
+env 
+unset _ 
+env 
+export 
+export _=eeeee 
+export 
+env 
+clear 
+env 
+unset _ 
+env 
+export 
+clear 
+env 
+export _=eeeee 
+export 
+env 
+clear 
+env 
+unset _ 
+env 
+export 
+clear 
+env 
+env lllll 
+export _=eeeee 
+export 
+env 
+clear 
+env 
+unset _ 
+env 
+export 
+clear 
+env 
+env lllll 
+env lllll= 
+export _=eeeee 
+export 
+env 
+clear 
+env 
+unset _ 
+env 
+export 
+clear 
+env 
+env lllll 
+env lllll= 
+env 
+export _=eeeee 
+export 
+env 
+clear 
+env 
+unset _ 
+env 
+export 
+clear 
+env 
+env lllll 
+env lllll= 
+env 
+env LS_COLORS= 
+export _=eeeee 
+export 
+env 
+clear 
+env 
+unset _ 
+env 
+export 
+clear 
+env 
+env lllll 
+env lllll= 
+env 
+env LS_COLORS= 
+env 
+clear 
+env 
+clear 
+env 
+exit 
+clear 
+env 
+exit 
+export _=eeeee 
+export 
+env 
+clear 
+env 
+unset _ 
+env 
+export 
+clear 
+env 
+env lllll 
+env lllll= 
+env 
+env LS_COLORS= 
+env 
+env LS_COLORS= ./minishell 
+clear 
+env 
+export _=eeeee 
+export 
+env 
+clear 
+env 
+unset _ 
+env 
+export 
+clear 
+env 
+env lllll 
+env lllll= 
+env 
+env LS_COLORS= 
+env 
+env LS_COLORS= ./minishell 
+clear 
+env 
+export 
+export _=eeeee 
+export 
+env 
+clear 
+env 
+unset _ 
+env 
+export 
+clear 
+env 
+env lllll 
+env lllll= 
+env 
+env LS_COLORS= 
+env 
+env LS_COLORS= ./minishell 
+clear 
+env 
+export 
+export bpbpbpbpbp 
+export _=eeeee 
+export 
+env 
+clear 
+env 
+unset _ 
+env 
+export 
+clear 
+env 
+env lllll 
+env lllll= 
+env 
+env LS_COLORS= 
+env 
+env LS_COLORS= ./minishell 
+clear 
+env 
+export 
+export bpbpbpbpbp 
+env 
+export _=eeeee 
+export 
+env 
+clear 
+env 
+unset _ 
+env 
+export 
+clear 
+env 
+env lllll 
+env lllll= 
+env 
+env LS_COLORS= 
+env 
+env LS_COLORS= ./minishell 
+clear 
+env 
+export 
+export bpbpbpbpbp 
+env 
+export 
+export _=eeeee 
+export 
+env 
+clear 
+env 
+unset _ 
+env 
+export 
+clear 
+env 
+env lllll 
+env lllll= 
+env 
+env LS_COLORS= 
+env 
+env LS_COLORS= ./minishell 
+clear 
+env 
+export 
+export bpbpbpbpbp 
+env 
+export 
+export llpppll=pppp 
+export _=eeeee 
+export 
+env 
+clear 
+env 
+unset _ 
+env 
+export 
+clear 
+env 
+env lllll 
+env lllll= 
+env 
+env LS_COLORS= 
+env 
+env LS_COLORS= ./minishell 
+clear 
+env 
+export 
+export bpbpbpbpbp 
+env 
+export 
+export llpppll=pppp 
+env 
+export _=eeeee 
+export 
+env 
+clear 
+env 
+unset _ 
+env 
+export 
+clear 
+env 
+env lllll 
+env lllll= 
+env 
+env LS_COLORS= 
+env 
+env LS_COLORS= ./minishell 
+clear 
+env 
+export 
+export bpbpbpbpbp 
+env 
+export 
+export llpppll=pppp 
+env 
+export 
+export _=eeeee 
+export 
+env 
+clear 
+env 
+unset _ 
+env 
+export 
+clear 
+env 
+env lllll 
+env lllll= 
+env 
+env LS_COLORS= 
+env 
+env LS_COLORS= ./minishell 
+clear 
+env 
+export 
+export bpbpbpbpbp 
+env 
+export 
+export llpppll=pppp 
+env 
+export 
+export llpppll=e llpppll+=mmmmm 
+export _=eeeee 
+export 
+env 
+clear 
+env 
+unset _ 
+env 
+export 
+clear 
+env 
+env lllll 
+env lllll= 
+env 
+env LS_COLORS= 
+env 
+env LS_COLORS= ./minishell 
+clear 
+env 
+export 
+export bpbpbpbpbp 
+env 
+export 
+export llpppll=pppp 
+env 
+export 
+export llpppll=e llpppll+=mmmmm 
+export 
+export _=eeeee 
+export 
+env 
+clear 
+env 
+unset _ 
+env 
+export 
+clear 
+env 
+env lllll 
+env lllll= 
+env 
+env LS_COLORS= 
+env 
+env LS_COLORS= ./minishell 
+clear 
+env 
+export 
+export bpbpbpbpbp 
+env 
+export 
+export llpppll=pppp 
+env 
+export 
+export llpppll=e llpppll+=mmmmm 
+export 
+exit 
+export _=eeeee 
+export 
+env 
+clear 
+env 
+unset _ 
+env 
+export 
+clear 
+env 
+env lllll 
+env lllll= 
+env 
+env LS_COLORS= 
+env 
+env LS_COLORS= ./minishell 
+clear 
+env 
+export 
+export bpbpbpbpbp 
+env 
+export 
+export llpppll=pppp 
+env 
+export 
+export llpppll=e llpppll+=mmmmm 
+export 
+exit 
+clear 
+env 
+clear 
+env 
+env LESS+=pppp 
+env 
+env 
+exit 
+env 
+exit 
+clear 
+env 
+env LESS+=pppp 
+env LESS+=pppp LESS=qqqq ./minishell 
+env 
+clear 
+env 
+env LESS+=pppp 
+env LESS+=pppp LESS=qqqq ./minishell 
+env 
+clear 
+export blblblbl+=p 
+clear 
+env 
+env LESS+=pppp 
+env LESS+=pppp LESS=qqqq ./minishell 
+env 
+clear 
+export blblblbl+=p 
+export 
+clear 
+env 
+env LESS+=pppp 
+env LESS+=pppp LESS=qqqq ./minishell 
+env 
+clear 
+export blblblbl+=p 
+export 
+env 
+clear 
+env 
+env LESS+=pppp 
+env LESS+=pppp LESS=qqqq ./minishell 
+env 
+clear 
+export blblblbl+=p 
+export 
+env 
+env blblblbl+=qqqq 
+clear 
+env 
+env LESS+=pppp 
+env LESS+=pppp LESS=qqqq ./minishell 
+env 
+clear 
+export blblblbl+=p 
+export 
+env 
+env blblblbl+=qqqq 
+env 
+clear 
+env 
+env LESS+=pppp 
+env LESS+=pppp LESS=qqqq ./minishell 
+env 
+clear 
+export blblblbl+=p 
+export 
+env 
+env blblblbl+=qqqq 
+env 
+export blblblbl+=qqqq 
+clear 
+env 
+env LESS+=pppp 
+env LESS+=pppp LESS=qqqq ./minishell 
+env 
+clear 
+export blblblbl+=p 
+export 
+env 
+env blblblbl+=qqqq 
+env 
+export blblblbl+=qqqq 
+env 
+clear 
+env 
+env LESS+=pppp 
+env LESS+=pppp LESS=qqqq ./minishell 
+env 
+clear 
+export blblblbl+=p 
+export 
+env 
+env blblblbl+=qqqq 
+env 
+export blblblbl+=qqqq 
+env 
+export 
+clear 
+env 
+env LESS+=pppp 
+env LESS+=pppp LESS=qqqq ./minishell 
+env 
+clear 
+export blblblbl+=p 
+export 
+env 
+env blblblbl+=qqqq 
+env 
+export blblblbl+=qqqq 
+env 
+export 
+clear 
+exit 
+clear 
+env 
+env LESS+=pppp 
+env LESS+=pppp LESS=qqqq ./minishell 
+env 
+clear 
+export blblblbl+=p 
+export 
+env 
+env blblblbl+=qqqq 
+env 
+export blblblbl+=qqqq 
+env 
+export 
+clear 
+exit 
