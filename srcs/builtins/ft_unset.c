@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:48:13 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/30 14:16:17 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/30 15:37:00 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_unset(t_data *data, char **cmdve)
 	if (check > 0)
 	{
 		if (data->envs->envve)
-			free(data->envs->envve);
+			ft_free_split(data->envs->envve);
 		data->envs->envve = env_to_tab(data->envs->env);
 		if (!data->envs->envve)
 			return (1);

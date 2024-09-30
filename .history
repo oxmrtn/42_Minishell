@@ -20529,3 +20529,57 @@ echo ee
 exit 
 echo ee 
 exit 
+unset HOME 
+unset HOME 
+cd 
+unset HOME 
+cd 
+unset PATH 
+unset PATH 
+clear 
+unset PATH 
+clear 
+clear 
+unset PATH 
+clear 
+clear 
+exit 
+unset PATH 
+clear 
+clear 
+exit 
+unset PATH 
+unset PATH 
+clear 
+unset PATH 
+clear 
+env 
+unset PATH 
+clear 
+env 
+exit 
+unset PATH 
+clear 
+env 
+exit 
+unset 
+unset 
+clear 
+unset ppp 
+unset 
+clear 
+unset ppp 
+clear 
+unset PATH 
+unset 
+clear 
+unset ppp 
+clear 
+unset PATH 
+exit 
+unset 
+clear 
+unset ppp 
+clear 
+unset PATH 
+exit 
