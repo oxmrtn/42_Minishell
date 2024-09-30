@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/30 15:23:33 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/30 17:30:30 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,6 @@ static int	init_data(t_data *data, char **env)
 	data->cmdve = NULL;
 	ft_get_history();
 	ft_add_variable("?=0", data);
-	if (!env[0])
-		return (1);
 	if (env_init(data, env))
 		return (1);
 	return (1);
@@ -95,7 +93,7 @@ static int	the_loop(t_data *data)
 		{
 			//print_commands(ft_get_last_commands(data->cmds));
 			if (exec(data, ft_get_last_commands(data->cmds)))
-				return (free_main(data), 1);
+				return (1);
 		}
 		data->tmpexitstatus = ft_itoa(data->exit_status);
 		ft_update_variable("?", data->tmpexitstatus, data);
@@ -121,7 +119,7 @@ int	main(int argc, char **argv, char **env)
 	while (1)
 	{
 		if (the_loop(data))
-			return (1);
+			return (free_main(data), 1);
 	}
 	return (0);
 }

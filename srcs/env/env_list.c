@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 13:55:26 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/18 12:09:07 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/30 16:14:42 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_envdelone(t_data *data, t_env *node)
 {
 	if (node == data->envs->env)
 		data->envs->env = node->next;
-	if (node == data->envs->exp)
+	else if (node == data->envs->exp)
 		data->envs->exp = node->next;
 	if (node->prev)
 		node->prev->next = node->next;

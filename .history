@@ -20583,3 +20583,82 @@ unset ppp
 clear 
 unset PATH 
 exit 
+unset PATH 
+unset PATH 
+ls 
+unset PATH 
+ls 
+clear 
+unset PATH 
+ls 
+clear 
+exit 
+unset PATH 
+ls 
+clear 
+exit 
+ls 
+echo 0 
+ls 
+echo 0 
+ewrwer 
+ls 
+echo 0 
+ewrwer 
+echo 127 
+ls 
+echo 0 
+ewrwer 
+echo 127 
+clear 
+exit 
+ls 
+echo 0 
+ewrwer 
+echo 127 
+clear 
+exit 
+unset PATH 
+unset PATH 
+exit 
+unset PATH 
+exit 
+unset 
+unset 
+unset PWD 
+unset 
+unset PWD 
+unset 
+unset 
+unset PWD 
+unset 
+unset PATH 
+unset 
+unset PWD 
+unset 
+unset PATH 
+exit 
+unset 
+unset PWD 
+unset 
+unset PATH 
+exit 
+env 
+env 
+unset LANGUAGE 
+env 
+unset LANGUAGE 
+env 
+env 
+unset LANGUAGE 
+env 
+exit 
+env 
+unset LANGUAGE 
+env 
+exit 
+env 
+env 
+exit 
+env 
+exit 

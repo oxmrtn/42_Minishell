@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:48:13 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/30 15:37:00 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/30 17:19:32 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,19 @@
 
 static int	env_del(t_data *data, t_env *lst, char *delkey)
 {
-	int	check;
+	int		check;
+	t_env	*tmp;
 
 	check = 0;
 	while (lst)
 	{
-		if (!ft_ultimate_compare(lst->key, delkey))
+		tmp = lst;
+		lst = lst->next;
+		if (!ft_ultimate_compare(tmp->key, delkey))
 		{
-			ft_envdelone(data, lst);
+			ft_envdelone(data, tmp);
 			check = 1;
 		}
-		lst = lst->next;
 	}
 	return (check);
 }
@@ -46,12 +48,7 @@ int	ft_unset(t_data *data, char **cmdve)
 		i++;
 	}
 	if (check > 0)
-	{
-		if (data->envs->envve)
-			ft_free_split(data->envs->envve);
-		data->envs->envve = env_to_tab(data->envs->env);
-		if (!data->envs->envve)
-			return (1);
-	}
+		if (envtab_update(data))
+			return (-100);
 	return (0);
 }
