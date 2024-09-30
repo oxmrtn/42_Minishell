@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:46:55 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/27 18:00:32 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/30 17:32:38 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	ft_cd(t_data *data, char **cmdve)
 	{
 		temp = get_root(data);
 		if (!temp)
-			return (ft_puterror("minishell error: cd error\n"), -100);
+			return (ft_puterror("minishell error: cd error\n"), 1);
 		if (chdir(temp) != 0)
 			return (perror("cd"), free(temp), 1);
 		free(temp);

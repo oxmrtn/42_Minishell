@@ -20529,3 +20529,242 @@ echo ee
 exit 
 echo ee 
 exit 
+ls 
+clear 
+exit 
+ls 
+clear 
+exit 
+env 
+env 
+export VAR=Bonjour 
+env 
+export VAR=Bonjour 
+export 
+env 
+export VAR=Bonjour 
+export 
+env 
+env 
+export VAR=Bonjour 
+export 
+env 
+export\ 
+env 
+export VAR=Bonjour 
+export 
+env 
+export\ 
+export 
+env 
+export VAR=Bonjour 
+export 
+env 
+export\ 
+export 
+env 
+env 
+export VAR=Bonjour 
+export 
+env 
+export\ 
+export 
+env 
+env 
+env 
+export VAR=Bonjour 
+export 
+env 
+export\ 
+export 
+env 
+env 
+make 
+exirt 
+env 
+export VAR=Bonjour 
+export 
+env 
+export\ 
+export 
+env 
+env 
+env 
+make export VAR=Bonjour 
+
+exirt export 
+
+exit env 
+
+export\ 
+export 
+env 
+env 
+make 
+exirt 
+exit 
+export VAR=BONJOUR 
+export VAR=BONJOUR 
+env 
+export VAR=BONJOUR 
+env 
+export 
+export VAR=BONJOUR 
+env 
+export 
+env 
+export VAR=BONJOUR 
+env 
+export 
+env 
+export 
+export VAR=BONJOUR 
+env 
+export 
+env 
+export 
+export 
+export VAR=BONJOUR 
+env 
+export 
+env 
+export 
+export 
+echo &&& 
+ls 
+exit 
+ls 
+exit 
+export VAR=BONJOUR 
+env 
+export 
+env 
+export 
+export 
+echo &&& 
+clear 
+make 
+clear 
+./minishell 
+echo 0 
+exit 122 
+exit 122 
+export VAR=BONJOUR 
+env 
+export 
+env 
+export 
+export 
+echo &&& 
+clear 
+make 
+clear 
+./minishell 
+echo 0 
+./minishell 
+echo 122 
+export VAR=BONJOUR 
+env 
+export 
+env 
+export 
+export 
+echo &&& 
+clear 
+make 
+clear 
+./minishell 
+export VAR=BONJOUR 
+echo 0 env 
+
+./minishell export 
+
+echo 122 env 
+
+exit export 
+
+export 
+echo &&& 
+clear 
+make 
+clear 
+./minishell 
+echo 0 
+./minishell 
+echo 122 
+exit 
+ls 
+unset HOME 
+ls 
+unset HOME 
+env 
+ls 
+unset HOME 
+env 
+cd 
+env 
+env 
+unset HOME 
+env 
+unset HOME 
+unset ZDOTDIR 
+env 
+unset HOME 
+unset ZDOTDIR 
+env 
+env 
+unset HOME 
+unset ZDOTDIR 
+env 
+unset USER_ZDOTDIR 
+env 
+unset HOME 
+unset ZDOTDIR 
+env 
+unset USER_ZDOTDIR 
+env 
+env env 
+
+unset HOME unset HOME 
+
+unset ZDOTDIR unset ZDOTDIR 
+
+env env 
+
+unset USER_ZDOTDIR 
+unset USER_ZDOTDIR env 
+
+env cd 
+
+cd 
+unset HOME 
+unset HOME 
+unset ZDOTDIR 
+unset HOME 
+unset ZDOTDIR 
+cd 
+unset HOME 
+unset ZDOTDIR 
+cd 
+ls 
+pwd 
+unset HOME 
+unset ZDOTDIR 
+cd 
+ls 
+pwd 
+cd 
+unset HOME 
+unset ZDOTDIR 
+cd 
+ls 
+pwd 
+cd 
+exit 
+unset HOME 
+unset ZDOTDIR 
+cd 
+ls 
+pwd 
+cd 
+exit 
