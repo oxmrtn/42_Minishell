@@ -6,11 +6,24 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 16:20:25 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/18 15:46:12 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/30 11:11:21 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
+
+static int	check_is_correct_var(char *equal, char *str)
+{
+	if (!equal)
+		return (1);
+	while (str != equal)
+	{
+		if (ft_isdigit(*str))
+			return (1);
+		str++;
+	}
+	return (0);
+}
 
 int	ft_check_variable(char *str, t_data *data)
 {
@@ -19,7 +32,7 @@ int	ft_check_variable(char *str, t_data *data)
 	char	*t2;
 
 	tmp = ft_strchr(str, '=');
-	if (!tmp)
+	if (!tmp || check_is_correct_var(tmp, str))
 		return (0);
 	t1 = ft_strchr(str, 34);
 	t2 = ft_strchr(str, 39);

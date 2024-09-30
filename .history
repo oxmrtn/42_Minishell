@@ -18176,3 +18176,122 @@ cat Makefile > outfile < Makefile cat >> outfile
 < Makefile cat -e >> outfile exit 
 
 exit 
+clear 
+/ 
+clear 
+/ 
+/. 
+clear 
+/ 
+/. 
+/. 
+clear 
+/ 
+/. 
+/. 
+//////////////////// 
+clear 
+/ 
+/. 
+/. 
+//////////////////// 
+\\\\\\\\\\\ 
+clear 
+/ 
+/. 
+/. 
+//////////////////// 
+\\\\\\\\\\\ 
+\\\\\\\\\\ 
+clear 
+/ 
+/. 
+/. 
+//////////////////// 
+\\\\\\\\\\\ 
+\\\\\\\\\\ 
+- 
+clear 
+/ 
+/. 
+/. 
+//////////////////// 
+\\\\\\\\\\\ 
+\\\\\\\\\\ 
+- 
+*/* 
+clear 
+/ 
+/. 
+/. 
+//////////////////// 
+\\\\\\\\\\\ 
+\\\\\\\\\\ 
+- 
+*/* 
+ola 
+clear 
+/ 
+/. 
+/. 
+//////////////////// 
+\\\\\\\\\\\ 
+\\\\\\\\\\ 
+- 
+*/* 
+ola 
+echo hola 
+clear 
+/ 
+/. 
+/. 
+//////////////////// 
+\\\\\\\\\\\ 
+\\\\\\\\\\ 
+- 
+*/* 
+ola 
+echo hola 
+echo hola 
+clear 
+clear 
+/ / 
+
+/. /. 
+
+/. /. 
+
+//////////////////// //////////////////// 
+
+\\\\\\\\\\\ \\\\\\\\\\\ 
+
+\\\\\\\\\\ \\\\\\\\\\ 
+
+- - 
+
+*/* */* 
+
+ola ola 
+
+echo hola echo hola 
+
+echo hola echo hola 
+
+exit exit 
+
+4ABC=hola 
+4ABC=hola 
+nor 
+4ABC=hola 
+nor 
+norminette 
+exit 
+4ABC=hola 
+nor 
+norminette 
+exit 
+echo bonjour le monde 
+echo bonjour le monde 
+exit 
+echo bonjour le monde 
+exit 
