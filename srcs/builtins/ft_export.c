@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:47:35 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/30 14:21:34 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/30 15:12:47 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	exp_sortadd(t_data *data, t_env *exp, t_env *node)
 int	envtab_update(t_data *data)
 {
 	if (data->envs->envve)
-		free(data->envs->envve);
+		ft_free_split(data->envs->envve);
 	data->envs->envve = env_to_tab(data->envs->env);
 	if (!data->envs->envve)
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/30 14:16:03 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/30 14:38:07 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ typedef struct s_data
 	t_envs	*envs;
 	t_var	*var;
 	char	***cmdve;
+	char	*read;
+	char	*tmpexitstatus;
 	int		exit_status;
 	int		stdincpy;
 	int		stdoutcpy;

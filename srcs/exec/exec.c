@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:57:50 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/27 19:16:27 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/30 15:01:03 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	run_gtw(t_data *data, t_cmds *cmd, int *i, int islast)
 	{
 		ft_free_env(&data->envs->tmpenv);
 		data->envs->tmpenv = NULL;
-		free(data->envs->envve);
+		ft_free_split(data->envs->envve);
 		data->envs->envve = data->envs->tmpenvve;
 		data->envs->tmpenvve = NULL;
 	}

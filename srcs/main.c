@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/30 10:46:52 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/30 15:06:29 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ static int	init_data(t_data *data, char **env)
 {
 	data->exit_status = 0;
 	data->var = NULL;
+	data->read = NULL;
+	data->tmpexitstatus = NULL;
 	data->stdincpy = dup(STDIN_FILENO);
 	data->stdoutcpy = dup(STDOUT_FILENO);
 	if (data->stdincpy == -1 || data->stdoutcpy == -1)
@@ -83,26 +85,23 @@ static int	init_data(t_data *data, char **env)
 
 static int	the_loop(t_data *data)
 {
-	char	*read;
-	char	*temp;
-
-	read = readline("minishell → ");
-	if (read == NULL)
-		read = ft_strdup("exit 130");
-	if (read[0])
+	data->read = readline("minishell → ");
+	if (data->read == NULL)
+		data->read = ft_strdup("exit 130");
+	if (data->read[0])
 	{
-		add_history(read);
-		if (ft_parser(read, &data->cmds, data) == 0)
+		add_history(data->read);
+		if (ft_parser(data->read, &data->cmds, data) == 0)
 		{
 			//print_commands(ft_get_last_commands(data->cmds));
 			if (exec(data, ft_get_last_commands(data->cmds)))
 				return (free_main(data), 1);
 		}
-		temp = ft_itoa(data->exit_status);
-		ft_update_variable("?", temp, data);
-		free(temp);
+		data->tmpexitstatus = ft_itoa(data->exit_status);
+		ft_update_variable("?", data->tmpexitstatus, data);
+		free(data->tmpexitstatus);
+		data->tmpexitstatus = NULL;
 	}
-	free(read);
 	return (0);
 }
 
