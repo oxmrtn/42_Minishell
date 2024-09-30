@@ -20529,242 +20529,139 @@ echo ee
 exit 
 echo ee 
 exit 
+<<<<<<< HEAD
+=======
+unset HOME 
+unset HOME 
+cd 
+unset HOME 
+cd 
+unset PATH 
+unset PATH 
+clear 
+unset PATH 
+clear 
+clear 
+unset PATH 
+clear 
+clear 
+exit 
+unset PATH 
+clear 
+clear 
+exit 
+unset PATH 
+unset PATH 
+clear 
+unset PATH 
+clear 
+env 
+unset PATH 
+clear 
+env 
+exit 
+unset PATH 
+clear 
+env 
+exit 
+unset 
+unset 
+clear 
+unset ppp 
+unset 
+clear 
+unset ppp 
+clear 
+unset PATH 
+unset 
+clear 
+unset ppp 
+clear 
+unset PATH 
+exit 
+unset 
+clear 
+unset ppp 
+clear 
+unset PATH 
+exit 
+unset PATH 
+unset PATH 
+ls 
+unset PATH 
+ls 
+clear 
+unset PATH 
+ls 
+clear 
+exit 
+unset PATH 
+>>>>>>> dc0de86aadf60549957303f172bab79ce043445c
 ls 
 clear 
 exit 
 ls 
-clear 
-exit 
-env 
-env 
-export VAR=Bonjour 
-env 
-export VAR=Bonjour 
-export 
-env 
-export VAR=Bonjour 
-export 
-env 
-env 
-export VAR=Bonjour 
-export 
-env 
-export\ 
-env 
-export VAR=Bonjour 
-export 
-env 
-export\ 
-export 
-env 
-export VAR=Bonjour 
-export 
-env 
-export\ 
-export 
-env 
-env 
-export VAR=Bonjour 
-export 
-env 
-export\ 
-export 
-env 
-env 
-env 
-export VAR=Bonjour 
-export 
-env 
-export\ 
-export 
-env 
-env 
-make 
-exirt 
-env 
-export VAR=Bonjour 
-export 
-env 
-export\ 
-export 
-env 
-env 
-env 
-make export VAR=Bonjour 
-
-exirt export 
-
-exit env 
-
-export\ 
-export 
-env 
-env 
-make 
-exirt 
-exit 
-export VAR=BONJOUR 
-export VAR=BONJOUR 
-env 
-export VAR=BONJOUR 
-env 
-export 
-export VAR=BONJOUR 
-env 
-export 
-env 
-export VAR=BONJOUR 
-env 
-export 
-env 
-export 
-export VAR=BONJOUR 
-env 
-export 
-env 
-export 
-export 
-export VAR=BONJOUR 
-env 
-export 
-env 
-export 
-export 
-echo &&& 
-ls 
-exit 
-ls 
-exit 
-export VAR=BONJOUR 
-env 
-export 
-env 
-export 
-export 
-echo &&& 
-clear 
-make 
-clear 
-./minishell 
 echo 0 
-exit 122 
-exit 122 
-export VAR=BONJOUR 
-env 
-export 
-env 
-export 
-export 
-echo &&& 
-clear 
-make 
-clear 
-./minishell 
+ls 
 echo 0 
-./minishell 
-echo 122 
-export VAR=BONJOUR 
-env 
-export 
-env 
-export 
-export 
-echo &&& 
-clear 
-make 
-clear 
-./minishell 
-export VAR=BONJOUR 
-echo 0 env 
-
-./minishell export 
-
-echo 122 env 
-
-exit export 
-
-export 
-echo &&& 
-clear 
-make 
-clear 
-./minishell 
+ewrwer 
+ls 
 echo 0 
-./minishell 
-echo 122 
+ewrwer 
+echo 127 
+ls 
+echo 0 
+ewrwer 
+echo 127 
+clear 
 exit 
 ls 
-unset HOME 
-ls 
-unset HOME 
-env 
-ls 
-unset HOME 
-env 
-cd 
-env 
-env 
-unset HOME 
-env 
-unset HOME 
-unset ZDOTDIR 
-env 
-unset HOME 
-unset ZDOTDIR 
-env 
-env 
-unset HOME 
-unset ZDOTDIR 
-env 
-unset USER_ZDOTDIR 
-env 
-unset HOME 
-unset ZDOTDIR 
-env 
-unset USER_ZDOTDIR 
-env 
-env env 
-
-unset HOME unset HOME 
-
-unset ZDOTDIR unset ZDOTDIR 
-
-env env 
-
-unset USER_ZDOTDIR 
-unset USER_ZDOTDIR env 
-
-env cd 
-
-cd 
-unset HOME 
-unset HOME 
-unset ZDOTDIR 
-unset HOME 
-unset ZDOTDIR 
-cd 
-unset HOME 
-unset ZDOTDIR 
-cd 
-ls 
-pwd 
-unset HOME 
-unset ZDOTDIR 
-cd 
-ls 
-pwd 
-cd 
-unset HOME 
-unset ZDOTDIR 
-cd 
-ls 
-pwd 
-cd 
+echo 0 
+ewrwer 
+echo 127 
+clear 
 exit 
-unset HOME 
-unset ZDOTDIR 
-cd 
-ls 
-pwd 
-cd 
+unset PATH 
+unset PATH 
+exit 
+unset PATH 
+exit 
+unset 
+unset 
+unset PWD 
+unset 
+unset PWD 
+unset 
+unset 
+unset PWD 
+unset 
+unset PATH 
+unset 
+unset PWD 
+unset 
+unset PATH 
+exit 
+unset 
+unset PWD 
+unset 
+unset PATH 
+exit 
+env 
+env 
+unset LANGUAGE 
+env 
+unset LANGUAGE 
+env 
+env 
+unset LANGUAGE 
+env 
+exit 
+env 
+unset LANGUAGE 
+env 
+exit 
+env 
+env 
+exit 
+env 
 exit 
