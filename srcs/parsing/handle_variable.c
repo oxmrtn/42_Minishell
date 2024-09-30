@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 16:20:25 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/30 18:20:27 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/30 18:22:32 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 static int	check_is_correct_var(char *equal, char *str)
 {
 	if (!equal)
+		return (1);
+	if (!ft_strncmp(str, "_", equal - str))
 		return (1);
 	while (str != equal)
 	{
@@ -32,15 +34,15 @@ int	ft_check_variable(char *str, t_data *data)
 	char	*t2;
 
 	tmp = ft_strchr(str, '=');
-	if (!tmp || check_is_correct_var(tmp, str))
+	if (check_is_correct_var(tmp, str))
 		return (0);
 	t1 = ft_strchr(str, 34);
 	t2 = ft_strchr(str, 39);
-	if ((t1 && tmp > t1) || (t2 && tmp > t2))
+	if ((t1 && tmp > t1) || (t2 && tmp > t2) || ft_check_quote_syntax(tmp + 1))
 		return (0);
-	if (ft_check_quote_syntax(tmp + 1))
-		return (0);
-	if (env_update(data->envs->env, str))
+	if (!env_update(data->envs->env, str))
+		return (env_update(data->envs->exp, str), envtab_update(data), 1);
+	if (!env_update(data->envs->exp, str))
 		return (1);
 	if (!ft_add_variable(str, data))
 		return (1);
@@ -59,7 +61,7 @@ int	ft_add_variable(char *str, t_data *data)
 		free(new_node->content);
 		new_node->content = ft_strdup_custom(str + i + 1);
 		if (!new_node->content)
-			return (free(new_node), 0);
+			return (free(new_node), 1);
 		return (0);
 	}
 	new_node = malloc(sizeof(t_var));

@@ -20529,6 +20529,8 @@ echo ee
 exit 
 echo ee 
 exit 
+<<<<<<< HEAD
+=======
 unset HOME 
 unset HOME 
 cd 
@@ -20594,6 +20596,7 @@ ls
 clear 
 exit 
 unset PATH 
+>>>>>>> dc0de86aadf60549957303f172bab79ce043445c
 ls 
 clear 
 exit 
