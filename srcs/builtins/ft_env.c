@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:48:29 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/26 18:47:34 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/30 14:19:13 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,15 +85,14 @@ void	print_env(t_env *env, int env_or_exp)
 	}
 }
 
-char	**env_to_tab(t_data *data)
+char	**env_to_tab(t_env *env)
 {
-	size_t			i;
-	const size_t	size = ft_envsize(data->envs->env);
-	t_env			*env;
-	char			**tmp_env;
+	size_t	i;
+	size_t	size;
+	char	**tmp_env;
 
 	i = 0;
-	env = data->envs->env;
+	size = ft_envsize(env);
 	tmp_env = malloc(sizeof(char *) * (size + 1));
 	if (!tmp_env)
 		return (NULL);
@@ -122,12 +121,18 @@ int	ft_env(t_data *data, char **cmdve)
 	while (cmdve[i])
 	{
 		if (ft_strncmp(cmdve[i], "_=", 2) != 0
-			|| ft_strncmp(cmdve[i], "_+=", 3) != 0)
+			&& ft_strncmp(cmdve[i], "_+=", 3) != 0)
 			if (tmp_env_add(data, cmdve[i]))
-				return (tmp_env_clean(data), -100);
+				return (-100);
 		i++;
 	}
-	print_env(data->envs->env, 0);
-	tmp_env_clean(data);
+	if (i == 1)
+		print_env(data->envs->env, 0);
+	else
+	{
+		print_env(data->envs->tmpenv, 0);
+		ft_free_env(&data->envs->tmpenv);
+		data->envs->tmpenv = NULL;
+	}
 	return (0);
 }

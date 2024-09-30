@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:27:05 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/26 18:36:39 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/30 14:16:11 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,7 @@ int	env_update(t_env *lst, char *str)
 		{
 			if (c)
 				if (env_update2(lst, c))
-					return (2);
-			return (1);
+					return (1);
 		}
 		lst = lst->next;
 	}
@@ -60,25 +59,20 @@ int	tmp_env_add(t_data *data, char *cmdve)
 {
 	t_env	*node;
 
-	if (env_update(data->envs->env, cmdve))
+	if (!data->envs->tmpenv)
+		if (ft_envdup(data))
+			return (1);
+	if (is_inenv_str(data->envs->tmpenv, cmdve))
+	{
+		if (env_update(data->envs->tmpenv, cmdve))
+			return (1);
 		return (0);
+	}
 	node = envnew_gtw(cmdve, 0);
 	if (!node)
 		return (1);
-	ft_envadd_back(&data->envs->l_env, node);
+	ft_envadd_back(&data->envs->tmpenv, node);
 	return (0);
-}
-
-void	tmp_env_clean(t_data *data)
-{
-	t_env	*l_node;
-
-	l_node = data->envs->l_env;
-	if (l_node->next)
-	{
-		ft_free_env(&l_node->next);
-		data->envs->l_env->next = NULL;
-	}
 }
 
 int	tmp_env_setup(t_data *data, t_cmds *cmd, int i)
@@ -103,8 +97,8 @@ int	tmp_env_setup(t_data *data, t_cmds *cmd, int i)
 	}
 	if (!check)
 		return (0);
-	data->envs->tmpenv = data->envs->envve;
-	data->envs->envve = env_to_tab(data);
+	data->envs->tmpenvve = data->envs->envve;
+	data->envs->envve = env_to_tab(data->envs->tmpenv);
 	if (!data->envs->envve)
 		return (1);
 	return (0);

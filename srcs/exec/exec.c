@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:57:50 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/24 17:47:16 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/27 19:16:27 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,30 @@ int	reset_fds(t_data *data, int std)
 		data->stdoutcpy = dup(STDOUT_FILENO);
 		if (data->stdoutcpy == -1)
 			return (1);
+	}
+	return (0);
+}
+
+int	run_gtw(t_data *data, t_cmds *cmd, int *i, int islast)
+{
+	if (data->cmdve[*i])
+	{
+		if (is_inred(cmd, i))
+			return (1);
+		if (tmp_env_setup(data, cmd, *i))
+			return (1);
+	}
+	if (run_cmd(data, *i, islast))
+		return (1);
+	if (reset_fds(data, 1))
+		return (1);
+	if (data->envs->tmpenvve)
+	{
+		ft_free_env(&data->envs->tmpenv);
+		data->envs->tmpenv = NULL;
+		free(data->envs->envve);
+		data->envs->envve = data->envs->tmpenvve;
+		data->envs->tmpenvve = NULL;
 	}
 	return (0);
 }

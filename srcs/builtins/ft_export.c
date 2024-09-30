@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:47:35 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/26 17:07:03 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/30 14:21:34 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,31 @@ static void	exp_sortadd(t_data *data, t_env *exp, t_env *node)
 	ft_envadd_back(&data->envs->exp, node);
 }
 
+int	envtab_update(t_data *data)
+{
+	if (data->envs->envve)
+		free(data->envs->envve);
+	data->envs->envve = env_to_tab(data->envs->env);
+	if (!data->envs->envve)
+		return (1);
+	return (0);
+}
+
 static int	expenv_add2(t_data *data, char *cmdve, int env_or_exp)
 {
 	t_env	*node;
+	t_env	*env;
 
 	if (env_or_exp)
-		if (env_update(data->envs->exp, cmdve))
-			return (0);
-	if (!env_or_exp)
-		if (env_update(data->envs->env, cmdve))
-			return (0);
+		env = data->envs->exp;
+	else
+		env = data->envs->env;
+	if (is_inenv_str(env, cmdve))
+	{
+		if (env_update(env, cmdve))
+			return (1);
+		return (0);
+	}
 	node = envnew_gtw(cmdve, env_or_exp);
 	if (!node)
 		return (1);
@@ -66,7 +81,7 @@ static int	expenv_add(t_data *data, char *cmdve)
 
 	if (isvalid_env(cmdve, 0))
 	{
-		ft_desc_error("export", cmdve);
+		ft_desc_error("export", cmdve, 1);
 		return (ft_puterror("not a valid identifier\n"), 1);
 	}
 	c = ft_strchr(cmdve, '=');
@@ -76,10 +91,7 @@ static int	expenv_add(t_data *data, char *cmdve)
 			return (2);
 		if (expenv_add2(data, cmdve, 0))
 			return (2);
-		if (data->envs->envve)
-			free(data->envs->envve);
-		data->envs->envve = env_to_tab(data);
-		if (!data->envs->envve)
+		if (envtab_update(data))
 			return (2);
 	}
 	else
@@ -100,7 +112,7 @@ int	ft_export(t_data *data, char **cmdve)
 	while (cmdve[i])
 	{
 		if (ft_strncmp(cmdve[i], "_=", 2) != 0
-			|| ft_strncmp(cmdve[i], "_+=", 3) != 0)
+			&& ft_strncmp(cmdve[i], "_+=", 3) != 0)
 		{
 			if (retval != 1)
 				retval = expenv_add(data, cmdve[i]);
