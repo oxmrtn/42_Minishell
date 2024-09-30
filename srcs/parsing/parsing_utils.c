@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:45:56 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/26 20:53:46 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/30 10:24:47 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,17 @@ static char	*ft_append(char *s1, char c)
 	return (buffer);
 }
 
+static void	ft_append_var_bis(int *i, char *key)
+{
+	if (key)
+	{
+		*i = (int)ft_strlen(key);
+		free(key);
+	}
+	else
+		*i = 1;
+}
+
 static int	ft_append_var(char **s1, char *s2, t_data *data)
 {
 	int		i;
@@ -46,14 +57,10 @@ static int	ft_append_var(char **s1, char *s2, t_data *data)
 	key = NULL;
 	i = 0;
 	while (s2[i] && s2[i] != ' ' && s2[i] != '\n' && s2[i] != 39 && s2[i] != 34
-			&& s2[i] != '$' && s2[i] != ':')
+		&& s2[i] != '$' && s2[i] != ':')
 		i++;
 	if (i == 0)
-	{
 		temp = ft_strdup("?");
-		if (!temp)
-			return (0);
-	}
 	else
 	{
 		key = malloc(sizeof(char) * (i + 1));
@@ -62,14 +69,10 @@ static int	ft_append_var(char **s1, char *s2, t_data *data)
 		ft_strlcpy(key, s2, i + 1);
 		temp = ft_get_variable_value(key, data);
 	}
+	if (!temp)
+		return (0);
 	*s1 = ft_strjoin_s1(*s1, temp);
-	if (key)
-	{
-		i = (int)ft_strlen(key);
-		free(key);
-	}
-	else
-		i = 1;
+	ft_append_var_bis(&i, key);
 	return (free(temp), i);
 }
 
@@ -110,18 +113,4 @@ char	*ft_flat_string(char *str, t_data *data)
 		}
 	}
 	return (buf);
-}
-
-int	count_cmd(t_tokens *actu)
-{
-	int	result;
-
-	result = 0;
-	while (actu && ft_ultimate_compare(actu->str, "|"))
-	{
-		if (actu->type == CMD)
-			result++;
-		actu = actu->prev;
-	}
-	return (result);
 }

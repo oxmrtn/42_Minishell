@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:20:36 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/27 00:44:53 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/30 10:45:39 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ int	ft_is_commands(t_tokens *node)
 	if (!ft_ultimate_compare(node->str, "env"))
 		return (handle_env(node));
 	if (node->str)
-		if (!ft_strncmp(node->str, "|" , 1) || !ft_strncmp(node->str, ">" , 1)
-			|| !ft_strncmp(node->str, "<" , 1))
+		if (!ft_strncmp(node->str, "|", 1) || !ft_strncmp(node->str, ">", 1)
+			|| !ft_strncmp(node->str, "<", 1))
 			return (0);
 	if (!node->prev)
 		return (1);
@@ -85,10 +85,10 @@ static void	ft_set_redirect(t_tokens *current, t_type to_set )
 		if (current->next)
 		{
 			current->type = REDIR;
-			if (!ft_strncmp(current->next->str, "|" , 1)
-				|| !ft_strncmp(current->next->str, "<" , 1)
-				|| !ft_strncmp(current->next->str, ">" , 1))
-			current->next->type = to_set;
+			if (ft_strncmp(current->next->str, "|", 1)
+				|| ft_strncmp(current->next->str, "<", 1)
+				|| ft_strncmp(current->next->str, ">", 1))
+				current->next->type = to_set;
 			else
 			{
 				current->type = ERROR;

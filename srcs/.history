@@ -39,3 +39,8 @@ cd ebengtss-work/pers-gits/mrtn_minishell/
 clear 
 cd srcs/ 
 cd .. 
+ls 
+clear 
+cd srcs 
+ls 
+cd .. 

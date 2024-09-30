@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:48:42 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/24 15:52:39 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/30 10:11:31 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int	ft_exit(t_data *data, char **cmdve)
 	if (does_i_exit(data))
 		return (1);
 	if (ft_ultimate_len(cmdve) > 2)
-		return (ft_puterror("minishell error: too many argument for exit\n"), 1);
+		return (ft_puterror("minishell error: too many argument for exit\n")
+			, 1);
 	if (cmdve[1])
 	{
 		if (!ft_isdigit(cmdve[1][0]))

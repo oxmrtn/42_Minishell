@@ -18123,3 +18123,56 @@ clear
 . 
 echo hola 
 exit 
+ls 
+cleaqr 
+ls 
+clear 
+cd srcs 
+ls 
+clear 
+cd srcs 
+ls 
+cd .. 
+ks 
+ls 
+clear ls 
+
+clear 
+cd srcs cd srcs 
+
+ls ls 
+
+cd .. cd .. 
+
+ks ks 
+
+ls ls 
+
+clear clear 
+
+exit exit 
+
+exit 
+exit 
+clear 
+exit clear 
+
+exit 
+cat Makefile > outfile 
+cat Makefile > outfile cat Makefile > outfile 
+exit 
+
+cat Makefile > outfile 
+exit 
+ls ls 
+cat Makefile > outfile 
+
+cat Makefile > outfile < Makefile cat >> outfile 
+
+< Makefile cat >> outfile < Makefile cat >> outfile -e 
+
+< Makefile cat >> outfile -e < Makefile cat -e >> outfile 
+
+< Makefile cat -e >> outfile exit 
+
+exit 

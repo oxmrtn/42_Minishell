@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:21:38 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/29 14:28:48 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/30 10:31:39 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ int	ft_is_pipe(t_tokens *current)
 	if (!ft_strncmp(current->str, "|", 1))
 	{
 		if (ft_strlen(current->str) > 1)
-			return (current->type = ERROR , 2);
+			return (current->type = ERROR, 2);
 		if (!current->prev)
-			return (current->type = ERROR , 2);
+			return (current->type = ERROR, 2);
 		else
 		{
 			if (current->prev->type == REDIR || current->prev->type == PIPE)
-				return (current->type = ERROR , 2);
+				return (current->type = ERROR, 2);
 		}
 		if (!current->next)
 		{
@@ -75,7 +75,7 @@ static int	commands_shit(t_tokens **node)
 	if (ft_ultimate_len(splitted) == 1)
 	{
 		if (current->type != ENV)
-			current->type = CMD;		
+			current->type = CMD;
 		return (ft_free_split(splitted), 0);
 	}
 	i = 0;
@@ -113,43 +113,6 @@ void	get_type(t_tokens *head)
 			current->type = ARGS;
 		current = current->next;
 	}
-}
-
-t_tokens	*ft_get_last_token(t_tokens *head)
-{
-	if (!head)
-		return (NULL);
-	while (head->next)
-		head = head->next;
-	return (head);
-}
-
-int	add_new_token(char *str, t_tokens **head, t_type type)
-{
-	t_tokens	*new_tokens;
-	t_tokens	*last;
-
-	new_tokens = malloc(sizeof(t_tokens));
-	if (!new_tokens)
-		return (1);
-	new_tokens->str = ft_strdup(str);
-	new_tokens->type = type;
-	if (!new_tokens->str)
-		return (1);
-	if (!*head)
-	{
-		*head = new_tokens;
-		new_tokens->prev = NULL;
-		new_tokens->next = NULL;
-	}
-	else
-	{
-		last = ft_get_last_token(*head);
-		last->next = new_tokens;
-		new_tokens->next = NULL;
-		new_tokens->prev = last;
-	}
-	return (0);
 }
 
 t_tokens	*create_token_list(char *line, t_data *data)
