@@ -20662,3 +20662,50 @@ env
 exit 
 env 
 exit 
+env 
+env 
+cd 
+env 
+cd 
+clear 
+clear 
+exit 
+clear 
+exit 
+exit 
+exit 
+exit 
+exit 
+cat 
+exit 
+cat 
+exit 
+cat 
+exit 
+cat 
+exit 
+exit 
+exit 
+cat 
+exit 
+cat 
+exit 
+cat 
+cat 
+exit 130 
+cat 
+cat 
+exit 130 
+exit 130 
+exit 130 
+ls 
+make fclean 
+exit 
+ls 
+make fclean 
+exit 
+ls 
+exit 
+ls 
+exit 
+ls 

@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/30 17:30:30 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/09/30 18:21:14 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,10 @@ int	print_variable(t_data *data)
 void	handle_signal(int sig)
 {
 	if (sig == SIGINT)
-	{
-		printf("^C\n");
-	}
+		printf("\n");
 	rl_on_new_line();
-	//rl_replace_line("", 0);
-	rl_redisplay();
+	rl_replace_line("", 0);
+	rl_redisplay(); 
 	return ;
 }
 
@@ -68,58 +66,62 @@ static int	init_data(t_data *data, char **env)
 	data->var = NULL;
 	data->read = NULL;
 	data->tmpexitstatus = NULL;
+	data->cmds = NULL;
+	data->cmdve = NULL;
 	data->stdincpy = dup(STDIN_FILENO);
 	data->stdoutcpy = dup(STDOUT_FILENO);
 	if (data->stdincpy == -1 || data->stdoutcpy == -1)
 		return (1);
-	data->cmds = NULL;
-	data->cmdve = NULL;
-	ft_get_history();
-	ft_add_variable("?=0", data);
+	if (ft_get_history())
+		return (1);
+	if (ft_add_variable("?=0", data))
+		return (1);
 	if (env_init(data, env))
 		return (1);
-	return (1);
+	return (0);
 }
 
 static int	the_loop(t_data *data)
 {
-	data->read = readline("minishell → ");
-	if (data->read == NULL)
-		data->read = ft_strdup("exit 130");
-	if (data->read[0])
+	data->read = readline("minishell$ ");
+	if (!data->read)
+		return (printf("exit\n"), 0);
+	add_history(data->read);
+	if (ft_parser(data->read, &data->cmds, data) == 0)
 	{
-		add_history(data->read);
-		if (ft_parser(data->read, &data->cmds, data) == 0)
-		{
-			//print_commands(ft_get_last_commands(data->cmds));
-			if (exec(data, ft_get_last_commands(data->cmds)))
-				return (1);
-		}
-		data->tmpexitstatus = ft_itoa(data->exit_status);
-		ft_update_variable("?", data->tmpexitstatus, data);
-		free(data->tmpexitstatus);
-		data->tmpexitstatus = NULL;
+		//print_commands(ft_get_last_commands(data->cmds));
+		if (exec(data, ft_get_last_commands(data->cmds)))
+			return (1);
 	}
-	return (0);
+	data->tmpexitstatus = ft_itoa(data->exit_status);
+	if (!data->tmpexitstatus)
+		return (1);
+	if (ft_update_variable("?", data->tmpexitstatus, data))
+		return (1);
+	free(data->tmpexitstatus);
+	data->tmpexitstatus = NULL;
+	return (2);
 }
 
 int	main(int argc, char **argv, char **env)
 {
 	t_data	*data;
+	int		retval;
 
 	(void)argc;
 	(void)argv;
 	data = malloc(sizeof(t_data));
-	if (!data)
+	if (!data || init_data(data, env))
 		return (1);
-	init_data(data, env);
 	signal(SIGINT, &handle_signal);
 	signal(SIGQUIT, &handle_signal);
-	printf("Welcome to MINISHELL\n");
+	retval = 0;
 	while (1)
 	{
-		if (the_loop(data))
-			return (free_main(data), 1);
+		retval = the_loop(data);
+		if (retval == 0 || retval == 1)
+			break ;
 	}
-	return (0);
+	free_main(data);
+	return (retval);
 }

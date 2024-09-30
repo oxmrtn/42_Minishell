@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_variable.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 16:20:25 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/30 11:11:21 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/09/30 18:20:27 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	ft_add_variable(char *str, t_data *data)
 	return (ft_var_add_back(new_node, &data->var), 0);
 }
 
-void	ft_update_variable(char *key, char *val, t_data *data)
+int	ft_update_variable(char *key, char *val, t_data *data)
 {
 	t_var	*node;
 
@@ -82,10 +82,13 @@ void	ft_update_variable(char *key, char *val, t_data *data)
 	while (node && ft_ultimate_compare(key, node->name))
 		node = node->next;
 	if (!node)
-		return ;
-	free(node->content);
+		return (0);
+	if (node->content)
+		free(node->content);
 	node->content = ft_strdup(val);
-	return ;
+	if (!node->content)
+		return (1);
+	return (0);
 }
 
 char	*ft_get_variable_value(char *key, t_data *data)
