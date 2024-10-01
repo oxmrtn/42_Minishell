@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:37:08 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/24 14:47:18 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/01 15:31:59 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ static int	dup_heredoc(void)
 	if (dup2(fd, STDIN_FILENO) == -1)
 		return (close (fd), perror(NULL), 1);
 	close (fd);
+	if (unlink(".heredoc") == -1)
+		return (1);
 	return (0);
 }
 
