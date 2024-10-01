@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:22:35 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/01 11:21:38 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/01 17:35:54 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ int	ft_ask_handler(t_tokens *head, t_data *data)
 				return (1);
 			free(temp);
 			head->next = create_token_list(temp2, data);
+			free(temp2);
 			if (!head->next)
 				return (1);
-			free(temp2);
 			head->type = PIPE;
 			return (0);
 		}

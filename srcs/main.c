@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/01 14:29:42 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/01 18:45:59 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,10 @@ int	main(int argc, char **argv, char **env)
 	(void)argc;
 	(void)argv;
 	data = malloc(sizeof(t_data));
-	if (!data || init_data(data, env))
+	if (!data)
 		return (1);
+	if (init_data(data, env))
+		return (free(data), 1);
 	signal(SIGINT, &handle_signal);
 	signal(SIGQUIT, &handle_signal);
 	retval = 0;

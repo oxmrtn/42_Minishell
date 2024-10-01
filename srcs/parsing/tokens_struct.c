@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:21:38 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/01 15:09:18 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/01 18:45:29 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	commands_shit_bis(char **splitted, t_tokens *current)
 {
 	int	i;
 
-	i = 0;
+	i = 1;
 	while (splitted[i])
 	{
 		if (add_tokens_between(splitted[i], current, ARGS))
@@ -124,12 +124,12 @@ t_tokens	*create_token_list(char *line, t_data *data)
 				return (ft_free_split(splitted), NULL);
 		temp = ft_flat_string(splitted[i], data);
 		if (!temp)
-			return (ft_freetab(splitted), NULL);
+			return (ft_fix(head_node, splitted), NULL);
 		if (add_new_token(temp, &head_node, WAIT))
-			return (ft_freetab(splitted), free(temp), NULL);
+			return (ft_fix(head_node, splitted), free(temp), NULL);
 		free(temp);
 	}
 	if (get_type(head_node))
-		return (ft_freetab(splitted), NULL);
+		return (ft_fix(head_node, splitted), NULL);
 	return (ft_freetab(splitted), head_node);
 }

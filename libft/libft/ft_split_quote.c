@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 14:00:31 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/13 11:42:47 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/01 18:58:28 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	ft_count_word(char const *str, char set)
 			check = 0;
 		if (i == 0 && str[i] != set)
 			counter++;
-		if (str[i] == set && str[i + 1] != '\0'
+		if (str[i] == set && str[i + 1]
 			&& str[i + 1] != set && check == 0)
 			counter++;
 		i++;

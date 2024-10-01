@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 10:25:14 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/01 15:09:31 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/01 19:07:39 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	add_new_token(char *str, t_tokens **head, t_type type)
 	new_tokens->str = ft_strdup(str);
 	new_tokens->type = type;
 	if (!new_tokens->str)
-		return (1);
+		return (free(new_tokens), 1);
 	if (!*head)
 	{
 		*head = new_tokens;
@@ -90,4 +90,10 @@ int	ft_is_pipe(t_tokens *current)
 		}
 	}
 	return (0);
+}
+
+void	ft_fix(t_tokens *head, char **splitted)
+{
+	ft_free_tokens(head);
+	ft_freetab(splitted);
 }

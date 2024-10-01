@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:45:56 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/01 15:02:15 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/01 18:23:47 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,6 @@ static char	*ft_append(char *s1, char *str, int i, int check)
 	return (buffer);
 }
 
-static void	ft_append_var_bis(int *i, char *key)
-{
-	if (key)
-	{
-		*i = (int)ft_strlen(key);
-		free(key);
-	}
-	else
-		*i = 1;
-}
-
 static int	ft_append_var(char **s1, char *s2, t_data *data)
 {
 	int		i;
@@ -62,59 +51,64 @@ static int	ft_append_var(char **s1, char *s2, t_data *data)
 	key = NULL;
 	i = 0;
 	while (s2[i] && s2[i] != ' ' && s2[i] != '\n' && s2[i] != 39 && s2[i] != 34
-		&& s2[i] != '$' && s2[i] != ':')
+		&& s2[i] != '$' && s2[i] != ':' && s2[i] != '=' && s2[i] != '['
+		&& s2[i] != ']' && s2[i] != 37 && s2[i] != 92 && s2[i] != 47)
 		i++;
-	if (i != 0)
-	{
-		key = malloc(sizeof(char) * (i + 1));
-		if (!key)
-			return (0);
-		ft_strlcpy(key, s2, i + 1);
-		temp = ft_get_variable_value(key, data);
-	}
-	else
-		temp = ft_strdup("?");
+	if (i == 0)
+		return (*s1 = ft_strjoin_s1(*s1, "$"), 0);
+	key = malloc(sizeof(char) * (i + 1));
+	if (!key)
+		return (0);
+	ft_strlcpy(key, s2, i + 1);
+	temp = ft_get_variable_value(key, data);
 	if (!temp)
 		return (0);
 	*s1 = ft_strjoin_s1(*s1, temp);
-	ft_append_var_bis(&i, key);
+	i = (int)ft_strlen(key);
+	free(key);
 	return (free(temp), i);
 }
 
-static void	flat_bis(char *str, int i, int *check)
+static void	flat_bis(char *str, int i, t_nk *check)
 {
-	if (str[i] == 34 && *check == 1)
-		*check = 0;
-	else if (str[i] == 34 && *check == 0)
-		*check = 1;
-	else if (str[i] == 39 && *check == 2)
-		*check = 0;
-	else if (str[i] == 39 && *check == 0)
-		*check = 2;
+	if (str[i] == 34 && check->i == 1)
+		check->i = 0;
+	else if (str[i] == 34 && check->i == 0)
+		check->i = 1;
+	else if (str[i] == 39 && check->i == 2)
+		check->i = 0;
+	else if (str[i] == 39 && check->i == 0)
+		check->i = 2;
+	else if (str[i] == 92 && check->j == 0)
+		check->j = 1;
+	else if (str[i] == 92 && check->j == 1)
+		check->j = 0;
 }
 
 char	*ft_flat_string(char *str, t_data *data)
 {
 	int		i;
 	char	*buf;
-	int		check;
+	t_nk	check;
 
 	if (ft_check_quote_syntax(str))
 		return (NULL);
 	i = -1;
-	check = 0;
-	buf = NULL;
+	check.i = 0;
+	check.j = 0;
+	buf = ft_strdup("");
+	if (!buf)
+		return (NULL);
 	while (str[++i])
 	{
 		flat_bis(str, i, &check);
-		if (str[i] == '$' && check != 2)
+		if (str[i] == '$' && check.i != 2 && check.j != 1)
 			i += ft_append_var(&buf, &str[i + 1], data);
 		else
 		{
-			if ((check == 1 && str[i] == 39) || (check == 2 && str[i] == 34))
-				buf = ft_append(buf, str, i, check);
-			else if (str[i] != 34 && str[i] != 39)
-				buf = ft_append(buf, str, i, check);
+			if ((check.i == 1 && str[i] == 39) || (check.i == 2 && str[i] == 34)
+				|| (str[i] != 34 && str[i] != 39))
+				buf = ft_append(buf, str, i, check.i);
 		}
 	}
 	return (buf);

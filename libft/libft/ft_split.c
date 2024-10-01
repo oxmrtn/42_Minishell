@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:03:25 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/03 14:49:32 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/01 19:03:17 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,13 @@ int	cpt_words(char *str, char c)
 	int	words;
 	int	i;
 
-	i = 1;
+	i = 0;
 	words = 0;
+	if (!str)
+		return (0);
 	while (str[i])
 	{
-		if (str[i] == c && !(str[i - 1] == c))
+		if (str[i] == c && i >= 0 && !(str[i - 1] == c))
 			words++;
 		i++;
 	}

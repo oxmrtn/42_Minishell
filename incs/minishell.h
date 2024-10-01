@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/01 14:29:38 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/01 19:07:31 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,9 @@ void		ft_var_add_back(t_var *new_node, t_var **head);
 //		parsing_utils.c
 char		*ft_flat_string(char *str, t_data *data);
 int			count_cmd(t_tokens *actu);
+
+//		utils.c
+void		ft_fix(t_tokens *head, char **splitted);
 
 //	HISTORY
 int			ft_get_history(void);

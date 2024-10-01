@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 14:50:54 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/01 15:02:50 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/01 15:16:25 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_count_char_behind(char *str, int i, char c)
 	int	j;
 
 	j = i;
-	while (str[j] && str[j] == c)
+	while (j >= 0 && str[j] && str[j] == c)
 		j--;
 	return (i - j);
 }
