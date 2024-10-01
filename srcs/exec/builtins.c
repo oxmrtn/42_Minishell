@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:35:12 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/27 14:23:53 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/01 14:20:27 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,9 @@ int	is_builtin(char *cmd)
 
 static int	builtin_option_check(char **cmdve)
 {
-	int	is_echo;
-
-	is_echo = 1;
 	if (cmdve[1])
 	{
-		is_echo = ft_ultimate_compare(cmdve[0], "echo");
-		if (cmdve[1][0] == '-' && (is_echo != 0
-			|| (!is_echo && cmdve[1][1] && echo_option_check(cmdve[1]))))
+		if (cmdve[1][0] == '-' && ft_ultimate_compare(cmdve[0], "echo") != 0)
 		{
 			ft_desc_error(cmdve[0], cmdve[1], 1);
 			ft_puterror("invalid option\n");

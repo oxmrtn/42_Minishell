@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/01 11:59:58 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/01 14:29:42 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,11 @@ void	handle_signal(int sig)
 	rl_replace_line("", 0);
 	rl_redisplay(); 
 	return ;
+}
+
+void	sig_handle(int signo)
+{
+	printf("\n\n\n%d\n\n\n", signo);
 }
 
 static int	init_data(t_data *data, char **env)

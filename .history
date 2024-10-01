@@ -20529,291 +20529,224 @@ echo ee
 exit 
 echo ee 
 exit 
+ls 
+clear 
+exit 
+ls 
+echo 0 
+ls 
+echo 0 
+ewrwer 
+ls 
+echo 0 
+ewrwer 
+echo 127 
+ls 
+echo 0 
+ewrwer 
+echo 127 
+clear 
+exit 
+ls 
+echo 0 
+ewrwer 
+echo 127 
+clear 
+exit 
+unset PATH 
+unset PATH 
+exit 
+unset PATH 
+exit 
+unset 
+unset 
+unset PWD 
+unset 
+unset PWD 
+unset 
+unset 
+unset PWD 
+unset 
+unset PATH 
+unset 
+unset PWD 
+unset 
+unset PATH 
+exit 
+unset 
+unset PWD 
+unset 
+unset PATH 
+exit 
+env 
+env 
+unset LANGUAGE 
+env 
+unset LANGUAGE 
+env 
+env 
+unset LANGUAGE 
+env 
+exit 
+env 
+unset LANGUAGE 
+env 
+exit 
+env 
+env 
+exit 
+env 
+exit 
+env 
+env 
+cd 
+env 
+cd 
+clear 
+clear 
+exit 
+clear 
+exit 
+exit 
+exit 
+exit 
+exit 
+cat 
+exit 
+cat 
+exit 
+cat 
+exit 
+cat 
+exit 
+exit 
+exit 
+cat 
+exit 
+cat 
+exit 
+cat 
+cat 
+exit 130 
+cat 
+cat 
+exit 130 
+exit 130 
+exit 130 
+ls 
+make fclean 
+exit 
+ls 
+make fclean 
+exit 
+ls 
+exit 
+ls 
+exit 
+ls 
+d 
+d 
+s 
+d 
+s 
+exit 
+d 
+s 
+exit 
+clear 
+ls 
+clear 
+''echo hola'''' que'' tal'' 
+clear 
+ls 
+clear 
+''echo hola'''' que'' tal'' 
+exit 
+clear 
+ls 
+clear 
+''echo hola'''' que'' tal'' 
+exit 
+echo hola que tal 
+echo hola que tal 
+exit 
+echo hola que tal 
+exit 
+echo hola que tal 
+echo hola que tal 
+fdfdfsfdfsf 
+echo hola que tal 
+fdfdfsfdfsf 
+echo 127 
+echo hola que tal 
+fdfdfsfdfsf 
+echo 127 
+cd fdsfsfsdfsdf/ 
+echo hola que tal 
+fdfdfsfdfsf 
+echo 127 
+cd fdsfsfsdfsdf/ 
+echo 1 
+echo hola que tal 
+fdfdfsfdfsf 
+echo 127 
+cd fdsfsfsdfsdf/ 
+echo 1 
+ls 
+clear 
+cd .. 
+cd .. 
+ls 
+clear 
+ls 
+cat Makefile 
+clear 
+mdkir test 
+ls 
+clear 
+ls 
+cat Makefile 
+clear 
+mdkir test 
+mdkir test 
+mdkir test 
+clear 
+mdkir test 
+mdkir test 
+clear 
+mdkir test 
+ls 
+clear 
+ls 
+ls 
+ls 
+mdir sdas 
+ls 
+clear 
+ls 
+ls 
+ls 
+mdir sdas 
+ls 
+ls 
+cat make 
+mdir dsad 
+ls 
+ls 
+ls 
+cat make 
+mdir dsad 
+exit 
+ls 
+cat make 
+mdir dsad 
+exit 
+?? 
+?? 
+exit 
+?? 
+exit 
 <<<<<<< HEAD
-=======
-unset HOME 
-unset HOME 
-cd 
-unset HOME 
-cd 
-unset PATH 
-unset PATH 
-clear 
-unset PATH 
-clear 
-clear 
-unset PATH 
-clear 
-clear 
-exit 
-unset PATH 
-clear 
-clear 
-exit 
-unset PATH 
-unset PATH 
-clear 
-unset PATH 
-clear 
-env 
-unset PATH 
-clear 
-env 
-exit 
-unset PATH 
-clear 
-env 
-exit 
-unset 
-unset 
-clear 
-unset ppp 
-unset 
-clear 
-unset ppp 
-clear 
-unset PATH 
-unset 
-clear 
-unset ppp 
-clear 
-unset PATH 
-exit 
-unset 
-clear 
-unset ppp 
-clear 
-unset PATH 
-exit 
-unset PATH 
-unset PATH 
-ls 
-unset PATH 
-ls 
-clear 
-unset PATH 
-ls 
-clear 
-exit 
-unset PATH 
->>>>>>> dc0de86aadf60549957303f172bab79ce043445c
-ls 
-clear 
-exit 
-ls 
-echo 0 
-ls 
-echo 0 
-ewrwer 
-ls 
-echo 0 
-ewrwer 
-echo 127 
-ls 
-echo 0 
-ewrwer 
-echo 127 
-clear 
-exit 
-ls 
-echo 0 
-ewrwer 
-echo 127 
-clear 
-exit 
-unset PATH 
-unset PATH 
-exit 
-unset PATH 
-exit 
-unset 
-unset 
-unset PWD 
-unset 
-unset PWD 
-unset 
-unset 
-unset PWD 
-unset 
-unset PATH 
-unset 
-unset PWD 
-unset 
-unset PATH 
-exit 
-unset 
-unset PWD 
-unset 
-unset PATH 
-exit 
-env 
-env 
-unset LANGUAGE 
-env 
-unset LANGUAGE 
-env 
-env 
-unset LANGUAGE 
-env 
-exit 
-env 
-unset LANGUAGE 
-env 
-exit 
-env 
-env 
-exit 
-env 
-exit 
-env 
-env 
-cd 
-env 
-cd 
-clear 
-clear 
-exit 
-clear 
-exit 
-exit 
-exit 
-exit 
-exit 
-cat 
-exit 
-cat 
-exit 
-cat 
-exit 
-cat 
-exit 
-exit 
-exit 
-cat 
-exit 
-cat 
-exit 
-cat 
-cat 
-exit 130 
-cat 
-cat 
-exit 130 
-exit 130 
-exit 130 
-ls 
-make fclean 
-exit 
-ls 
-make fclean 
-exit 
-ls 
-exit 
-ls 
-exit 
-ls 
-d 
-d 
-s 
-d 
-s 
-exit 
-d 
-s 
-exit 
-clear 
-ls 
-clear 
-''echo hola'''' que'' tal'' 
-clear 
-ls 
-clear 
-''echo hola'''' que'' tal'' 
-exit 
-clear 
-ls 
-clear 
-''echo hola'''' que'' tal'' 
-exit 
-echo hola que tal 
-echo hola que tal 
-exit 
-echo hola que tal 
-exit 
-echo hola que tal 
-echo hola que tal 
-fdfdfsfdfsf 
-echo hola que tal 
-fdfdfsfdfsf 
-echo 127 
-echo hola que tal 
-fdfdfsfdfsf 
-echo 127 
-cd fdsfsfsdfsdf/ 
-echo hola que tal 
-fdfdfsfdfsf 
-echo 127 
-cd fdsfsfsdfsdf/ 
-echo 1 
-echo hola que tal 
-fdfdfsfdfsf 
-echo 127 
-cd fdsfsfsdfsdf/ 
-echo 1 
-ls 
-clear 
-cd .. 
-cd .. 
-ls 
-clear 
-ls 
-cat Makefile 
-clear 
-mdkir test 
-ls 
-clear 
-ls 
-cat Makefile 
-clear 
-mdkir test 
-mdkir test 
-mdkir test 
-clear 
-mdkir test 
-mdkir test 
-clear 
-mdkir test 
-ls 
-clear 
-ls 
-ls 
-ls 
-mdir sdas 
-ls 
-clear 
-ls 
-ls 
-ls 
-mdir sdas 
-ls 
-ls 
-cat make 
-mdir dsad 
-ls 
-ls 
-ls 
-cat make 
-mdir dsad 
-exit 
-ls 
-cat make 
-mdir dsad 
-exit 
-?? 
-?? 
-exit 
-?? 
-exit 
 clear 
 / 
 clear 
@@ -21093,3 +21026,121 @@ echo Hola -n
 clear 
 echo Hola Que Tal 
 echo \n Hola 
+=======
+env 
+env 
+exit 
+env 
+exit 
+exit 
+exit 
+~ 
+~ 
+env 
+env 
+env 
+exit 
+env 
+exit 
+~ 
+env 
+clear 
+./minishell 
+exit 
+~ 
+env 
+clear 
+./minishell 
+exit 
+env 
+env 
+env 
+clear 
+env 
+clear 
+env 
+env 
+env 
+env 
+exit 
+env 
+exit 
+clear 
+env 
+env 
+clear 
+./minishell 
+exit 
+clear 
+env 
+env 
+clear 
+./minishell 
+exit 
+env 
+env 
+./minishell 
+exit 
+env 
+env 
+./minishell 
+exit 
+echo -nnnnn l 
+echo -nnnnn l 
+echo -nnnnne 
+echo -nnnnn l 
+echo -nnnnne 
+cd - 
+echo -nnnnn l 
+echo -nnnnne 
+cd - 
+exit 
+echo -nnnnn l 
+echo -nnnnne 
+cd - 
+exit 
+~ 
+~ 
+exit 
+~ 
+exit 
+~ 
+~ 
+exit 
+~ 
+exit 
+~ 
+~ 
+exit 
+~ 
+exit 
+~ 
+~ 
+../ 
+~ 
+../ 
+ls 
+env 
+~ 
+../ 
+ls 
+env 
+clear 
+exit 
+~ 
+../ 
+ls 
+env 
+clear 
+exit 
+> out1 ~ 
+> out1 ~ 
+exit 
+> out1 ~ 
+exit 
+> out1 ~ 
+> out1 ~ 
+exit 
+> out1 ~ 
+exit 
+>>>>>>> a4e6f0bec8f9a1af475bf6305a91a71046325b1d
