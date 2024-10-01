@@ -6,11 +6,17 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/10/01 18:45:59 by mtrullar         ###   ########.fr       */
+=======
+/*   Updated: 2024/10/01 19:12:07 by ebengtss         ###   ########.fr       */
+>>>>>>> ebengtss/exec
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minishell.h"
+
+int	sig_status;
 
 int	print_commands(t_cmds *com)
 {
@@ -50,27 +56,37 @@ int	print_variable(t_data *data)
 	return (0);
 }
 
-void	handle_signal(int sig)
-{
-	if (sig == SIGINT)
-		printf("\n");
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay(); 
-	return ;
-}
-
 void	sig_handle(int signo)
 {
-	printf("\n\n\n%d\n\n\n", signo);
+	if (signo == SIGINT)
+	{
+		ft_putstr_fd("\n", 1);
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+		sig_status = 130;
+	}
+	if (signo == SIGQUIT)
+	{
+		rl_on_new_line();
+		ft_putstr_fd("\33[2K\r", 1);
+		rl_redisplay();
+		sig_status = 131;
+	}
 }
 
 static int	init_data(t_data *data, char **env)
 {
+	struct sigaction	action;
+
+	ft_bzero(&action, sizeof(action));
+	action.sa_handler = sig_handle;
+	sigaction(SIGINT, &action, NULL);
+	sigaction(SIGQUIT, &action, NULL);
+	sig_status = 0;
 	data->exit_status = 0;
 	data->var = NULL;
 	data->read = NULL;
-	data->tmpexitstatus = NULL;
 	data->cmds = NULL;
 	data->cmdve = NULL;
 	data->stdincpy = dup(STDIN_FILENO);
@@ -86,26 +102,39 @@ static int	init_data(t_data *data, char **env)
 	return (0);
 }
 
+static int	update_status(t_data *data, int status)
+{
+	char	*tmp;
+
+	tmp = ft_itoa(status);
+	if (!tmp)
+		return (1);
+	if (ft_update_variable("?", tmp, data))
+		return (1);
+	free(tmp);
+	return (0);
+}
+
 static int	the_loop(t_data *data)
 {
+	printf("\33[2K\r");
 	data->read = readline("minishell$ ");
 	if (!data->read)
 		return (printf("exit\n"), 0);
+	if (sig_status != 0)
+		if (update_status(data, sig_status))
+			return (1);
+	if (!ft_ultimate_compare(data->read, "\0"))
+		return (2);
 	add_history(data->read);
 	if (ft_parser(data->read, &data->cmds, data) == 0)
-	{
-		//print_commands(ft_get_last_commands(data->cmds));
 		if (exec(data, ft_get_last_commands(data->cmds)))
 			return (1);
-	}
-	data->tmpexitstatus = ft_itoa(data->exit_status);
-	if (!data->tmpexitstatus)
+	if (update_status(data, data->exit_status))
 		return (1);
-	if (ft_update_variable("?", data->tmpexitstatus, data))
-		return (1);
-	free(data->tmpexitstatus);
 	free(data->read);
-	data->tmpexitstatus = NULL;
+	data->read = NULL;
+	sig_status = 0;
 	return (2);
 }
 
@@ -119,10 +148,6 @@ int	main(int argc, char **argv, char **env)
 	data = malloc(sizeof(t_data));
 	if (!data)
 		return (1);
-	if (init_data(data, env))
-		return (free(data), 1);
-	signal(SIGINT, &handle_signal);
-	signal(SIGQUIT, &handle_signal);
 	retval = 0;
 	while (1)
 	{
