@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:49:23 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/27 15:11:25 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/01 14:29:11 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,19 @@ static void	cmd_isdir(t_data *data, char *cmd, int *fds)
 {
 	struct stat	cmdvestats;
 
-	if (stat(cmd, &cmdvestats) == 0)
+	if (!ft_ultimate_compare(cmd, "~")
+		|| (!stat(cmd, &cmdvestats) && S_ISDIR(cmdvestats.st_mode)))
 	{
-		if (S_ISDIR(cmdvestats.st_mode))
-		{
-			close(fds[1]);
-			ft_desc_error(cmd, "is a directory\n", 0);
-			free_main(data);
-			exit(126);
-		}
+		close(fds[1]);
+		ft_desc_error(cmd, "is a directory\n", 0);
+		free_main(data);
+		exit(126);
 	}
 }
 
 static int	run_child(t_data *data, int i, int *fds, int islast)
 {
 	close(fds[0]);
-	if (!is_builtin(data->cmdve[i][0]))
-		cmd_isdir(data, data->cmdve[i][0], fds);
 	if (!islast)
 		if (dup2(fds[1], STDOUT_FILENO) == -1)
 			return (close(fds[1]), perror(NULL), 1);
@@ -44,6 +40,7 @@ static int	run_child(t_data *data, int i, int *fds, int islast)
 	}
 	if (is_outred(ft_get_last_commands(data->cmds), i))
 		return (1);
+	cmd_isdir(data, data->cmdve[i][0], fds);
 	if (execve(data->cmdve[i][0], data->cmdve[i], data->envs->envve) == -1)
 	{
 		ft_desc_error("command not found", data->cmdve[i][0], 1);

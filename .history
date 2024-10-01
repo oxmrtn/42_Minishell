@@ -20814,3 +20814,119 @@ exit
 exit 
 ?? 
 exit 
+env 
+env 
+exit 
+env 
+exit 
+exit 
+exit 
+~ 
+~ 
+env 
+env 
+env 
+exit 
+env 
+exit 
+~ 
+env 
+clear 
+./minishell 
+exit 
+~ 
+env 
+clear 
+./minishell 
+exit 
+env 
+env 
+env 
+clear 
+env 
+clear 
+env 
+env 
+env 
+env 
+exit 
+env 
+exit 
+clear 
+env 
+env 
+clear 
+./minishell 
+exit 
+clear 
+env 
+env 
+clear 
+./minishell 
+exit 
+env 
+env 
+./minishell 
+exit 
+env 
+env 
+./minishell 
+exit 
+echo -nnnnn l 
+echo -nnnnn l 
+echo -nnnnne 
+echo -nnnnn l 
+echo -nnnnne 
+cd - 
+echo -nnnnn l 
+echo -nnnnne 
+cd - 
+exit 
+echo -nnnnn l 
+echo -nnnnne 
+cd - 
+exit 
+~ 
+~ 
+exit 
+~ 
+exit 
+~ 
+~ 
+exit 
+~ 
+exit 
+~ 
+~ 
+exit 
+~ 
+exit 
+~ 
+~ 
+../ 
+~ 
+../ 
+ls 
+env 
+~ 
+../ 
+ls 
+env 
+clear 
+exit 
+~ 
+../ 
+ls 
+env 
+clear 
+exit 
+> out1 ~ 
+> out1 ~ 
+exit 
+> out1 ~ 
+exit 
+> out1 ~ 
+> out1 ~ 
+exit 
+> out1 ~ 
+exit 
