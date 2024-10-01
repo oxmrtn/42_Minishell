@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:46:55 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/30 17:32:38 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/01 11:38:54 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static void	update_old_pwd(t_data *data)
 	char	*temp;
 
 	temp = getcwd(0, 0);
+	if (!temp)
+		return ;
 	temp = ft_strjoin_s2("OLDPWD=", temp);
 	if (!temp)
 		return ;

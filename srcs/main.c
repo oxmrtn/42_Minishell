@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/30 18:21:14 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/01 11:59:58 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ static int	the_loop(t_data *data)
 	if (ft_update_variable("?", data->tmpexitstatus, data))
 		return (1);
 	free(data->tmpexitstatus);
+	free(data->read);
 	data->tmpexitstatus = NULL;
 	return (2);
 }

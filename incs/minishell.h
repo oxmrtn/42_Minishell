@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/30 18:20:03 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/01 11:22:08 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,8 +123,8 @@ char		*ft_get_variable_value(char *key, t_data *data);
 int			ft_update_variable(char *key, char *val, t_data *data);
 
 //		here_docs.c
-void		ft_heredoc_handler(t_tokens *head, t_data *data);
-void		ft_ask_handler(t_tokens *head, t_data *data);
+int			ft_heredoc_handler(t_tokens *head, t_data *data);
+int			ft_ask_handler(t_tokens *head, t_data *data);
 
 //		tokenization.c
 int			ft_is_pipe(t_tokens *current);
@@ -136,7 +136,7 @@ int			ft_is_commands(t_tokens *node);
 t_tokens	*ft_get_last_token(t_tokens *head);
 t_tokens	*create_token_list(char *line, t_data *data);
 int			add_new_token(char *str, t_tokens **head, t_type type);
-void		get_type(t_tokens *head_node);
+int			get_type(t_tokens *head_node);
 
 //		var_list_func.c
 t_var		*ft_last_var(t_var *head);

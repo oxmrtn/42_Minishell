@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:45:56 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/30 10:24:47 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/01 11:38:27 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,7 @@ static int	ft_append_var(char **s1, char *s2, t_data *data)
 	while (s2[i] && s2[i] != ' ' && s2[i] != '\n' && s2[i] != 39 && s2[i] != 34
 		&& s2[i] != '$' && s2[i] != ':')
 		i++;
-	if (i == 0)
-		temp = ft_strdup("?");
-	else
+	if (i != 0)
 	{
 		key = malloc(sizeof(char) * (i + 1));
 		if (!key)
@@ -69,6 +67,8 @@ static int	ft_append_var(char **s1, char *s2, t_data *data)
 		ft_strlcpy(key, s2, i + 1);
 		temp = ft_get_variable_value(key, data);
 	}
+	else
+		temp = ft_strdup("?");
 	if (!temp)
 		return (0);
 	*s1 = ft_strjoin_s1(*s1, temp);
@@ -78,14 +78,14 @@ static int	ft_append_var(char **s1, char *s2, t_data *data)
 
 static void	flat_bis(char *str, int i, int *check)
 {
-	if (str[i] == 34 && *check != 2)
-		*check = 1;
-	else if (str[i] == 34 && *check == 1)
+	if (str[i] == 34 && *check == 1)
 		*check = 0;
-	else if (str[i] == 39 && *check != 1)
-		*check = 2;
+	else if (str[i] == 34 && *check == 0)
+		*check = 1;
 	else if (str[i] == 39 && *check == 2)
 		*check = 0;
+	else if (str[i] == 39 && *check == 0)
+		*check = 2;
 }
 
 char	*ft_flat_string(char *str, t_data *data)

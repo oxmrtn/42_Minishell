@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:21:38 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/30 10:31:39 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/01 11:08:06 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +41,25 @@ int	ft_is_pipe(t_tokens *current)
 	return (0);
 }
 
-static void	add_tokens_between(char *str, t_tokens *current, t_type type)
+static int	add_tokens_between(char *str, t_tokens *current, t_type type)
 {
 	t_tokens	*new;
 	t_tokens	*temp;
 
 	new = malloc(sizeof(t_tokens));
 	if (!new)
-		return ;
+		return (1);
 	new->type = type;
 	new->str = ft_strdup(str);
+	if (!new->str)
+		return (1);
 	temp = current->next;
 	if (temp)
-	{
 		temp->prev = new;
-	}
 	current->next = new;
 	new->next = temp;
 	new->prev = current;
+	return (0);
 }
 
 static int	commands_shit(t_tokens **node)
@@ -72,6 +73,8 @@ static int	commands_shit(t_tokens **node)
 		|| ft_strchr(current->str, '(') || ft_strchr(current->str, ')'))
 		return (current->type = ERROR, 0);
 	splitted = ft_split(current->str, ' ');
+	if (!splitted)
+		return (1);
 	if (ft_ultimate_len(splitted) == 1)
 	{
 		if (current->type != ENV)
@@ -81,6 +84,8 @@ static int	commands_shit(t_tokens **node)
 	i = 0;
 	free(current->str);
 	current->str = ft_strdup(splitted[0]);
+	if (!current->str)
+		return (1);
 	current->type = CMD;
 	while (splitted[++i])
 	{
@@ -90,7 +95,7 @@ static int	commands_shit(t_tokens **node)
 	return (*node = current, ft_free_split(splitted), 0);
 }
 
-void	get_type(t_tokens *head)
+int	get_type(t_tokens *head)
 {
 	t_tokens	*current;
 
@@ -103,7 +108,10 @@ void	get_type(t_tokens *head)
 				current->type = REDIR;
 		}
 		else if (ft_is_commands(current))
-			commands_shit(&current);
+		{
+			if (commands_shit(&current))
+				return (1);
+		}
 		else if (ft_is_pipe(current) != 0)
 		{
 			if (current->type != ASK && current->type != ERROR)
@@ -113,6 +121,7 @@ void	get_type(t_tokens *head)
 			current->type = ARGS;
 		current = current->next;
 	}
+	return (0);
 }
 
 t_tokens	*create_token_list(char *line, t_data *data)
@@ -123,11 +132,11 @@ t_tokens	*create_token_list(char *line, t_data *data)
 	char		*temp;
 
 	head_node = NULL;
-	i = 0;
+	i = -1;
 	splitted = ft_split_quote(line, ' ');
 	if (!splitted)
 		return (NULL);
-	while (splitted[i])
+	while (splitted[++i])
 	{
 		if (ft_ultimate_len(splitted) == 1)
 			if (ft_check_variable(splitted[0], data))
@@ -138,8 +147,8 @@ t_tokens	*create_token_list(char *line, t_data *data)
 		if (add_new_token(temp, &head_node, WAIT))
 			return (ft_freetab(splitted), free(temp), NULL);
 		free(temp);
-		i++;
 	}
-	get_type(head_node);
+	if (get_type(head_node))
+		return (ft_freetab(splitted), NULL);
 	return (ft_freetab(splitted), head_node);
 }

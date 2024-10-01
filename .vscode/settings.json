@@ -8,6 +8,7 @@
 		"dirent.h": "c",
 		"history.h": "c",
 		"fcntl.h": "c",
-		"cmath": "c"
+		"cmath": "c",
+		"limits": "c"
 	}
 }
