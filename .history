@@ -20814,3 +20814,282 @@ exit
 exit 
 ?? 
 exit 
+clear 
+/ 
+clear 
+/ 
+////// 
+clear 
+/ 
+////// 
+exit 
+clear 
+/ 
+////// 
+exit 
+clear 
+\\\\ 
+clear 
+\\\\ 
+hola 
+clear 
+\\\\ 
+hola 
+env 
+clear 
+\\\\ 
+hola 
+env 
+clear 
+exit 
+clear 
+\\\\ 
+hola 
+env 
+clear 
+exit 
+clear 
+exit 
+clear 
+exit 
+clear 
+exit 
+clear 
+exit 
+clear 
+exit 
+clear 
+exit 
+exit 
+exit 
+make 
+clear 
+cd .. 
+clear 
+* 
+clear 
+* 
+*/* 
+clear 
+* 
+*/* 
+. 
+clear 
+* 
+*/* 
+. 
+.. 
+clear 
+* 
+*/* 
+. 
+.. 
+~ 
+clear 
+* 
+*/* 
+. 
+.. 
+~ 
+4ABC=hola 
+clear 
+* 
+*/* 
+. 
+.. 
+~ 
+4ABC=hola 
+hola 
+clear 
+* 
+*/* 
+. 
+.. 
+~ 
+4ABC=hola 
+hola 
+hola que tal 
+clear 
+* 
+*/* 
+. 
+.. 
+~ 
+4ABC=hola 
+hola 
+hola que tal 
+clear 
+echo 
+clear 
+* 
+*/* 
+. 
+.. 
+~ 
+4ABC=hola 
+hola 
+hola que tal 
+clear 
+echo 
+echo -n 
+clear 
+* 
+*/* 
+. 
+.. 
+~ 
+4ABC=hola 
+hola 
+hola que tal 
+clear 
+echo 
+echo -n 
+echo Hola 
+clear 
+* 
+*/* 
+. 
+.. 
+~ 
+4ABC=hola 
+hola 
+hola que tal 
+clear 
+echo 
+echo -n 
+echo Hola 
+echoHola 
+clear 
+* 
+*/* 
+. 
+.. 
+~ 
+4ABC=hola 
+hola 
+hola que tal 
+clear 
+echo 
+echo -n 
+echo Hola 
+echoHola 
+echo-nHola 
+clear 
+* 
+*/* 
+. 
+.. 
+~ 
+4ABC=hola 
+hola 
+hola que tal 
+clear 
+echo 
+echo -n 
+echo Hola 
+echoHola 
+echo-nHola 
+clear 
+echo -n Hola 
+clear 
+* 
+*/* 
+. 
+.. 
+~ 
+4ABC=hola 
+hola 
+hola que tal 
+clear 
+echo 
+echo -n 
+echo Hola 
+echoHola 
+echo-nHola 
+clear 
+echo -n Hola 
+echo -n Hola 
+clear 
+* 
+*/* 
+. 
+.. 
+~ 
+4ABC=hola 
+hola 
+hola que tal 
+clear 
+echo 
+echo -n 
+echo Hola 
+echoHola 
+echo-nHola 
+clear 
+echo -n Hola 
+echo -n Hola 
+echo -nHola 
+clear 
+* 
+*/* 
+. 
+.. 
+~ 
+4ABC=hola 
+hola 
+hola que tal 
+clear 
+echo 
+echo -n 
+echo Hola 
+echoHola 
+echo-nHola 
+clear 
+echo -n Hola 
+echo -n Hola 
+echo -nHola 
+echo Hola -n 
+clear 
+* 
+*/* 
+. 
+.. 
+~ 
+4ABC=hola 
+hola 
+hola que tal 
+clear 
+echo 
+echo -n 
+echo Hola 
+echoHola 
+echo-nHola 
+clear 
+echo -n Hola 
+echo -n Hola 
+echo -nHola 
+echo Hola -n 
+clear 
+echo Hola Que Tal 
+clear 
+* 
+*/* 
+. 
+.. 
+~ 
+4ABC=hola 
+hola 
+hola que tal 
+clear 
+echo 
+echo -n 
+echo Hola 
+echoHola 
+echo-nHola 
+clear 
+echo -n Hola 
+echo -n Hola 
+echo -nHola 
+echo Hola -n 
+clear 
+echo Hola Que Tal 
+echo \n Hola 

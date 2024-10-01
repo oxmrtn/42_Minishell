@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 12:02:18 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/17 17:17:14 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/01 14:08:36 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,20 +71,20 @@ int	ft_check_quote_syntax(char *str)
 
 	i = 0;
 	count.i = 0;
-	count.j = 0;
 	if (ft_check_mixed_quote(str))
 		return (ft_puterror("minishell error: mixed quote\n"), 1);
-	while (str[i])
+	while (str && str[i])
 	{
 		c = str[i++];
-		if (c == 39 || c == 34)
+		if (c && (c == 39 || c == 34))
 		{
 			count.i = 1;
 			while (str[i] && str[i] != c)
 				i++;
-			if (c == str[i])
+			if (str[i] == '\0')
+				return (ft_puterror("minishell error: unclosed quote\n"), 1);
+			if (c == str[i++])
 				count.i = 0;
-			i++;
 		}
 	}
 	if (count.i != 0)
