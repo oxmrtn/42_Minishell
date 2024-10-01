@@ -21144,3 +21144,177 @@ exit
 > out1 ~ 
 exit 
 >>>>>>> a4e6f0bec8f9a1af475bf6305a91a71046325b1d
+clear 
+* 
+*/* 
+. 
+.. 
+~ 
+4ABC=hola 
+hola 
+hola que tal 
+clear 
+echo 
+echo -n 
+echo Hola 
+echoHola 
+echo-nHola 
+clear 
+echo -n Hola 
+echo -n Hola 
+echo -nHola 
+echo Hola -n 
+clear 
+echo Hola Que Tal 
+echo \n Hola 
+exit 
+clear 
+* 
+*/* 
+. 
+.. 
+~ 
+4ABC=hola 
+hola 
+hola que tal 
+clear 
+echo 
+echo -n 
+echo Hola 
+echoHola 
+echo-nHola 
+clear 
+echo -n Hola 
+echo -n Hola 
+echo -nHola 
+echo Hola -n 
+clear 
+echo Hola Que Tal 
+echo \n Hola 
+exit 
+echo hello 
+echo hello 
+echo /hello 
+echo hello 
+echo /hello 
+echo //hello 
+echo hello 
+echo /hello 
+echo //hello 
+echo ///hello 
+echo hello 
+echo /hello 
+echo //hello 
+echo ///hello 
+exit 
+echo hello 
+echo /hello 
+echo //hello 
+echo ///hello 
+exit 
+echo \hello 
+echo \hello 
+echo \\hello 
+echo \hello 
+echo \\hello 
+echo \\\hello 
+echo \hello 
+echo \\hello 
+echo \\\hello 
+echo \\\\hello 
+echo \hello 
+echo \\hello 
+echo \\\hello 
+echo \\\\hello 
+exit 
+echo \hello 
+echo \\hello 
+echo \\\hello 
+echo \\\\hello 
+exit 
+echo \hello 
+echo \hello 
+echo \\hello 
+echo \hello 
+echo \\hello 
+exit 
+echo \hello 
+echo \\hello 
+exit 
+echo \hello 
+echo \hello 
+echo \\hello 
+echo \hello 
+echo \\hello 
+echo \\\\hello 
+echo \hello 
+echo \\hello 
+echo \\\\hello 
+exit 
+echo \hello 
+echo \\hello 
+echo \\\\hello 
+exit 
+echo \hello 
+echo \hello 
+echo \\hello 
+echo \hello 
+echo \\hello 
+echo \\\\\hello 
+echo \hello 
+echo \\hello 
+echo \\\\\hello 
+echo \\\\\hello 
+echo \hello 
+echo \\hello 
+echo \\\\\hello 
+echo \\\\\hello 
+exot 
+echo \hello 
+echo \\hello 
+echo \\\\\hello 
+echo \\\\\hello 
+exot 
+exit 
+echo \hello 
+echo \\hello 
+echo \\\\\hello 
+echo \\\\\hello 
+exot 
+exit 
+echo hello 
+echo hello 
+echo \hello 
+echo hello 
+echo \hello 
+echo \hello 
+echo hello 
+echo \hello 
+echo \hello 
+echo \\hello 
+echo hello 
+echo \hello 
+echo \hello 
+echo \\hello 
+echo \\hello 
+echo hello 
+echo \hello 
+echo \hello 
+echo \\hello 
+echo \\hello 
+echo \\\hello 
+echo hello 
+echo \hello 
+echo \hello 
+echo \\hello 
+echo \\hello 
+echo \\\hello 
+echo \\\\\\hello 
+echo hello 
+echo \hello 
+echo \hello 
+echo \\hello 
+echo \\hello 
+echo \\\hello 
+echo \\\\\\hello 
+echo \\\hello 

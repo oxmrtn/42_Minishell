@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:32:30 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/27 16:46:17 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/01 14:55:24 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int		ft_strncmp(char *s1, char *s2, unsigned int n);
 int		ft_ultimate_compare(char *s1, char *s2);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
+int		ft_count_char_behind(char *str, int i, char c);
 
 char	*ft_itoa(int n);
 char	*ft_strchr(const char *s, int c);

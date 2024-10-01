@@ -6,23 +6,28 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:45:56 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/01 11:38:27 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/01 15:02:15 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
 
-static char	*ft_append(char *s1, char c)
+static char	*ft_append(char *s1, char *str, int i, int check)
 {
 	char			*buffer;
 	const size_t	len = ft_strlen(s1);
 
+	if (str[i] == 92 && check != 2)
+	{
+		if ((ft_count_char_behind(str, i, 92) % 2 != 0))
+			return (s1);
+	}
 	if (!s1)
 	{
 		buffer = malloc(sizeof(char) * 2);
 		if (!buffer)
 			return (NULL);
-		buffer[0] = c;
+		buffer[0] = str[i];
 		buffer[1] = '\0';
 		return (buffer);
 	}
@@ -30,7 +35,7 @@ static char	*ft_append(char *s1, char c)
 	if (!buffer)
 		return (s1);
 	ft_strlcpy(buffer, s1, len + 1);
-	buffer[len] = c;
+	buffer[len] = str[i];
 	buffer[len + 1] = '\0';
 	free(s1);
 	return (buffer);
@@ -107,9 +112,9 @@ char	*ft_flat_string(char *str, t_data *data)
 		else
 		{
 			if ((check == 1 && str[i] == 39) || (check == 2 && str[i] == 34))
-				buf = ft_append(buf, str[i]);
+				buf = ft_append(buf, str, i, check);
 			else if (str[i] != 34 && str[i] != 39)
-				buf = ft_append(buf, str[i]);
+				buf = ft_append(buf, str, i, check);
 		}
 	}
 	return (buf);

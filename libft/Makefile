@@ -6,7 +6,7 @@
 #    By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/19 20:58:55 by mtrullar          #+#    #+#              #
-#    Updated: 2024/09/25 21:21:33 by mtrullar         ###   ########.fr        #
+#    Updated: 2024/10/01 14:54:54 by mtrullar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,6 +89,7 @@ LIBFTSRC = 	ft_atoi.c	 			\
 			ft_lstmap.c				\
 			ft_ultimate_len.c		\
 			ft_max.c				\
+			ft_count_char_behind.c	\
 
 PRINTFSRC = ft_print_pointer.c		\
 			ft_printf.c				\

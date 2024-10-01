@@ -6,40 +6,11 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:21:38 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/01 11:08:06 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/01 15:09:18 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
-
-int	ft_is_pipe(t_tokens *current)
-{
-	if (!ft_strncmp(current->str, "|", 1))
-	{
-		if (ft_strlen(current->str) > 1)
-			return (current->type = ERROR, 2);
-		if (!current->prev)
-			return (current->type = ERROR, 2);
-		else
-		{
-			if (current->prev->type == REDIR || current->prev->type == PIPE)
-				return (current->type = ERROR, 2);
-		}
-		if (!current->next)
-		{
-			current->type = ASK;
-			return (2);
-		}
-		else
-		{
-			if (!ft_strncmp(current->next->str, "|", 1))
-				return (current->type = ERROR, 0);
-			else
-				return (1);
-		}
-	}
-	return (0);
-}
 
 static int	add_tokens_between(char *str, t_tokens *current, t_type type)
 {
@@ -62,11 +33,25 @@ static int	add_tokens_between(char *str, t_tokens *current, t_type type)
 	return (0);
 }
 
+static int	commands_shit_bis(char **splitted, t_tokens *current)
+{
+	int	i;
+
+	i = 0;
+	while (splitted[i])
+	{
+		if (add_tokens_between(splitted[i], current, ARGS))
+			return (1);
+		current = current->next;
+		i++;
+	}
+	return (0);
+}
+
 static int	commands_shit(t_tokens **node)
 {
 	t_tokens	*current;
 	char		**splitted;
-	int			i;
 
 	current = *node;
 	if (ft_strchr(current->str, '&') || ft_strchr(current->str, ';')
@@ -81,17 +66,13 @@ static int	commands_shit(t_tokens **node)
 			current->type = CMD;
 		return (ft_free_split(splitted), 0);
 	}
-	i = 0;
 	free(current->str);
 	current->str = ft_strdup(splitted[0]);
 	if (!current->str)
 		return (1);
 	current->type = CMD;
-	while (splitted[++i])
-	{
-		add_tokens_between(splitted[i], current, ARGS);
-		current = current->next;
-	}
+	if (commands_shit_bis(splitted, current))
+		return (ft_free_split(splitted), 1);
 	return (*node = current, ft_free_split(splitted), 0);
 }
 
