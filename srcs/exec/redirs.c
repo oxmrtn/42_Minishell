@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:37:08 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/01 15:31:59 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/02 19:00:44 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static int	dup_inred(char *infile, int *i)
 	fd = open(infile, O_RDONLY);
 	if (fd == -1)
 	{
-		perror("infile");
+		ft_desc_error("infile", infile, 1);
+		perror(NULL);
 		*i += 1;
 	}
 	else

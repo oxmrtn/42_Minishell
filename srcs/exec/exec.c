@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:57:50 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/02 15:22:27 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/02 19:15:10 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ int	reset_fds(t_data *data, int std)
 
 int	run_gtw(t_data *data, t_cmds *cmd, int *i, int islast)
 {
-	if (data->cmdve[*i])
-	{
-		if (is_inred(cmd, i))
-			return (1);
-		if (tmp_env_setup(data, cmd, *i))
-			return (1);
-	}
+	int	isred;
+
+	isred = is_inred(cmd, i);
+	if (isred == 1)
+		return (1);
+	if (tmp_env_setup(data, cmd, *i))
+		return (1);
 	if (run_cmd(data, *i, islast))
 		return (1);
 	if (reset_fds(data, 1))

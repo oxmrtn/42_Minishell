@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:37:08 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/24 14:06:02 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/02 18:59:44 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ static int	dup_outred(char *outfile, int is_append)
 	else
 		fd = open(outfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
-		return (perror("outfile"), 1);
+	{
+		ft_desc_error("outfile", outfile, 1);
+		return (perror(NULL), 1);
+	}
 	if (dup2(fd, STDOUT_FILENO) == -1)
 		return (perror(NULL), 1);
 	close(fd);
