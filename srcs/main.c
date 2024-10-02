@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/02 13:45:11 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/02 14:10:21 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,15 +119,15 @@ static int	the_loop(t_data *data)
 		return (printf("exit\n"), 0);
 	if (sig_status != 0)
 		if (update_status(data, sig_status))
-			return (1);
+			return (free(data->read), 1);
 	if (!ft_ultimate_compare(data->read, "\0"))
-		return (2);
+		return (free(data->read), 2);
 	add_history(data->read);
 	if (ft_parser(data->read, &data->cmds, data) == 0)
 		if (exec(data, ft_get_last_commands(data->cmds)))
-			return (1);
+			return (free(data->read), 1);
 	if (update_status(data, data->exit_status))
-		return (1);
+		return (free(data->read), 1);
 	free(data->read);
 	data->read = NULL;
 	sig_status = 0;
@@ -144,6 +144,8 @@ int	main(int argc, char **argv, char **env)
 	data = malloc(sizeof(t_data));
 	if (!data)
 		return (1);
+	if (init_data(data, env))
+		return (free_main(data), 1);
 	retval = 0;
 	while (1)
 	{

@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:47:18 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/24 17:44:57 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/02 14:03:42 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	ft_pwd(t_data *data)
 			return (ft_puterror("minishell error : pwd has failled\n"), -100);
 	}
 	test = ft_strjoin(pwd, "\n");
+	free(pwd);
 	if (test)
 	{
 		if (write(STDOUT_FILENO, test, ft_strlen(test)) < 0)
