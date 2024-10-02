@@ -1,0 +1,5 @@
+rwerwe rwe r 
+cat 
+< Makefile | sleep 1 
+echo 131 
+exit 

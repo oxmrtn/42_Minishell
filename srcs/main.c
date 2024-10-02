@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/02 14:10:21 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/02 14:28:28 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ void	sig_handle(int signo)
 	}
 	if (signo == SIGQUIT)
 	{
+		if (!isatty(STDIN_FILENO))
+			ft_putstr_fd("Quit (core dumped)\n", 1);
 		rl_on_new_line();
 		ft_putstr_fd("\33[2K\r", 1);
 		rl_redisplay();
@@ -119,18 +121,18 @@ static int	the_loop(t_data *data)
 		return (printf("exit\n"), 0);
 	if (sig_status != 0)
 		if (update_status(data, sig_status))
-			return (free(data->read), 1);
+			return (1);
 	if (!ft_ultimate_compare(data->read, "\0"))
-		return (free(data->read), 2);
+		return (free(data->read), data->read = NULL, 2);
+	sig_status = 0;
 	add_history(data->read);
 	if (ft_parser(data->read, &data->cmds, data) == 0)
 		if (exec(data, ft_get_last_commands(data->cmds)))
-			return (free(data->read), 1);
+			return (1);
 	if (update_status(data, data->exit_status))
-		return (free(data->read), 1);
+		return (1);
 	free(data->read);
 	data->read = NULL;
-	sig_status = 0;
 	return (2);
 }
 
