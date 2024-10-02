@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:35:10 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/01 19:08:54 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/02 15:32:07 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,14 @@ void	ft_free_envs(t_data *data)
 	free(data->envs);
 }
 
-void	free_main(t_data *data)
+void	free_main(t_data *data, int i)
 {
 	if (data)
 	{
 		if (data->cmds)
 		{
-			ft_write_history(data->cmds);
+			if (i == 1)
+				ft_write_history(data->cmds);
 			ft_free_commands(data->cmds);
 		}
 		if (data->read)

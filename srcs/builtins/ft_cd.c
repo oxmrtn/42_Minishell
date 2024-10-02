@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:46:55 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/01 11:38:54 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/02 16:40:58 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,31 @@ static void	ft_env_update(t_data *data, char *new_val)
 	free(new_val);
 }
 
+static int	handle_flag(t_data *data)
+{
+	char	*oldpwd;
+
+	oldpwd = ft_get_variable_value("OLDPWD", data);
+	if (!oldpwd)
+		return (-100);
+	update_old_pwd(data);
+	if (chdir(oldpwd) != 0)
+		return (free(oldpwd), 1);
+	if (ft_pwd(data))
+		return (free(oldpwd), 1);
+	return (free(oldpwd), 0);
+}
+
 int	ft_cd(t_data *data, char **cmdve)
 {
 	char	*actual_path;
 	char	*temp;
 
-	update_old_pwd(data);
 	if (cmdve[1] && cmdve[2])
 		return (ft_puterror("minishell error: cd too many arguments\n"), 1);
+	if (cmdve[1] && !ft_ultimate_compare(cmdve[1], "-"))
+		return (handle_flag(data));
+	update_old_pwd(data);
 	if (!cmdve[1])
 	{
 		temp = get_root(data);

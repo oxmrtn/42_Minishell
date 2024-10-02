@@ -1,3 +1,48 @@
-cat | rev 
-echo 130 
+mkdir a 
+mkdir a/b 
+cd a/b 
+rm -r ../../a 
+cd .. 
+ls 
+cd .. 
+ls 
+mkdir a 
+mkdir a/b 
+cd a/b 
+ls 
+pwd 
+cd .. 
+pwd 
+cd b/ 
+ls 
+ls 
+clear 
+mkdir tet 
+cd tet/ 
+ls 
+ls 
+ls 
+cd .. 
+ls 
+cd tet 
+ls 
+clea 
+clear 
+cd .. 
+cd .. 
+ls 
+cd b/ 
+ls 
+cd tet/ 
+ls 
+rm -r ../../../a/ 
+ls 
+pwd 
+cd .. 
+pwd 
+cd .. 
+pwd 
+cd .. 
+pwd 
+clear 
 exit 

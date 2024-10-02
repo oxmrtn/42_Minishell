@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:48:42 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/30 10:11:31 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/02 15:32:45 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ft_exit(t_data *data, char **cmdve)
 	}
 	else
 		exit_code = data->exit_status;
-	free_main(data);
+	free_main(data, 0);
 	exit(exit_code % 256);
 	return (1);
 }

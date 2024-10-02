@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:49:23 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/01 14:29:11 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/02 15:32:59 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	cmd_isdir(t_data *data, char *cmd, int *fds)
 	{
 		close(fds[1]);
 		ft_desc_error(cmd, "is a directory\n", 0);
-		free_main(data);
+		free_main(data, 0);
 		exit(126);
 	}
 }
@@ -35,7 +35,7 @@ static int	run_child(t_data *data, int i, int *fds, int islast)
 	close(fds[1]);
 	if (!data->cmdve[i] || is_builtin(data->cmdve[i][0]))
 	{
-		free_main(data);
+		free_main(data, 0);
 		exit(0);
 	}
 	if (is_outred(ft_get_last_commands(data->cmds), i))
@@ -45,7 +45,7 @@ static int	run_child(t_data *data, int i, int *fds, int islast)
 	{
 		ft_desc_error("command not found", data->cmdve[i][0], 1);
 		perror(NULL);
-		free_main(data);
+		free_main(data, 0);
 		exit(127);
 	}
 	return (0);
