@@ -6,7 +6,11 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/10/02 17:03:00 by mtrullar         ###   ########.fr       */
+=======
+/*   Updated: 2024/10/02 16:34:26 by ebengtss         ###   ########.fr       */
+>>>>>>> ebengtss/exec
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,11 +128,14 @@ static int	the_loop(t_data *data)
 			return (free(data->read), data->read = NULL, 1);
 	if (!ft_ultimate_compare(data->read, "\0"))
 		return (free(data->read), data->read = NULL, 2);
+	data->exit_status = -100;
 	sig_status = 0;
 	add_history(data->read);
 	if (ft_parser(data->read, &data->cmds, data) == 0)
 		if (exec(data, ft_get_last_commands(data->cmds)))
 			return (free(data->read), data->read = NULL, 1);
+	if (data->exit_status != -100)
+		sig_status = 0;
 	if (update_status(data, data->exit_status))
 		return (free(data->read), data->read = NULL, 1);
 	return (free(data->read), data->read = NULL, 2);
