@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:57:50 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/30 15:01:03 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/02 14:38:14 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,7 @@ int	exec(t_data *data, t_cmds *cmd)
 		return (1);
 	if (reset_fds(data, 0))
 		return (1);
-	return (ft_free_cmdve(data->cmdve), 0);
+	ft_free_cmdve(data->cmdve);
+	data->cmdve = NULL;
+	return (0);
 }
