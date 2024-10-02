@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:35:10 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/30 15:30:18 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/01 19:08:54 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,6 @@ void	free_main(t_data *data)
 		}
 		if (data->read)
 			free(data->read);
-		if (data->tmpexitstatus)
-			free(data->tmpexitstatus);
 		if (data->envs)
 			ft_free_envs(data);
 		if (data->var)
