@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:35:12 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/02 15:01:39 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/02 17:27:15 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ static int	builtin_option_check(char **cmdve)
 	if (cmdve[1])
 	{
 		if (cmdve[1][0] == '-' && (ft_ultimate_compare(cmdve[0], "echo") != 0
-			&& ft_ultimate_compare(cmdve[0], "cd") != 0))
+			&& ft_ultimate_compare(cmdve[0], "cd") != 0)
+			&& ft_ultimate_compare(cmdve[0], "exit") != 0)
 		{
 			ft_desc_error(cmdve[0], cmdve[1], 1);
 			ft_puterror("invalid option\n");
