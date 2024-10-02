@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/10/02 17:03:00 by mtrullar         ###   ########.fr       */
-=======
-/*   Updated: 2024/10/02 16:34:26 by ebengtss         ###   ########.fr       */
->>>>>>> ebengtss/exec
+/*   Updated: 2024/10/02 18:12:27 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +130,8 @@ static int	the_loop(t_data *data)
 	if (ft_parser(data->read, &data->cmds, data) == 0)
 		if (exec(data, ft_get_last_commands(data->cmds)))
 			return (free(data->read), data->read = NULL, 1);
+	if (data->exit_status == -100 && sig_status == 0)
+		data->exit_status = 0;
 	if (data->exit_status != -100)
 		sig_status = 0;
 	if (update_status(data, data->exit_status))

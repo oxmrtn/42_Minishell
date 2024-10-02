@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:48:29 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/02 16:56:39 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/02 17:14:23 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,11 @@ void	print_env(t_env *env, int env_or_exp)
 		else
 		{
 			if (env->exp_noval == 1)
-				printf("%s\n", env->key);
+				printf("declare -x %s\n", env->key);
 			else if (env->val)
-				printf("%s=\"%s\"\n", env->key, env->val);
+				printf("declare -x %s=\"%s\"\n", env->key, env->val);
 			else
-				printf("%s=\"\"\n", env->key);
+				printf("declare -x %s=\"\"\n", env->key);
 		}
 		env = env->next;
 	}
