@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   env_init3.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 17:13:16 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/03 17:42:25 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/03 19:01:38 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../incs/minishell.h"
 

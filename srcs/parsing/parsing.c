@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:03:48 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/03 18:09:05 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/03 19:01:16 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	ft_syntax_error(t_tokens *head)
 	{
 		if (head->type == ERROR)
 		{
-			ft_puterror("minishell error: syntax error\n");
+			ft_desc_error(head->str, "syntax error", 0, NULL);
 			return (1);
 		}
 		head = head->next;
