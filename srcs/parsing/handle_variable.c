@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 16:20:25 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/02 19:02:45 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/03 14:40:56 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,13 @@ int	ft_check_variable(char *str, t_data *data)
 	t2 = ft_strchr(str, 39);
 	if ((t1 && tmp > t1) || (t2 && tmp > t2) || ft_check_quote_syntax(tmp + 1))
 		return (0);
+	if (is_inenv_str(data->envs->env, str))
+	{
+		env_update(data->envs->exp, str);
+		env_update(data->envs->env, str);
+		return (envtab_update(data), 1);
+	}
 	if (!ft_add_variable(str, data))
-		return (1);
-	if (!env_update(data->envs->env, str))
-		return (env_update(data->envs->exp, str), envtab_update(data), 1);
-	if (!env_update(data->envs->exp, str))
 		return (1);
 	return (0);
 }
@@ -100,19 +102,19 @@ char	*ft_get_variable_value(char *key, t_data *data)
 
 	env = data->envs->env;
 	current = data->var;
-	if (!key || !current)
+	if (!key)
 		return (NULL);
+	while (env)
+	{
+		if (!ft_ultimate_compare(key, env->key))
+			return (ft_strdup(env->val));
+		env = env->next;
+	}
 	while ((current && current->content && current->name))
 	{
 		if (!ft_ultimate_compare(key, current->name))
 			return (ft_strdup(current->content));
 		current = current->next;
-	}
-	while (env && env->val)
-	{
-		if (!ft_ultimate_compare(key, env->key))
-			return (ft_strdup(env->val));
-		env = env->next;
 	}
 	return (ft_strdup(""));
 }
