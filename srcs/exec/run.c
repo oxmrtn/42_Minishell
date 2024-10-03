@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:49:23 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/02 15:32:59 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:18:18 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	cmd_isdir(t_data *data, char *cmd, int *fds)
 static int	run_child(t_data *data, int i, int *fds, int islast)
 {
 	close(fds[0]);
-	if (!islast)
+	if (!islast && !data->isoutred)
 		if (dup2(fds[1], STDOUT_FILENO) == -1)
 			return (close(fds[1]), perror(NULL), 1);
 	close(fds[1]);
@@ -38,8 +38,6 @@ static int	run_child(t_data *data, int i, int *fds, int islast)
 		free_main(data, 0);
 		exit(0);
 	}
-	if (is_outred(ft_get_last_commands(data->cmds), i))
-		return (1);
 	cmd_isdir(data, data->cmdve[i][0], fds);
 	if (execve(data->cmdve[i][0], data->cmdve[i], data->envs->envve) == -1)
 	{
@@ -59,24 +57,15 @@ static int	run_parent(t_data *data, int i, int *fds, int islast)
 		return (close(fds[0]), perror(NULL), 1);
 	close(fds[0]);
 	if (!data->cmdve[i])
-	{
-		close(fds[1]);
-		if (is_outred(ft_get_last_commands(data->cmds), i))
-			return (1);
-		return (0);
-	}
+		return (close(fds[1]), 0);
 	builtin_check = is_builtin(data->cmdve[i][0]);
 	if (!islast && builtin_check)
 		if (dup2(fds[1], STDOUT_FILENO) == -1)
 			return (close(fds[1]), perror(NULL), 1);
 	close(fds[1]);
 	if (builtin_check)
-	{
-		if (is_outred(ft_get_last_commands(data->cmds), i))
-			return (1);
 		if (exec_builtin(data, data->cmdve[i]) == -100)
 			return (1);
-	}
 	return (0);
 }
 

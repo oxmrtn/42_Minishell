@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/03 15:53:23 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:59:13 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,16 +95,18 @@ typedef struct s_envs
 
 typedef struct s_data
 {
-	t_cmds				*cmds;
-	t_envs				*envs;
-	t_var				*var;
-	char				***cmdve;
-	char				*read;
-	char				*tmpexitstatus;
-	int					exit_status;
-	int					stdincpy;
-	int					stdoutcpy;
-}						t_data;
+	t_cmds	*cmds;
+	t_envs	*envs;
+	t_var	*var;
+	char	***cmdve;
+	char	*read;
+	char	*tmpexitstatus;
+	int		exit_status;
+	int		stdincpy;
+	int		stdoutcpy;
+	int		isoutred;
+	int		cmdvesize;
+}			t_data;
 
 //	PARSING
 //		parsing.c
@@ -164,24 +166,22 @@ void		ft_free_var(t_var *node);
 
 //		free.c
 void		free_main(t_data *data, int i);
-void		ft_free_cmdve(char ***cmdve);
+void		ft_free_cmdve(t_data *data);
 void		ft_free_tokens(t_tokens *tok);
 void		ft_free_commands(t_cmds *cmds);
 void		ft_free_env(t_env **lst);
-void		ft_free_cmdve(char ***cmdve);
 
 /* EXEC */
 int			exec(t_data *data, t_cmds *cmd);
 int			run_cmd(t_data *data, int i, int islast);
-int			is_inred(t_cmds *cmd, int *i);
-int			is_outred(t_cmds *cmd, int i);
+int			is_redirs(t_data *data, t_cmds *cmd, int i);
 t_tokens	*skip_tokens(t_cmds *cmd, int i);
 int			is_builtin(char *cmd);
 int			exec_builtin(t_data *data, char **cmdve);
 int			run_gtw(t_data *data, t_cmds *cmd, int *i, int islast);
-char		***ft_make_cmdve(t_cmds *cmd, int *j);
+char		***ft_make_cmdve(t_data *data, t_cmds *cmd);
 int			ft_fill_cmdve(char ***cmdve, t_cmds *cmd);
-int			cmds_path(char ***cmdve, t_data *data, int j);
+int			cmds_path(char ***cmdve, t_data *data);
 int			reset_fds(t_data *data, int std);
 
 /* BUILTINS */

@@ -3,27 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:35:10 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/02 15:32:07 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:15:28 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
 
-void	ft_free_cmdve(char ***cmdve)
+void	ft_free_cmdve(t_data *data)
 {
-	int	i;
+	int		i;
+	char	***cmdve;
 
 	i = 0;
+	cmdve = data->cmdve;
 	if (*cmdve)
 	{
 		if (**cmdve)
 		{
-			while (cmdve[i])
+			while (i < data->cmdvesize)
 			{
-				ft_free_split(cmdve[i]);
+				if (cmdve[i])
+					ft_free_split(cmdve[i]);
 				i++;
 			}
 		}
@@ -80,7 +83,7 @@ void	free_main(t_data *data, int i)
 		if (data->var)
 			ft_free_var(data->var);
 		if (data->cmdve)
-			ft_free_cmdve(data->cmdve);
+			ft_free_cmdve(data);
 		free(data);
 		clear_history();
 	}

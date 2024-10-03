@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/02 19:17:11 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:59:52 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ static int	init_data(t_data *data, char **env)
 	sigaction(SIGQUIT, &action, NULL);
 	sig_status = 0;
 	data->exit_status = 0;
+	data->cmdvesize = 0;
+	data->isoutred = 0;
 	data->var = NULL;
 	data->read = NULL;
 	data->cmds = NULL;
