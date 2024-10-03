@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:49:23 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/03 15:18:18 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/03 17:30:43 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	cmd_isdir(t_data *data, char *cmd, int *fds)
 		|| (!stat(cmd, &cmdvestats) && S_ISDIR(cmdvestats.st_mode)))
 	{
 		close(fds[1]);
-		ft_desc_error(cmd, "is a directory\n", 0);
+		ft_desc_error(cmd, "is a directory\n", 0, NULL);
 		free_main(data, 0);
 		exit(126);
 	}
@@ -41,8 +41,7 @@ static int	run_child(t_data *data, int i, int *fds, int islast)
 	cmd_isdir(data, data->cmdve[i][0], fds);
 	if (execve(data->cmdve[i][0], data->cmdve[i], data->envs->envve) == -1)
 	{
-		ft_desc_error("command not found", data->cmdve[i][0], 1);
-		perror(NULL);
+		ft_desc_error("command not found", data->cmdve[i][0], 1, NULL);
 		free_main(data, 0);
 		exit(127);
 	}

@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:35:12 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/03 15:59:34 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/03 17:29:50 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ static int	builtin_option_check(char **cmdve)
 			|| (!ft_ultimate_compare(cmdve[0], "cd") && !cmdve[1][1])
 			|| (!ft_ultimate_compare(cmdve[0], "exit")))
 			return (0);
-		ft_desc_error(cmdve[0], cmdve[1], 1);
-		ft_puterror("invalid option\n");
+		ft_desc_error(cmdve[0], cmdve[1], 1, "invalid option");
 		return (1);
 	}
 	return (0);

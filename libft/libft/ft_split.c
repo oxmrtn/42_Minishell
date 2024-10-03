@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:03:25 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/01 19:03:17 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/03 17:36:53 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,15 @@ void	ft_free_split(char **strs)
 	size_t	i;
 
 	i = 0;
-	while (strs[i])
+	if (strs && *strs)
 	{
-		free(strs[i]);
-		i++;
+		while (strs[i])
+		{
+			free(strs[i]);
+			i++;
+		}
+		free(strs);
 	}
-	free(strs);
 }
 
 int	cpt_words(char *str, char c)

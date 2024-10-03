@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 16:48:53 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/03 15:54:16 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/03 17:18:07 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	***ft_make_cmdve(t_data *data, t_cmds *cmd)
 	}
 	cmdve = malloc(sizeof(char *) * (data->cmdvesize + 1));
 	if (!cmdve)
-		return (NULL);
+		return (data->cmdvesize = 0, NULL);
 	cmdve[data->cmdvesize] = NULL;
 	return (cmdve);
 }

@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 14:29:15 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/03 15:41:10 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/03 16:37:04 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ static int	cmds_path2(char ***cmdve, char **env_path, t_data *data)
 {
 	int		i;
 
-	printf("checkkk\n");
 	i = 0;
 	while (i < data->cmdvesize)
 	{

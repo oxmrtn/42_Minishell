@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:47:35 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/02 16:57:00 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/03 17:28:49 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ static int	expenv_add(t_data *data, char *cmdve)
 
 	if (isvalid_env(cmdve, 0))
 	{
-		ft_desc_error("export", cmdve, 1);
-		return (ft_puterror("not a valid identifier\n"), 1);
+		ft_desc_error("export", cmdve, 1, "not a valid identifier");
+		return (1);
 	}
 	c = ft_strchr(cmdve, '=');
 	if (c)

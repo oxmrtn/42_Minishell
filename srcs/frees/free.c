@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:35:10 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/03 15:15:28 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/03 17:19:17 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,15 @@ void	ft_free_cmdve(t_data *data)
 
 	i = 0;
 	cmdve = data->cmdve;
-	if (*cmdve)
+	while (i < data->cmdvesize)
 	{
-		if (**cmdve)
-		{
-			while (i < data->cmdvesize)
-			{
-				if (cmdve[i])
-					ft_free_split(cmdve[i]);
-				i++;
-			}
-		}
-		free(cmdve);
-		cmdve = NULL;
+		if (cmdve[i])
+			ft_free_split(cmdve[i]);
+		i++;
 	}
+	if (data->cmdvesize > 0)
+		free(cmdve);
+	cmdve = NULL;
 }
 
 void	ft_free_env(t_env **lst)
@@ -82,8 +77,7 @@ void	free_main(t_data *data, int i)
 			ft_free_envs(data);
 		if (data->var)
 			ft_free_var(data->var);
-		if (data->cmdve)
-			ft_free_cmdve(data);
+		ft_free_cmdve(data);
 		free(data);
 		clear_history();
 	}

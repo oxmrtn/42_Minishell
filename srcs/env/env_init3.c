@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 17:13:16 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/01 14:14:48 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/03 17:29:37 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static char	*incr_shlvl2(t_env *env)
 			intval = ft_atol(env->val);
 			if (intval >= 1000)
 			{
-				ft_desc_error("warning: shell level", env->val, 1);
-				ft_puterror("too high, resetting to 1\n");
+				ft_desc_error("warning: shell level", env->val, 1, 
+					"too high, resetting to 1");
 				incrval = ft_strdup("1");
 			}
 			else
