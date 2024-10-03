@@ -3,32 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   cmdve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 16:48:53 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/24 17:47:33 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:54:16 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
 
-char	***ft_make_cmdve(t_cmds *cmd, int *j)
+char	***ft_make_cmdve(t_data *data, t_cmds *cmd)
 {
 	char		***cmdve;
 	t_tokens	*tokens;
 
 	tokens = cmd->tokens;
-	*j = 1;
+	data->cmdvesize = 1;
 	while (tokens)
 	{
 		if (tokens->type == PIPE)
-			*j += 1;
+			data->cmdvesize++;
 		tokens = tokens->next;
 	}
-	cmdve = malloc(sizeof(char *) * (*j + 1));
+	cmdve = malloc(sizeof(char *) * (data->cmdvesize + 1));
 	if (!cmdve)
 		return (NULL);
-	cmdve[*j] = NULL;
+	cmdve[data->cmdvesize] = NULL;
 	return (cmdve);
 }
 
@@ -102,9 +102,10 @@ int	ft_fill_cmdve(char ***cmdve, t_cmds *cmd)
 		if (tokens->type == CMD)
 			if (ft_fill_cmdve2(cmdve, i++, &check, &tokens))
 				return (1);
-		if (tokens && tokens->type == PIPE && !check)
+		if (tokens && tokens->type == PIPE)
 		{
-			cmdve[i++] = NULL;
+			if (!check)
+				cmdve[i++] = NULL;
 			check = 0;
 		}
 		if (tokens)

@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:57:50 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/02 19:15:10 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:54:37 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,11 @@ int	reset_fds(t_data *data, int std)
 
 int	run_gtw(t_data *data, t_cmds *cmd, int *i, int islast)
 {
-	int	isred;
+	int	redirs;
 
-	isred = is_inred(cmd, i);
-	if (isred == 1)
+	data->isoutred = 0;
+	redirs = is_redirs(data, cmd, *i);
+	if (redirs == 1)
 		return (1);
 	if (tmp_env_setup(data, cmd, *i))
 		return (1);
@@ -57,12 +58,12 @@ int	run_gtw(t_data *data, t_cmds *cmd, int *i, int islast)
 	return (0);
 }
 
-static int	exec2(t_data *data, t_cmds *cmd, int j)
+static int	exec2(t_data *data, t_cmds *cmd)
 {
 	int	i;
 
 	i = 0;
-	while (i < (j - 1))
+	while (i < data->cmdvesize - 1)
 	{
 		if (run_gtw(data, cmd, &i, 0))
 			return (1);
@@ -75,22 +76,20 @@ static int	exec2(t_data *data, t_cmds *cmd, int j)
 
 int	exec(t_data *data, t_cmds *cmd)
 {
-	int	j;
-
 	if (!cmd)
 		return (0);
-	data->cmdve = ft_make_cmdve(cmd, &j);
+	data->cmdve = ft_make_cmdve(data, cmd);
 	if (!data->cmdve)
 		return (1);
 	if (ft_fill_cmdve(data->cmdve, cmd))
 		return (1);
-	if (cmds_path(data->cmdve, data, j))
+	if (cmds_path(data->cmdve, data))
 		return (1);
-	if (exec2(data, cmd, j))
+	if (exec2(data, cmd))
 		return (1);
 	if (reset_fds(data, 0))
 		return (1);
-	ft_free_cmdve(data->cmdve);
+	ft_free_cmdve(data);
 	data->cmdve = NULL;
 	return (0);
 }
