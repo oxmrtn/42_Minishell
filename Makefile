@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+         #
+#    By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/04 15:03:37 by ebengtss          #+#    #+#              #
-#    Updated: 2024/10/03 14:16:28 by ebengtss         ###   ########.fr        #
+#    Updated: 2024/10/03 17:41:44 by mtrullar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,8 @@ SRCS_FILES			=	main.c				builtins.c			\
 						env_list2.c			cmdve.c				\
 						check_error.c		env_init3.c			\
 						ft_env2.c			env_init2.c			\
-						utils.c
+						tokenization_util.c utils.c				\
+						
 
 OBJS				=	$(addprefix $(OBJS_DIR), $(SRCS_FILES:.c=.o))
 

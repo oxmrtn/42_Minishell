@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:20:36 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/03 15:54:26 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/03 17:42:08 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void	ft_check_pipe(t_tokens *node)
 	if (node->str[ft_strlen(node->str) - 1] == '|')
 	{
 		node->str[ft_strlen(node->str) - 1] = '\0';
-		add_tokens_between("|", node , PIPE);
+		add_tokens_between("|", node, PIPE);
 	}
 }
 
@@ -84,42 +84,5 @@ int	ft_is_args(t_tokens *node)
 		return (ft_check_pipe(node), 1);
 	if (node->prev->type == ARGS || node->prev->type == CMD)
 		return (ft_check_pipe(node), 1);
-	return (0);
-}
-
-static void	ft_set_redirect(t_tokens *current, t_type to_set )
-{
-	if ((current->prev && current->next)
-		&& ((current->prev->type == REDIR || current->next->type == REDIR)))
-		current->type = ERROR;
-	{
-		if (current->next)
-		{
-			current->type = REDIR;
-			if (ft_strncmp(current->next->str, "|", 1)
-				|| ft_strncmp(current->next->str, "<", 1)
-				|| ft_strncmp(current->next->str, ">", 1))
-				current->next->type = to_set;
-			else
-			{
-				current->type = ERROR;
-				current->next->type = ERROR;
-			}
-		}
-		else
-			current->type = ERROR;
-	}
-}
-
-int	ft_is_redirect_sign(t_tokens *current)
-{
-	if (!ft_strncmp(current->str, ">>", 2))
-		return (ft_set_redirect(current, APPEND), 1);
-	else if (!ft_strncmp(current->str, ">", 1))
-		return (ft_set_redirect(current, OUTFILE), 1);
-	else if (!ft_strncmp(current->str, "<<", 2))
-		return (ft_set_redirect(current, LIMITER), 1);
-	else if (!ft_strncmp(current->str, "<", 1))
-		return (ft_set_redirect(current, INFILE), 1);
 	return (0);
 }
