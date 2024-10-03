@@ -1,7 +1,6 @@
+> out1 
+> a/b 
+< oiwfwefo 
+ls | > out1 | blbl 
 clear 
-echo hola | cat | cat | cat | cat | cat | grep hola 
-echo hola | cat 
-echo hola | cat 
-echo hola|cat 
-ech|o hola | cat 
 exit 
