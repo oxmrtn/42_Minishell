@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:22:35 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/01 17:35:54 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/03 18:59:33 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,31 @@
 
 static int	ft_launch_heredocs(char *limiter, t_data *data)
 {
-	int				fd;
-	char			*buffer;
+	int		fd;
+	char	*buffer;
+	char	*temp;
 
-	fd = open(".heredoc", O_CREAT | O_TRUNC | O_WRONLY);
+	fd = open(".heredoc", O_CREAT | O_TRUNC | O_WRONLY, 0644);
 	if (fd <= 0)
 		return (1);
-	buffer = get_next_line(1);
-	if (!buffer)
+	temp = get_next_line(STDIN_FILENO);
+	if (!temp)
 		return (close(fd), 0);
-	buffer = ft_flat_string(buffer, data);
+	temp[ft_strlen(temp) - 1] = '\0';
+	buffer = ft_flat_string(temp, data);
 	while (buffer && ft_ultimate_compare(limiter, buffer))
 	{
 		write(fd, buffer, ft_strlen(buffer));
+		write(fd, "\n", 1);
+		free(temp);
 		free(buffer);
-		buffer = get_next_line(1);
-		if (!buffer)
+		temp = get_next_line(STDIN_FILENO);
+		if (!temp)
 			return (close(fd), 0);
-		buffer = ft_flat_string(buffer, data);
+		temp[ft_strlen(temp) - 1] = '\0';
+		buffer = ft_flat_string(temp, data);
 	}
-	close(fd);
-	return (0);
+	return (close(fd), free(buffer), free(temp), 0);
 }
 
 int	ft_heredoc_handler(t_tokens *head, t_data *data)

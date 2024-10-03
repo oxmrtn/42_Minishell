@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:37:08 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/03 17:30:20 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/03 18:55:35 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	dup_heredoc(void)
 {
 	int	fd;
 
-	fd = open(".heredoc", O_CREAT, O_TRUNC, O_RDONLY);
+	fd = open(".heredoc", O_RDONLY);
 	if (fd == -1)
 	{
 		ft_desc_error("heredoc", ".heredoc", 1, NULL);
@@ -62,8 +62,8 @@ static int	dup_heredoc(void)
 	if (dup2(fd, STDIN_FILENO) == -1)
 		return (close (fd), perror(NULL), 1);
 	close (fd);
-	if (unlink(".heredoc") == -1)
-		return (1);
+	// if (unlink(".heredoc") == -1)
+	// 	return (1);
 	return (0);
 }
 

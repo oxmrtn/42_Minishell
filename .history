@@ -1,4 +1,3 @@
 clear 
-clear 
-echo hola >>> bonjour 
+<< lim cat -e 
 exit 
