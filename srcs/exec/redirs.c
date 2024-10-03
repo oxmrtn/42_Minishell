@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:37:08 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/03 17:30:20 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/03 18:18:49 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	dup_heredoc(void)
 {
 	int	fd;
 
-	fd = open(".heredoc", O_CREAT, O_TRUNC, O_RDONLY);
+	fd = open(".heredoc", O_RDONLY);
 	if (fd == -1)
 	{
 		ft_desc_error("heredoc", ".heredoc", 1, NULL);

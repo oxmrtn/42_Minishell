@@ -1,6 +1,1 @@
-> out1 
-> a/b 
-< oiwfwefo 
-ls | > out1 | blbl 
-clear 
 exit 

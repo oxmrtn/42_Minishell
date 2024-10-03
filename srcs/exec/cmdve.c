@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 16:48:53 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/03 17:18:07 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/03 18:53:50 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,16 @@ char	***ft_make_cmdve(t_data *data, t_cmds *cmd)
 	return (cmdve);
 }
 
-static int	ft_is_cmdve(t_tokens *tokens)
-{
-	if (tokens->type == OUTFILE || tokens->type == INFILE
-		|| tokens->type == REDIR)
-		return (2);
-	if (tokens->type == CMD || tokens->type == ARGS)
-		return (1);
-	return (0);
-}
-
 static char	**ft_fill_cmdve3(t_tokens *tokens)
 {
 	char	**cmdve;
 	size_t	i;
 
 	i = 0;
-	while (tokens)
+	while (tokens && tokens->type != PIPE)
 	{
-		if (ft_is_cmdve(tokens) == 1)
+		if (tokens->type == CMD || tokens->type == ARGS)
 			i++;
-		if (tokens->next && !ft_is_cmdve(tokens->next))
-			break ;
 		tokens = tokens->next;
 	}
 	cmdve = malloc(sizeof(char *) * (i + 1));
@@ -71,17 +59,15 @@ static int	ft_fill_cmdve2(char ***cmdve, int j, int *check, t_tokens **tokens)
 	cmdve[j] = ft_fill_cmdve3(*tokens);
 	if (!cmdve[j])
 		return (1);
-	while ((*tokens))
+	while ((*tokens) && (*tokens)->type != PIPE)
 	{
-		if (ft_is_cmdve(*tokens) == 1)
+		if ((*tokens)->type == CMD || (*tokens)->type == ARGS)
 		{
 			cmdve[j][i] = ft_strdup((*tokens)->str);
 			if (!cmdve[j][i])
 				return (1);
 			i++;
 		}
-		if ((*tokens)->next && !ft_is_cmdve((*tokens)->next))
-			break ;
 		*tokens = (*tokens)->next;
 	}
 	*check = 1;
