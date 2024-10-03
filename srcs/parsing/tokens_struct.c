@@ -6,13 +6,13 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:21:38 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/01 18:45:29 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:52:42 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
 
-static int	add_tokens_between(char *str, t_tokens *current, t_type type)
+int	add_tokens_between(char *str, t_tokens *current, t_type type)
 {
 	t_tokens	*new;
 	t_tokens	*temp;

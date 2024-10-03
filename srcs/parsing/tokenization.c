@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:20:36 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/30 10:45:39 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:54:26 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,15 @@ int	ft_is_commands(t_tokens *node)
 	return (0);
 }
 
+static void	ft_check_pipe(t_tokens *node)
+{
+	if (node->str[ft_strlen(node->str) - 1] == '|')
+	{
+		node->str[ft_strlen(node->str) - 1] = '\0';
+		add_tokens_between("|", node , PIPE);
+	}
+}
+
 int	ft_is_args(t_tokens *node)
 {
 	if (ft_strchr(node->str, '&') || ft_strchr(node->str, ';')
@@ -72,8 +81,10 @@ int	ft_is_args(t_tokens *node)
 		return (0);
 	else if (count_cmd(node) > 0 && (node->prev->type == OUTFILE
 			|| node->prev->type == INFILE))
-		return (1);
-	return (node->prev->type == ARGS || node->prev->type == CMD);
+		return (ft_check_pipe(node), 1);
+	if (node->prev->type == ARGS || node->prev->type == CMD)
+		return (ft_check_pipe(node), 1);
+	return (0);
 }
 
 static void	ft_set_redirect(t_tokens *current, t_type to_set )

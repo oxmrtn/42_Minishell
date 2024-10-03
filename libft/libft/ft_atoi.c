@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 22:33:47 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/31 14:22:54 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:27:37 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,33 @@ int	ft_atoi(const char *nptr)
 	int		i;
 	int		signe;
 	int		result;
+
+	i = 0;
+	result = 0;
+	signe = 1;
+	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == 32)
+		i++;
+	if (nptr[i] == '+')
+		i++;
+	else if (nptr[i] == '-')
+	{
+		i++;
+		signe = -1;
+	}
+	while (ft_isdigit(nptr[i]))
+	{
+		result *= 10;
+		result += (nptr[i] - '0');
+		i++;
+	}
+	return (signe * result);
+}
+
+long long	ft_atoll(const char *nptr)
+{
+	int			i;
+	long long	signe;
+	long long	result;
 
 	i = 0;
 	result = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/02 17:08:27 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:53:23 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ int			ft_is_pipe(t_tokens *current);
 int			ft_is_redirect_sign(t_tokens *current);
 int			ft_is_args(t_tokens *node);
 int			ft_is_commands(t_tokens *node);
+int			add_tokens_between(char *str, t_tokens *current, t_type type);
 
 //		tokens_struct.c
 t_tokens	*ft_get_last_token(t_tokens *head);

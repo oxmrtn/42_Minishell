@@ -1,24 +1,2 @@
-export  
-export  
-export  
-export = 
-export % 
-export 1 
-export ?=2 
-export 9HOLA= 
-export HOLA9=bonjour 
-clear 
-env 
-clear 
-export ___HOLA=bonjour 
-env 
-export 
-clear 
-export _HO_LA_=bonjour 
-env 
-clear 
-export HOL@=bonjour 
-export HOL~A=bonjour 
-export -HOLA=bonjour 
-export --HOLA=bonjour 
+echo bonjour | cat -e 
 exit 
