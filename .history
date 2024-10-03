@@ -1,2 +1,7 @@
-echo bonjour | cat -e 
+clear 
+echo hola | cat | cat | cat | cat | cat | grep hola 
+echo hola | cat 
+echo hola | cat 
+echo hola|cat 
+ech|o hola | cat 
 exit 
