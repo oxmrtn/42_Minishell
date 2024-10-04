@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:22:35 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/04 14:19:46 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/04 15:00:04 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	ft_launch_heredocs(char *limiter, t_data *data)
 
 int	ft_heredoc_handler(t_tokens *head, t_data *data)
 {
-	while (head && head->type != CMD)
+	while (head)
 	{
 		if (head->type == LIMITER)
 			if (ft_launch_heredocs(head->str, data))
