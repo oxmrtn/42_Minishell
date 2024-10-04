@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:22:35 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/04 10:40:00 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/04 14:19:46 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	ft_launch_heredocs(char *limiter, t_data *data)
 		free(buffer);
 		temp = get_next_line(STDIN_FILENO);
 		if (!temp)
-			return (close(fd), 1);
+			return (close(fd), 0);
 		temp[ft_strlen(temp) - 1] = '\0';
 	}
 	return (close(fd), free(temp), 0);
