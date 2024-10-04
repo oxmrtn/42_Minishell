@@ -6,11 +6,32 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:57:50 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/04 14:08:12 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/04 16:54:16 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
+
+static void	where_heredoc(t_data *data, t_cmds *cmd)
+{
+	t_tokens	*tokens;
+	int			check;
+
+	data->iheredoc = -1;
+	check = 0;
+	tokens = cmd->tokens;
+	while (tokens)
+	{
+		if (tokens->type == LIMITER && !check)
+		{
+			data->iheredoc++;
+			check = 1;
+		}
+		if (tokens->type == PIPE)
+			check = 0;
+		tokens = tokens->next;
+	}
+}
 
 int	reset_fds(t_data *data, int std)
 {
@@ -85,6 +106,7 @@ int	exec(t_data *data, t_cmds *cmd)
 		return (1);
 	if (cmds_path(data->cmdve, data))
 		return (1);
+	where_heredoc(data, cmd);
 	if (exec2(data, cmd))
 		return (1);
 	if (reset_fds(data, 0))

@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:37:08 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/03 19:01:11 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/04 16:45:38 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ static int	dup_heredoc(void)
 	if (dup2(fd, STDIN_FILENO) == -1)
 		return (close (fd), perror(NULL), 1);
 	close (fd);
-	if (unlink(".heredoc") == -1)
-		return (1);
 	return (0);
 }
 
@@ -101,7 +99,7 @@ int	is_redirs(t_data *data, t_cmds *cmd, int i)
 		if (tokens->type == APPEND)
 			if (dup_outred(data, tokens->str, 1, i))
 				return (1);
-		if (tokens->type == LIMITER)
+		if (tokens->type == LIMITER && i == data->iheredoc)
 			if (dup_heredoc())
 				return (1);
 		if (tokens->type == OUTFILE)
@@ -112,5 +110,8 @@ int	is_redirs(t_data *data, t_cmds *cmd, int i)
 			return (retval);
 		tokens = tokens->next;
 	}
+	if (i == data->iheredoc)
+		if (unlink(".heredoc") == -1)
+			return (1);
 	return (0);
 }

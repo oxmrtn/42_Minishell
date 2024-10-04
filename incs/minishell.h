@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/03 15:59:13 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/04 16:26:57 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ typedef struct s_data
 	int		stdoutcpy;
 	int		isoutred;
 	int		cmdvesize;
+	int		iheredoc;
 }			t_data;
 
 //	PARSING
