@@ -1,12 +1,1 @@
-cleqr 
-clear 
-ls 
-clear 
-<< lim cat -e 
-<< lim cat -e 
-<< bonjour cat -e 
-<< bonjour cat -e 
-<< $var cat -e 
-clear 
-<< $var cat -e 
-exit 
+cat << hola 

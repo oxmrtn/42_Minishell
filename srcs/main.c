@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/04 10:39:32 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/04 14:51:36 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ static int	the_loop(t_data *data)
 	add_history(data->read);
 	if (ft_parser(data->read, &data->cmds, data) == 0)
 	{
-		//print_commands(ft_get_last_commands(data->cmds));
+		print_commands(ft_get_last_commands(data->cmds));
 		if (exec(data, ft_get_last_commands(data->cmds)))
 			return (free(data->read), data->read = NULL, 1);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:45:11 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/01 17:23:18 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/04 14:00:40 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ static int	ft_echo_bis(char *buffer)
 {
 	if (write(STDOUT_FILENO, buffer, ft_strlen(buffer)) < 0)
 	{
-		ft_puterror("minishell error : cannot write in outfile\n");
+		ft_puterror("minishell: echo: write error: ");
+		perror(NULL);
 		return (1);
 	}
 	return (0);
