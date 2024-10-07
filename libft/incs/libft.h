@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:32:30 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/03 17:28:24 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:16:02 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void		ft_lstclear(t_list **lst, void (*del)(void *));
 void		ft_lstiter(t_list *lst, void (*f)(void *));
 int			ft_lstsize(t_list *lst);
 
+int			ft_iswhite(char *str);
 int			ft_ultimate_compare(char *s1, char *s2);
 void		ft_free_split(char **strs);
 char		*ft_strjoin_c(char *s1, char *s2, char c, int sfree);
