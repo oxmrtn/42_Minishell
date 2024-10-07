@@ -1,11 +1,5 @@
-cat << prout << lol << koala 
-prout << lol << cat << koala 
+ls 
 clear 
-<<  
-<< lim1 ls | wc -l << lim2 
+ls -la 
 clear 
-<< $hola$b 
-<< $$$b 
-clear 
-<< ho$$$b 
 exit 
