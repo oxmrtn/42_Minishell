@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:49:23 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/03 17:30:43 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:28:07 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static void	cmd_isdir(t_data *data, char *cmd, int *fds)
 
 static int	run_child(t_data *data, int i, int *fds, int islast)
 {
+	close(data->stdincpy);
+	close(data->stdoutcpy);
 	close(fds[0]);
 	if (!islast && !data->isoutred)
 		if (dup2(fds[1], STDOUT_FILENO) == -1)

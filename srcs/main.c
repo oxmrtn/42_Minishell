@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/07 13:58:31 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:18:58 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,8 @@ int	main(int argc, char **argv, char **env)
 
 	(void)argc;
 	(void)argv;
+	if (!isatty(0))
+		return (1);
 	data = malloc(sizeof(t_data));
 	if (!data)
 		return (1);
@@ -162,6 +164,8 @@ int	main(int argc, char **argv, char **env)
 		if (retval == 0 || retval == 1)
 			break ;
 	}
+	if (retval == 1)
+		data->exit_status = 1;
 	free_main(data, 1);
-	return (retval);
+	return (data->exit_status);
 }

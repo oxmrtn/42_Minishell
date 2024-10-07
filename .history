@@ -1,3 +1,11 @@
-<< lim1 cat | << lim2 cat -e 
+echo a 
+echo a 
 clear 
+clear 
+clear 
+ls 
+clear 
+cat | ls 
+clear 
+cat .gitignore 
 exit 

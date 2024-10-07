@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:57:50 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/07 16:03:13 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:29:44 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,20 @@ int	reset_fds(t_data *data, int std)
 {
 	if (std == 0 || std == 2)
 	{
+		close(STDIN_FILENO);
 		if (dup2(data->stdincpy, STDIN_FILENO) == -1)
 			return (perror(NULL), 1);
+		close(data->stdincpy);
 		data->stdincpy = dup(STDIN_FILENO);
 		if (data->stdincpy == -1)
 			return (1);
 	}
 	if (std == 1 || std == 2)
 	{
+		close(STDOUT_FILENO);
 		if (dup2(data->stdoutcpy, STDOUT_FILENO) == -1)
 			return (perror(NULL), 1);
+		close(data->stdoutcpy);
 		data->stdoutcpy = dup(STDOUT_FILENO);
 		if (data->stdoutcpy == -1)
 			return (1);
