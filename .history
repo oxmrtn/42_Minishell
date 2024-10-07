@@ -1,2 +1,3 @@
-< Makefile cat < .gitignore -e | wc -l > out2 | > out3 | < Makefile 
+ls  
+ls  
 exit 

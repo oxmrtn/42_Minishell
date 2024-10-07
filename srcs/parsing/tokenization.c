@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenization.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:20:36 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/03 17:42:08 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/07 15:27:20 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int	ft_is_commands(t_tokens *node)
 
 static void	ft_check_pipe(t_tokens *node)
 {
+	if (!node->str[0])
+		return ;
 	if (node->str[ft_strlen(node->str) - 1] == '|')
 	{
 		node->str[ft_strlen(node->str) - 1] = '\0';
