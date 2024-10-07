@@ -1,7 +1,0 @@
-// PARSING
-
-	//Ajouter les variables au moment de la toeknization
-	//verifier here_doc et variables
-	//verifier variable env lors du replace
-	//"'test": not valid => SHOULD BE VALID ?? REFAIRE TEST DESSUS
-	
