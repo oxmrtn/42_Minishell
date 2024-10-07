@@ -6,32 +6,11 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:57:50 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/07 17:29:44 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:53:27 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
-
-static void	where_heredoc(t_data *data, t_cmds *cmd)
-{
-	t_tokens	*tokens;
-	int			check;
-
-	data->iheredoc = -1;
-	check = 0;
-	tokens = cmd->tokens;
-	while (tokens)
-	{
-		if (tokens->type == LIMITER && !check)
-		{
-			data->iheredoc++;
-			check = 1;
-		}
-		if (tokens->type == PIPE)
-			check = 0;
-		tokens = tokens->next;
-	}
-}
 
 int	reset_fds(t_data *data, int std)
 {
@@ -103,7 +82,6 @@ int	exec(t_data *data, t_cmds *cmd)
 {
 	if (!cmd)
 		return (0);
-	where_heredoc(data, cmd);
 	data->cmdve = ft_make_cmdve(data, cmd);
 	if (!data->cmdve)
 		return (1);
@@ -115,6 +93,11 @@ int	exec(t_data *data, t_cmds *cmd)
 		return (1);
 	if (reset_fds(data, 0))
 		return (1);
+	if (data->heredoc)
+	{
+		ft_free_heredoc(data);
+		data->heredoc = NULL;
+	}
 	ft_free_cmdve(data);
 	data->cmdve = NULL;
 	data->cmdvesize = 0;

@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:37:08 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/04 16:45:38 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:52:07 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,20 @@ static int	dup_inred(t_data *data, char *infile, int i)
 	return (0);
 }
 
-static int	dup_heredoc(void)
+static int	dup_heredoc(t_data *data, int i)
 {
-	int	fd;
+	t_hd	*heredocslst;
+	int		j;
 
-	fd = open(".heredoc", O_RDONLY);
-	if (fd == -1)
+	heredocslst = data->heredoc;
+	j = 0;
+	while (heredocslst && j < i)
 	{
-		ft_desc_error("heredoc", ".heredoc", 1, NULL);
-		return (1);
+		heredocslst = heredocslst->next;
+		j++;
 	}
-	if (dup2(fd, STDIN_FILENO) == -1)
-		return (close (fd), perror(NULL), 1);
-	close (fd);
+	if (dup2(heredocslst->fd, STDIN_FILENO) == -1)
+		return (perror(NULL), 1);
 	return (0);
 }
 
@@ -99,8 +100,8 @@ int	is_redirs(t_data *data, t_cmds *cmd, int i)
 		if (tokens->type == APPEND)
 			if (dup_outred(data, tokens->str, 1, i))
 				return (1);
-		if (tokens->type == LIMITER && i == data->iheredoc)
-			if (dup_heredoc())
+		if (tokens->type == LIMITER)
+			if (dup_heredoc(data, i))
 				return (1);
 		if (tokens->type == OUTFILE)
 			retval = dup_outred(data, tokens->str, 0, i);
@@ -110,8 +111,5 @@ int	is_redirs(t_data *data, t_cmds *cmd, int i)
 			return (retval);
 		tokens = tokens->next;
 	}
-	if (i == data->iheredoc)
-		if (unlink(".heredoc") == -1)
-			return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/07 17:34:52 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:44:37 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ static int	init_data(t_data *data, char **env)
 	data->exit_status = 0;
 	data->cmdvesize = 0;
 	data->isoutred = 0;
-	data->iheredoc = -1;
 	data->var = NULL;
 	data->read = NULL;
 	data->cmds = NULL;
