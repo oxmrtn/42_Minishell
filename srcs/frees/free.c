@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:35:10 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/07 19:10:55 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/07 19:24:09 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ void	free_main(t_data *data, int i)
 {
 	if (data)
 	{
+		close(data->stdincpy);
+		close(data->stdoutcpy);
 		if (data->cmds)
 		{
 			if (i == 1)

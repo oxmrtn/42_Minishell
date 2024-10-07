@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/07 17:44:37 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/07 19:27:52 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,8 +164,8 @@ int	main(int argc, char **argv, char **env)
 		if (retval == 0 || retval == 1)
 			break ;
 	}
-	if (retval == 1)
-		data->exit_status = 1;
+	if (retval != 1)
+		retval = data->exit_status;
 	free_main(data, 1);
-	return (data->exit_status);
+	return (retval);
 }
