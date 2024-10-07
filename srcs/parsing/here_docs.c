@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_docs.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:22:35 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/07 17:36:09 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:59:28 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,27 @@ static int	ft_launch_heredocs(char *limiter, t_data *data)
 
 int	ft_heredoc_handler(t_tokens *head, t_data *data)
 {
+	int		flag;
+	t_hd	*tmp;
+
+	flag = 0;
 	while (head)
 	{
-		if (head->type == LIMITER)
-			if (ft_launch_heredocs(head->str, data))
-				return (1);
+		while (head && head->type != PIPE)
+		{
+			if (head->type == LIMITER)
+			{			
+				if (flag == 1)
+					del_top_hd(data);
+				else if (flag == 0)
+					flag = 1;
+				if (ft_launch_heredocs(head->str, data))
+					return (1);
+			}
+			head = head->next;
+		}
+		if (!head)
+			return (0);
 		head = head->next;
 	}
 	return (0);

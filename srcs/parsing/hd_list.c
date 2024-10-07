@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hd_list.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 17:20:22 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/07 17:36:28 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:57:59 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,17 @@ int	add_heredoc_list(int fd, t_data *data)
 		return (1);
 	new_node->fd = fd;
 	add_back_heredoc_list(new_node, data);
+}
+
+void	del_top_hd(t_data *data)
+{
+	t_hd	*tmp;
+
+	tmp = ft_last_hd(data->heredoc);
+	if (!tmp)
+		return ;
+	if (tmp->prev)
+		tmp->prev->next = NULL;
+	close(tmp->fd);
+	free(tmp);
 }

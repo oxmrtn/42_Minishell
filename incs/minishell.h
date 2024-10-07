@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/07 17:32:56 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:58:06 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,7 @@ int			ft_ask_handler(t_tokens *head, t_data *data);
 int			add_heredoc_list(int fd, t_data *data);
 t_hd		*ft_last_hd(t_hd *head);
 void		add_back_heredoc_list(t_hd *new_node, t_hd **head);
+void		del_top_hd(t_data *data);
 
 //		tokenization.c
 int			ft_is_pipe(t_tokens *current);
