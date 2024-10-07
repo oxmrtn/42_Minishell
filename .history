@@ -1,3 +1,2 @@
-<< lim << lim2 cat -e > outfile | << lim3 cat -e 
-exiy 
+<< lim1 cat -e > outfile | << lim2 cat -e 
 exit 

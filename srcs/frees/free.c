@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:35:10 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/07 18:44:31 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/07 19:02:17 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_free_cmdve(t_data *data)
 	}
 	if (data->cmdvesize > 0)
 		free(cmdve);
-	cmdve = NULL;
+	data->cmdve = NULL;
 }
 
 void	ft_free_env(t_env **lst)
