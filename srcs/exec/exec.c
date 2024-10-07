@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:57:50 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/04 16:54:16 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:55:50 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,6 @@ int	exec(t_data *data, t_cmds *cmd)
 		return (1);
 	ft_free_cmdve(data);
 	data->cmdve = NULL;
+	data->cmdvesize = 0;
 	return (0);
 }
