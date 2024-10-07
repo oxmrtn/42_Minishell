@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:35:10 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/07 18:44:31 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/07 19:07:27 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_free_heredoc(t_data *data)
 	t_hd	*tmp;
 
 	head = data->heredoc;
-	while (head)
+	while (head != NULL)
 	{
 		if (head->fd)
 			close(head->fd);

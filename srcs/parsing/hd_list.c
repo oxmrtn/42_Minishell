@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 17:20:22 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/07 18:41:30 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/07 19:09:19 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_hd	*ft_last_hd(t_hd *head)
 {
 	if (!head)
-		return (NULL);	
+		return (NULL);
 	while (head->next)
 	{
 		head = head->next;
@@ -42,6 +42,7 @@ void	add_back_heredoc_list(t_hd *new_node, t_hd **head)
 		{
 			last->next = new_node;
 			new_node->prev = last;
+			new_node->next = NULL;
 		}
 	}
 }
@@ -68,9 +69,16 @@ void	del_top_hd(t_data *data)
 	if (!tmp)
 		return ;
 	if (tmp == data->heredoc)
+	{
+		close(tmp->fd);
+		free(tmp);
 		data->heredoc = NULL;
-	if (tmp->prev)
-		tmp->prev->next = NULL;
-	close(tmp->fd);
-	free(tmp);
+	}
+	else
+	{
+		if (tmp->prev)
+			tmp->prev->next = NULL;
+		close(tmp->fd);
+		free(tmp);
+	}
 }
