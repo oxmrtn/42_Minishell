@@ -1,3 +1,2 @@
-pllpwcf 
-ls 
-ls | wc -l 
+< Makefile cat < .gitignore -e | wc -l > out2 | > out3 | < Makefile 
+exit 

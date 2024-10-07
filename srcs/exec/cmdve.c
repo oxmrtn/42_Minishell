@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 16:48:53 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/03 18:53:50 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:43:47 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	ft_fill_cmdve(char ***cmdve, t_cmds *cmd)
 		if (tokens->type == CMD)
 			if (ft_fill_cmdve2(cmdve, i++, &check, &tokens))
 				return (1);
-		if (tokens && tokens->type == PIPE)
+		if (tokens && (tokens->type == PIPE || !tokens->next))
 		{
 			if (!check)
 				cmdve[i++] = NULL;
