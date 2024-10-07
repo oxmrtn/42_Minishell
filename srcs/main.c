@@ -6,13 +6,15 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/07 13:19:43 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:41:49 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minishell.h"
 
 int	g_sig_status;
+
+/*
 
 int	print_commands(t_cmds *com)
 {
@@ -51,6 +53,7 @@ int	print_variable(t_data *data)
 	}
 	return (0);
 }
+*/
 
 void	sig_handle(int signo)
 {

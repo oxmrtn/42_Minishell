@@ -3,14 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   here_docs.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:22:35 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/04 15:00:04 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:39:48 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
+
+static char	*ft_launch_heredocs2(int *fd)
+{
+	char	*temp;
+
+	*fd = open(".heredoc", O_CREAT | O_TRUNC | O_WRONLY, 0644);
+	if (*fd <= 0)
+		return (NULL);
+	write(1, "> ", 2);
+	temp = get_next_line(STDIN_FILENO);
+	if (!temp)
+		return (close(*fd), NULL);
+	temp[ft_strlen(temp) - 1] = '\0';
+	return (temp);
+}
 
 static int	ft_launch_heredocs(char *limiter, t_data *data)
 {
@@ -18,15 +33,12 @@ static int	ft_launch_heredocs(char *limiter, t_data *data)
 	char	*buffer;
 	char	*temp;
 
-	fd = open(".heredoc", O_CREAT | O_TRUNC | O_WRONLY, 0644);
-	if (fd <= 0)
-		return (1);
-	temp = get_next_line(STDIN_FILENO);
+	temp = ft_launch_heredocs2(&fd);
 	if (!temp)
-		return (close(fd), 0);
-	temp[ft_strlen(temp) - 1] = '\0';
+		return (1);
 	while (temp && ft_ultimate_compare(temp, limiter))
 	{
+		write(1, "> ", 2);
 		buffer = ft_flat_string(temp, data);
 		if (!buffer)
 			return (free(temp), close(fd), 1);
@@ -59,11 +71,11 @@ int	ft_ask_handler(t_tokens *head, t_data *data)
 	char	*temp;
 	char	*temp2;
 
-	temp = NULL;
 	while (head)
 	{
 		if (head->type == ASK)
 		{
+			write(1, "> ", 2);
 			temp = get_next_line(1);
 			if (!temp)
 				return (1);
