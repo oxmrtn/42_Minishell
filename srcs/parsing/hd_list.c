@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   var_list_func.c                                    :+:      :+:    :+:   */
+/*   hd_list.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/04 16:41:13 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/07 17:24:19 by mtrullar         ###   ########.fr       */
+/*   Created: 2024/10/07 17:20:22 by mtrullar          #+#    #+#             */
+/*   Updated: 2024/10/07 17:32:05 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
 
-t_var	*ft_last_var(t_var *head)
+t_hd	*ft_last_hd(t_hd *head)
 {
 	while (head->next)
 	{
@@ -21,7 +21,7 @@ t_var	*ft_last_var(t_var *head)
 	return (head);
 }
 
-void	ft_var_add_back(t_var *new_node, t_var **head)
+void	add_back_heredoc_list(t_hd *new_node, t_hd **head)
 {
 	t_var	*last;
 
@@ -33,27 +33,19 @@ void	ft_var_add_back(t_var *new_node, t_var **head)
 	}
 	else
 	{
-		last = ft_last_var(*head);
+		last = ft_last_hd(*head);
 		last->next = new_node;
 		new_node->prev = last;
 	}
 }
 
-t_var	*ft_is_var_exist(char *str, t_var *head, int i)
+int	add_heredoc_list(int fd, t_data *data)
 {
-	char	*temp;
+	t_hd	*new_node;
 
-	if (!str || !head)
-		return (NULL);
-	temp = ft_strdup_till_i(str, i);
-	if (!temp)
-		return (NULL);
-	while (head)
-	{
-		if (!ft_ultimate_compare(temp, head->name))
-			return (free(temp), head);
-		head = head->next;
-	}
-	free(temp);
-	return (NULL);
+	new_node = malloc(sizeof(t_hd));
+	if (!new_node)
+		return (1);
+	new_node->fd = fd;
+	add_back_heredoc_list(new_node, data);
 }

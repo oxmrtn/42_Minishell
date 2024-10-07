@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/07 17:18:58 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:34:52 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ static int	init_data(t_data *data, char **env)
 	data->read = NULL;
 	data->cmds = NULL;
 	data->cmdve = NULL;
+	data->heredoc = NULL;
 	data->stdincpy = dup(STDIN_FILENO);
 	data->stdoutcpy = dup(STDOUT_FILENO);
 	if (data->stdincpy == -1 || data->stdoutcpy == -1)
