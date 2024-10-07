@@ -9,6 +9,7 @@
 		"history.h": "c",
 		"fcntl.h": "c",
 		"cmath": "c",
-		"limits": "c"
+		"limits": "c",
+		"libft.h": "c"
 	}
 }

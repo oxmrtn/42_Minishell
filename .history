@@ -1,0 +1,3 @@
+ls | wc -l 
+ls | wc 
+exit 

@@ -6,13 +6,15 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/07 13:18:42 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:52:35 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minishell.h"
 
 int	g_sig_status;
+
+/*
 
 int	print_commands(t_cmds *com)
 {
@@ -51,6 +53,7 @@ int	print_variable(t_data *data)
 	}
 	return (0);
 }
+*/
 
 void	sig_handle(int signo)
 {
@@ -123,7 +126,7 @@ static int	the_loop(t_data *data)
 	if (g_sig_status != 0)
 		if (update_status(data, g_sig_status))
 			return (free(data->read), data->read = NULL, 1);
-	if (!ft_ultimate_compare(data->read, "\0"))
+	if (ft_iswhite(data->read))
 		return (free(data->read), data->read = NULL, 2);
 	data->exit_status = -100;
 	g_sig_status = 0;
