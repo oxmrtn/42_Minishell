@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:57:50 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/07 13:55:50 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/07 16:03:13 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,14 +99,14 @@ int	exec(t_data *data, t_cmds *cmd)
 {
 	if (!cmd)
 		return (0);
+	where_heredoc(data, cmd);
 	data->cmdve = ft_make_cmdve(data, cmd);
 	if (!data->cmdve)
 		return (1);
-	if (ft_fill_cmdve(data->cmdve, cmd))
+	if (fill_cmdve(data, data->cmdve, cmd))
 		return (1);
 	if (cmds_path(data->cmdve, data))
 		return (1);
-	where_heredoc(data, cmd);
 	if (exec2(data, cmd))
 		return (1);
 	if (reset_fds(data, 0))
