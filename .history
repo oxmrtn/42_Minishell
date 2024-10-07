@@ -1,3 +1,3 @@
-ls | [D[D[B[B[B[D[B[B[C[A[D[B[A[D[A[B[B[A[B[A[A[B[C[B[B[A[D[A[C[B[D[A[B[D[B[D[A[B[B[B 
-clear 
-exit 
+pllpwcf 
+ls 
+ls | wc -l 
