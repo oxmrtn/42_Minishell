@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:22:35 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/07 17:59:28 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/07 18:01:34 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char	*ft_launch_heredocs2(int *fd, t_data *data)
 		return (NULL);
 	if (unlink(".heredoc") == -1)
 		return (NULL);
-	if (add_heredoc_list(fd, data))
+	if (add_heredoc_list(*fd, data))
 		return (NULL);
 	write(1, "> ", 2);
 	temp = get_next_line(STDIN_FILENO);
@@ -61,7 +61,6 @@ static int	ft_launch_heredocs(char *limiter, t_data *data)
 int	ft_heredoc_handler(t_tokens *head, t_data *data)
 {
 	int		flag;
-	t_hd	*tmp;
 
 	flag = 0;
 	while (head)

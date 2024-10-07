@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:57:50 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/07 17:53:27 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/07 18:05:25 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	exec(t_data *data, t_cmds *cmd)
 	data->cmdve = ft_make_cmdve(data, cmd);
 	if (!data->cmdve)
 		return (1);
-	if (fill_cmdve(data, data->cmdve, cmd))
+	if (fill_cmdve(data->cmdve, cmd))
 		return (1);
 	if (cmds_path(data->cmdve, data))
 		return (1);
