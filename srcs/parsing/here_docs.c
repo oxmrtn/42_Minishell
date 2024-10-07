@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:22:35 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/07 18:01:34 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/07 18:43:28 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,25 @@ static char	*ft_launch_heredocs2(int *fd, t_data *data)
 {
 	char	*temp;
 
-	*fd = open(".heredoc", O_CREAT | O_TRUNC | O_WRONLY, 0644);
-	if (*fd <= 0)
+	if (pipe(fd) == -1)
 		return (NULL);
-	if (unlink(".heredoc") == -1)
-		return (NULL);
-	if (add_heredoc_list(*fd, data))
+	if (add_heredoc_list(fd[0], data))
 		return (NULL);
 	write(1, "> ", 2);
 	temp = get_next_line(STDIN_FILENO);
 	if (!temp)
-		return (NULL);
+		return (close((fd[1])), NULL);
 	temp[ft_strlen(temp) - 1] = '\0';
 	return (temp);
 }
 
 static int	ft_launch_heredocs(char *limiter, t_data *data)
 {
-	int		fd;
+	int		fd[2];
 	char	*buffer;
 	char	*temp;
 
-	temp = ft_launch_heredocs2(&fd, data);
+	temp = ft_launch_heredocs2(fd, data);
 	if (!temp)
 		return (1);
 	while (temp && ft_ultimate_compare(temp, limiter))
@@ -45,17 +42,17 @@ static int	ft_launch_heredocs(char *limiter, t_data *data)
 		write(1, "> ", 2);
 		buffer = ft_flat_string(temp, data);
 		if (!buffer)
-			return (free(temp), 1);
-		write(fd, buffer, ft_strlen(buffer));
-		write(fd, "\n", 1);
+			return (close(fd[1]), free(temp), 1);
+		write(fd[1], buffer, ft_strlen(buffer));
+		write(fd[1], "\n", 1);
 		free(temp);
 		free(buffer);
 		temp = get_next_line(STDIN_FILENO);
 		if (!temp)
-			return (0);
+			return (close(fd[1]), 0);
 		temp[ft_strlen(temp) - 1] = '\0';
 	}
-	return (free(temp), 0);
+	return (close(fd[1]), free(temp), 0);
 }
 
 int	ft_heredoc_handler(t_tokens *head, t_data *data)
@@ -65,6 +62,7 @@ int	ft_heredoc_handler(t_tokens *head, t_data *data)
 	flag = 0;
 	while (head)
 	{
+		flag = 0;
 		while (head && head->type != PIPE)
 		{
 			if (head->type == LIMITER)
