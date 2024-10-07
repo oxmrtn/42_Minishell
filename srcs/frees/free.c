@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:35:10 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/04 14:18:48 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:31:46 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
+
+void	ft_free_heredoc(t_data *data)
+{
+	t_hd	*head;
+	t_hd	*tmp;
+
+	head = data->heredoc;
+	while (head)
+	{
+		close(head->fd);
+		tmp = head;
+		head = head->next;
+		free(tmp);
+	}
+	data->heredoc = NULL;
+}
 
 void	ft_free_cmdve(t_data *data)
 {

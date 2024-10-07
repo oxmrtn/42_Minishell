@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/07 16:01:30 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:32:56 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,13 @@ typedef enum s_type
 	ASK,
 	ENV
 }	t_type;
+
+typedef struct s_hd
+{
+	int			fd;
+	struct s_hd	*next;
+	struct s_hd	*prev;
+}				t_hd;
 
 typedef struct s_tokens
 {
@@ -98,6 +105,7 @@ typedef struct s_data
 	t_cmds	*cmds;
 	t_envs	*envs;
 	t_var	*var;
+	t_hd	*heredoc;
 	char	***cmdve;
 	char	*read;
 	char	*tmpexitstatus;
@@ -130,6 +138,9 @@ int			ft_update_variable(char *key, char *val, t_data *data);
 //		here_docs.c
 int			ft_heredoc_handler(t_tokens *head, t_data *data);
 int			ft_ask_handler(t_tokens *head, t_data *data);
+int			add_heredoc_list(int fd, t_data *data);
+t_hd		*ft_last_hd(t_hd *head);
+void		add_back_heredoc_list(t_hd *new_node, t_hd **head);
 
 //		tokenization.c
 int			ft_is_pipe(t_tokens *current);
@@ -166,6 +177,7 @@ void		ft_free_invalid_syntax(t_cmds *to_free);
 void		ft_free_var(t_var *node);
 
 //		free.c
+void		ft_free_heredoc(t_data *data);
 void		free_main(t_data *data, int i);
 void		ft_free_cmdve(t_data *data);
 void		ft_free_tokens(t_tokens *tok);

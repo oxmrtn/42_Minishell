@@ -3,26 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   here_docs.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:22:35 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/07 13:39:48 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:19:59 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
 
-static char	*ft_launch_heredocs2(int *fd)
+static char	*ft_launch_heredocs2(int *fd, t_data *data)
 {
 	char	*temp;
 
 	*fd = open(".heredoc", O_CREAT | O_TRUNC | O_WRONLY, 0644);
 	if (*fd <= 0)
 		return (NULL);
+	if (unlink(".heredoc") == -1)
+		return (NULL);
+	add_heredoc_list(fd, data);
 	write(1, "> ", 2);
 	temp = get_next_line(STDIN_FILENO);
 	if (!temp)
-		return (close(*fd), NULL);
+		return (NULL);
 	temp[ft_strlen(temp) - 1] = '\0';
 	return (temp);
 }
@@ -33,7 +36,7 @@ static int	ft_launch_heredocs(char *limiter, t_data *data)
 	char	*buffer;
 	char	*temp;
 
-	temp = ft_launch_heredocs2(&fd);
+	temp = ft_launch_heredocs2(&fd, data);
 	if (!temp)
 		return (1);
 	while (temp && ft_ultimate_compare(temp, limiter))
@@ -48,10 +51,10 @@ static int	ft_launch_heredocs(char *limiter, t_data *data)
 		free(buffer);
 		temp = get_next_line(STDIN_FILENO);
 		if (!temp)
-			return (close(fd), 0);
+			return (0);
 		temp[ft_strlen(temp) - 1] = '\0';
 	}
-	return (close(fd), free(temp), 0);
+	return (free(temp), 0);
 }
 
 int	ft_heredoc_handler(t_tokens *head, t_data *data)
