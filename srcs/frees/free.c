@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:35:10 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/07 17:31:46 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:37:17 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ void	free_main(t_data *data, int i)
 			ft_free_envs(data);
 		if (data->var)
 			ft_free_var(data->var);
+		if (data->heredoc)
+			ft_free_heredoc(data);
 		ft_free_cmdve(data);
 		free(data);
 		clear_history();

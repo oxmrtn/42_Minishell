@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_docs.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:22:35 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/07 17:19:59 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:36:09 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static char	*ft_launch_heredocs2(int *fd, t_data *data)
 		return (NULL);
 	if (unlink(".heredoc") == -1)
 		return (NULL);
-	add_heredoc_list(fd, data);
+	if (add_heredoc_list(fd, data))
+		return (NULL);
 	write(1, "> ", 2);
 	temp = get_next_line(STDIN_FILENO);
 	if (!temp)
@@ -44,7 +45,7 @@ static int	ft_launch_heredocs(char *limiter, t_data *data)
 		write(1, "> ", 2);
 		buffer = ft_flat_string(temp, data);
 		if (!buffer)
-			return (free(temp), close(fd), 1);
+			return (free(temp), 1);
 		write(fd, buffer, ft_strlen(buffer));
 		write(fd, "\n", 1);
 		free(temp);
