@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:57:50 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/07 19:04:10 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/08 12:18:23 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ static int	exec2(t_data *data, t_cmds *cmd)
 
 int	exec(t_data *data, t_cmds *cmd)
 {
+	if (data->heredoc)
+		data->hd_filler = data->heredoc;
 	if (!cmd)
 		return (0);
 	data->cmdve = ft_make_cmdve(data, cmd);
@@ -97,6 +99,7 @@ int	exec(t_data *data, t_cmds *cmd)
 	{
 		ft_free_heredoc(data);
 		data->heredoc = NULL;
+		data->hd_filler = NULL;
 	}
 	ft_free_cmdve(data);
 	data->cmdve = NULL;

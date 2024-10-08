@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:35:10 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/07 19:24:09 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/08 16:26:53 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,9 @@ void	free_main(t_data *data, int i)
 {
 	if (data)
 	{
+		close(STDERR_FILENO);
+		close(STDIN_FILENO);
+		close(STDOUT_FILENO);
 		close(data->stdincpy);
 		close(data->stdoutcpy);
 		if (data->cmds)
@@ -95,7 +98,7 @@ void	free_main(t_data *data, int i)
 		if (data->envs)
 			ft_free_envs(data);
 		if (data->var)
-			ft_free_var(data->var);
+			ft_free_var(data);
 		if (data->heredoc)
 			ft_free_heredoc(data);
 		ft_free_cmdve(data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenization.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:20:36 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/07 15:27:20 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/08 12:28:41 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	ft_is_args(t_tokens *node)
 	else if (node->prev == NULL)
 		return (0);
 	else if (count_cmd(node) > 0 && (node->prev->type == OUTFILE
-			|| node->prev->type == INFILE))
+			|| node->prev->type == INFILE || node->prev->type == LIMITER))
 		return (ft_check_pipe(node), 1);
 	if (node->prev->type == ARGS || node->prev->type == CMD)
 		return (ft_check_pipe(node), 1);

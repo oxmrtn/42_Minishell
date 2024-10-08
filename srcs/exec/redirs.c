@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:37:08 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/07 17:52:07 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/08 12:19:42 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,13 @@ static int	dup_inred(t_data *data, char *infile, int i)
 	return (0);
 }
 
-static int	dup_heredoc(t_data *data, int i)
+static int	dup_heredoc(t_data *data)
 {
-	t_hd	*heredocslst;
-	int		j;
-
-	heredocslst = data->heredoc;
-	j = 0;
-	while (heredocslst && j < i)
-	{
-		heredocslst = heredocslst->next;
-		j++;
-	}
-	if (dup2(heredocslst->fd, STDIN_FILENO) == -1)
+	if (!data->hd_filler)
+		return (0);
+	if (dup2(data->hd_filler->fd, STDIN_FILENO) == -1)
 		return (perror(NULL), 1);
+	data->hd_filler = data->hd_filler->next;
 	return (0);
 }
 
@@ -101,7 +94,7 @@ int	is_redirs(t_data *data, t_cmds *cmd, int i)
 			if (dup_outred(data, tokens->str, 1, i))
 				return (1);
 		if (tokens->type == LIMITER)
-			if (dup_heredoc(data, i))
+			if (dup_heredoc(data))
 				return (1);
 		if (tokens->type == OUTFILE)
 			retval = dup_outred(data, tokens->str, 0, i);

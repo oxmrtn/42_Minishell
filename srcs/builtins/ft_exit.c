@@ -3,14 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:48:42 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/07 19:24:03 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/08 17:02:32 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
+
+static int	check_value(char *str)
+{
+	int				fn;
+	const size_t	len_nbr = ft_strlen("9223372036854775807");
+	size_t			len;
+
+	fn = 0;
+	if (str && str[0] == '-')
+	{
+		str = str + 1;
+		fn = 1;
+	}
+	len = ft_strlen(str);
+	if (len > len_nbr)
+		return (0);
+	if (len < len_nbr)
+		return (1);
+	else
+	{
+		int temp = ft_strncmp(str, "9223372036854775807", len);
+		if (temp >= 0)
+			return (0);
+		else
+			return (1);
+	}
+}
 
 static int	does_i_exit(t_data *data)
 {
@@ -52,13 +79,12 @@ int	ft_exit(t_data *data, char **cmdve)
 			, 1);
 	if (cmdve[1])
 	{
-		exit_code = ft_atoll(cmdve[1]);
-		if (alpha_in_args(cmdve[1]) || exit_code > 9223372036854775807
-			|| exit_code <= (-9223372036854775807))
+		if (alpha_in_args(cmdve[1]) || check_value(cmdve[1]))
 		{
 			ft_puterror("minishell error: exit numeric argument required\n");
 			exit_code = 2;
 		}
+		exit_code = ft_atoll(cmdve[1]);
 	}
 	else
 		exit_code = data->exit_status;

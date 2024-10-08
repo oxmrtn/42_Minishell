@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:38:10 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/09/30 15:30:36 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/08 16:25:06 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,22 @@ void	ft_free_invalid_syntax(t_cmds *to_free)
 	free(to_free);
 }
 
-void	ft_free_var(t_var *node)
+void	ft_free_var(t_data *data)
 {
+	t_var	*node;
 	t_var	*temp;
 
+	node = data->var;
+	if (!node)
+		return ;
 	while (node)
 	{
 		temp = node;
 		node = node->next;
-		free(temp->name);
-		free(temp->content);
+		if (temp->name)
+			free(temp->name);
+		if (temp->content)
+			free(temp->content);
 		free(temp);
 	}
 }

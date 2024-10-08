@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 16:41:13 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/07 17:24:19 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/08 16:31:32 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	ft_var_add_back(t_var *new_node, t_var **head)
 		last = ft_last_var(*head);
 		last->next = new_node;
 		new_node->prev = last;
+		new_node->next = NULL;
 	}
 }
 

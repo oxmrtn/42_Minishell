@@ -3,23 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   run.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:49:23 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/07 19:28:58 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/08 12:37:28 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
 
-static void	cmd_isdir(t_data *data, char *cmd, int *fds)
+static void	cmd_isdir(t_data *data, char *cmd)
 {
 	struct stat	cmdvestats;
 
 	if (!ft_ultimate_compare(cmd, "~")
 		|| (!stat(cmd, &cmdvestats) && S_ISDIR(cmdvestats.st_mode)))
 	{
-		close(fds[1]);
 		ft_desc_error(cmd, "is a directory", 0, NULL);
 		free_main(data, 0);
 		exit(126);
@@ -28,21 +27,21 @@ static void	cmd_isdir(t_data *data, char *cmd, int *fds)
 
 static int	run_child(t_data *data, int i, int *fds, int islast)
 {
-	close(data->stdincpy);
-	close(data->stdoutcpy);
 	close(fds[0]);
-	if (data->heredoc)
-		ft_free_heredoc(data);
-	if (!islast && !data->isoutred)
-		if (dup2(fds[1], STDOUT_FILENO) == -1)
-			return (close(fds[1]), perror(NULL), 1);
+	if (!islast && !data->isoutred && dup2(fds[1], STDOUT_FILENO) == -1)
+	{
+		close(fds[1]);
+		perror(NULL);
+		free_main(data, 0);
+		exit(1);
+	}
 	close(fds[1]);
 	if (!data->cmdve[i] || is_builtin(data->cmdve[i][0]))
 	{
 		free_main(data, 0);
 		exit(0);
 	}
-	cmd_isdir(data, data->cmdve[i][0], fds);
+	cmd_isdir(data, data->cmdve[i][0]);
 	if (execve(data->cmdve[i][0], data->cmdve[i], data->envs->envve) == -1)
 	{
 		ft_desc_error("command not found", data->cmdve[i][0], 1, NULL);

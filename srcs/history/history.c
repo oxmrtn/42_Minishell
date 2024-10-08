@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:06:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/02 16:59:17 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/08 12:21:04 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_get_history(void)
 	int		fd;
 	char	*line;
 
-	fd = open(".history", O_RDONLY | O_CREAT);
+	fd = open(".history", O_RDONLY | O_CREAT, 0644);
 	if (fd < 0)
 		return (0);
 	line = get_next_line(fd);
@@ -47,7 +47,7 @@ int	ft_write_history(t_cmds *cmds)
 {
 	int	fd;
 
-	fd = open(".history", O_WRONLY | O_CREAT | O_TRUNC);
+	fd = open(".history", O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd <= 0)
 		return (1);
 	while (cmds)
