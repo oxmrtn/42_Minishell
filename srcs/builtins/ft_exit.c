@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:48:42 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/08 17:02:32 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/09 13:40:09 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,15 @@ int	ft_exit(t_data *data, char **cmdve)
 			ft_puterror("minishell error: exit numeric argument required\n");
 			exit_code = 2;
 		}
-		exit_code = ft_atoll(cmdve[1]);
+		else
+			exit_code = ft_atoll(cmdve[1]);
 	}
-	else
+	else if (data->exit_status != -100)
 		exit_code = data->exit_status;
-	free_main(data, 1);
+	else
+		exit_code = 0;
 	write(STDOUT_FILENO, "exit\n", 5);
+	free_main(data, 1);
 	exit(exit_code % 256);
 	return (1);
 }

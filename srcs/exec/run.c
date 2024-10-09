@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:49:23 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/08 12:37:28 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/09 13:29:08 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ static int	run_child(t_data *data, int i, int *fds, int islast)
 		exit(0);
 	}
 	cmd_isdir(data, data->cmdve[i][0]);
+	(close(data->stdincpy), close(data->stdoutcpy));
+	if (data->heredoc)
+		ft_free_heredoc(data);
 	if (execve(data->cmdve[i][0], data->cmdve[i], data->envs->envve) == -1)
 	{
 		ft_desc_error("command not found", data->cmdve[i][0], 1, NULL);

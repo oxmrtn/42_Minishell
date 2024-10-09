@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:35:10 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/08 16:26:53 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/09 13:28:36 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,7 @@ void	free_main(t_data *data, int i)
 		close(STDERR_FILENO);
 		close(STDIN_FILENO);
 		close(STDOUT_FILENO);
-		close(data->stdincpy);
-		close(data->stdoutcpy);
+		(close(data->stdincpy), close(data->stdoutcpy));
 		if (data->cmds)
 		{
 			if (i == 1)
