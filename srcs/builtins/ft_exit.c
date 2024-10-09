@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:48:42 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/09 15:23:15 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/09 16:29:14 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ static int	is_numstr(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (!ft_isdigit(str[0])
-			&& ((!i && str[0] != '-' && str[0] != '+') || i > 0))
+		if (!ft_isdigit(str[i])
+			&& ((!i && str[i] != '-' && str[i] != '+') || i > 0))
 			return (0);
 		i++;
 	}
