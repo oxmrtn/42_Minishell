@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:48:42 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/09 13:40:09 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/09 14:00:00 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,6 @@ static int	check_value(char *str)
 	}
 }
 
-static int	does_i_exit(t_data *data)
-{
-	t_tokens	*node;
-
-	node = ft_get_last_commands(data->cmds)->tokens;
-	while (node)
-	{
-		if (node->type == PIPE)
-			return (1);
-		node = node->next;
-	}
-	return (0);
-}
-
 static int	alpha_in_args(char *str)
 {
 	int	i;
@@ -72,7 +58,7 @@ int	ft_exit(t_data *data, char **cmdve)
 {
 	long long	exit_code;
 
-	if (does_i_exit(data))
+	if (data->cmdvesize > 1)
 		return (1);
 	if (ft_ultimate_len(cmdve) > 2 && !alpha_in_args(cmdve[1]))
 		return (ft_puterror("minishell error: too many argument for exit\n")
