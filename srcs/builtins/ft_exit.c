@@ -6,13 +6,13 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:48:42 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/09 14:00:00 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/09 15:13:29 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
 
-static int	check_value(char *str)
+static int	is_validval(char *str)
 {
 	int				fn;
 	const size_t	len_nbr = ft_strlen("9223372036854775807");
@@ -39,44 +39,43 @@ static int	check_value(char *str)
 	}
 }
 
-static int	alpha_in_args(char *str)
+static int	is_numstr(char *str)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (str[i])
 	{
-		if (!ft_isdigit(str[i]))
-			if ((str[i] != '+' && str[i] != '-') || i > 0)
-				return (1);
+		if (!ft_isdigit(str[0])
+			&& ((!i && str[0] != '-' && str[0] != '+') || i > 0))
+			return (0);
 		i++;
 	}
-	return (0);
+	return (1);
 }
 
 int	ft_exit(t_data *data, char **cmdve)
 {
 	long long	exit_code;
+	int			is_valid;
 
-	if (data->cmdvesize > 1)
-		return (1);
-	if (ft_ultimate_len(cmdve) > 2 && !alpha_in_args(cmdve[1]))
-		return (ft_puterror("minishell error: too many argument for exit\n")
-			, 1);
+	exit_code = ((is_valid = 0));
 	if (cmdve[1])
+		if (is_numstr(cmdve[1]) && is_validval(cmdve[1]))
+			is_valid = 1;
+	if (cmdve[1] && !is_valid)
 	{
-		if (alpha_in_args(cmdve[1]) || check_value(cmdve[1]))
-		{
-			ft_puterror("minishell error: exit numeric argument required\n");
-			exit_code = 2;
-		}
-		else
-			exit_code = ft_atoll(cmdve[1]);
+		ft_desc_error("exit", "numeric argument required", 0, NULL);
+		exit_code = 2;
 	}
-	else if (data->exit_status != -100)
+	if (is_valid && cmdve[1] && cmdve[2])
+		return (ft_desc_error("exit", "too many arguments", 0, NULL), 1);
+	if (cmdve[1] && is_valid)
+		exit_code = ft_atoll(cmdve[1]);
+	else if (!cmdve[1] && data->exit_status != -100)
 		exit_code = data->exit_status;
-	else
-		exit_code = 0;
+	if (data->cmdvesize > 1)
+		return (exit_code);
 	write(STDOUT_FILENO, "exit\n", 5);
 	free_main(data, 1);
 	exit(exit_code % 256);
