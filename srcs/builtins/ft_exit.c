@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:48:42 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/09 16:29:14 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/09 17:07:19 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 static int	is_validval(char *str)
 {
 	int				fn;
-	const size_t	len_nbr = ft_strlen("9223372036854775807");
+	const size_t	len_nbr = ft_strlen("9223372036854775808");
 	size_t			len;
+	int				temp;
 
 	fn = 0;
 	if (str && str[0] == '-')
@@ -29,14 +30,13 @@ static int	is_validval(char *str)
 		return (0);
 	if (len < len_nbr)
 		return (1);
+	temp = ft_strncmp(str, "9223372036854775808", len);
+	if (fn == 1)
+		temp = ft_strncmp(str, "9223372036854775809", len);
+	if (temp >= 0)
+		return (0);
 	else
-	{
-		int temp = ft_strncmp(str, "9223372036854775807", len);
-		if (temp >= 0)
-			return (0);
-		else
-			return (1);
-	}
+		return (1);
 }
 
 static int	is_numstr(char *str)
