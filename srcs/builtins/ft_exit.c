@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:48:42 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/09 15:13:29 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/09 15:23:15 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	ft_exit(t_data *data, char **cmdve)
 		return (ft_desc_error("exit", "too many arguments", 0, NULL), 1);
 	if (cmdve[1] && is_valid)
 		exit_code = ft_atoll(cmdve[1]);
-	else if (!cmdve[1] && data->exit_status != -100)
+	if (!cmdve[1])
 		exit_code = data->exit_status;
 	if (data->cmdvesize > 1)
 		return (exit_code);
