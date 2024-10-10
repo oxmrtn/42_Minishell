@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:49:23 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/09 13:29:08 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/10 13:55:40 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,14 @@ static void	wait_exec(t_data *data, int i, pid_t pid)
 	{
 		endpid = waitpid(-1, &status, 0);
 		if (endpid == pid)
-			if (WIFEXITED(status) && data->cmdve[i]
-				&& !is_builtin(data->cmdve[i][0]))
+		{
+			if (WIFEXITED(status)
+				&& data->cmdve[i] && !is_builtin(data->cmdve[i][0]))
+			{
 				data->exit_status = WEXITSTATUS(status);
+				data->isrunned = 1;
+			}
+		}
 		if (endpid == -1)
 			break ;
 	}

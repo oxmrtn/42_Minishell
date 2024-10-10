@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/09 15:56:33 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/10 13:52:36 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static int	init_data(t_data *data, char **env)
 	sigaction(SIGINT, &action, NULL);
 	sigaction(SIGQUIT, &action, NULL);
 	g_sig_status = 0;
-	data->exit_status = 0;
+	data->exit_status = ((data->isrunned) = 0);
 	data->cmdvesize = 0;
 	data->isoutred = 0;
 	data->var = NULL;
@@ -105,16 +105,22 @@ static int	init_data(t_data *data, char **env)
 	return (0);
 }
 
-static int	update_status(t_data *data, int status)
+static int	update_status(t_data *data, int is_exec)
 {
 	char	*tmp;
 
-	tmp = ft_itoa(status);
+	if (g_sig_status == 0 && !is_exec)
+		return (0);
+	if (g_sig_status != 0
+		&& (!is_exec || (is_exec && !data->isrunned)))
+		data->exit_status = g_sig_status;
+	tmp = ft_itoa(data->exit_status);
 	if (!tmp)
 		return (1);
 	if (ft_update_variable("?", tmp, data))
 		return (1);
 	free(tmp);
+	g_sig_status = 0;
 	return (0);
 }
 
@@ -122,9 +128,7 @@ static int	the_loop(t_data *data)
 {
 	printf("\33[2K\r");
 	data->read = readline("minishell$ ");
-	if (g_sig_status != 0)
-		data->exit_status = g_sig_status;
-	if (g_sig_status != 0 && update_status(data, g_sig_status))
+	if (update_status(data, 0))
 	{
 		if (data->read)
 			free(data->read);
@@ -134,16 +138,13 @@ static int	the_loop(t_data *data)
 		return (printf("exit\n"), 0);
 	if (ft_iswhite(data->read))
 		return (free(data->read), data->read = NULL, 2);
-	g_sig_status = 0;
+	data->isrunned = 0;
 	add_history(data->read);
 	if (ft_parser(data->read, &data->cmds, data) == 0)
 		if (exec(data, ft_get_last_commands(data->cmds)))
 			return (free(data->read), data->read = NULL, 1);
-	if (g_sig_status != 0)
-		data->exit_status = g_sig_status;
-	if (update_status(data, data->exit_status))
+	if (update_status(data, 1))
 		return (free(data->read), data->read = NULL, 1);
-	g_sig_status = 0;
 	return (free(data->read), data->read = NULL, 2);
 }
 
@@ -168,9 +169,7 @@ int	main(int argc, char **argv, char **env)
 		if (retval == 0 || retval == 1)
 			break ;
 	}
-	if (g_sig_status != 0)
-		retval = g_sig_status;
-	else if (retval != 1)
+	if (retval != 1)
 		retval = data->exit_status;
 	free_main(data, 1);
 	return (retval);
