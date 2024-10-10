@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/10 20:16:49 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/10 22:19:19 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	g_sig_status;
 
-/*
+
 
 int	print_commands(t_cmds *com)
 {
@@ -53,7 +53,7 @@ int	print_variable(t_data *data)
 	}
 	return (0);
 }
-*/
+
 
 void	sig_handle(int signo)
 {
@@ -61,7 +61,7 @@ void	sig_handle(int signo)
 	{
 		ft_putstr_fd("\n", 1);
 		rl_on_new_line();
-		rl_replace_line("", 0);
+		//rl_replace_line("", 0);
 		rl_redisplay();
 		g_sig_status = 130;
 	}
@@ -141,8 +141,11 @@ static int	the_loop(t_data *data)
 	data->isrunned = 0;
 	add_history(data->read);
 	if (ft_parser(data->read, &data->cmds, data) == 0)
+	{
+		print_commands(ft_get_last_commands(data->cmds));
 		if (exec(data, ft_get_last_commands(data->cmds)))
 			return (free(data->read), data->read = NULL, 1);
+	}
 	if (update_status(data, 1))
 		return (free(data->read), data->read = NULL, 1);
 	return (free(data->read), data->read = NULL, 2);

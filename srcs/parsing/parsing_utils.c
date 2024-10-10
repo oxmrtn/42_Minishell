@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:45:56 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/10 20:08:59 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/10 22:20:47 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,15 @@ static char	*ft_append(char *s1, char *str, int i, int check)
 	return (buffer);
 }
 
+// static int	ft_append_var_bis(char *val)
+// {
+// 	if (!val)
+// 		return (1);
+// 	if (ft_strchr(val, ' '))
+// 		return (1);	
+// 	return (0);
+//}
+
 static int	ft_append_var(char **s1, char *s2, t_data *data)
 {
 	int		i;
@@ -63,8 +72,8 @@ static int	ft_append_var(char **s1, char *s2, t_data *data)
 		return (0);
 	ft_strlcpy(key, s2, i + 1);
 	temp = ft_get_variable_value(key, data);
-	if (!temp)
-		return (0);
+	//if (ft_append_var_bis(temp))
+	//	return (free(key), *s1 = ft_strjoin_s1(*s1, "$"), 0);
 	*s1 = ft_strjoin_s1(*s1, temp);
 	i = (int)ft_strlen(key);
 	return (free(key), free(temp), i);
