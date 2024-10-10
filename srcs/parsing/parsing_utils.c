@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:45:56 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/10 23:30:51 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/10 23:48:52 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ static int	ft_append_var_bis(char *str, int *flag)
 	if (!str)
 		return (1);
 	if (ft_strchr(str, ' '))
-		*flag = 1;
+	{
+		if (flag)
+			*flag = 1;
+	}
 	return (0);
 }
 

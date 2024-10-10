@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:22:35 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/10 20:15:14 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/10 23:48:30 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	ft_launch_heredocs(char *limiter, t_data *data)
 	while (temp && ft_ultimate_compare(temp, limiter))
 	{
 		write(1, "> ", 2);
-		buffer = ft_flat_string(temp, data);
+		buffer = ft_flat_string(temp, data, NULL);
 		if (!buffer)
 			return (close(fd[1]), free(temp), 1);
 		write(fd[1], buffer, ft_strlen(buffer));
