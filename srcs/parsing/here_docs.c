@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:22:35 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/07 18:43:28 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/10 20:15:14 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	ft_heredoc_handler(t_tokens *head, t_data *data)
 		while (head && head->type != PIPE)
 		{
 			if (head->type == LIMITER)
-			{			
+			{	
 				if (flag == 1)
 					del_top_hd(data);
 				else if (flag == 0)
