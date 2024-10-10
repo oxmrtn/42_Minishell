@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/09 15:18:20 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/10 23:26:51 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@ int			add_tokens_between(char *str, t_tokens *current, t_type type);
 t_tokens	*ft_get_last_token(t_tokens *head);
 t_tokens	*create_token_list(char *line, t_data *data);
 int			add_new_token(char *str, t_tokens **head, t_type type);
-int			get_type(t_tokens *head_node);
+int			get_type(t_tokens *head_node, t_data *data);
 
 //		var_list_func.c
 t_var		*ft_last_var(t_var *head);
@@ -164,7 +164,7 @@ t_var		*ft_is_var_exist(char *str, t_var *head, int i);
 void		ft_var_add_back(t_var *new_node, t_var **head);
 
 //		parsing_utils.c
-char		*ft_flat_string(char *str, t_data *data);
+char		*ft_flat_string(char *str, t_data *data, int *flag);
 int			count_cmd(t_tokens *actu);
 
 //		utils.c

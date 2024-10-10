@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:45:56 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/10 22:20:47 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/10 23:30:51 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,16 @@ static char	*ft_append(char *s1, char *str, int i, int check)
 	return (buffer);
 }
 
-// static int	ft_append_var_bis(char *val)
-// {
-// 	if (!val)
-// 		return (1);
-// 	if (ft_strchr(val, ' '))
-// 		return (1);	
-// 	return (0);
-//}
+static int	ft_append_var_bis(char *str, int *flag)
+{
+	if (!str)
+		return (1);
+	if (ft_strchr(str, ' '))
+		*flag = 1;
+	return (0);
+}
 
-static int	ft_append_var(char **s1, char *s2, t_data *data)
+static int	ft_append_var(char **s1, char *s2, t_data *data, int *flag)
 {
 	int		i;
 	char	*key;
@@ -72,8 +72,8 @@ static int	ft_append_var(char **s1, char *s2, t_data *data)
 		return (0);
 	ft_strlcpy(key, s2, i + 1);
 	temp = ft_get_variable_value(key, data);
-	//if (ft_append_var_bis(temp))
-	//	return (free(key), *s1 = ft_strjoin_s1(*s1, "$"), 0);
+	if (ft_append_var_bis(temp, flag))
+		return (free(key), 0);
 	*s1 = ft_strjoin_s1(*s1, temp);
 	i = (int)ft_strlen(key);
 	return (free(key), free(temp), i);
@@ -95,7 +95,7 @@ static void	flat_bis(char *str, int i, t_nk *check)
 		check->j = 0;
 }
 
-char	*ft_flat_string(char *str, t_data *data)
+char	*ft_flat_string(char *str, t_data *data, int *flag)
 {
 	int		i;
 	char	*buf;
@@ -113,7 +113,7 @@ char	*ft_flat_string(char *str, t_data *data)
 	{
 		flat_bis(str, i, &check);
 		if (str[i] == '$' && check.i != 2 && check.j != 1)
-			i += ft_append_var(&buf, &str[i + 1], data);
+			i += ft_append_var(&buf, &str[i + 1], data, flag);
 		else
 		{
 			if ((check.i == 1 && str[i] == 39) || (check.i == 2 && str[i] == 34)
