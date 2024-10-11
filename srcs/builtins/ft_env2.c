@@ -6,11 +6,35 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:27:05 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/30 14:16:11 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/11 13:58:06 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
+
+int	print_exp(t_env *env)
+{
+	int	retval;
+
+	retval = 0;
+	while (env)
+	{
+		if (env->exp_noval == 1)
+			retval = printf("declare -x %s\n", env->key);
+		else if (env->val)
+			retval = printf("declare -x %s=\"%s\"\n", env->key, env->val);
+		else
+			retval = printf("declare -x %s=\"\"\n", env->key);
+		if (retval < 0)
+		{
+			ft_puterror("minishell: 'export': write error: ");
+			perror(NULL);
+			return (1);
+		}
+		env = env->next;
+	}
+	return (0);
+}
 
 static int	env_update2(t_env *lst, char *c)
 {

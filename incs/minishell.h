@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/09 15:18:20 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/11 13:51:27 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,7 +225,8 @@ int			is_inenv_key(t_env *env, char *keycheck);
 int			is_inenv_str(t_env *env, char *strcheck);
 void		ft_envdelone(t_data *data, t_env *node);
 char		**env_to_tab(t_env *env);
-void		print_env(t_env *env, int env_or_exp);
+int			print_env(t_env *env);
+int			print_exp(t_env *env);
 int			tmp_env_add(t_data *data, char *cmdve);
 int			tmp_env_setup(t_data *data, t_cmds *cmd, int i);
 int			env_update(t_env *lst, char *str);

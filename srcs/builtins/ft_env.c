@@ -6,11 +6,37 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:48:29 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/02 17:14:23 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/11 14:05:55 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
+
+int	print_env(t_env *env)
+{
+	int	retval;
+
+	retval = 0;
+	while (env)
+	{
+		if (env->val && !ft_ultimate_compare(env->key, "="))
+			retval = printf("%s%s\n", env->key, env->val);
+		else if (!env->val && !ft_ultimate_compare(env->key, "="))
+			retval = printf("%s\n", env->key);
+		else if (env->val)
+			retval = printf("%s=%s\n", env->key, env->val);
+		else
+			retval = printf("%s=\n", env->key);
+		if (retval < 0)
+		{
+			ft_puterror("minishell: 'env': write error: ");
+			perror(NULL);
+			return (1);
+		}
+		env = env->next;
+	}
+	return (0);
+}
 
 int	isvalid_env(char *str, int only_key)
 {
@@ -57,34 +83,6 @@ t_env	*envnew_gtw(char *str, int is_exp_no_val)
 	return (ft_envnew(key, val, is_exp_no_val));
 }
 
-void	print_env(t_env *env, int env_or_exp)
-{
-	while (env)
-	{
-		if (!env_or_exp)
-		{
-			if (env->val && !ft_ultimate_compare(env->key, "="))
-				printf("%s%s\n", env->key, env->val);
-			else if (!env->val && !ft_ultimate_compare(env->key, "="))
-				printf("%s\n", env->key);
-			else if (env->val)
-				printf("%s=%s\n", env->key, env->val);
-			else
-				printf("%s=\n", env->key);
-		}
-		else
-		{
-			if (env->exp_noval == 1)
-				printf("declare -x %s\n", env->key);
-			else if (env->val)
-				printf("declare -x %s=\"%s\"\n", env->key, env->val);
-			else
-				printf("declare -x %s=\"\"\n", env->key);
-		}
-		env = env->next;
-	}
-}
-
 char	**env_to_tab(t_env *env)
 {
 	size_t	i;
@@ -116,8 +114,10 @@ char	**env_to_tab(t_env *env)
 int	ft_env(t_data *data, char **cmdve)
 {
 	size_t	i;
+	int		retval;
 
 	i = 1;
+	retval = 0;
 	while (cmdve[i])
 	{
 		if (cmdve[i][0] && ft_strncmp(cmdve[i], "_=", 2) != 0
@@ -127,12 +127,12 @@ int	ft_env(t_data *data, char **cmdve)
 		i++;
 	}
 	if (i == 1)
-		print_env(data->envs->env, 0);
+		retval = print_env(data->envs->env);
 	else
 	{
-		print_env(data->envs->tmpenv, 0);
+		retval = print_env(data->envs->tmpenv);
 		ft_free_env(&data->envs->tmpenv);
 		data->envs->tmpenv = NULL;
 	}
-	return (0);
+	return (retval);
 }
