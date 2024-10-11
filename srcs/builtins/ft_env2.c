@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:27:05 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/11 13:58:06 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/11 17:43:39 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ int	print_exp(t_env *env)
 	retval = 0;
 	while (env)
 	{
-		if (env->exp_noval == 1)
+		if (env->hidden)
+			retval = 0;
+		else if (env->exp_noval == 1)
 			retval = printf("declare -x %s\n", env->key);
 		else if (env->val)
 			retval = printf("declare -x %s=\"%s\"\n", env->key, env->val);
@@ -39,6 +41,7 @@ int	print_exp(t_env *env)
 static int	env_update2(t_env *lst, char *c)
 {
 	lst->exp_noval = 0;
+	lst->hidden = 0;
 	if (c[1] && c[-1] && c[-1] == '+')
 		lst->val = ft_strjoin_s1(lst->val, &c[1]);
 	else

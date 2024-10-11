@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 13:55:26 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/30 16:14:42 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/11 17:47:15 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_env	*ft_envnew(char *key, char *val, int is_exp_no_val)
 	newelem = malloc(sizeof(t_env));
 	if (!newelem)
 		return (NULL);
+	newelem->hidden = 0;
 	newelem->key = key;
 	newelem->val = val;
 	newelem->exp_noval = is_exp_no_val;
@@ -34,7 +35,8 @@ size_t	ft_envsize(t_env *lst)
 	i = 0;
 	while (lst)
 	{
-		i++;
+		if (!lst->hidden)
+			i++;
 		lst = lst->next;
 	}
 	return (i);

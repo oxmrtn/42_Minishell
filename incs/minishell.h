@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/11 13:51:27 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/11 17:13:10 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct s_var
 
 typedef struct s_env
 {
+	int				hidden;
 	char			*key;
 	char			*val;
 	int				exp_noval;
@@ -211,6 +212,8 @@ int			ft_env(t_data *data, char **cmdve);
 int			ft_exit(t_data *data, char **cmdve);
 
 /* ENV */
+int			set_path(t_data *data);
+int			add_min_env(t_data *data, char *defkey, char *defval, int is_exp);
 t_env		*envnew_gtw(char *str, int is_exp_no_val);
 size_t		ft_envsize(t_env *lst);
 int			env_init(t_data	*data, char **env);

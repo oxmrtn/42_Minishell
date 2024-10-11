@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:48:29 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/11 14:05:55 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/11 17:43:47 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ int	print_env(t_env *env)
 	retval = 0;
 	while (env)
 	{
-		if (env->val && !ft_ultimate_compare(env->key, "="))
+		if (env->hidden)
+			retval = 0;
+		else if (env->val && !ft_ultimate_compare(env->key, "="))
 			retval = printf("%s%s\n", env->key, env->val);
 		else if (!env->val && !ft_ultimate_compare(env->key, "="))
 			retval = printf("%s\n", env->key);
@@ -97,7 +99,7 @@ char	**env_to_tab(t_env *env)
 	tmp_env[size] = NULL;
 	while (env)
 	{
-		if (ft_ultimate_compare(env->key, "=") != 0)
+		if (ft_ultimate_compare(env->key, "=") != 0 && !env->hidden)
 		{
 			if (env->val)
 				tmp_env[i] = ft_strjoin_c(env->key, env->val, '=', 0);

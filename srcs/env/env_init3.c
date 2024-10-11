@@ -6,11 +6,42 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 17:13:16 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/04 17:01:45 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/11 17:27:20 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
+
+static void	set_hidden(t_env *env, char *keycheck)
+{
+	while (env)
+	{
+		if (!ft_ultimate_compare(env->key, keycheck))
+		{
+			env->hidden = 1;
+			return ;
+		}
+		env = env->next;
+	}
+}
+
+int	set_path(t_data *data)
+{
+	char	*paths;
+
+	if (is_inenv_key(data->envs->env, "PATH"))
+		return (0);
+	paths = ft_strjoin("/usr/local/sbin:/usr/local/bin:",
+			"/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin");
+	if (!paths)
+		return (1);
+	if (add_min_env(data, "PATH", paths, 1))
+		return (free(paths), 1);
+	free(paths);
+	set_hidden(data->envs->env, "PATH");
+	set_hidden(data->envs->exp, "PATH");
+	return (0);
+}
 
 static char	*incr_shlvl2(t_env *env)
 {

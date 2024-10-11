@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:45:52 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/30 17:24:36 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/11 17:12:51 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int	add_min_env2(t_data *data, char *defkey, char *defval, int is_exp)
 	return (0);
 }
 
-static int	add_min_env(t_data *data, char *defkey, char *defval, int is_exp)
+int	add_min_env(t_data *data, char *defkey, char *defval, int is_exp)
 {
 	if (add_min_env2(data, defkey, defval, 0))
 		return (1);
@@ -87,8 +87,10 @@ int	check_env(t_data *data)
 		return (1);
 	if (!is_inenv_key(data->envs->env, "PWD"))
 		if (add_min_env(data, "PWD", pwd, 1))
-			return (1);
+			return (free(pwd), 1);
 	free(pwd);
+	if (set_path(data))
+		return (1);
 	if (!is_inenv_key(data->envs->env, "SHLVL"))
 	{
 		if (add_min_env(data, "SHLVL", "1", 1))
