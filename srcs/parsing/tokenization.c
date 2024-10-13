@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:20:36 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/08 12:28:41 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/13 22:37:14 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,17 +63,6 @@ int	ft_is_commands(t_tokens *node)
 	return (0);
 }
 
-static void	ft_check_pipe(t_tokens *node)
-{
-	if (!node->str[0])
-		return ;
-	if (node->str[ft_strlen(node->str) - 1] == '|')
-	{
-		node->str[ft_strlen(node->str) - 1] = '\0';
-		add_tokens_between("|", node, PIPE);
-	}
-}
-
 int	ft_is_args(t_tokens *node)
 {
 	if (ft_strchr(node->str, '&') || ft_strchr(node->str, ';')
@@ -83,8 +72,8 @@ int	ft_is_args(t_tokens *node)
 		return (0);
 	else if (count_cmd(node) > 0 && (node->prev->type == OUTFILE
 			|| node->prev->type == INFILE || node->prev->type == LIMITER))
-		return (ft_check_pipe(node), 1);
+		return (1);
 	if (node->prev->type == ARGS || node->prev->type == CMD)
-		return (ft_check_pipe(node), 1);
+		return (1);
 	return (0);
 }

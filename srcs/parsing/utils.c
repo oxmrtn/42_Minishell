@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oxmrtn <oxmrtn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 10:25:14 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/03 17:43:09 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/13 19:54:40 by oxmrtn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_tokens	*ft_get_last_token(t_tokens *head)
 	return (head);
 }
 
-int	add_new_token(char *str, t_tokens **head, t_type type)
+int	add_new_token(char *str, t_tokens **head, t_type type, int flag)
 {
 	t_tokens	*new_tokens;
 	t_tokens	*last;
@@ -43,6 +43,7 @@ int	add_new_token(char *str, t_tokens **head, t_type type)
 	new_tokens = malloc(sizeof(t_tokens));
 	if (!new_tokens)
 		return (1);
+	new_tokens->expand = flag;
 	new_tokens->str = ft_strdup(str);
 	new_tokens->type = type;
 	if (!new_tokens->str)
