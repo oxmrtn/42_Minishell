@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:47:35 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/14 15:15:10 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/14 16:21:58 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	envtab_update(t_data *data)
 	return (0);
 }
 
-static int	expenv_add2(t_data *data, char *cmdve, int env_or_exp)
+int	expenv_add2(t_data *data, char *cmdve, int env_or_exp)
 {
 	t_env	*node;
 	t_env	*env;

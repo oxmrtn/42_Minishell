@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 17:56:04 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/14 15:02:48 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/14 16:36:04 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,9 @@ int	env_init(t_data	*data, char **env)
 			return (1);
 	if (check_env(data))
 		return (1);
+	if (!env[0] || data->envs->direrr)
+		if (expenv_add2(data, "OLDPWD", 1))
+			return (1);
 	sort_exp(data);
 	data->envs->envve = env_to_tab(data->envs->env);
 	if (!data->envs->envve)

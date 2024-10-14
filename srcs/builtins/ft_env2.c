@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:27:05 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/11 17:43:39 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/14 16:40:34 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,9 @@ int	env_update(t_env *lst, char *str)
 	while (lst)
 	{
 		if (!ft_strncmp(lst->key, str, i))
-		{
 			if (c)
 				if (env_update2(lst, c))
 					return (1);
-		}
 		lst = lst->next;
 	}
 	return (0);

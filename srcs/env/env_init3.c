@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 17:13:16 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/11 17:27:20 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/14 17:33:01 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ int	incr_shlvl(t_data *data)
 	}
 	env = data->envs->env;
 	exp = data->envs->exp;
-	env_update(env, newval);
-	env_update(exp, newval);
+	if (env_update(env, newval) || env_update(exp, newval))
+		return (1);
 	free(newval);
 	return (0);
 }
