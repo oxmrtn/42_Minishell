@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:45:56 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/15 00:51:33 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/15 00:53:32 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static int	ft_ap_v(char **s1, char *s2, t_data *data, int *flag)
 	ft_strlcpy(key, s2, i + 1);
 	temp = ft_get_variable_value(key, data);
 	if (ft_append_var_bis(temp, flag))
-		return (free(key), 0);
+		return (free(key), -1);
 	*s1 = ft_strjoin_s1(*s1, temp);
 	return (i = (int)ft_strlen(key), free(key), free(temp), i);
 }
