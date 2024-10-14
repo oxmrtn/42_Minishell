@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/10 13:52:36 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/14 13:47:36 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,20 +59,26 @@ void	sig_handle(int signo)
 {
 	if (signo == SIGINT)
 	{
-		ft_putstr_fd("\n", 1);
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
 		g_sig_status = 130;
+		rl_replace_line("\0", 0);
+		ft_putstr_fd("\n", 1);
+		(rl_on_new_line(), rl_redisplay());
+		if (!isatty(STDIN_FILENO))
+			ft_putstr_fd("\33[2K\r", 1);
 	}
 	if (signo == SIGQUIT)
 	{
-		if (!isatty(STDIN_FILENO))
-			ft_putstr_fd("Quit (core dumped)\n", 1);
-		rl_on_new_line();
-		ft_putstr_fd("\33[2K\r", 1);
-		rl_redisplay();
 		g_sig_status = 131;
+		if (!isatty(STDIN_FILENO))
+		{
+			rl_replace_line("\0", 0);
+			ft_putstr_fd("Quit (core dumped)\n", 1);
+			(rl_on_new_line(), rl_redisplay());
+			ft_putstr_fd("\33[2K\r", 1);
+			return ;
+		}
+		ft_putstr_fd("\33[2K\r", 1);
+		(rl_on_new_line(), rl_redisplay());
 	}
 }
 
@@ -126,7 +132,6 @@ static int	update_status(t_data *data, int is_exec)
 
 static int	the_loop(t_data *data)
 {
-	printf("\33[2K\r");
 	data->read = readline("minishell$ ");
 	if (update_status(data, 0))
 	{
