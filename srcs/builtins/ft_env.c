@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:48:29 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/11 17:43:47 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/14 15:07:31 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,9 @@ int	ft_env(t_data *data, char **cmdve)
 
 	i = 1;
 	retval = 0;
+	if (data->envs->direrr)
+		ft_puterror(
+			"job-working-directory: error retrieving current directory\n");
 	while (cmdve[i])
 	{
 		if (cmdve[i][0] && ft_strncmp(cmdve[i], "_=", 2) != 0

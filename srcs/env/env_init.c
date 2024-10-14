@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 17:56:04 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/30 17:28:17 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/14 15:02:48 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ int	env_init(t_data	*data, char **env)
 	data->envs = malloc(sizeof(t_envs));
 	if (!data->envs)
 		return (1);
+	data->envs->direrr = 0;
 	data->envs->env = NULL;
 	data->envs->exp = NULL;
 	data->envs->tmpenv = NULL;

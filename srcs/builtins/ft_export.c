@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:47:35 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/11 13:58:33 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/14 15:15:10 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,8 @@ int	ft_export(t_data *data, char **cmdve)
 		}
 		i++;
 	}
+	if (data->envs->direrr && is_inenv_key(data->envs->env, "PWD"))
+		data->envs->direrr = 0;
 	if (i == 1)
 		retval = print_exp(data->envs->exp);
 	return (retval);

@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/11 17:13:10 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/14 15:02:25 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ typedef struct s_env
 
 typedef struct s_envs
 {
+	int		direrr;
 	t_env	*env;
 	t_env	*exp;
 	t_env	*tmpenv;
