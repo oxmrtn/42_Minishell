@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/14 00:13:27 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/14 23:04:09 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,9 +121,6 @@ typedef struct s_data
 }			t_data;
 
 //	PARSING
-//		parsing.c
-int			ft_parser(char *line, t_cmds **commands, t_data *data);
-int			print_commands(t_cmds *com);
 
 //		check_error.c
 int			ft_check_quote_syntax(char *str);
@@ -132,11 +129,23 @@ int			ft_check_quote_syntax(char *str);
 t_cmds		*ft_get_last_commands(t_cmds *tmp);
 int			add_commands(t_cmds *new, t_cmds **head);
 
+//		flat_strings.c
+char		*ft_flat_string(char *str, t_data *data, int *flag, t_tokens *c);
+
+//		get_type.c
+int			get_type(t_tokens *head, t_data *data);
+
 //		handle_variable.c
 int			ft_add_variable(char *str, t_data *data);
 int			ft_check_variable(char *str, t_data *data);
 char		*ft_get_variable_value(char *key, t_data *data);
 int			ft_update_variable(char *key, char *val, t_data *data);
+
+//		hd_list.c
+t_hd		*ft_last_hd(t_hd *head);
+void		add_back_heredoc_list(t_hd *new_node, t_hd **head);
+int			add_heredoc_list(int fd, t_data *data);
+void		del_top_hd(t_data *data);
 
 //		here_docs.c
 int			ft_heredoc_handler(t_tokens *head, t_data *data);
@@ -146,47 +155,54 @@ t_hd		*ft_last_hd(t_hd *head);
 void		add_back_heredoc_list(t_hd *new_node, t_hd **head);
 void		del_top_hd(t_data *data);
 
-//		tokenization.c
-int			ft_is_pipe(t_tokens *current);
+//		parsing.c
+int			ft_parser(char *line, t_cmds **commands, t_data *data);
+int			print_commands(t_cmds *com);
+
+//		split_redir.c
+int			split_redir(t_tokens *current);
+
+//		tokenization_utils.c
 int			ft_is_redirect_sign(t_tokens *current);
-int			ft_is_args(t_tokens *node);
+
+//		tokenization.c
 int			ft_is_commands(t_tokens *node);
-int			add_tokens_between(char *str, t_tokens *current, t_type type, int i);
+int			ft_is_args(t_tokens *node);
 
 //		tokens_struct.c
-t_tokens	*ft_get_last_token(t_tokens *head);
+int			add_tokens_between(char *str, t_tokens *current, t_type t, int i);
 t_tokens	*create_token_list(char *line, t_data *data);
-int			add_new_token(char *str, t_tokens **head, t_type type, int flag);
-int			get_type(t_tokens *head_node, t_data *data);
-
-//		var_list_func.c
-t_var		*ft_last_var(t_var *head);
-t_var		*ft_is_var_exist(char *str, t_var *head, int i);
-void		ft_var_add_back(t_var *new_node, t_var **head);
-
-//		parsing_utils.c
-char		*ft_flat_string(char *str, t_data *data, int *flag);
-int			count_cmd(t_tokens *actu);
 
 //		utils.c
 void		ft_fix(t_tokens *head, char **splitted);
+int			ft_is_pipe(t_tokens *current);
+int			add_new_token(char *str, t_tokens **head, t_type type, int flag);
+t_tokens	*ft_get_last_token(t_tokens *head);
+int			count_cmd(t_tokens *actu);
+
+//		var_list_func.c
+t_var		*ft_last_var(t_var *head);
+void		ft_var_add_back(t_var *new_node, t_var **head);
+t_var		*ft_is_var_exist(char *str, t_var *head, int i);
 
 //	HISTORY
 int			ft_get_history(void);
 int			ft_write_history(t_cmds *cmds);
 
-//	FREE
-//		conditionnal_free.c
-void		ft_free_invalid_syntax(t_cmds *to_free);
-void		ft_free_var(t_data *data);
+//	FREES
 
 //		free.c
 void		ft_free_heredoc(t_data *data);
-void		free_main(t_data *data, int i);
 void		ft_free_cmdve(t_data *data);
+void		ft_free_env(t_env **lst);
+void		ft_free_envs(t_data *data);
+void		free_main(t_data *data, int i);
+
+//		free2.c
 void		ft_free_tokens(t_tokens *tok);
 void		ft_free_commands(t_cmds *cmds);
-void		ft_free_env(t_env **lst);
+void		ft_free_invalid_syntax(t_cmds *to_free);
+void		ft_free_var(t_data *data);
 
 /* EXEC */
 int			exec(t_data *data, t_cmds *cmd);

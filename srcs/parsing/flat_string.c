@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_utils.c                                    :+:      :+:    :+:   */
+/*   flat_string.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:45:56 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/13 22:26:44 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/14 22:23:20 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static int	ft_append_var(char **s1, char *s2, t_data *data, int *flag)
 	return (free(key), free(temp), i);
 }
 
-static void	flat_bis(char *str, int i, t_nk *check)
+static void	flat_bis(char *str, int i, t_nk *check, t_tokens *current)
 {
 	if (str[i] == 34 && check->i == 1)
 		check->i = 0;
@@ -96,9 +96,16 @@ static void	flat_bis(char *str, int i, t_nk *check)
 		check->j = 1;
 	else if (str[i] == 92 && check->j == 1)
 		check->j = 0;
+	else if (i >= 2 && str[i - 1] == '<' && str[i - 2] == '<')
+		check->k = 1;
+	else
+		check->k = 0;
+	if (i == 0 && (str[i] == 34 || str[i] == 39))
+		if (current)
+			current->expand = 3;
 }
 
-char	*ft_flat_string(char *str, t_data *data, int *flag)
+char	*ft_flat_string(char *str, t_data *data, int *flag, t_tokens *current)
 {
 	int		i;
 	char	*buf;
@@ -107,15 +114,15 @@ char	*ft_flat_string(char *str, t_data *data, int *flag)
 	if (ft_check_quote_syntax(str))
 		return (NULL);
 	i = -1;
-	check.i = 0;
-	check.j = 0;
+	check.i = ((check.j = ((check.k = 0))));
 	buf = ft_strdup("");
 	if (!buf)
 		return (NULL);
 	while (str[++i])
 	{
-		flat_bis(str, i, &check);
-		if (str[i] == '$' && check.i != 2 && check.j != 1)
+		flat_bis(str, i, &check, current);
+		if (str[i] == '$' && check.i != 2 && check.j != 1
+			&& (check.k != 1 && check.i == 0 && check.j == 0))
 			i += ft_append_var(&buf, &str[i + 1], data, flag);
 		else
 		{

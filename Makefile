@@ -6,7 +6,7 @@
 #    By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/04 15:03:37 by ebengtss          #+#    #+#              #
-#    Updated: 2024/10/07 17:33:06 by mtrullar         ###   ########.fr        #
+#    Updated: 2024/10/14 23:07:44 by mtrullar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,16 +39,17 @@ SRCS_FILES			=	main.c				builtins.c			\
 						ft_export.c			redirs.c			\
 						ft_pwd.c			run.c				\
 						ft_unset.c			free.c				\
-						parsing_utils.c		history.c			\
+						flat_string.c		history.c			\
 						handle_variable.c	commands_struct.c	\
 						here_docs.c			tokenization.c		\
-						tokens_struct.c		free2.c	\
+						tokens_struct.c		free2.c				\
 						env_init.c			env_list.c			\
 						env_list2.c			cmdve.c				\
 						check_error.c		env_init3.c			\
 						ft_env2.c			env_init2.c			\
 						tokenization_util.c utils.c				\
-						hd_list.c								\
+						hd_list.c			get_type.c			\
+						split_redir.c							\
 						
 
 OBJS				=	$(addprefix $(OBJS_DIR), $(SRCS_FILES:.c=.o))
