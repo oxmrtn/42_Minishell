@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/14 23:04:09 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/15 00:51:27 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,12 @@ int			add_commands(t_cmds *new, t_cmds **head);
 
 //		flat_strings.c
 char		*ft_flat_string(char *str, t_data *data, int *flag, t_tokens *c);
+char		*ft_append(char *s1, char *str, int i, int check);
+
+//		flat_strings_bis.c
+int			flat_string_cond_1(int res, int *i);
+int 		flat_string_cond_2(char **buf, char *str, int i, t_nk check);
+int			flat_string_init(t_nk *check, char **buf);
 
 //		get_type.c
 int			get_type(t_tokens *head, t_data *data);

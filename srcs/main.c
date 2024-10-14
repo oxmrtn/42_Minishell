@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/14 23:15:23 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/15 00:23:57 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,8 @@ static int	update_status(t_data *data, int is_exec)
 
 static int	the_loop(t_data *data)
 {
+	int	rev;
+
 	printf("\33[2K\r");
 	data->read = readline("minishell$ ");
 	if (update_status(data, 0))
@@ -140,7 +142,10 @@ static int	the_loop(t_data *data)
 		return (free(data->read), data->read = NULL, 2);
 	data->isrunned = 0;
 	add_history(data->read);
-	if (ft_parser(data->read, &data->cmds, data) == 0)
+	rev = ft_parser(data->read, &data->cmds, data);
+	if (rev == 1)
+		return (free(data->read), data->read = NULL, 1);
+	if (rev == 0)
 	{
 		print_commands(ft_get_last_commands(data->cmds));
 		if (exec(data, ft_get_last_commands(data->cmds)))
