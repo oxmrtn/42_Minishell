@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 16:20:25 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/15 00:52:59 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/15 01:00:41 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ static int	check_is_correct_var(char *equal, char *str)
 
 int	ft_check_variable(char *str, t_data *data)
 {
-	char	*tmp;
-	char	*t1;
-	char	*t2;
+	const char	*tmp = ft_strchr(str, '=');
+	char		*t1;
+	char		*t2;
+	int			res;
 
-	tmp = ft_strchr(str, '=');
 	if (check_is_correct_var(tmp, str))
 		return (0);
 	t1 = ft_strchr(str, 34);
@@ -42,11 +42,16 @@ int	ft_check_variable(char *str, t_data *data)
 		return (0);
 	if (is_inenv_str(data->envs->env, str))
 	{
-		env_update(data->envs->exp, str);
-		env_update(data->envs->env, str);
+		res = env_update(data->envs->exp, str);
+		res += env_update(data->envs->env, str);
+		if (res > 0)
+			return (2);
 		return (envtab_update(data), 1);
 	}
-	if (!ft_add_variable(str, data))
+	res = ft_add_variable(str, data);
+	if (res == 1)
+		return (2);
+	if (res == 0)
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/15 00:23:57 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/15 01:11:53 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,10 @@ int	main(int argc, char **argv, char **env)
 	{
 		retval = the_loop(data);
 		if (retval == 0 || retval == 1)
+		{
+			ft_desc_error("internal error", "", 0, "");
 			break ;
+		}
 	}
 	if (retval != 1)
 		retval = data->exit_status;

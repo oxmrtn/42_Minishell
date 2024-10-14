@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:21:38 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/15 00:48:29 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/15 01:08:24 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,30 +36,41 @@ int	add_tokens_between(char *str, t_tokens *current, t_type type, int i)
 	return (0);
 }
 
+static int	init_ctl(t_tokens **head_node, t_nk *var, char **splitted)
+{
+	*head_node = NULL;
+	var->i = -1;
+	splitted = ft_split_quote(line, ' ');
+	if (!splitted)
+		return (1);
+	return (0);
+}
+
 t_tokens	*create_token_list(char *line, t_data *data)
 {
 	t_tokens	*head_node;
 	char		**splitted;
-	int			i;
-	int			res;
+	t_nk		var;
 
-	head_node = NULL;
-	i = -1;
-	splitted = ft_split_quote(line, ' ');
-	if (!splitted)
+	if (init_ctl(&head_node, &var, splitted))
 		return (NULL);
-	while (splitted[++i])
+	while (splitted[++var.i])
 	{
 		if (ft_ultimate_len(splitted) == 1)
-			if (ft_check_variable(splitted[0], data))
+		{
+			var.j = ft_check_variable(splitted[0], data);
+			if (var.j == 1)
+				return (ft_free_split(splitted), (void *)-1);
+			if (var.j == 2)
 				return (ft_free_split(splitted), NULL);
-		if (add_new_token(splitted[i], &head_node, WAIT, 0))
+		}
+		if (add_new_token(splitted[var.i], &head_node, WAIT, 0))
 			return (ft_fix(head_node, splitted), NULL);
 	}
-	res = get_type(head_node, data);
-	if (res == 1)
+	var.j = get_type(head_node, data);
+	if (var.j == 1)
 		return (ft_fix(head_node, splitted), NULL);
-	if (res == 2)
+	if (var.j == 2)
 		return (ft_fix(head_node, splitted), (void *)-1);
 	return (ft_free_split(splitted), head_node);
 }
