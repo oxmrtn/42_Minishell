@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/15 19:59:50 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/15 20:18:20 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,8 @@ typedef struct s_envs
 typedef struct s_data
 {
 	struct sigaction	saction;
-	int					sstatus;
+	int					*sstatus;
+	int					tmpstdin;
 	t_cmds				*cmds;
 	t_envs				*envs;
 	t_var				*var;
@@ -202,6 +203,7 @@ void		ft_free_heredoc(t_data *data);
 void		ft_free_cmdve(t_data *data);
 void		ft_free_env(t_env **lst);
 void		ft_free_envs(t_data *data);
+void		ft_close_fds(t_data *data);
 void		free_main(t_data *data, int i);
 
 //		free2.c
@@ -234,6 +236,10 @@ int			ft_export(t_data *data, char **cmdve);
 int			ft_unset(t_data *data, char **cmdve);
 int			ft_env(t_data *data, char **cmdve);
 int			ft_exit(t_data *data, char **cmdve);
+
+/* SIG */
+void		sig_handle(int signo);
+void		sig_handle_hd(int signo);
 
 /* ENV */
 char		*env_getval_key(t_env *lst, char *key);

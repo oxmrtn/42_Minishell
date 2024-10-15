@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:35:10 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/15 17:16:25 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/15 20:18:28 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,7 @@ void	free_main(t_data *data, int i)
 {
 	if (data)
 	{
-		close(STDERR_FILENO);
-		close(STDIN_FILENO);
-		close(STDOUT_FILENO);
-		(close(data->stdincpy), close(data->stdoutcpy));
+		ft_close_fds(data);
 		if (data->cmds)
 		{
 			if (i == 1)

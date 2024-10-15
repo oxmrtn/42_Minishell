@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/15 19:54:50 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/15 20:08:33 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	sig_handle_hd(int signo)
 {
 	if (signo == SIGINT)
 	{
-		g_sig_status = 130;
+		g_sig_status = 140;
 		ft_putstr_fd("\n", 1);
 		close(STDIN_FILENO);
 	}
@@ -104,6 +104,7 @@ static int	init_data(t_data *data, char **env)
 	sigaction(SIGINT, &data->saction, NULL);
 	sigaction(SIGQUIT, &data->saction, NULL);
 	g_sig_status = 0;
+	data->sstatus = &g_sig_status;
 	data->exit_status = ((data->isrunned) = 0);
 	data->cmdvesize = ((data->isoutred) = 0);
 	data->tmppwd = NULL;

@@ -6,17 +6,32 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:22:35 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/15 19:58:47 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/15 20:22:08 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
 
+static void	change_sig_handler(t_data *data, int reset)
+{
+	if (!reset)
+		data->saction.sa_handler = sig_handle_hd;
+	else
+		data->saction.sa_handler = sig_handle;
+	sigaction(SIGINT, &data->saction, NULL);
+	sigaction(SIGQUIT, &data->saction, NULL);
+}
+
 static char	*ft_launch_heredocs2(int *fd, t_data *data)
 {
 	char	*temp;
 
+	data->tmpstdin = dup(STDIN_FILENO);
+	if (data->tmpstdin == -1)
+		return (NULL);
 	if (pipe(fd) == -1)
+		return (NULL);
+	if (dup2(data->tmpstdin, STDIN_FILENO) == -1)
 		return (NULL);
 	if (add_heredoc_list(fd[0], data))
 		return (NULL);
@@ -32,6 +47,7 @@ static int	ft_launch_heredocs(char *limiter, t_data *data)
 	char	*buffer;
 	char	*temp;
 
+	change_sig_handler(data, 0);
 	temp = ft_launch_heredocs2(fd, data);
 	if (!temp)
 		return (1);
@@ -68,7 +84,8 @@ int	ft_heredoc_handler(t_tokens *head, t_data *data)
 				else if (flag == 0)
 					flag = 1;
 				if (ft_launch_heredocs(head->str, data))
-					return (1);
+					return (change_sig_handler(data, 1), 1);
+				change_sig_handler(data, 1);
 			}
 			head = head->next;
 		}

@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   free2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:38:10 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/14 23:00:55 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/15 20:18:09 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
+
+void	ft_close_fds(t_data *data)
+{
+	if (STDERR_FILENO != -1)
+		close(STDERR_FILENO);
+	if (STDIN_FILENO != -1)
+		close(STDIN_FILENO);
+	if (STDOUT_FILENO != -1)
+		close(STDOUT_FILENO);
+	if (data->stdincpy != -1)
+		close(data->stdincpy);
+	if (data->stdoutcpy != -1)
+		close(data->stdoutcpy);
+}
 
 void	ft_free_tokens(t_tokens *tok)
 {
