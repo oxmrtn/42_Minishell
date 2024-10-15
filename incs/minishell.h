@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/15 17:15:54 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:25:38 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,10 +158,6 @@ void		del_top_hd(t_data *data);
 //		here_docs.c
 int			ft_heredoc_handler(t_tokens *head, t_data *data);
 int			ft_ask_handler(t_tokens *head, t_data *data);
-int			add_heredoc_list(int fd, t_data *data);
-t_hd		*ft_last_hd(t_hd *head);
-void		add_back_heredoc_list(t_hd *new_node, t_hd **head);
-void		del_top_hd(t_data *data);
 
 //		parsing.c
 int			ft_parser(char *line, t_cmds **commands, t_data *data);
