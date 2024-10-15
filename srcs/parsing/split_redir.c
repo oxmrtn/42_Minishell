@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 22:28:34 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/14 23:08:51 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/15 18:19:32 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,14 @@ static int	current_str(char **str, t_tokens *current)
 		i++;
 	if (i == 0)
 	{
-		if (!src[1])
-		{
-			if (change_value_node(current, str, 1))
-				return (1);
-		}
-		else if (src[1] && src[1] == src[0])
+		if (src[1] && src[1] == src[0])
 		{
 			if (change_value_node(current, str, 2))
+				return (1);
+		}
+		else
+		{
+			if (change_value_node(current, str, 1))
 				return (1);
 		}
 	}
