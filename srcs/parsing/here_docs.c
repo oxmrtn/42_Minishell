@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_docs.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:22:35 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/15 20:40:43 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/15 20:51:46 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ static char	*ft_launch_heredocs2(int *fd, t_data *data)
 	if (add_heredoc_list(fd[0], data))
 		return (NULL);
 	temp = readline("> ");
+	if (!temp && *data->sstatus == 140)
+		return (*data->sstatus = 130, close(fd[1]), 1);
 	if (!temp)
 		return (close((fd[1])), NULL);
 	return (temp);
