@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/15 17:22:59 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/15 18:43:27 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	g_sig_status;
 
-/*
 int	print_commands(t_cmds *com)
 {
 	t_cmds		*commands;
@@ -52,7 +51,6 @@ int	print_variable(t_data *data)
 	}
 	return (0);
 }
-*/
 
 void	sig_handle(int signo)
 {
@@ -150,8 +148,11 @@ static int	the_loop(t_data *data)
 	if (rev == 1)
 		return (free(data->read), data->read = NULL, 1);
 	if (rev == 0)
+	{
+		print_commands(ft_get_last_commands(data->cmds));
 		if (exec(data, ft_get_last_commands(data->cmds)))
 			return (free(data->read), data->read = NULL, 1);
+	}
 	if (update_status(data, 1))
 		return (free(data->read), data->read = NULL, 1);
 	return (free(data->read), data->read = NULL, 2);
