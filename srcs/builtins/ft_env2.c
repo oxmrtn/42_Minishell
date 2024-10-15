@@ -6,15 +6,42 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:27:05 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/30 14:16:11 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/14 16:40:34 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
 
+int	print_exp(t_env *env)
+{
+	int	retval;
+
+	retval = 0;
+	while (env)
+	{
+		if (env->hidden)
+			retval = 0;
+		else if (env->exp_noval == 1)
+			retval = printf("declare -x %s\n", env->key);
+		else if (env->val)
+			retval = printf("declare -x %s=\"%s\"\n", env->key, env->val);
+		else
+			retval = printf("declare -x %s=\"\"\n", env->key);
+		if (retval < 0)
+		{
+			ft_puterror("minishell: 'export': write error: ");
+			perror(NULL);
+			return (1);
+		}
+		env = env->next;
+	}
+	return (0);
+}
+
 static int	env_update2(t_env *lst, char *c)
 {
 	lst->exp_noval = 0;
+	lst->hidden = 0;
 	if (c[1] && c[-1] && c[-1] == '+')
 		lst->val = ft_strjoin_s1(lst->val, &c[1]);
 	else
@@ -45,11 +72,9 @@ int	env_update(t_env *lst, char *str)
 	while (lst)
 	{
 		if (!ft_strncmp(lst->key, str, i))
-		{
 			if (c)
 				if (env_update2(lst, c))
 					return (1);
-		}
 		lst = lst->next;
 	}
 	return (0);

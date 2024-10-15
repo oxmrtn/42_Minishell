@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/15 15:46:36 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:18:37 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,20 +59,26 @@ void	sig_handle(int signo)
 {
 	if (signo == SIGINT)
 	{
-		ft_putstr_fd("\n", 1);
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
 		g_sig_status = 130;
+		rl_replace_line("\0", 0);
+		ft_putstr_fd("\n", 1);
+		(rl_on_new_line(), rl_redisplay());
+		if (!isatty(STDIN_FILENO))
+			ft_putstr_fd("\33[2K\r", 1);
 	}
 	if (signo == SIGQUIT)
 	{
-		if (!isatty(STDIN_FILENO))
-			ft_putstr_fd("Quit (core dumped)\n", 1);
-		rl_on_new_line();
-		ft_putstr_fd("\33[2K\r", 1);
-		rl_redisplay();
 		g_sig_status = 131;
+		if (!isatty(STDIN_FILENO))
+		{
+			rl_replace_line("\0", 0);
+			ft_putstr_fd("Quit (core dumped)\n", 1);
+			(rl_on_new_line(), rl_redisplay());
+			ft_putstr_fd("\33[2K\r", 1);
+			return ;
+		}
+		ft_putstr_fd("\33[2K\r", 1);
+		(rl_on_new_line(), rl_redisplay());
 	}
 }
 
@@ -86,8 +92,8 @@ static int	init_data(t_data *data, char **env)
 	sigaction(SIGQUIT, &action, NULL);
 	g_sig_status = 0;
 	data->exit_status = ((data->isrunned) = 0);
-	data->cmdvesize = 0;
-	data->isoutred = 0;
+	data->cmdvesize = ((data->isoutred) = 0);
+	data->tmppwd = NULL;
 	data->var = NULL;
 	data->read = NULL;
 	data->cmds = NULL;
@@ -128,7 +134,6 @@ static int	the_loop(t_data *data)
 {
 	int	rev;
 
-	printf("\33[2K\r");
 	data->read = readline("minishell$ ");
 	if (update_status(data, 0))
 	{
@@ -171,11 +176,10 @@ int	main(int argc, char **argv, char **env)
 	while (1)
 	{
 		retval = the_loop(data);
-		if (retval == 0 || retval == 1)
-		{
+		if (retval == 1)
 			ft_desc_error("internal error", "", 0, "");
+		if (retval == 0 || retval == 1)
 			break ;
-		}
 	}
 	if (retval != 1)
 		retval = data->exit_status;

@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:45:52 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/09/30 17:24:36 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/15 16:59:48 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int	add_min_env2(t_data *data, char *defkey, char *defval, int is_exp)
 	return (0);
 }
 
-static int	add_min_env(t_data *data, char *defkey, char *defval, int is_exp)
+int	add_min_env(t_data *data, char *defkey, char *defval, int is_exp)
 {
 	if (add_min_env2(data, defkey, defval, 0))
 		return (1);
@@ -80,21 +80,25 @@ static int	add_min_env(t_data *data, char *defkey, char *defval, int is_exp)
 
 int	check_env(t_data *data)
 {
-	char	*pwd;
+	const char	*pwd = getcwd(0, 0);
+	const int	ispwd = is_inenv_key(data->envs->env, "PWD");
+	const int	islvl = is_inenv_key(data->envs->env, "SHLVL");
 
-	pwd = getcwd(0, 0);
+	if (!ispwd && pwd)
+		if (add_min_env(data, "PWD", (char *)pwd, 1))
+			return (free((char *)pwd), 1);
+	if (!ispwd && !pwd)
+		ft_puterror("minishell-init: error retrieving current directory\n");
 	if (!pwd)
+		data->envs->direrr = 1;
+	else
+		free((char *)pwd);
+	if (set_path(data))
 		return (1);
-	if (!is_inenv_key(data->envs->env, "PWD"))
-		if (add_min_env(data, "PWD", pwd, 1))
-			return (1);
-	free(pwd);
-	if (!is_inenv_key(data->envs->env, "SHLVL"))
-	{
+	if (!islvl)
 		if (add_min_env(data, "SHLVL", "1", 1))
 			return (1);
-	}
-	else
+	if (islvl)
 		if (incr_shlvl(data))
 			return (1);
 	if (!is_inenv_key(data->envs->env, "_"))

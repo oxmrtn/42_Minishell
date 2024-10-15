@@ -3,10 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+         #
+#    By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/04 15:03:37 by ebengtss          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2024/10/15 00:24:33 by mtrullar         ###   ########.fr        #
+=======
+#    Updated: 2024/10/15 16:47:27 by ebengtss         ###   ########.fr        #
+>>>>>>> ebengtss/exec
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +54,8 @@ SRCS_FILES			=	main.c				builtins.c			\
 						tokenization_util.c utils.c				\
 						hd_list.c			get_type.c			\
 						split_redir.c		flat_string_bis.c	\
+						hd_list.c			env_utils.c			\
+						ft_cd2.c
 						
 
 OBJS				=	$(addprefix $(OBJS_DIR), $(SRCS_FILES:.c=.o))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/15 15:39:47 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:15:54 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct s_var
 
 typedef struct s_env
 {
+	int				hidden;
 	char			*key;
 	char			*val;
 	int				exp_noval;
@@ -93,6 +94,7 @@ typedef struct s_env
 
 typedef struct s_envs
 {
+	int		direrr;
 	t_env	*env;
 	t_env	*exp;
 	t_env	*tmpenv;
@@ -110,7 +112,7 @@ typedef struct s_data
 	t_hd	*hd_filler;
 	char	***cmdve;
 	char	*read;
-	char	*tmpexitstatus;
+	char	*tmppwd;
 	int		exit_status;
 	int		stdincpy;
 	int		stdoutcpy;
@@ -227,6 +229,8 @@ int			reset_fds(t_data *data, int std);
 int			ft_echo(char **cmdve);
 int			echo_option_check(char *option);
 int			ft_cd(t_data *data, char **cmdve);
+int			update_old_pwd(t_data *data, char *oldpwd);
+int			cd_handle_flag(t_data *data);
 int			ft_pwd(t_data *data);
 int			ft_export(t_data *data, char **cmdve);
 int			ft_unset(t_data *data, char **cmdve);
@@ -234,6 +238,11 @@ int			ft_env(t_data *data, char **cmdve);
 int			ft_exit(t_data *data, char **cmdve);
 
 /* ENV */
+char		*env_getval_key(t_env *lst, char *key);
+int			env_update_keyval(t_env *lst, char *key, char *newval);
+int			expenv_add2(t_data *data, char *cmdve, int env_or_exp);
+int			set_path(t_data *data);
+int			add_min_env(t_data *data, char *defkey, char *defval, int is_exp);
 t_env		*envnew_gtw(char *str, int is_exp_no_val);
 size_t		ft_envsize(t_env *lst);
 int			env_init(t_data	*data, char **env);
@@ -248,7 +257,8 @@ int			is_inenv_key(t_env *env, char *keycheck);
 int			is_inenv_str(t_env *env, char *strcheck);
 void		ft_envdelone(t_data *data, t_env *node);
 char		**env_to_tab(t_env *env);
-void		print_env(t_env *env, int env_or_exp);
+int			print_env(t_env *env);
+int			print_exp(t_env *env);
 int			tmp_env_add(t_data *data, char *cmdve);
 int			tmp_env_setup(t_data *data, t_cmds *cmd, int i);
 int			env_update(t_env *lst, char *str);

@@ -6,11 +6,25 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 14:29:15 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/03 17:38:54 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/11 16:58:36 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
+
+static int	is_path(char *cmdve)
+{
+	size_t	i;
+
+	i = 0;
+	while (cmdve[i])
+	{
+		if (cmdve[i] == '/')
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 static int	cmds_path3(char **cmdve, char **env_path)
 {
@@ -44,7 +58,7 @@ static int	cmds_path2(char ***cmdve, char **env_path, t_data *data)
 	while (i < data->cmdvesize)
 	{
 		if (cmdve[i] && cmdve[i][0])
-			if (!is_builtin(cmdve[i][0]))
+			if (!is_builtin(cmdve[i][0]) && !is_path(cmdve[i][0]))
 				if (access(cmdve[i][0], X_OK) != 0)
 					if (cmds_path3(cmdve[i], env_path))
 						return (1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:47:18 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/02 14:03:42 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/11 14:04:17 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ int	ft_pwd(t_data *data)
 	{
 		if (write(STDOUT_FILENO, test, ft_strlen(test)) < 0)
 		{
-			ft_puterror("minishell error : cannot write in outfile\n");
+			ft_puterror("minishell: 'pwd': write error: ");
+			perror(NULL);
 			return (free(test), 1);
 		}
 	}

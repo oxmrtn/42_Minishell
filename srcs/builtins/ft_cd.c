@@ -3,105 +3,117 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:46:55 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/02 16:40:58 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:03:10 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
 
-static void	update_old_pwd(t_data *data)
+static int	ft_cd5(void)
 {
-	char	*temp;
+	char	*tmp;
 
-	temp = getcwd(0, 0);
-	if (!temp)
-		return ;
-	temp = ft_strjoin_s2("OLDPWD=", temp);
-	if (!temp)
-		return ;
-	env_update(data->envs->env, temp);
-	free(temp);
-	return ;
+	tmp = getcwd(0, 0);
+	if (!tmp)
+		return (0);
+	free(tmp);
+	return (1);
 }
 
-static char	*get_root(t_data *data)
+static char	*ft_cd4(t_data *data, char *cmdve)
 {
-	t_env	*node;
+	char	*newpwd;
 
-	node = data->envs->env;
-	while (node)
-	{
-		if (!ft_ultimate_compare("HOME", node->key)
-			|| !ft_ultimate_compare("ZDOTDIR", node->key))
-		{
-			return (ft_strdup(node->val));
-		}
-		node = node->next;
-	}
-	return (NULL);
+	newpwd = getcwd(0, 0);
+	if (!newpwd && !cmdve)
+		newpwd = env_getval_key(data->envs->env, "HOME");
+	else if (!newpwd && cmdve)
+		newpwd = ft_strdup(cmdve);
+	if (!newpwd)
+		return (NULL);
+	return (newpwd);
 }
 
-static void	ft_env_update(t_data *data, char *new_val)
+static int	ft_cd3(t_data *data, char *cmdve, char *oldpwd, int retval)
 {
-	t_env	*node;
+	char		*newpwd;
+	const int	ispwd = is_inenv_key(data->envs->env, "PWD");
 
-	node = data->envs->env;
-	while (node)
-	{
-		if (!ft_ultimate_compare("PWD", node->key))
-		{
-			free(node->val);
-			node->val = ft_strdup(new_val);
-			return (free(new_val));
-		}
-		node = node->next;
-	}
-	free(new_val);
-}
-
-static int	handle_flag(t_data *data)
-{
-	char	*oldpwd;
-
-	oldpwd = ft_get_variable_value("OLDPWD", data);
-	if (!oldpwd)
+	if (oldpwd && update_old_pwd(data, oldpwd))
 		return (-100);
-	update_old_pwd(data);
-	if (chdir(oldpwd) != 0)
-		return (free(oldpwd), 1);
-	if (ft_pwd(data))
-		return (free(oldpwd), 1);
-	return (free(oldpwd), 0);
+	newpwd = ft_cd4(data, cmdve);
+	if (!newpwd)
+		return (-100);
+	if (!data->tmppwd)
+		data->tmppwd = ft_strdup(newpwd);
+	else if (ft_cd5())
+	{
+		free(data->tmppwd);
+		data->tmppwd = ft_strdup(newpwd);
+	}
+	else
+		data->tmppwd = ft_strjoin_c(data->tmppwd, newpwd, '/', 1);
+	if (!data->tmppwd)
+		return (-100);
+	if (ispwd)
+		if (env_update_keyval(data->envs->env, "PWD", data->tmppwd)
+			|| env_update_keyval(data->envs->exp, "PWD", data->tmppwd))
+			return (free(newpwd), -100);
+	free(newpwd);
+	return (retval);
 }
 
-int	ft_cd(t_data *data, char **cmdve)
+static int	ft_cd2(t_data *data, char **cmdve)
 {
-	char	*actual_path;
 	char	*temp;
 
-	if (cmdve[1] && cmdve[2])
-		return (ft_puterror("minishell error: cd too many arguments\n"), 1);
-	if (cmdve[1] && !ft_ultimate_compare(cmdve[1], "-"))
-		return (handle_flag(data));
-	update_old_pwd(data);
 	if (!cmdve[1])
 	{
-		temp = get_root(data);
+		temp = env_getval_key(data->envs->env, "HOME");
 		if (!temp)
-			return (ft_puterror("minishell error: cd error\n"), 1);
+			return (ft_puterror("minishell: 'cd': HOME not set\n"), 1);
 		if (chdir(temp) != 0)
-			return (perror("cd"), free(temp), 1);
+			return (perror("minishell: 'cd':"), free(temp), 1);
 		free(temp);
 	}
 	else
 		if (chdir(cmdve[1]) != 0)
-			return (perror("cd"), 1);
-	actual_path = getcwd(0, 0);
-	if (!actual_path)
-		return (0);
-	ft_env_update(data, actual_path);
+			return (perror("minishell: 'cd'"), 1);
+	if (data->envs->direrr)
+	{
+		data->envs->direrr = 0;
+		if (is_inenv_key(data->envs->env, "OLDPWD"))
+			return (env_update_keyval(data->envs->env, "OLDPWD", NULL));
+		if (expenv_add2(data, "OLDPWD=", 0))
+			return (1);
+	}
 	return (0);
+}
+
+int	ft_cd(t_data *data, char **cmdve)
+{
+	char	*oldpwd;
+	int		retval;
+
+	oldpwd = NULL;
+	if (cmdve[1] && cmdve[2])
+		return (ft_puterror("minishell: 'cd': too many arguments\n"), 1);
+	oldpwd = env_getval_key(data->envs->env, "PWD");
+	if (!oldpwd)
+		oldpwd = getcwd(0, 0);
+	if (!oldpwd && data->tmppwd)
+		oldpwd = ft_strdup(data->tmppwd);
+	if (cmdve[1] && !ft_ultimate_compare(cmdve[1], "-"))
+		retval = cd_handle_flag(data);
+	else
+		retval = ft_cd2(data, cmdve);
+	if (retval != 0)
+		if (oldpwd)
+			free(oldpwd);
+	if (retval != 0)
+		return (retval);
+	return (ft_cd3(data, cmdve[1], oldpwd, retval));
 }
