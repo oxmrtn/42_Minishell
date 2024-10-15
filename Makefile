@@ -6,7 +6,7 @@
 #    By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/04 15:03:37 by ebengtss          #+#    #+#              #
-#    Updated: 2024/10/15 17:27:07 by ebengtss         ###   ########.fr        #
+#    Updated: 2024/10/15 20:46:34 by ebengtss         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,8 @@ SRCS_FILES			=	main.c				builtins.c			\
 						tokenization_util.c utils.c				\
 						hd_list.c			get_type.c			\
 						split_redir.c		flat_string_bis.c	\
-						ft_cd2.c			env_utils.c
+						ft_cd2.c			env_utils.c			\
+						main2.c
 						
 
 OBJS				=	$(addprefix $(OBJS_DIR), $(SRCS_FILES:.c=.o))
