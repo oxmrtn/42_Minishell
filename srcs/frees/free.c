@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:35:10 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/09 13:28:36 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/15 14:05:24 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,8 @@ void	free_main(t_data *data, int i)
 			ft_free_var(data);
 		if (data->heredoc)
 			ft_free_heredoc(data);
-		ft_free_cmdve(data);
-		free(data);
-		clear_history();
+		if (data->tmppwd)
+			free(data->tmppwd);
+		(ft_free_cmdve(data), free(data), clear_history());
 	}
 }

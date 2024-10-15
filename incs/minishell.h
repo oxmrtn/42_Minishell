@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/14 17:37:16 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/15 16:56:16 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ typedef struct s_data
 	t_hd	*hd_filler;
 	char	***cmdve;
 	char	*read;
-	char	*tmpexitstatus;
+	char	*tmppwd;
 	int		exit_status;
 	int		stdincpy;
 	int		stdoutcpy;
@@ -206,6 +206,8 @@ int			reset_fds(t_data *data, int std);
 int			ft_echo(char **cmdve);
 int			echo_option_check(char *option);
 int			ft_cd(t_data *data, char **cmdve);
+int			update_old_pwd(t_data *data, char *oldpwd);
+int			cd_handle_flag(t_data *data);
 int			ft_pwd(t_data *data);
 int			ft_export(t_data *data, char **cmdve);
 int			ft_unset(t_data *data, char **cmdve);
@@ -213,7 +215,7 @@ int			ft_env(t_data *data, char **cmdve);
 int			ft_exit(t_data *data, char **cmdve);
 
 /* ENV */
-char    	*env_getval_key(t_env *lst, char *key);
+char		*env_getval_key(t_env *lst, char *key);
 int			env_update_keyval(t_env *lst, char *key, char *newval);
 int			expenv_add2(t_data *data, char *cmdve, int env_or_exp);
 int			set_path(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/14 13:47:36 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/15 13:52:47 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ static int	init_data(t_data *data, char **env)
 	sigaction(SIGQUIT, &action, NULL);
 	g_sig_status = 0;
 	data->exit_status = ((data->isrunned) = 0);
-	data->cmdvesize = 0;
-	data->isoutred = 0;
+	data->cmdvesize = ((data->isoutred) = 0);
+	data->tmppwd = NULL;
 	data->var = NULL;
 	data->read = NULL;
 	data->cmds = NULL;

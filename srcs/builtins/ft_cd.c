@@ -6,71 +6,73 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:46:55 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/14 18:09:56 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:03:10 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
 
-/*
-if getcwd fails, set pwd / old pwd as cmdve[1] 
-(cd .. in a dir that doenst have parent dirs should set pwd to "..")
-*/
-
-static int	update_old_pwd(t_data *data)
+static int	ft_cd5(void)
 {
-	char	*temp;
+	char	*tmp;
 
-	temp = getcwd(0, 0);
-	if (!temp)
-		return (1);
-	temp = ft_strjoin_s2("OLDPWD=", temp);
-	if (!temp)
-		return (1);
-	if (env_update(data->envs->env, temp)
-		|| env_update(data->envs->exp, temp))
-		return (free(temp), 1);
-	free(temp);
-	return (0);
+	tmp = getcwd(0, 0);
+	if (!tmp)
+		return (0);
+	free(tmp);
+	return (1);
 }
 
-static char	*get_home(t_data *data)
+static char	*ft_cd4(t_data *data, char *cmdve)
 {
-	t_env	*node;
+	char	*newpwd;
 
-	node = data->envs->env;
-	while (node)
+	newpwd = getcwd(0, 0);
+	if (!newpwd && !cmdve)
+		newpwd = env_getval_key(data->envs->env, "HOME");
+	else if (!newpwd && cmdve)
+		newpwd = ft_strdup(cmdve);
+	if (!newpwd)
+		return (NULL);
+	return (newpwd);
+}
+
+static int	ft_cd3(t_data *data, char *cmdve, char *oldpwd, int retval)
+{
+	char		*newpwd;
+	const int	ispwd = is_inenv_key(data->envs->env, "PWD");
+
+	if (oldpwd && update_old_pwd(data, oldpwd))
+		return (-100);
+	newpwd = ft_cd4(data, cmdve);
+	if (!newpwd)
+		return (-100);
+	if (!data->tmppwd)
+		data->tmppwd = ft_strdup(newpwd);
+	else if (ft_cd5())
 	{
-		if (!ft_ultimate_compare("HOME", node->key))
-			return (ft_strdup(node->val));
-		node = node->next;
+		free(data->tmppwd);
+		data->tmppwd = ft_strdup(newpwd);
 	}
-	return (NULL);
-}
-
-static int	handle_flag(t_data *data)
-{
-	char	*oldpwd;
-
-	oldpwd = env_getval_key(data->envs->env, "OLDPWD");
-	if (!oldpwd)
-		return (ft_puterror("minishell: 'cd': OLDPWD not set\n"), 1);
-	if (update_old_pwd(data))
-		return (free(oldpwd), -100);
-	if (chdir(oldpwd) != 0)
-		return (free(oldpwd), 1);
-	free(oldpwd);
-	return (ft_pwd(data));
+	else
+		data->tmppwd = ft_strjoin_c(data->tmppwd, newpwd, '/', 1);
+	if (!data->tmppwd)
+		return (-100);
+	if (ispwd)
+		if (env_update_keyval(data->envs->env, "PWD", data->tmppwd)
+			|| env_update_keyval(data->envs->exp, "PWD", data->tmppwd))
+			return (free(newpwd), -100);
+	free(newpwd);
+	return (retval);
 }
 
 static int	ft_cd2(t_data *data, char **cmdve)
 {
-	char	*actual_path;
 	char	*temp;
 
 	if (!cmdve[1])
 	{
-		temp = get_home(data);
+		temp = env_getval_key(data->envs->env, "HOME");
 		if (!temp)
 			return (ft_puterror("minishell: 'cd': HOME not set\n"), 1);
 		if (chdir(temp) != 0)
@@ -79,30 +81,39 @@ static int	ft_cd2(t_data *data, char **cmdve)
 	}
 	else
 		if (chdir(cmdve[1]) != 0)
-			return (perror("minishell: 'cd':"), 1);
-	actual_path = getcwd(0, 0);
-	if (actual_path)
-		return (0);
-	if (env_update_keyval(data->envs->env, "PWD", actual_path)
-		|| env_update_keyval(data->envs->exp, "PWD", actual_path))
-		return (free(actual_path), -100);
-	free(actual_path);
+			return (perror("minishell: 'cd'"), 1);
+	if (data->envs->direrr)
+	{
+		data->envs->direrr = 0;
+		if (is_inenv_key(data->envs->env, "OLDPWD"))
+			return (env_update_keyval(data->envs->env, "OLDPWD", NULL));
+		if (expenv_add2(data, "OLDPWD=", 0))
+			return (1);
+	}
 	return (0);
 }
 
 int	ft_cd(t_data *data, char **cmdve)
 {
+	char	*oldpwd;
+	int		retval;
+
+	oldpwd = NULL;
 	if (cmdve[1] && cmdve[2])
 		return (ft_puterror("minishell: 'cd': too many arguments\n"), 1);
-	if (data->envs->direrr)
-	{
-		if (expenv_add2(data, "OLDPWD=", 0))
-			return (1);
-		data->envs->direrr = 0;
-	}
+	oldpwd = env_getval_key(data->envs->env, "PWD");
+	if (!oldpwd)
+		oldpwd = getcwd(0, 0);
+	if (!oldpwd && data->tmppwd)
+		oldpwd = ft_strdup(data->tmppwd);
 	if (cmdve[1] && !ft_ultimate_compare(cmdve[1], "-"))
-		return (handle_flag(data));
-	if (update_old_pwd(data))
-		return (-100);
-	return (ft_cd2(data, cmdve));
+		retval = cd_handle_flag(data);
+	else
+		retval = ft_cd2(data, cmdve);
+	if (retval != 0)
+		if (oldpwd)
+			free(oldpwd);
+	if (retval != 0)
+		return (retval);
+	return (ft_cd3(data, cmdve[1], oldpwd, retval));
 }

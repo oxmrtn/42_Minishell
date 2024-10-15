@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 17:32:48 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/14 17:43:35 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/15 16:56:06 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	env_update_keyval(t_env *lst, char *key, char *newval)
 	return (0);
 }
 
-char    *env_getval_key(t_env *lst, char *key)
+char	*env_getval_key(t_env *lst, char *key)
 {
 	char	*lookupval;
 
