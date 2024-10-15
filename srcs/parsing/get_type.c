@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 22:30:23 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/15 00:50:51 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/15 15:39:59 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	get_type(t_tokens *head, t_data *data)
 	while (current)
 	{
 		flag = 0;
-		if (ft_check_quote_syntax(current->str))
+		if (ft_cqs(current->str))
 			return (2);
 		if (current->expand == 0 && current->type != LIMITER)
 		{

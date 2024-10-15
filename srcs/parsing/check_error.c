@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 12:02:18 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/01 18:35:08 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/15 15:39:48 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int	ft_check_mixed_quote(char *str)
 	return (0);
 }
 
-int	ft_check_quote_syntax(char *str)
+int	ft_cqs(char *str)
 {
 	int		i;
 	t_nk	count;

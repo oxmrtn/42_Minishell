@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/15 01:01:11 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/15 15:39:47 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ typedef struct s_data
 //	PARSING
 
 //		check_error.c
-int			ft_check_quote_syntax(char *str);
+int			ft_cqs(char *str);
 
 //		commands_struct.c
 t_cmds		*ft_get_last_commands(t_cmds *tmp);

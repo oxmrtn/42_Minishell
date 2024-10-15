@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:21:38 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/15 01:08:24 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/15 15:42:35 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ int	add_tokens_between(char *str, t_tokens *current, t_type type, int i)
 	return (0);
 }
 
-static int	init_ctl(t_tokens **head_node, t_nk *var, char **splitted)
+static int	init_ctl(t_tokens **head_node, t_nk *var, char ***s, char *line)
 {
 	*head_node = NULL;
 	var->i = -1;
-	splitted = ft_split_quote(line, ' ');
-	if (!splitted)
+	*s = ft_split_quote(line, ' ');
+	if (!(*s))
 		return (1);
 	return (0);
 }
@@ -52,7 +52,7 @@ t_tokens	*create_token_list(char *line, t_data *data)
 	char		**splitted;
 	t_nk		var;
 
-	if (init_ctl(&head_node, &var, splitted))
+	if (init_ctl(&head_node, &var, &splitted, line))
 		return (NULL);
 	while (splitted[++var.i])
 	{

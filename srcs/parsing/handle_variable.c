@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 16:20:25 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/15 01:00:41 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/15 15:40:59 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,29 +29,29 @@ static int	check_is_correct_var(char *equal, char *str)
 
 int	ft_check_variable(char *str, t_data *data)
 {
-	const char	*tmp = ft_strchr(str, '=');
-	char		*t1;
-	char		*t2;
-	int			res;
+	char	*tmp;
+	char	*t1;
+	t_nk	v;
 
+	tmp = ft_strchr(str, '=');
 	if (check_is_correct_var(tmp, str))
 		return (0);
 	t1 = ft_strchr(str, 34);
-	t2 = ft_strchr(str, 39);
-	if ((t1 && tmp > t1) || (t2 && tmp > t2) || ft_check_quote_syntax(tmp + 1))
+	v.buffer = ft_strchr(str, 39);
+	if ((t1 && tmp > t1) || (v.buffer && tmp > v.buffer) || ft_cqs(tmp + 1))
 		return (0);
 	if (is_inenv_str(data->envs->env, str))
 	{
-		res = env_update(data->envs->exp, str);
-		res += env_update(data->envs->env, str);
-		if (res > 0)
+		v.i = env_update(data->envs->exp, str);
+		v.i += env_update(data->envs->env, str);
+		if (v.i > 0)
 			return (2);
 		return (envtab_update(data), 1);
 	}
-	res = ft_add_variable(str, data);
-	if (res == 1)
+	v.i = ft_add_variable(str, data);
+	if (v.i == 1)
 		return (2);
-	if (res == 0)
+	if (v.i == 0)
 		return (1);
 	return (0);
 }
