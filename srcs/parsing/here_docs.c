@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_docs.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:22:35 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/15 00:21:50 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/15 19:58:47 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,9 @@ static char	*ft_launch_heredocs2(int *fd, t_data *data)
 		return (NULL);
 	if (add_heredoc_list(fd[0], data))
 		return (NULL);
-	write(1, "> ", 2);
-	temp = get_next_line(STDIN_FILENO);
+	temp = readline("> ");
 	if (!temp)
 		return (close((fd[1])), NULL);
-	temp[ft_strlen(temp) - 1] = '\0';
 	return (temp);
 }
 
@@ -39,7 +37,6 @@ static int	ft_launch_heredocs(char *limiter, t_data *data)
 		return (1);
 	while (temp && ft_ultimate_compare(temp, limiter))
 	{
-		write(1, "> ", 2);
 		buffer = ft_flat_string(temp, data, NULL, NULL);
 		if (!buffer)
 			return (close(fd[1]), free(temp), 1);
@@ -47,10 +44,9 @@ static int	ft_launch_heredocs(char *limiter, t_data *data)
 		write(fd[1], "\n", 1);
 		free(temp);
 		free(buffer);
-		temp = get_next_line(STDIN_FILENO);
+		temp = readline("> ");
 		if (!temp)
 			return (close(fd[1]), 0);
-		temp[ft_strlen(temp) - 1] = '\0';
 	}
 	return (close(fd[1]), free(temp), 0);
 }

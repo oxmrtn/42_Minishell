@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/15 17:22:59 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/15 19:54:50 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,22 @@ int	print_variable(t_data *data)
 }
 */
 
+void	sig_handle_hd(int signo)
+{
+	if (signo == SIGINT)
+	{
+		g_sig_status = 130;
+		ft_putstr_fd("\n", 1);
+		close(STDIN_FILENO);
+	}
+	if (signo == SIGQUIT)
+	{
+		g_sig_status = 131;
+		ft_putstr_fd("\33[2K\r", 1);
+		(rl_on_new_line(), rl_redisplay());
+	}
+}
+
 void	sig_handle(int signo)
 {
 	if (signo == SIGINT)
@@ -83,12 +99,10 @@ void	sig_handle(int signo)
 
 static int	init_data(t_data *data, char **env)
 {
-	struct sigaction	action;
-
-	ft_bzero(&action, sizeof(action));
-	action.sa_handler = sig_handle;
-	sigaction(SIGINT, &action, NULL);
-	sigaction(SIGQUIT, &action, NULL);
+	ft_bzero(&data->saction, sizeof(data->saction));
+	data->saction.sa_handler = sig_handle;
+	sigaction(SIGINT, &data->saction, NULL);
+	sigaction(SIGQUIT, &data->saction, NULL);
 	g_sig_status = 0;
 	data->exit_status = ((data->isrunned) = 0);
 	data->cmdvesize = ((data->isoutred) = 0);
