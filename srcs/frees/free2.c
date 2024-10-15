@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:38:10 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/15 20:18:09 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/15 20:34:18 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	ft_close_fds(t_data *data)
 		close(STDIN_FILENO);
 	if (STDOUT_FILENO != -1)
 		close(STDOUT_FILENO);
+	if (data->tmpstdin != -1)
+		close(data->tmpstdin);
 	if (data->stdincpy != -1)
 		close(data->stdincpy);
 	if (data->stdoutcpy != -1)

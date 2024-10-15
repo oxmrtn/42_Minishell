@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:03:48 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/15 00:50:20 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/15 20:31:02 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_parser(char *line, t_cmds **commands, t_data *data)
 	if (ft_syntax_error(new_node->tokens))
 		return (ft_free_invalid_syntax(new_node), 2);
 	if (ft_heredoc_handler(new_node->tokens, data))
-		return (ft_free_invalid_syntax(new_node), 1);
+		return (ft_free_invalid_syntax(new_node), 2);
 	if (ft_ask_handler(new_node->tokens, data))
 		return (ft_free_invalid_syntax(new_node), 1);
 	if (add_commands(new_node, commands))

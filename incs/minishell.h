@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/15 20:18:20 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/15 20:45:43 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,11 @@ typedef struct s_data
 	int					iheredoc;
 	int					isrunned;
 }						t_data;
+
+// MAIN
+
+int			the_loop(t_data *data);
+int			init_data(t_data *data, char **env);
 
 //	PARSING
 

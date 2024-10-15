@@ -6,13 +6,13 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:22:35 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/15 20:22:08 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/15 20:40:43 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
 
-static void	change_sig_handler(t_data *data, int reset)
+static int	change_sig_handler(t_data *data, int reset)
 {
 	if (!reset)
 		data->saction.sa_handler = sig_handle_hd;
@@ -20,6 +20,13 @@ static void	change_sig_handler(t_data *data, int reset)
 		data->saction.sa_handler = sig_handle;
 	sigaction(SIGINT, &data->saction, NULL);
 	sigaction(SIGQUIT, &data->saction, NULL);
+	if (reset)
+	{
+		if (dup2(data->tmpstdin, STDIN_FILENO) == -1)
+			return (1);
+		close(data->tmpstdin);
+	}
+	return (0);
 }
 
 static char	*ft_launch_heredocs2(int *fd, t_data *data)
@@ -30,8 +37,6 @@ static char	*ft_launch_heredocs2(int *fd, t_data *data)
 	if (data->tmpstdin == -1)
 		return (NULL);
 	if (pipe(fd) == -1)
-		return (NULL);
-	if (dup2(data->tmpstdin, STDIN_FILENO) == -1)
 		return (NULL);
 	if (add_heredoc_list(fd[0], data))
 		return (NULL);
@@ -47,7 +52,8 @@ static int	ft_launch_heredocs(char *limiter, t_data *data)
 	char	*buffer;
 	char	*temp;
 
-	change_sig_handler(data, 0);
+	if (change_sig_handler(data, 0))
+		return (1);
 	temp = ft_launch_heredocs2(fd, data);
 	if (!temp)
 		return (1);
@@ -61,6 +67,8 @@ static int	ft_launch_heredocs(char *limiter, t_data *data)
 		free(temp);
 		free(buffer);
 		temp = readline("> ");
+		if (!temp && *data->sstatus == 140)
+			return (*data->sstatus = 130, close(fd[1]), 1);
 		if (!temp)
 			return (close(fd[1]), 0);
 	}
