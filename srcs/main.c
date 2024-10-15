@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/15 17:18:37 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:20:50 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,7 @@ int	main(int argc, char **argv, char **env)
 	{
 		retval = the_loop(data);
 		if (retval == 1)
-			ft_desc_error("internal error", "", 0, "");
+			ft_puterror("minishell: internal error\n");
 		if (retval == 0 || retval == 1)
 			break ;
 	}
