@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:27:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/15 17:20:50 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:22:59 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 int	g_sig_status;
 
-
-
+/*
 int	print_commands(t_cmds *com)
 {
 	t_cmds		*commands;
@@ -53,7 +52,7 @@ int	print_variable(t_data *data)
 	}
 	return (0);
 }
-
+*/
 
 void	sig_handle(int signo)
 {
