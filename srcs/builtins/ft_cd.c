@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:46:55 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/16 19:25:43 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/16 19:41:59 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,12 @@ static int	ft_cd2(t_data *data, char **cmdve)
 		if (!temp)
 			return (ft_puterror("minishell: 'cd': HOME not set\n"), 1);
 		if (chdir(temp) != 0)
-			return (perror("minishell: 'cd':"), free(temp), 1);
+			return (ft_desc_error("cd", temp, 1, NULL), free(temp), 1);
 		free(temp);
 	}
 	else
 		if (chdir(cmdve[1]) != 0)
-			return (perror("minishell: 'cd'"), 1);
+			return (ft_desc_error("cd", cmdve[1], 1, NULL), 1);
 	if (data->envs->direrr)
 	{
 		data->envs->direrr = 0;
