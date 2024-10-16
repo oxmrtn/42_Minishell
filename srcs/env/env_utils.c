@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 17:32:48 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/15 16:56:06 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:36:44 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,14 @@ char	*env_getval_key(t_env *lst, char *key)
 		lst = lst->next;
 	}
 	return (lookupval);
+}
+
+int	envtab_update(t_data *data)
+{
+	if (data->envs->envve)
+		ft_free_split(data->envs->envve);
+	data->envs->envve = env_to_tab(data->envs->env);
+	if (!data->envs->envve)
+		return (1);
+	return (0);
 }

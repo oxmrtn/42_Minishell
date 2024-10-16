@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:47:35 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/14 16:21:58 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:41:53 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,6 @@ static void	exp_sortadd(t_data *data, t_env *exp, t_env *node)
 		exp = exp->next;
 	}
 	ft_envadd_back(&data->envs->exp, node);
-}
-
-int	envtab_update(t_data *data)
-{
-	if (data->envs->envve)
-		ft_free_split(data->envs->envve);
-	data->envs->envve = env_to_tab(data->envs->env);
-	if (!data->envs->envve)
-		return (1);
-	return (0);
 }
 
 int	expenv_add2(t_data *data, char *cmdve, int env_or_exp)
@@ -100,6 +90,25 @@ static int	expenv_add(t_data *data, char *cmdve)
 	return (0);
 }
 
+void	ft_export2(t_data *data, char **cmdve, int *retval, int i)
+{
+	int	j;
+	int	k;
+
+	j = 1;
+	k = 1;
+	while (cmdve[j])
+	{
+		if (!cmdve[j][0])
+			k++;
+		j++;
+	}
+	if (data->envs->direrr && is_inenv_key(data->envs->env, "PWD"))
+		data->envs->direrr = 0;
+	if (i == 1 || j == k)
+		*retval = print_exp(data->envs->exp);
+}
+
 int	ft_export(t_data *data, char **cmdve)
 {
 	size_t	i;
@@ -121,9 +130,6 @@ int	ft_export(t_data *data, char **cmdve)
 		}
 		i++;
 	}
-	if (data->envs->direrr && is_inenv_key(data->envs->env, "PWD"))
-		data->envs->direrr = 0;
-	if (i == 1)
-		retval = print_exp(data->envs->exp);
+	ft_export2(data, cmdve, &retval, i);
 	return (retval);
 }
