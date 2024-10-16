@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 14:29:15 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/11 16:58:36 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/16 14:14:19 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int	cmds_path2(char ***cmdve, char **env_path, t_data *data)
 	i = 0;
 	while (i < data->cmdvesize)
 	{
-		if (cmdve[i] && cmdve[i][0])
+		if (cmdve[i] && cmdve[i][0] && cmdve[i][0][0])
 			if (!is_builtin(cmdve[i][0]) && !is_path(cmdve[i][0]))
 				if (access(cmdve[i][0], X_OK) != 0)
 					if (cmds_path3(cmdve[i], env_path))

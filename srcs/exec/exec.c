@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:57:50 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/09 15:45:25 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:23:24 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,19 @@ static int	exec2(t_data *data, t_cmds *cmd)
 	return (0);
 }
 
+static void	postexec_resets(t_data *data)
+{
+	if (data->heredoc)
+	{
+		ft_free_heredoc(data);
+		data->heredoc = NULL;
+		data->hd_filler = NULL;
+	}
+	ft_free_cmdve(data);
+	data->cmdve = NULL;
+	data->cmdvesize = 0;
+}
+
 int	exec(t_data *data, t_cmds *cmd)
 {
 	if (data->heredoc)
@@ -95,14 +108,6 @@ int	exec(t_data *data, t_cmds *cmd)
 		return (1);
 	if (reset_fds(data, 0))
 		return (1);
-	if (data->heredoc)
-	{
-		ft_free_heredoc(data);
-		data->heredoc = NULL;
-		data->hd_filler = NULL;
-	}
-	ft_free_cmdve(data);
-	data->cmdve = NULL;
-	data->cmdvesize = 0;
+	postexec_resets(data);
 	return (0);
 }

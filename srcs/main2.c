@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 20:43:33 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/15 20:45:16 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:24:26 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ int	init_data(t_data *data, char **env)
 	data->saction.sa_handler = sig_handle;
 	sigaction(SIGINT, &data->saction, NULL);
 	sigaction(SIGQUIT, &data->saction, NULL);
+	signal(SIGTSTP, SIG_IGN);
 	g_sig_status = 0;
 	data->sstatus = &g_sig_status;
 	data->exit_status = ((data->isrunned) = 0);
@@ -132,8 +133,7 @@ int	init_data(t_data *data, char **env)
 	data->read = NULL;
 	data->cmds = NULL;
 	data->cmdve = NULL;
-	data->heredoc = NULL;
-	data->hd_filler = NULL;
+	data->heredoc = ((data->hd_filler) = NULL);
 	data->stdincpy = dup(STDIN_FILENO);
 	data->stdoutcpy = dup(STDOUT_FILENO);
 	if (data->stdincpy == -1 || data->stdoutcpy == -1)
