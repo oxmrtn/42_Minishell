@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:03:48 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/16 16:19:29 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/16 16:31:05 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_parser(char *line, t_cmds **commands, t_data *data)
 	t_cmds	*new_node;
 
 	if (!ft_ultimate_compare(line, ":") || !ft_ultimate_compare(line, "!"))
-		return (2);
+		return (data->exit_status = 0, 2);
 	new_node = malloc(sizeof(t_cmds));
 	if (!new_node)
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:09:25 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/16 15:09:35 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/16 16:49:37 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_strisdigit(char *str)
 	return (1);
 }
 
-int	ft_isquote(int c)
+int	ft_iqt(int c)
 {
 	return ((c == 34 || c == 39));
 }
