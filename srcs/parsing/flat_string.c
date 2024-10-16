@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flat_string.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:45:56 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/16 15:40:19 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/16 16:10:06 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,7 @@ static int	ft_ap_v(char **s1, char *s2, t_data *data, int *flag)
 	if (!key)
 		return (0);
 	ft_strlcpy(key, s2, i + 1);
-	printf("KEY = %s\n\n", key);
 	temp = ft_get_variable_value(key, data);
-	printf("temp = |%s|\n", temp);
 	if (ft_append_var_bis(temp, flag))
 		return (free(key), -1);
 	*s1 = ft_strjoin_s1(*s1, temp);
