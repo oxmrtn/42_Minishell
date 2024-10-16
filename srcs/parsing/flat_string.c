@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flat_string.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:45:56 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/16 16:53:48 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/16 17:54:05 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,9 @@ static int	ft_ap_v(char **s1, char *s2, t_data *data, int *flag)
 
 	temp = ((key = NULL));
 	i = 0;
-	while (s2[i] && ((!(s2[i] >= 0 && s2[i] <= 47) || (ft_iqt(s2[i]) && i == 0))
-			&& !(s2[i] >= 58 && s2[i] <= 62)
-			&& !(s2[i] >= 91 && s2[i] <= 94) && s2[i] != 96 && s2[i] != 64
-			&& s2[i] != '\n' && !(s2[i] >= 123 && s2[i] <= 127))
-		&& (!(i == 1 && s2[i - 1] == '?'))
-		&& (!(i == 1 && ft_isdigit(s2[i - 1])))
-		&& (!(i == 1 && ft_iqt(s2[i - 1]))))
+	if (ft_iqt(s2[0]))
+		return (0);
+	while (big_cond(s2, i))
 		i++;
 	if (i == 0)
 		return (*s1 = ft_strjoin_s1(*s1, "$"), 0);
@@ -103,6 +99,10 @@ static void	flat_bis(char *str, int i, t_nk *check, t_tokens *current)
 	else
 		check->k = 0;
 	if (i == 0 && (str[i] == 34 || str[i] == 39))
+		if (current)
+			current->expand = 3;
+	if (str[i] && (str[i] == '>' || str[i] == '<' || str[i] == '|')
+		&& check->i)
 		if (current)
 			current->expand = 3;
 }
