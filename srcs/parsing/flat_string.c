@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:45:56 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/16 15:18:01 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:40:19 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,7 @@ static int	ft_ap_v(char **s1, char *s2, t_data *data, int *flag)
 			&& !(s2[i] >= 91 && s2[i] <= 94) && s2[i] != 96 && s2[i] != 64
 			&& s2[i] != '\n' && !(s2[i] >= 123 && s2[i] <= 127))
 		&& (s2[i] != '?' || (s2[i] == '?' && i == 0))
-		&& (ft_isdigit(s2[i]) || (!ft_isdigit(s2[i]) && i == 0))
-		&& (!ft_isquote(s2[i]) || (ft_isquote(s2[i]) && i == 0)))
+		&& (!(i == 1 && ft_isdigit(s2[i - 1]))))
 		i++;
 	if (i == 0)
 		return (*s1 = ft_strjoin_s1(*s1, "$"), 0);
@@ -75,7 +74,9 @@ static int	ft_ap_v(char **s1, char *s2, t_data *data, int *flag)
 	if (!key)
 		return (0);
 	ft_strlcpy(key, s2, i + 1);
+	printf("KEY = %s\n\n", key);
 	temp = ft_get_variable_value(key, data);
+	printf("temp = |%s|\n", temp);
 	if (ft_append_var_bis(temp, flag))
 		return (free(key), -1);
 	*s1 = ft_strjoin_s1(*s1, temp);
