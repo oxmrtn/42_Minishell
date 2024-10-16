@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:45:56 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/15 18:52:05 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:18:01 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,9 @@ static int	ft_ap_v(char **s1, char *s2, t_data *data, int *flag)
 			&& !(s2[i] >= 58 && s2[i] <= 62)
 			&& !(s2[i] >= 91 && s2[i] <= 94) && s2[i] != 96 && s2[i] != 64
 			&& s2[i] != '\n' && !(s2[i] >= 123 && s2[i] <= 127))
-		&& (s2[i] != '?' || (s2[i] == '?' && i == 0)))
+		&& (s2[i] != '?' || (s2[i] == '?' && i == 0))
+		&& (ft_isdigit(s2[i]) || (!ft_isdigit(s2[i]) && i == 0))
+		&& (!ft_isquote(s2[i]) || (ft_isquote(s2[i]) && i == 0)))
 		i++;
 	if (i == 0)
 		return (*s1 = ft_strjoin_s1(*s1, "$"), 0);
@@ -92,7 +94,7 @@ static void	flat_bis(char *str, int i, t_nk *check, t_tokens *current)
 		check->i = 2;
 	else if (str[i] == 92 && check->j == 0)
 		check->j = 1;
-	else if (str[i] == 92 && check->j == 1)
+	else if (i >= 2 && str[i - 2] == 92 && check->j == 1)
 		check->j = 0;
 	else if (i >= 2 && str[i - 1] == '<' && str[i - 2] == '<')
 		check->k = 1;
@@ -116,7 +118,7 @@ char	*ft_flat_string(char *str, t_data *data, int *flag, t_tokens *current)
 	{
 		flat_bis(str, i, &check, current);
 		if ((str[i] == '$' && check.i != 2 && check.j != 1)
-			&& (!(check.k == 1 && check.i == 0 && check.j == 0)))
+			&& (!(check.k == 1 && check.i == 0)))
 		{
 			if (flat_string_cond_1(ft_ap_v(&buf, &str[i + 1], data, flag), &i))
 				return (NULL);

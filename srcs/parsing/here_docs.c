@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:22:35 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/15 20:51:46 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/16 14:46:58 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static char	*ft_launch_heredocs2(int *fd, t_data *data)
 		return (NULL);
 	temp = readline("> ");
 	if (!temp && *data->sstatus == 140)
-		return (*data->sstatus = 130, close(fd[1]), 1);
+		return (*data->sstatus = 130, close(fd[1]), NULL);
 	if (!temp)
 		return (close((fd[1])), NULL);
 	return (temp);
