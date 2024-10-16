@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:48:29 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/16 18:02:00 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/16 19:06:14 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,13 +107,9 @@ int	ft_env(t_data *data, char **cmdve)
 				return (-100);
 		i++;
 	}
-	if (i == 1)
+	if (!data->envs->tmpenv)
 		retval = print_env(data->envs->env);
 	else
-	{
 		retval = print_env(data->envs->tmpenv);
-		ft_free_env(&data->envs->tmpenv);
-		data->envs->tmpenv = NULL;
-	}
 	return (retval);
 }

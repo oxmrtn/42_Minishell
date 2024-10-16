@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:49:23 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/10 13:55:40 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/16 19:06:33 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static int	run_parent(t_data *data, int i, int *fds, int islast)
 	if (!data->cmdve[i])
 		return (close(fds[1]), 0);
 	builtin_check = is_builtin(data->cmdve[i][0]);
-	if (!islast && builtin_check)
+	if (!islast && !data->isoutred && builtin_check)
 		if (dup2(fds[1], STDOUT_FILENO) == -1)
 			return (close(fds[1]), perror(NULL), 1);
 	close(fds[1]);
