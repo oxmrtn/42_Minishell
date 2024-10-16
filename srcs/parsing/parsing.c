@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:03:48 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/16 15:19:28 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/16 16:12:35 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ static int	ft_syntax_error(t_tokens *head, t_data *data)
 			ft_desc_error(head->str, "syntax error", 0, NULL);
 			data->exit_status = 2;
 			return (1);
+		}
+		if (head->type == CMD)
+		{
+			if (head->str && !head->str[0])
+				return (1);
 		}
 		head = head->next;
 	}
