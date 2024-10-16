@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:43:14 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/15 16:44:23 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/16 18:27:07 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,5 @@ int	cd_handle_flag(t_data *data)
 	if (chdir(oldpwd) != 0)
 		return (free(oldpwd), 1);
 	free(oldpwd);
-	return (ft_pwd(data));
+	return (ft_pwd());
 }
