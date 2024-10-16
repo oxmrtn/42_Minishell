@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/16 18:26:59 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/16 19:56:29 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -251,7 +251,7 @@ void		sig_handle_hd(int signo);
 char		*env_getval_key(t_env *lst, char *key);
 int			env_update_keyval(t_env *lst, char *key, char *newval);
 int			expenv_add2(t_data *data, char *cmdve, int env_or_exp);
-int			set_path(t_data *data);
+int			check_env2(t_data *data);
 int			add_min_env(t_data *data, char *defkey, char *defval, int is_exp);
 t_env		*envnew_gtw(char *str, int is_exp_no_val);
 size_t		ft_envsize(t_env *lst);

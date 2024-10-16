@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:45:52 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/16 19:23:12 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/16 19:56:29 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	check_env(t_data *data)
 		data->envs->direrr = 1;
 	else
 		free((char *)pwd);
-	if (set_path(data))
+	if (check_env2(data))
 		return (1);
 	if (!islvl)
 		if (add_min_env(data, "SHLVL", "1", 1))
