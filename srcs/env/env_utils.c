@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 17:32:48 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/15 16:56:06 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:49:14 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,38 @@ char	*env_getval_key(t_env *lst, char *key)
 		lst = lst->next;
 	}
 	return (lookupval);
+}
+
+int	envtab_update(t_data *data)
+{
+	if (data->envs->envve)
+		ft_free_split(data->envs->envve);
+	data->envs->envve = env_to_tab(data->envs->env);
+	if (!data->envs->envve)
+		return (1);
+	return (0);
+}
+
+t_env	*envnew_gtw(char *str, int is_exp_no_val)
+{
+	char	*key;
+	char	*val;
+	char	*c;
+	size_t	i;
+
+	i = 0;
+	c = ft_strchr(str, '=');
+	if (!c && !is_exp_no_val)
+		return (NULL);
+	while (str[i] && str[i] != '+' && &str[i] != c)
+		i++;
+	if (str[0] == '=' && !i)
+		key = ft_strdup("=");
+	else
+		key = ft_strdup_till_i(str, i);
+	if (c && c[1])
+		val = ft_strdup(&c[1]);
+	else
+		val = NULL;
+	return (ft_envnew(key, val, is_exp_no_val));
 }
