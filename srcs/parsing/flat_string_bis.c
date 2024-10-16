@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 23:59:13 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/15 00:51:17 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/16 17:50:50 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,15 @@ int	flat_string_init(t_nk *check, char **buf)
 	if (*buf == NULL)
 		return (1);
 	return (0);
+}
+
+int	big_cond(char *s2, int i)
+{
+	return (s2[i] && ((!(s2[i] >= 0 && s2[i] <= 47) || (ft_iqt(s2[i]) && i == 0))
+			&& !(s2[i] >= 58 && s2[i] <= 62)
+			&& !(s2[i] >= 91 && s2[i] <= 94) && s2[i] != 96 && s2[i] != 64
+			&& s2[i] != '\n' && !(s2[i] >= 123 && s2[i] <= 127))
+		&& (!(i == 1 && s2[i - 1] == '?'))
+		&& (!(i == 1 && ft_isdigit(s2[i - 1])))
+		&& (!(i == 1 && ft_iqt(s2[i - 1]))));
 }

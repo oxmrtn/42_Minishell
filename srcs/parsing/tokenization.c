@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:20:36 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/16 15:44:29 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/16 18:02:05 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int	ft_is_commands(t_tokens *node)
 	else if (node->prev->type == OUTFILE && count_cmd(node) == 0)
 		return (1);
 	else if (node->prev->type == ENV)
+		return (1);
+	else if (node->prev->type == NO_TYPE)
 		return (1);
 	return (0);
 }

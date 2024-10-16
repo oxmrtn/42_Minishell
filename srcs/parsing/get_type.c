@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 22:30:23 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/15 15:39:59 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/16 18:01:06 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ static int	flag_on(t_tokens *head)
 	char		**splitted;
 	int			i;
 
+	if (!head->str || (head->str && !head->str[0]))
+		return (0);
 	splitted = ft_split(head->str, ' ');
 	if (!splitted)
 		return (1);
@@ -96,16 +98,16 @@ int	get_type(t_tokens *head, t_data *data)
 		if (ft_cqs(current->str))
 			return (2);
 		if (current->expand == 0 && current->type != LIMITER)
-		{
 			if (ft_expand(current, data, &flag))
 				return (1);
-		}
 		if (flag == 1)
 			flag_on(current);
 		if (current->expand <= 1)
 			if (split_redir(current))
 				return (1);
-		if (get_type_bis(current))
+		if (!current->str || (current->str && !current->str[0]))
+			current->type = NO_TYPE;
+		else if (get_type_bis(current))
 			return (1);
 		current = current->next;
 	}
