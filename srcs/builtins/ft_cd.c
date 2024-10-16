@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:46:55 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/15 17:03:10 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/16 19:25:43 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ int	ft_cd(t_data *data, char **cmdve)
 	oldpwd = env_getval_key(data->envs->env, "PWD");
 	if (!oldpwd)
 		oldpwd = getcwd(0, 0);
+	if (!ft_cd5())
+		ft_desc_error("cd", "error retrieving current directory", 0, NULL);
 	if (!oldpwd && data->tmppwd)
 		oldpwd = ft_strdup(data->tmppwd);
 	if (cmdve[1] && !ft_ultimate_compare(cmdve[1], "-"))
