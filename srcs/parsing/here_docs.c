@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_docs.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:22:35 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/16 16:07:11 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/16 18:37:04 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int	ft_heredoc_handler(t_tokens *head, t_data *data)
 	}
 	return (0);
 }
-
+/*
 int	ft_ask_handler(t_tokens *head, t_data *data)
 {
 	char	*temp;
@@ -134,3 +134,4 @@ int	ft_ask_handler(t_tokens *head, t_data *data)
 	}
 	return (0);
 }
+*/

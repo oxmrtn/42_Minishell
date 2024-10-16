@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:03:48 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/16 16:31:05 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/16 18:36:52 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ int	ft_parser(char *line, t_cmds **commands, t_data *data)
 		return (ft_free_invalid_syntax(new_node), 2);
 	if (ft_heredoc_handler(new_node->tokens, data))
 		return (ft_free_invalid_syntax(new_node), 2);
-	if (ft_ask_handler(new_node->tokens, data))
-		return (ft_free_invalid_syntax(new_node), 1);
 	if (add_commands(new_node, commands))
 		return (1);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:45:56 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/16 17:54:05 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/16 18:59:30 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,18 +120,17 @@ char	*ft_flat_string(char *str, t_data *data, int *flag, t_tokens *current)
 	{
 		flat_bis(str, i, &check, current);
 		if ((str[i] == '$' && check.i != 2 && check.j != 1)
-			&& (!(check.k == 1 && check.i == 0)))
+			&& (!(check.k == 1 && check.i == 0))
+			&& (!(i > 0 && str[i - 1] == 34 && str[i + 1] && str[i + 1] == 34)))
 		{
 			if (flat_string_cond_1(ft_ap_v(&buf, &str[i + 1], data, flag), &i))
 				return (NULL);
 		}
 		else
-		{
 			if ((check.i == 1 && str[i] == 39) || (check.i == 2 && str[i] == 34)
 				|| (str[i] != 34 && str[i] != 39))
 				if (flat_string_cond_2(&buf, str, i, check))
 					return (NULL);
-		}
 	}
 	return (buf);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oxmrtn <oxmrtn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 10:25:14 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/13 19:54:40 by oxmrtn           ###   ########.fr       */
+/*   Updated: 2024/10/16 18:37:22 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	ft_is_pipe(t_tokens *current)
 		}
 		if (!current->next)
 		{
-			current->type = ASK;
+			current->type = ERROR;
 			return (2);
 		}
 		else
