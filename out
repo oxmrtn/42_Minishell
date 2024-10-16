@@ -1,0 +1,10 @@
+echo
+incs
+libcustomft.a
+libft
+Makefile
+minishell
+objs
+out
+srcs
+suppress_filter
