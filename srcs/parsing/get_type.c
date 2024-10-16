@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 22:30:23 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/16 18:01:06 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/16 18:15:26 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static int	commands_shit(t_tokens *current)
 		return (current->type = ERROR, 0);
 	if (!current->str)
 		return (1);
-	current->type = CMD;
+	if (current->type != ENV)
+		current->type = CMD;
 	return (0);
 }
 
