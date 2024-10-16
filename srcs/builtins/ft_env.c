@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:48:29 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/15 17:05:48 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:51:41 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,30 +61,6 @@ int	isvalid_env(char *str, int only_key)
 	return (0);
 }
 
-t_env	*envnew_gtw(char *str, int is_exp_no_val)
-{
-	char	*key;
-	char	*val;
-	char	*c;
-	size_t	i;
-
-	i = 0;
-	c = ft_strchr(str, '=');
-	if (!c && !is_exp_no_val)
-		return (NULL);
-	while (str[i] && str[i] != '+' && &str[i] != c)
-		i++;
-	if (str[0] == '=' && !i)
-		key = ft_strdup("=");
-	else
-		key = ft_strdup_till_i(str, i);
-	if (c && c[1])
-		val = ft_strdup(&c[1]);
-	else
-		val = NULL;
-	return (ft_envnew(key, val, is_exp_no_val));
-}
-
 char	**env_to_tab(t_env *env)
 {
 	size_t	i;
@@ -113,6 +89,29 @@ char	**env_to_tab(t_env *env)
 	return (tmp_env);
 }
 
+static void	ft_env2(t_data *data, char **cmdve, int *retval, int i)
+{
+	int	j;
+	int	k;
+
+	j = 1;
+	k = 1;
+	while (cmdve[j])
+	{
+		if (!cmdve[j][0])
+			k++;
+		j++;
+	}
+	if (i == 1 || j == k)
+		*retval = print_env(data->envs->env);
+	else
+	{
+		*retval = print_env(data->envs->tmpenv);
+		ft_free_env(&data->envs->tmpenv);
+		data->envs->tmpenv = NULL;
+	}
+}
+
 int	ft_env(t_data *data, char **cmdve)
 {
 	size_t	i;
@@ -131,13 +130,6 @@ int	ft_env(t_data *data, char **cmdve)
 				return (-100);
 		i++;
 	}
-	if (i == 1)
-		retval = print_env(data->envs->env);
-	else
-	{
-		retval = print_env(data->envs->tmpenv);
-		ft_free_env(&data->envs->tmpenv);
-		data->envs->tmpenv = NULL;
-	}
+	ft_env2(data, cmdve, &retval, i);
 	return (retval);
 }
