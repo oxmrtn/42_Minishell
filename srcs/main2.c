@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 20:43:33 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/16 15:24:26 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/16 16:10:20 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	g_sig_status;
 
-/*
 int	print_commands(t_cmds *com)
 {
 	t_cmds		*commands;
@@ -52,7 +51,6 @@ int	print_variable(t_data *data)
 	}
 	return (0);
 }
-*/
 
 void	sig_handle_hd(int signo)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 22:28:34 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/15 18:19:32 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:51:58 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ int	split_redir(t_tokens *current)
 	char	*tmp;
 	int		i;
 
+	if (!current->str[0])
+		return (0);
 	str = ft_strdup(current->str);
 	if (!str)
 		return (1);

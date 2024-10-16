@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:45:56 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/16 16:10:06 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/16 16:13:13 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ static int	ft_append_var_bis(char *str, int *flag)
 {
 	if (!str)
 		return (1);
+	if (!str[0])
+		return (0);
 	if (ft_strchr(str, ' '))
 	{
 		if (flag)
@@ -61,12 +63,13 @@ static int	ft_ap_v(char **s1, char *s2, t_data *data, int *flag)
 
 	temp = ((key = NULL));
 	i = 0;
-	while (s2[i] && (!(s2[i] >= 0 && s2[i] <= 47)
+	while (s2[i] && ((!(s2[i] >= 0 && s2[i] <= 47) || (ft_isquote(s2[i]) && i == 0))
 			&& !(s2[i] >= 58 && s2[i] <= 62)
 			&& !(s2[i] >= 91 && s2[i] <= 94) && s2[i] != 96 && s2[i] != 64
 			&& s2[i] != '\n' && !(s2[i] >= 123 && s2[i] <= 127))
 		&& (s2[i] != '?' || (s2[i] == '?' && i == 0))
-		&& (!(i == 1 && ft_isdigit(s2[i - 1]))))
+		&& (!(i == 1 && ft_isdigit(s2[i - 1])))
+		&& (!(i == 1 && ft_isquote(s2[i - 1]))))
 		i++;
 	if (i == 0)
 		return (*s1 = ft_strjoin_s1(*s1, "$"), 0);
