@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:48:29 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/16 15:51:41 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/16 18:02:00 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,29 +89,6 @@ char	**env_to_tab(t_env *env)
 	return (tmp_env);
 }
 
-static void	ft_env2(t_data *data, char **cmdve, int *retval, int i)
-{
-	int	j;
-	int	k;
-
-	j = 1;
-	k = 1;
-	while (cmdve[j])
-	{
-		if (!cmdve[j][0])
-			k++;
-		j++;
-	}
-	if (i == 1 || j == k)
-		*retval = print_env(data->envs->env);
-	else
-	{
-		*retval = print_env(data->envs->tmpenv);
-		ft_free_env(&data->envs->tmpenv);
-		data->envs->tmpenv = NULL;
-	}
-}
-
 int	ft_env(t_data *data, char **cmdve)
 {
 	size_t	i;
@@ -130,6 +107,13 @@ int	ft_env(t_data *data, char **cmdve)
 				return (-100);
 		i++;
 	}
-	ft_env2(data, cmdve, &retval, i);
+	if (i == 1)
+		retval = print_env(data->envs->env);
+	else
+	{
+		retval = print_env(data->envs->tmpenv);
+		ft_free_env(&data->envs->tmpenv);
+		data->envs->tmpenv = NULL;
+	}
 	return (retval);
 }

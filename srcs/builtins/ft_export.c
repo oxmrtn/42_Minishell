@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:47:35 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/16 15:50:59 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/16 17:55:41 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,25 +90,6 @@ static int	expenv_add(t_data *data, char *cmdve)
 	return (0);
 }
 
-static void	ft_export2(t_data *data, char **cmdve, int *retval, int i)
-{
-	int	j;
-	int	k;
-
-	j = 1;
-	k = 1;
-	while (cmdve[j])
-	{
-		if (!cmdve[j][0])
-			k++;
-		j++;
-	}
-	if (data->envs->direrr && is_inenv_key(data->envs->env, "PWD"))
-		data->envs->direrr = 0;
-	if (i == 1 || j == k)
-		*retval = print_exp(data->envs->exp);
-}
-
 int	ft_export(t_data *data, char **cmdve)
 {
 	size_t	i;
@@ -130,6 +111,9 @@ int	ft_export(t_data *data, char **cmdve)
 		}
 		i++;
 	}
-	ft_export2(data, cmdve, &retval, i);
+	if (data->envs->direrr && is_inenv_key(data->envs->env, "PWD"))
+		data->envs->direrr = 0;
+	if (i == 1)
+		retval = print_exp(data->envs->exp);
 	return (retval);
 }
