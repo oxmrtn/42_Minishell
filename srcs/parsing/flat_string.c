@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flat_string.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:45:56 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/17 15:57:13 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:49:26 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ char	*ft_flat_string(char *str, t_data *data, int *flag, t_tokens *current)
 	while (str[++c.m])
 	{
 		flat_bis(str, c.m, &c, current);
-		if (cond_limiter(current, str, &c, &buf))
+		if (cond_lim(current, str, &c, &buf))
 			c.m = c.m + 1 - 1;
 		else if (cond_fs_1(str, &c))
 		{
