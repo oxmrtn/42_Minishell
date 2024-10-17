@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/17 14:28:29 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:23:15 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct s_tokens
 	char			*str;
 	t_type			type;
 	int				expand;
+	int				expandhd; // 0 si !HD 1 si HD ET EXPAND 2 SINN 
 	struct s_tokens	*next;
 	struct s_tokens	*prev;
 }					t_tokens;
@@ -149,6 +150,9 @@ int			flat_string_cond_2(char **buf, char *str, int i, t_nk check);
 int			flat_string_init(t_nk *check, char **buf);
 int			cond_limiter(t_tokens *current, char *str, t_nk *check, char **buffer);
 int			big_cond(char *s2, int i);
+
+//		flat_strings_cond.c
+int			cond_fs_1(char *str, t_nk *c);
 
 //		get_type.c
 int			get_type(t_tokens *head, t_data *data);

@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:45:56 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/17 14:35:54 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:24:24 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,20 +112,18 @@ char	*ft_flat_string(char *str, t_data *data, int *flag, t_tokens *current)
 	char	*buf;
 	t_nk	c;
 
-	if (flat_string_init(&c, &buf))
+	if (flat_string_init(&c, &buf, current, str))
 		return (NULL);
 	while (str[++c.m])
 	{
 		flat_bis(str, c.m, &c, current);
-		if (cond_limiter(current, str, &c, &buf) == 1)
-			return (NULL);
-		else if ((str[c.m] == '$' && c.i != 2 && c.j != 1)
-			&& (!(c.k == 1 && c.i == 0))
-			&& (!(c.m > 0 && str[c.m - 1] == 34 && str[c.m + 1] && str[c.m + 1] == 34)))
+		if (cond_limiter(current, str, &c, &buf))
+			c.m = c.m + 1 - 1;
+		else if (cond_fs_1(str, &c))
 		{
 			if (fsc1(ft_ap_v(&buf, &str[c.m + 1], data, flag), &c.m))
 				return (NULL);
-		}	
+		}
 		else
 			if ((c.i == 1 && str[c.m] == 39) || (c.i == 2 && str[c.m] == 34)
 				|| (str[c.m] != 34 && str[c.m] != 39))

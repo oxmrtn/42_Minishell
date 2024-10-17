@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+         #
+#    By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/04 15:03:37 by ebengtss          #+#    #+#              #
-#    Updated: 2024/10/15 20:46:34 by ebengtss         ###   ########.fr        #
+#    Updated: 2024/10/17 14:53:56 by mtrullar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ SRCS_FILES			=	main.c				builtins.c			\
 						hd_list.c			get_type.c			\
 						split_redir.c		flat_string_bis.c	\
 						ft_cd2.c			env_utils.c			\
-						main2.c
+						main2.c				flat_string_cond.c	\
 						
 
 OBJS				=	$(addprefix $(OBJS_DIR), $(SRCS_FILES:.c=.o))

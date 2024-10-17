@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 22:30:23 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/17 13:24:21 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:23:38 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ int	get_type(t_tokens *head, t_data *data)
 	current = head;
 	while (current)
 	{
+		current->expandhd = 1;
 		flag = 0;
 		if (ft_cqs(current->str))
 			return (2);

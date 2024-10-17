@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:32:30 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/17 14:14:54 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:00:01 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_nk
 	int		j;
 	int		k;
 	int		m;
+	int		p;
 	int		check;
 	char	*buffer;
 }			t_nk;

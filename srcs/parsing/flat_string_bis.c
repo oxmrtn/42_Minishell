@@ -6,27 +6,29 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 23:59:13 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/17 14:28:20 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:26:09 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
 
-int	cond_limiter(t_tokens *current, char *str,  t_nk *c, char **buf)
+int	cond_limiter(t_tokens *current, char *str, t_nk *c, char **buf)
 {
+	if (!current)
+		return (0);
 	if (((current && current->type == LIMITER)
-		|| (!(c->k == 1 && c->i == 0))) && str[c->m] == '$')
+			|| (!(c->k == 1 && c->i == 0))) && str[c->m] == '$')
 	{
 		if (str[c->m + 1] && str[c->m + 1] == 34 && (c->m == 0
-			|| (c->m > 1 && str[c->m - 1] != '$')))
+				|| (c->m > 1 && str[c->m - 1] != '$')))
 			c->m = c->m + 1 - 1;
 		else
 		{
-			printf("AJOUTE UN $ || |%s | \n\n", str + c->m);
 			*buf = ft_strjoin_s1(*buf, "$");
 			if (!(*buf))
 				return (1);
 		}
+		return (1);
 	}
 	return (0);
 }
@@ -47,8 +49,11 @@ int	flat_string_cond_2(char **buf, char *str, int i, t_nk check)
 	return (0);
 }
 
-int	flat_string_init(t_nk *check, char **buf)
+int	flat_string_init(t_nk *check, char **buf, t_tokens *c, char *str)
 {
+	if (str && str[0] && (str[0] == 34 || str[0] == 39) 
+	&& ( ft_iqt(str[ft_strlen(str) - 1])))
+		c->expandhd = 2;
 	check->m = -1;
 	check->i = ((check->j = ((check->k = 0))));
 	*buf = ft_strdup("");
