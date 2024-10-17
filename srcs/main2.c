@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 20:43:33 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/16 18:28:54 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/17 13:24:10 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,8 +164,11 @@ int	the_loop(t_data *data)
 	if (rev == 1)
 		return (free(data->read), data->read = NULL, 1);
 	if (rev == 0)
+	{
+		print_commands(ft_get_last_commands(data->cmds));
 		if (exec(data, ft_get_last_commands(data->cmds)))
 			return (free(data->read), data->read = NULL, 1);
+	}
 	if (update_status(data, 1))
 		return (free(data->read), data->read = NULL, 1);
 	return (free(data->read), data->read = NULL, 2);

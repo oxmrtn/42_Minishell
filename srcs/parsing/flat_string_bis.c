@@ -6,13 +6,32 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 23:59:13 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/16 18:17:08 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/17 14:28:20 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
 
-int	flat_string_cond_1(int res, int *i)
+int	cond_limiter(t_tokens *current, char *str,  t_nk *c, char **buf)
+{
+	if (((current && current->type == LIMITER)
+		|| (!(c->k == 1 && c->i == 0))) && str[c->m] == '$')
+	{
+		if (str[c->m + 1] && str[c->m + 1] == 34 && (c->m == 0
+			|| (c->m > 1 && str[c->m - 1] != '$')))
+			c->m = c->m + 1 - 1;
+		else
+		{
+			printf("AJOUTE UN $ || |%s | \n\n", str + c->m);
+			*buf = ft_strjoin_s1(*buf, "$");
+			if (!(*buf))
+				return (1);
+		}
+	}
+	return (0);
+}
+
+int	fsc1(int res, int *i)
 {
 	if (res < 0)
 		return (1);
@@ -30,6 +49,7 @@ int	flat_string_cond_2(char **buf, char *str, int i, t_nk check)
 
 int	flat_string_init(t_nk *check, char **buf)
 {
+	check->m = -1;
 	check->i = ((check->j = ((check->k = 0))));
 	*buf = ft_strdup("");
 	if (*buf == NULL)
