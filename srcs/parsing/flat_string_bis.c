@@ -6,13 +6,13 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 23:59:13 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/17 16:23:28 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/17 17:01:02 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/minishell.h"
 
-int	cond_limiter(t_tokens *current, char *str, t_nk *c, char **buf)
+int	cond_lim(t_tokens *current, char *str, t_nk *c, char **buf)
 {
 	if (!current || (current && current->type != LIMITER))
 		return (0);
