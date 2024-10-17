@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 23:59:13 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/17 15:57:03 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:23:28 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	cond_limiter(t_tokens *current, char *str, t_nk *c, char **buf)
 {
-	if (!current)
+	if (!current || (current && current->type != LIMITER))
 		return (0);
 	if (((current && current->type == LIMITER)
 			|| (!(c->k == 1 && c->i == 0))) && str[c->m] == '$')

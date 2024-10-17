@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 10:25:14 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/16 18:37:22 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:55:33 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,17 +66,16 @@ int	add_new_token(char *str, t_tokens **head, t_type type, int flag)
 
 int	ft_is_pipe(t_tokens *current)
 {
-	if (!ft_strncmp(current->str, "|", 1))
+	if (!ft_ultimate_compare(current->str, "|")
+		|| !ft_ultimate_compare(current->str, "||"))
 	{
 		if (ft_strlen(current->str) > 1)
 			return (current->type = ERROR, 2);
 		if (!current->prev)
 			return (current->type = ERROR, 2);
 		else
-		{
 			if (current->prev->type == REDIR || current->prev->type == PIPE)
 				return (current->type = ERROR, 2);
-		}
 		if (!current->next)
 		{
 			current->type = ERROR;

@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 17:40:43 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/10 22:38:10 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:57:56 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int	ft_is_redirect_sign(t_tokens *current)
 		return (ft_set_redirect(current, LIMITER), 1);
 	else if (!ft_ultimate_compare(current->str, "<"))
 		return (ft_set_redirect(current, INFILE), 1);
-	else if (!ft_strncmp(current->str, ">", 1)
-		|| !ft_strncmp(current->str, "<", 1))
+	else if (!ft_ultimate_compare(current->str, ">")
+		|| !ft_ultimate_compare(current->str, "<"))
 		return (current->type = ERROR, 1);
 	return (0);
 }
