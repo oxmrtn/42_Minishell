@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:35:12 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/03 17:29:50 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/16 19:35:14 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	exec_builtin(t_data *data, char **cmdve)
 	retval = 0;
 	if (builtin_option_check(cmdve))
 	{
-		data->exit_status = 1;
+		data->exit_status = 2;
 		return (1);
 	}
 	if (!ft_ultimate_compare(cmdve[0], "echo"))
@@ -58,7 +58,7 @@ int	exec_builtin(t_data *data, char **cmdve)
 	else if (!ft_ultimate_compare(cmdve[0], "cd"))
 		retval = ft_cd(data, cmdve);
 	else if (!ft_ultimate_compare(cmdve[0], "pwd"))
-		retval = ft_pwd(data);
+		retval = ft_pwd();
 	else if (!ft_ultimate_compare(cmdve[0], "export"))
 		retval = ft_export(data, cmdve);
 	else if (!ft_ultimate_compare(cmdve[0], "unset"))

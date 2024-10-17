@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:45:52 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/15 16:59:48 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/16 19:56:29 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,13 @@ int	check_env(t_data *data)
 	if (!ispwd && pwd)
 		if (add_min_env(data, "PWD", (char *)pwd, 1))
 			return (free((char *)pwd), 1);
-	if (!ispwd && !pwd)
+	if (!pwd)
 		ft_puterror("minishell-init: error retrieving current directory\n");
 	if (!pwd)
 		data->envs->direrr = 1;
 	else
 		free((char *)pwd);
-	if (set_path(data))
+	if (check_env2(data))
 		return (1);
 	if (!islvl)
 		if (add_min_env(data, "SHLVL", "1", 1))

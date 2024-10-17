@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:49:23 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/16 16:34:34 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/16 19:06:33 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,11 @@ static int	run_child(t_data *data, int i, int *fds, int islast)
 		exit(1);
 	}
 	close(fds[1]);
-	if (!data->cmdve[i] || !data->cmdve[i][0][0]
-		|| is_builtin(data->cmdve[i][0]))
-		(free_main(data, 0), exit(0));
+	if (!data->cmdve[i] || is_builtin(data->cmdve[i][0]))
+	{
+		free_main(data, 0);
+		exit(0);
+	}
 	cmd_isdir(data, data->cmdve[i][0]);
 	(close(data->stdincpy), close(data->stdoutcpy));
 	if (data->heredoc)
@@ -59,10 +61,10 @@ static int	run_parent(t_data *data, int i, int *fds, int islast)
 	if (dup2(fds[0], STDIN_FILENO) == -1)
 		return (close(fds[0]), perror(NULL), 1);
 	close(fds[0]);
-	if (!data->cmdve[i] || !data->cmdve[i][0][0])
+	if (!data->cmdve[i])
 		return (close(fds[1]), 0);
 	builtin_check = is_builtin(data->cmdve[i][0]);
-	if (!islast && builtin_check)
+	if (!islast && !data->isoutred && builtin_check)
 		if (dup2(fds[1], STDOUT_FILENO) == -1)
 			return (close(fds[1]), perror(NULL), 1);
 	close(fds[1]);

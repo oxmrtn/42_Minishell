@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 17:13:16 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/14 17:33:01 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/16 19:56:29 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,13 @@ static void	set_hidden(t_env *env, char *keycheck)
 	}
 }
 
-int	set_path(t_data *data)
+int	check_env2(t_data *data)
 {
 	char	*paths;
 
+	if (!is_inenv_key(data->envs->exp, "OLDPWD"))
+		if (expenv_add2(data, "OLDPWD", 1))
+			return (1);
 	if (is_inenv_key(data->envs->env, "PATH"))
 		return (0);
 	paths = ft_strjoin("/usr/local/sbin:/usr/local/bin:",

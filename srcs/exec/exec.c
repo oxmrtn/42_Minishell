@@ -6,7 +6,7 @@
 /*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:57:50 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/16 15:42:32 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/16 19:05:44 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,15 @@ int	run_gtw(t_data *data, t_cmds *cmd, int *i, int islast)
 		return (1);
 	if (reset_fds(data, 1))
 		return (1);
-	if (data->envs->tmpenvve)
+	if (data->envs->tmpenv)
 	{
 		ft_free_env(&data->envs->tmpenv);
 		data->envs->tmpenv = NULL;
-		ft_free_split(data->envs->envve);
+	}
+	if (data->envs->tmpenvve)
+	{
+		if (data->envs->envve)
+			ft_free_split(data->envs->envve);
 		data->envs->envve = data->envs->tmpenvve;
 		data->envs->tmpenvve = NULL;
 	}
