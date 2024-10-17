@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:45:56 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/16 18:59:30 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:57:13 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,27 +109,25 @@ static void	flat_bis(char *str, int i, t_nk *check, t_tokens *current)
 
 char	*ft_flat_string(char *str, t_data *data, int *flag, t_tokens *current)
 {
-	int		i;
 	char	*buf;
-	t_nk	check;
+	t_nk	c;
 
-	i = -1;
-	if (flat_string_init(&check, &buf))
+	if (flat_string_init(&c, &buf))
 		return (NULL);
-	while (str[++i])
+	while (str[++c.m])
 	{
-		flat_bis(str, i, &check, current);
-		if ((str[i] == '$' && check.i != 2 && check.j != 1)
-			&& (!(check.k == 1 && check.i == 0))
-			&& (!(i > 0 && str[i - 1] == 34 && str[i + 1] && str[i + 1] == 34)))
+		flat_bis(str, c.m, &c, current);
+		if (cond_limiter(current, str, &c, &buf))
+			c.m = c.m + 1 - 1;
+		else if (cond_fs_1(str, &c))
 		{
-			if (flat_string_cond_1(ft_ap_v(&buf, &str[i + 1], data, flag), &i))
+			if (fsc1(ft_ap_v(&buf, &str[c.m + 1], data, flag), &c.m))
 				return (NULL);
 		}
 		else
-			if ((check.i == 1 && str[i] == 39) || (check.i == 2 && str[i] == 34)
-				|| (str[i] != 34 && str[i] != 39))
-				if (flat_string_cond_2(&buf, str, i, check))
+			if ((c.i == 1 && str[c.m] == 39) || (c.i == 2 && str[c.m] == 34)
+				|| (str[c.m] != 34 && str[c.m] != 39))
+				if (flat_string_cond_2(&buf, str, c.m, c))
 					return (NULL);
 	}
 	return (buf);

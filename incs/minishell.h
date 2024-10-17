@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/16 19:56:29 by ebengtss         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:59:46 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,10 +144,14 @@ char		*ft_flat_string(char *str, t_data *data, int *flag, t_tokens *c);
 char		*ft_append(char *s1, char *str, int i, int check);
 
 //		flat_strings_bis.c
-int			flat_string_cond_1(int res, int *i);
+int			fsc1(int res, int *i);
 int			flat_string_cond_2(char **buf, char *str, int i, t_nk check);
 int			flat_string_init(t_nk *check, char **buf);
+int			cond_limiter(t_tokens *current, char *str, t_nk *check, char **buffer);
 int			big_cond(char *s2, int i);
+
+//		flat_strings_cond.c
+int			cond_fs_1(char *str, t_nk *c);
 
 //		get_type.c
 int			get_type(t_tokens *head, t_data *data);
