@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebengtss <ebengtss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:48:42 by ebengtss          #+#    #+#             */
-/*   Updated: 2024/10/10 20:16:54 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:09:51 by ebengtss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,20 @@ static int	is_validval(char *str)
 
 	fn = 0;
 	if (str && str[0] == '-')
-	{
-		str = str + 1;
 		fn = 1;
-	}
+	if (str && (str[0] == '-' || str[0] == '+'))
+		str++;
+	while (str && *str == '0')
+		str++;
 	len = ft_strlen(str);
 	if (len > len_nbr)
 		return (0);
 	if (len < len_nbr)
 		return (1);
-	temp = ft_strncmp(str, "9223372036854775808", len);
 	if (fn == 1)
 		temp = ft_strncmp(str, "9223372036854775809", len);
+	else
+		temp = ft_strncmp(str, "9223372036854775808", len);
 	if (temp >= 0)
 		return (0);
 	else
