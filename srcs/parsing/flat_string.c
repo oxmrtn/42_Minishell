@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:45:56 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/17 15:24:24 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:57:13 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ char	*ft_flat_string(char *str, t_data *data, int *flag, t_tokens *current)
 	char	*buf;
 	t_nk	c;
 
-	if (flat_string_init(&c, &buf, current, str))
+	if (flat_string_init(&c, &buf))
 		return (NULL);
 	while (str[++c.m])
 	{

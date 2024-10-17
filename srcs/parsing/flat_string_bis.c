@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 23:59:13 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/17 15:26:09 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:57:03 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,8 @@ int	flat_string_cond_2(char **buf, char *str, int i, t_nk check)
 	return (0);
 }
 
-int	flat_string_init(t_nk *check, char **buf, t_tokens *c, char *str)
+int	flat_string_init(t_nk *check, char **buf)
 {
-	if (str && str[0] && (str[0] == 34 || str[0] == 39) 
-	&& ( ft_iqt(str[ft_strlen(str) - 1])))
-		c->expandhd = 2;
 	check->m = -1;
 	check->i = ((check->j = ((check->k = 0))));
 	*buf = ft_strdup("");

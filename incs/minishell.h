@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:28:45 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/17 15:23:15 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:57:35 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ typedef struct s_tokens
 	char			*str;
 	t_type			type;
 	int				expand;
-	int				expandhd; // 0 si !HD 1 si HD ET EXPAND 2 SINN 
 	struct s_tokens	*next;
 	struct s_tokens	*prev;
 }					t_tokens;

@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 18:22:35 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/10/17 15:22:17 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:57:52 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static char	*ft_launch_heredocs2(int *fd, t_data *data)
 	return (temp);
 }
 
-static int	ft_launch_heredocs(char *limiter, t_data *data, t_tokens *c)
+static int	ft_launch_heredocs(char *limiter, t_data *data)
 {
 	int		fd[2];
 	char	*buffer;
@@ -93,7 +93,7 @@ int	ft_heredoc_handler(t_tokens *head, t_data *data)
 					del_top_hd(data);
 				else if (flag == 0)
 					flag = 1;
-				if (ft_launch_heredocs(head->str, data, head))
+				if (ft_launch_heredocs(head->str, data))
 					return (change_sig_handler(data, 1), 1);
 				change_sig_handler(data, 1);
 			}
