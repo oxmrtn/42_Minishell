@@ -38,6 +38,7 @@ static int	dup_inred(t_data *data, char *infile, int i)
 		ft_desc_error("infile", infile, 1, NULL);
 		ft_free_split(data->cmdve[i]);
 		data->cmdve[i] = NULL;
+		data->exit_status = 1;
 		return (2);
 	}
 	else

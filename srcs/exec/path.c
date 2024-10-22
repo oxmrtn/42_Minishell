@@ -40,9 +40,9 @@ static int	cmds_path3(char **cmdve, char **env_path)
 		if (access(path, F_OK) == 0)
 		{
 			free(cmdve[0]);
-			cmdve[0] = path;
+			cmdve[0] = ft_strdup(path);
 			if (access(path, X_OK) == 0)
-				break ;
+				return (free(path), 0);
 		}
 		free(path);
 		i++;
